@@ -14,12 +14,14 @@ public class Escritura {
     
     public Escritura(){        
     }
-    
+    /**-----------------------------------------------------------------------**
+     * Escribe cada libro en un archivo txt con el ISBN como numbre
+     */ 
     public void serializarLibro(Libro libro) throws IOException{
         File file = new File(libro.getIsbn() + ".txt");        
-        ObjectOutputStream escritor= new ObjectOutputStream(new FileOutputStream(file,false));       
+        ObjectOutputStream escritor= new ObjectOutputStream(new FileOutputStream(file, false));       
         escritor.writeObject(libro);
         escritor.close();
-    }
+    }  
     
 }

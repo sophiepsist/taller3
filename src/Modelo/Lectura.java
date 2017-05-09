@@ -20,7 +20,7 @@ public class Lectura {
     }
     
     /**-----------------------------------------------------------------------**
-     * Hace la carga inicial de los libros que existen en la biblioteca 
+     * Hace la carga inicial de los libros que existen en el directorio del proyecto
      */    
     public HashMap cargarLibrosBiblioteca() throws IOException, ClassNotFoundException, MyException{          
         File dir = new File(System.getProperty("user.dir"));
@@ -36,6 +36,26 @@ public class Lectura {
         }
         return librosBase;          
     }
+    
+     /**-----------------------------------------------------------------------**
+     * Revisa los archivos del directorio para eliminar el txt del libro que ha 
+     * sido eliminado de la biblioteca 
+     */ 
+    
+    public void eliminarLibroSerializado(String isbn) throws IOException, ClassNotFoundException, MyException{
+        File dir = new File(System.getProperty("user.dir"));
+        File[] directoryListing = dir.listFiles();
+        if (directoryListing != null) {
+          for (File child : directoryListing){
+              if(child.getName().equals(isbn + ".txt")){
+                  child.delete();
+                  break;
+              }
+          }            
+        } else {
+            throw new MyException("Ocurrió un problema al eliminar el archivo .txt de un libro previamente serializado\nERROR: CLASS LECTURA");     
+        }
+    }    
     
     /**-----------------------------------------------------------------------**
      * Retorna el libro que el cliente ha pedido leer
