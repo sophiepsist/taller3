@@ -8,6 +8,8 @@ package Serividor;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction.*;
 
 
@@ -92,6 +94,13 @@ public class Servidor {
 
     
     public static void main(String[] args){
+        String localHost=null;
+       try {
+           localHost = InetAddress.getLocalHost().getHostAddress();
+       } catch (UnknownHostException ex) {
+           Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        System.out.println(localHost);
         Servidor servidor = new Servidor(28795);  
     }
    

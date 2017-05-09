@@ -41,7 +41,7 @@ public class Hilo extends Thread{
             }
 
     }
-    public void procesarConexion(){
+    public synchronized void procesarConexion(){
     ArrayList mensaje = null;   
         do{
             try{
@@ -65,6 +65,10 @@ public class Hilo extends Thread{
                     case "modificarLibro": 
                         biblioteca.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11), (String) mensaje.get(12), (String) mensaje.get(13));
                         break;
+                    case "Salir":
+                        cerrarConexion();
+                    default: 
+                        procesarConexion();
                 }
 
                 System.out.println("\n" + mensaje);
@@ -81,7 +85,7 @@ public class Hilo extends Thread{
             }catch(MyException e){
                 System.out.println(e.getMessage());
             }
-        } while (mensaje!=null);
+        } while (mensaje.get(0)!="Salir");
     }
     
     public void enviarDatos(Object mensaje){
