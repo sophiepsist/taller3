@@ -5,6 +5,7 @@
  */
 package Modelo;
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -24,7 +25,7 @@ public class Biblioteca {
     private HashMap librosJuveniles;
     private HashMap librosFilosofia;
     private HashMap librosOtros;
-    
+    private Lectura lectura;
     //---------------------------MÉTODO CONSTRUCTOR-----------------------------
     
     public Biblioteca(){
@@ -39,6 +40,7 @@ public class Biblioteca {
         this.librosJuveniles = new HashMap();
         this.librosFilosofia = new HashMap();
         this.librosOtros = new HashMap();
+        this.lectura= new Lectura();
     }
 
    //----------------------------MÉTODOS GET------------------------------------
@@ -218,7 +220,7 @@ public class Biblioteca {
         }
     }
     
-    public void modificarLibro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, 
+    public void modificarLibro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades,
                               String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, String caratula, String autor) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
@@ -343,9 +345,19 @@ public class Biblioteca {
         }
         return books;
     }
+    
+    public void agregarLibrosAutomaticamente(){
+        try{
+        libros.putAll(lectura.cargarLibrosBiblioteca());
+        }catch(IOException ex){
+            System.out.println("IOException en Biblioteca, Metodo: AgregarLibrosAutomaticamente");
+        }catch(ClassNotFoundException ex){
+            System.out.println("ClassNotFoundException en Bibliotedan Metodo: AgregarLibrosAutomaticamente");
+        }
+    }
    
 }
     
     
     
-
+ 

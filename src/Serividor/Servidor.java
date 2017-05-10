@@ -11,6 +11,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction.*;
+import Modelo.*;
 
 
 /**
@@ -20,6 +21,8 @@ import javax.swing.AbstractAction.*;
 public class Servidor {
    ServerSocket server; 
    Socket cliente;
+   Biblioteca biblioteca;
+   Lectura lectura;
 
 
     public Servidor(int puerto){
@@ -28,6 +31,12 @@ public class Servidor {
             System.out.println("se inicia el servidor\n");
             this.cliente  = server.accept();
             System.out.println("cliente recibido o conectado o lo que sea lok\n");
+            this.biblioteca = new Biblioteca();
+            this.lectura = new Lectura();
+            //biblioteca.
+            //lectura.cargarLibrosBiblioteca();
+            biblioteca.agregarLibrosAutomaticamente();
+            biblioteca.clasificarLibrosCategoria();
             conectar();
             //this.salida  = new ObjectOutputStream(cliente.getOutputStream());
             //System.out.println("se obtiene el flujo de salida\n");
@@ -35,7 +44,9 @@ public class Servidor {
             //System.out.println("se obtiene elflujo de entrada\n");
         }catch(IOException e){
             System.out.println("Error en el flujo del servidor\n");
-        }
+        }//catch(ClassNotFoundException e){
+           // System.out.println("Class not foudn Exception en Servidor");
+        //}
     }
     
     public void conectar(){

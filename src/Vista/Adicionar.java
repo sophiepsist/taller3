@@ -94,6 +94,11 @@ public class Adicionar extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Adicionar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,6 +265,29 @@ public class Adicionar extends javax.swing.JInternalFrame {
              this.nombreArchivo= fileChooser.getCurrentDirectory();
          }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            String ISBN = this.jTextField1.getText().trim();
+            String titulo = this.jTextField2.getText().trim();
+            String autor = this.jTextField3.getText().trim();
+            String categoria = this.jTextField4.getText().trim();
+            String calificacion = this.jTextField5.getText().trim();
+            int numPaginas = Integer.parseInt(this.jTextField6.getText().trim());
+            String rangoEdades = this.jTextField7.getText().trim();
+            String periodoOferta = this.jTextField8.getText().trim();
+            String resumen = this.jTextArea1.getText();
+            
+            //this.miControl.agregarLibros(numPaginas, titulo, precio, categoria, bestSeller,rangoEdades, isbn, calificacion, resumen, oferta, nombreArchivo,caratula, autor);
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showInternalMessageDialog(this,"Error en las casillas de saldo e interes ingrese datos adecuados.");
+        }
+        catch(Exception e){
+            JOptionPane.showInternalMessageDialog(this,"Error.");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
