@@ -20,20 +20,24 @@ public class Lectura {
     }
     
     /**-----------------------------------------------------------------------**
-     * Hace la carga inicial de los libros que existen en el directorio del proyecto
+     * Hace la carga inicial de los libros que existen en la carpeta "InfoLibros"
+     * en el directorio del proyecto y los mete a un HashMap
      */    
-    public HashMap cargarLibrosBiblioteca() throws IOException, ClassNotFoundException, MyException{          
-        File dir = new File(System.getProperty("user.dir"));
-        File[] directoryListing = dir.listFiles();
-        if (directoryListing != null) {
-          for (File child : directoryListing) {
-            ObjectInputStream lector = new ObjectInputStream(new FileInputStream(child));
-            Libro libro = (Libro)lector.readObject();
-            librosBase.put(libro.getIsbn(), libro);
-          }
-        } else {
-            throw new MyException("Ocurrió un problema al cargar los libros de la biblioteca\nERROR: CLASS LECTURA");     
-        }
+    public HashMap cargarLibrosBiblioteca() throws IOException, ClassNotFoundException{        
+       File dirProyecto = new File(System.getProperty("user.dir"));
+        File[] filesProyecto = dirProyecto.listFiles();
+        for(File file : filesProyecto){
+            if(file.getName().equals("InfoLibros")){
+                File infoLibros = new File(file.getPath());
+                File[] bookFiles = infoLibros.listFiles();
+                for(File bookFile : bookFiles){
+                    ObjectInputStream lector = new ObjectInputStream(new FileInputStream(bookFile));
+                    Libro libro = (Libro)lector.readObject();
+                    librosBase.put(libro.getIsbn(), libro);
+                }
+                break;
+            } 
+        }       
         return librosBase;          
     }
     
