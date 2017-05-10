@@ -17,9 +17,10 @@ public class Escritura {
     /**-----------------------------------------------------------------------**
      * Escribe cada libro en un archivo txt con el ISBN como numbre
      */ 
-    public void serializarLibro(Libro libro) throws IOException{
-        File file = new File(libro.getIsbn() + ".txt");        
-        ObjectOutputStream escritor= new ObjectOutputStream(new FileOutputStream(file, false));       
+    public void serializarLibro(Libro libro) throws IOException{        
+        File dirProyecto = new File(System.getProperty("user.dir"));
+        File file = new File(dirProyecto + "\\InfoLibros" + "\\" + libro.getIsbn() + ".txt");        
+        ObjectOutputStream escritor= new ObjectOutputStream(new FileOutputStream(file, false));            
         escritor.writeObject(libro);
         escritor.close();
     }  
