@@ -24,7 +24,7 @@ public class Lectura {
      * en el directorio del proyecto y los mete a un HashMap
      */    
     public HashMap cargarLibrosBiblioteca() throws IOException, ClassNotFoundException{        
-       File dirProyecto = new File(System.getProperty("user.dir"));
+        File dirProyecto = new File(System.getProperty("user.dir"));
         File[] filesProyecto = dirProyecto.listFiles();
         for(File file : filesProyecto){
             if(file.getName().equals("InfoLibros")){
