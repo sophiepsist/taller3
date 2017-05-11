@@ -175,6 +175,21 @@ public class Controladora {
             return "Null Pointer Exception en consultarCategoriaOtros";
         }
     }     
-    
+    public String AgregarLibrosAutomaticamente(){
+        try{
+        objBiblioteca.agregarLibrosAutomaticamente();
+            return "Libros agregados con Exito";
+        }catch(NullPointerException ex){
+            return "Error 01 Controladora AgregarLibros automaticamente";
+        }
+    }
+    public String clasificarLibrosCategoria(){
+        try{
+            objBiblioteca.clasificarLibrosCategoria();
+            return "Libros clasificados con exito";
+        }catch(NullPointerException ex){
+            return "Error Controladora Clasificar Libros Categoria";
+        }
+    }
     
 }

@@ -5,8 +5,7 @@
  */
 package Serividor;
 
-import Modelo.Biblioteca;
-import Modelo.MyException;
+import Controladora.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
@@ -24,7 +23,7 @@ public class Hilo extends Thread{
     ObjectOutputStream salida;
     ObjectInputStream entrada;
     Socket cliente;
-    Biblioteca biblioteca;
+    Controladora control;
 
     public Hilo(Socket conexion)
     {
@@ -33,7 +32,7 @@ public class Hilo extends Thread{
             this.salida = new ObjectOutputStream(cliente.getOutputStream());
             this.salida.flush();
             this.entrada = new ObjectInputStream(cliente.getInputStream());
-            this.biblioteca = new Biblioteca();
+            this.control = new Controladora();
             }
         catch(IOException e)
             {
@@ -47,23 +46,23 @@ public class Hilo extends Thread{
             try{
                 //Lee El objeto que ha sido enviado por el cliente
                 mensaje = (ArrayList) entrada.readObject();
-
+                System.out.println(mensaje);
                 switch ((String)mensaje.get(0))
                 {
                     case "agregarLibros": 
-                        biblioteca.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11), (String) mensaje.get(12), (String) mensaje.get(13));
+                        control.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11), (String) mensaje.get(12), (String) mensaje.get(13));
                         break;
                     case "eliminarLibros": 
-                        biblioteca.eliminarLibros((String)mensaje.get(1));
+                        control.eliminarLibros((String)mensaje.get(1));
                         break;                    
                     case "consultarInfoLibros": 
-                        enviarDatos(biblioteca.consultarInfoLibros((String) mensaje.get(1)));
+                        enviarDatos(control.consultarInfoLibros((String) mensaje.get(1)));
                         break;
                     case "cargarInfoLibro": 
-                        enviarDatos(biblioteca.cargarInfoLibro((String) mensaje.get(1)));
+                        enviarDatos(control.cargarInfoLibro((String) mensaje.get(1)));
                         break;
                     case "modificarLibro": 
-                        biblioteca.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11), (String) mensaje.get(12), (String) mensaje.get(13));
+                        control.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11), (String) mensaje.get(12), (String) mensaje.get(13));
                         break;
                     case "Salir":
                         cerrarConexion();
@@ -82,8 +81,6 @@ public class Hilo extends Thread{
                 System.out.println("\n No se envio nada al servidor, no se ha podido generar una respuesta");
             }catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("\n Error al enviar archivos... archivos de mas... mal ordenados... archivos de menos");
-            }catch(MyException e){
-                System.out.println(e.getMessage());
             }
         } while (mensaje.get(0)!="Salir");
     }
