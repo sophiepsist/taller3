@@ -6,6 +6,7 @@
 package Controladora;
 import Modelo.*;
 import Vista.*;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -28,7 +29,7 @@ public class Controladora {
       }
       
     public String agregarLibros(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, 
-                              String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, String caratula, String autor){
+                              String isbn, String calificacion, String resumen, String oferta, File nombreArchivo, File caratula, String autor){
         try {
             objBiblioteca.agregarLibros(numPaginas, titulo, precio, categoria, bestSeller, rangoEdades, isbn, calificacion, resumen, oferta, nombreArchivo, caratula, autor);
             return "Libro agregado correctamente";
@@ -71,7 +72,7 @@ public class Controladora {
     }
     
     public String modificarLibro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, 
-                                  String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, String caratula, String autor) { 
+                                  String isbn, String calificacion, String resumen, String oferta, File nombreArchivo, File caratula, String autor) { 
         try{
                 objBiblioteca.modificarLibro(numPaginas, titulo, precio, categoria, bestSeller, rangoEdades, isbn, calificacion, resumen, oferta, nombreArchivo, caratula, autor);
                 return "Libro modificado correctamente";

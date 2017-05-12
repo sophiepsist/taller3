@@ -6,9 +6,9 @@
 package Serividor;
 
 import Controladora.*;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.*;
@@ -50,7 +50,7 @@ public class Hilo extends Thread{
                 switch ((String)mensaje.get(0))
                 {
                     case "agregarLibros": 
-                        control.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11), (String) mensaje.get(12), (String) mensaje.get(13));
+                        control.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (File) mensaje.get(11), (File) mensaje.get(12), (String) mensaje.get(13));
                         break;
                     case "eliminarLibros": 
                         control.eliminarLibros((String)mensaje.get(1));
@@ -62,7 +62,7 @@ public class Hilo extends Thread{
                         enviarDatos(control.cargarInfoLibro((String) mensaje.get(1)));
                         break;
                     case "modificarLibro": 
-                        control.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11), (String) mensaje.get(12), (String) mensaje.get(13));
+                        control.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (File) mensaje.get(11), (File) mensaje.get(12), (String) mensaje.get(13));
                         break;
                     case "Salir":
                         cerrarConexion();

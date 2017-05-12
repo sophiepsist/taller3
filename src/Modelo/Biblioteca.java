@@ -162,7 +162,7 @@ public class Biblioteca {
     //-----------------------AGREGAR LIBROS MANUALMENTE-------------------------    
     
     public void agregarLibros(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, 
-                              String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, String caratula, String autor) throws MyException{
+                              String isbn, String calificacion, String resumen, String oferta, File nombreArchivo, File caratula, String autor) throws MyException{
         if(libros.containsKey(isbn)){
             throw new MyException("Ya se ha agregado un libro con ese ISBN");
         }else{       
@@ -197,7 +197,7 @@ public class Biblioteca {
     public String[] cargarInfoLibro(String isbn) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
-            String[] datos = new String[12];
+            String[] datos = new String[13];
             datos[0]= libro.getIsbn();
             datos[1]=libro.getTitulo();
             datos[2]=libro.getAutor();
@@ -212,8 +212,9 @@ public class Biblioteca {
                 datos[8]="NBS";
             }
             datos[9]=libro.getResumen();
-            datos[10]=libro.getNombreArchivo();
-            datos[11]=libro.getCaratula();
+            datos[10]=libro.getNombreArchivo().toString();
+            datos[11]=libro.getCaratula().toString();
+            datos[12]=Integer.toString(libro.getPrecio());
             return datos;
         }else{
             throw new MyException("El libro no se encuentra en la biblioteca");
@@ -221,7 +222,7 @@ public class Biblioteca {
     }
     
     public void modificarLibro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades,
-                              String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, String caratula, String autor) throws MyException{
+                              String isbn, String calificacion, String resumen, String oferta, File nombreArchivo, File caratula, String autor) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
             libro.setTitulo(titulo);
@@ -235,6 +236,7 @@ public class Biblioteca {
             libro.setResumen(resumen);
             libro.setNombreArchivo(nombreArchivo);
             libro.setCaratula(caratula);
+            libro.setPrecio(precio);
         }else{
             throw new MyException("El libro no se encuentra en la biblioteca");
         }
