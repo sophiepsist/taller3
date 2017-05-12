@@ -19,6 +19,14 @@ public class Consultar extends javax.swing.JInternalFrame {
     public Consultar(Controladora c) {
         initComponents();
         this.miControl = c;
+        /*this.refrescarLibros();
+        this.refrescarLibrosAcademicos();
+        this.refrescarLibrosRomance();
+        this.refrescarLibrosOtros();
+        this.refrescarLibrosFilosofia();
+        this.refrescarLibrosSuspenso();
+        this.refrescarLibrosJuveniles();
+        this.refrescarLibrosClasicos();*/
     }
 
     /**
@@ -64,6 +72,11 @@ public class Consultar extends javax.swing.JInternalFrame {
         setTitle("Consultar");
 
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox8ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Consultar");
 
@@ -185,7 +198,6 @@ public class Consultar extends javax.swing.JInternalFrame {
 
         jLabel1.setBackground(new java.awt.Color(51, 0, 153));
         jLabel1.setForeground(new java.awt.Color(51, 0, 153));
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/invitado/Descargas/el_quijote_de_la_mancha.jpg")); // NOI18N
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jTextArea1.setColumns(20);
@@ -452,6 +464,111 @@ public class Consultar extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jRadioButton7ActionPerformed
 
+    private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox8ActionPerformed
+    
+    
+    /*
+    private void refrescarLibros(){
+        String[] libros = this.miControl.refrescarLibros();
+        if (libros.length == 0){
+            this.jComboBox1.addItem("No hay libros disponibles");
+        }else{
+            for(String libro : libros){
+                this.jComboBox1.addItem(libro);
+            }
+        }
+    }
+    
+    private void refrescarLibrosAcademicos(){
+        String[] librosAcademicos = this.miControl.refrescarLibrosAcademicos();
+        if (librosAcademicos.length == 0){
+            this.jComboBox1.addItem("No hay libros disponibles");
+        }else{
+            for(String libroAcademicos : librosAcademicos){
+                this.jComboBox1.addItem(libroAcademicos);
+            }
+        }
+    }
+    
+    private void refrescarLibrosClasicos(){
+        String[] librosClasicos = this.miControl.refrescarLibrosClasicos();
+        if (librosClasicos.length == 0){
+            this.jComboBox1.addItem("No hay libros disponibles");
+        }else{
+            for(String libroClasicos : librosClasicos){
+                this.jComboBox1.addItem(libroClasicos);
+            }
+        }
+    }
+    
+    private void refrescarLibrosJuveniles(){
+        String[] librosJuveniles = this.miControl.refrescarLibrosJuveniles();
+        if (librosJuveniles.length == 0){
+            this.jComboBox1.addItem("No hay libros disponibles");
+        }else{
+            for(String libroJuveniles : librosJuveniles){
+                this.jComboBox1.addItem(libroJuveniles);
+            }
+        }
+    }
+        
+    private void refrescarLibrosRomance(){
+        String[] librosRomance = this.miControl.refrescarLibrosRomance();
+        if (librosRomance.length == 0){
+            this.jComboBox1.addItem("No hay libros disponibles");
+        }else{
+            for(String libroRomance : librosRomance){
+                this.jComboBox1.addItem(libroRomance);
+            }
+        }
+    }
+    
+    
+    private void refrescarLibrosSuspenso(){
+        String[] librosSuspenso = this.miControl.refrescarLibrosSuspenso();
+        if (librosSuspenso.length == 0){
+            this.jComboBox1.addItem("No hay libros disponibles");
+        }else{
+            for(String libroSuspenso : librosSuspenso){
+                this.jComboBox1.addItem(libroSuspenso);
+            }
+        }
+    }
+    
+    
+    private void refrescarLibrosFilosofia(){
+        String[] librosFilosofia = this.miControl.refrescarLibrosFilosofia();
+        if (librosFilosofia.length == 0){
+            this.jComboBox1.addItem("No hay libros disponibles");
+        }else{
+            for(String libroFilosofia : librosFilosofia){
+                this.jComboBox1.addItem(libroFilosofia);
+            }
+        }
+    }
+    
+    private void refrescarLibrosOtros(){
+        String[] librosOtros = this.miControl.refrescarLibrosOtros();
+        if (librosOtros.length == 0){
+            this.jComboBox1.addItem("No hay libros disponibles");
+        }else{
+            for(String libroOtros : librosOtros){
+                this.jComboBox1.addItem(libroOtros);
+            }
+        }
+    }*/
+   
+    
+    
+        
+        
+    
+    
+        
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

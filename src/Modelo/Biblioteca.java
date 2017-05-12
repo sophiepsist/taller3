@@ -157,6 +157,77 @@ public class Biblioteca {
         return books;
     }
     
+    public String[] refrescarLibrosAcademicos(){
+        String[] booksAcademicos = new String[librosAcademicos.size()];
+        Iterator it = librosAcademicos.values().iterator();
+        for(int i=0; i<librosAcademicos.size(); i++){
+            Libro libroAcademico = (Libro)it.next();
+            booksAcademicos[i] = libroAcademico.getTitulo().concat("-" + libroAcademico.getIsbn());
+        }
+        return booksAcademicos;
+    }
+    
+    public String[] refrescarLibrosClasicos(){
+        String[] booksClasicos = new String[librosClasicos.size()];
+        Iterator it = librosClasicos.values().iterator();
+        for(int i=0; i<librosClasicos.size(); i++){
+            Libro libroClasicos = (Libro)it.next();
+            booksClasicos[i] = libroClasicos.getTitulo().concat("-" + libroClasicos.getIsbn());
+        }
+        return booksClasicos;
+    }
+    
+    public String[] refrescarLibrosJuveniles(){
+        String[] booksJuveniles = new String[librosJuveniles.size()];
+        Iterator it = librosJuveniles.values().iterator();
+        for(int i=0; i<librosJuveniles.size(); i++){
+            Libro libroJuveniles = (Libro)it.next();
+            booksJuveniles[i] = libroJuveniles.getTitulo().concat("-" + libroJuveniles.getIsbn());
+        }
+        return booksJuveniles;
+    }
+    
+    public String[] refrescarLibrosSuspenso(){
+        String[] booksSuspenso = new String[librosSuspenso.size()];
+        Iterator it = librosSuspenso.values().iterator();
+        for(int i=0; i<librosSuspenso.size(); i++){
+            Libro libroSuspenso = (Libro)it.next();
+            booksSuspenso[i] = libroSuspenso.getTitulo().concat("-" + libroSuspenso.getIsbn());
+        }
+        return booksSuspenso;
+    }
+    
+    public String[] refrescarLibrosRomance(){
+        String[] booksRomance = new String[librosRomance.size()];
+        Iterator it = librosRomance.values().iterator();
+        for(int i=0; i<librosRomance.size(); i++){
+            Libro libroRomance= (Libro)it.next();
+            booksRomance[i] = libroRomance.getTitulo().concat("-" + libroRomance.getIsbn());
+        }
+        return booksRomance;
+    }
+    
+    public String[] refrescarLibrosFilosofia(){
+        String[] booksFilosofia = new String[librosFilosofia.size()];
+        Iterator it = librosFilosofia.values().iterator();
+        for(int i=0; i<librosFilosofia.size(); i++){
+            Libro librFilosofia = (Libro)it.next();
+            booksFilosofia[i] = librFilosofia.getTitulo().concat("-" + librFilosofia.getIsbn());
+        }
+        return booksFilosofia;
+    }
+    
+    public String[] refrescarLibrosOtros(){
+        String[] booksOtros = new String[librosOtros.size()];
+        Iterator it = librosOtros.values().iterator();
+        for(int i=0; i<librosOtros.size(); i++){
+            Libro librOtros = (Libro)it.next();
+            booksOtros[i] = librOtros.getTitulo().concat("-" + librOtros.getIsbn());
+        }
+        return booksOtros;
+    }
+    
+    
     //-------------------------GESTIÓN DE LIBROS--------------------------------
     
     //-----------------------AGREGAR LIBROS MANUALMENTE-------------------------    
