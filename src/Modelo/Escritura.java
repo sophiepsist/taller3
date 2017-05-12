@@ -15,7 +15,7 @@ public class Escritura {
     public Escritura(){        
     }
     /**-----------------------------------------------------------------------**
-     * Escribe cada libro en un archivo txt con el ISBN como numbre
+     * Escribe cada libro en un archivo txt con el ISBN como nombre
      */ 
     public void serializarLibro(Libro libro) throws IOException{        
         File dirProyecto = new File(System.getProperty("user.dir"));
