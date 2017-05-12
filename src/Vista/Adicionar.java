@@ -304,19 +304,28 @@ public class Adicionar extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
-            String ISBN = this.jTextField1.getText().trim();
-            String titulo = this.jTextField2.getText();
-            String autor = this.jTextField3.getText().trim();
-            String categoria = this.jTextField4.getText().trim();
-            String calificacion = this.jTextField5.getText().trim();
-            int numPaginas = Integer.parseInt(this.jTextField6.getText().trim());
-            String rangoEdades = this.jTextField7.getText().trim();
-            String periodoOferta = (String) this.jComboBox1.getSelectedItem();
-            String resumen = this.jTextArea1.getText();
-            int precio = Integer.parseInt(this.jTextField9.getText().trim());
-            boolean bestSeller= this.jRadioButton1.isSelected();
+            String[] conexion = new String[13];
+            conexion[0] = "agregarLibros";
+            conexion[1] = this.jTextField1.getText().trim();
+            conexion[2]= this.jTextField2.getText();
+            conexion[3]= this.jTextField3.getText().trim();
+            conexion[4]= this.jTextField4.getText().trim();
+            conexion[5]= this.jTextField5.getText().trim();
+            conexion[6]= this.jTextField6.getText().trim();
+            conexion[7]= this.jTextField7.getText().trim();
+            conexion[8]= (String) this.jComboBox1.getSelectedItem();
+            conexion[9]= this.jTextArea1.getText();
+            conexion[10]= this.jTextField9.getText().trim();
+            if(this.jRadioButton1.isSelected()){
+                conexion[11]="True";
+            }else{
+                conexion[11]="False";
+            }
+            conexion[12] = nombreArchivo.toString();
+            conexion[13] = caratula.toString();
+            
                   
-            this.miControl.agregarLibros(numPaginas, titulo, precio, categoria, bestSeller,rangoEdades, ISBN, calificacion, resumen, periodoOferta, nombreArchivo,caratula, autor);
+            this.miControl.conectar(conexion);
         }
         catch(NumberFormatException e){
             JOptionPane.showInternalMessageDialog(this,"Error en las casillas de precio o número de páginas ingrese datos adecuados.","¡Advertencia!",2);
@@ -338,7 +347,9 @@ public class Adicionar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void refrescarPeriodosOferta(){
-        String[] periodosOfertas = this.miControl.refrescarPeriodosOferta();
+        String[] datos = new String[1];
+        datos[0] = "refrescarLibros";
+        String[] periodosOfertas = this.miControl.conectar(datos);
         if (periodosOfertas.length == 0){
             this.jComboBox1.addItem("No hay periodos de ofertas disponibles");
         }else{

@@ -32,9 +32,9 @@ public class Cliente {
         }
     }
     
-    public void enviarDatos(ArrayList mensaje){
+    public void enviarDatos(String[] mensaje){
         try{
-            System.out.println((String)mensaje.iterator().next());
+            //System.out.println((String)mensaje.iterator().next());
             salida.writeObject(mensaje);
             salida.flush();       
         }catch(IOException e){
@@ -42,30 +42,33 @@ public class Cliente {
         }
     }
     
-    public String procesarConexion(){
-        String mensaje= "Conectado <3";  
-        
+    public String[] procesarConexion(){ 
+        String[] mensaje = null;
         do{
              try{
-                 mensaje= (String) entrada.readObject();
+                 mensaje= (String[]) entrada.readObject();
              }catch(ClassNotFoundException e){
                  System.out.println("Class not found\n");
              }catch(IOException e){
                  System.out.println("Error en los flujos de lectura del cliente\n");
+             }catch(NullPointerException e){
+                String[] exception = new String[1];
+                exception[0] = e.toString();
+                enviarDatos(exception);
              }
                  System.out.println("hola :3");
          }while(!mensaje.equals("Exit"));
         return mensaje;
     }
     
-    public static void main(String[] args) throws UnknownHostException {
-        Cliente cliente = new Cliente(28795);
-        ArrayList hola = new ArrayList();
-        hola.add("consultarLibrosNombre");
-        hola.add("nombre");
-        cliente.enviarDatos(hola);
-        System.out.println(cliente.procesarConexion());
-        
-        
-    }
+//    public static void main(String[] args) throws UnknownHostException {
+//        Cliente cliente = new Cliente(28795);
+//        ArrayList hola = new ArrayList();
+//        hola.add("consultarLibrosNombre");
+//        hola.add("nombre");
+//        cliente.enviarDatos(hola);
+//        System.out.println(cliente.procesarConexion());
+//        
+//        
+//    }
 }

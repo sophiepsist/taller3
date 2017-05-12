@@ -26,6 +26,7 @@ public class Biblioteca {
     private HashMap librosFilosofia;
     private HashMap librosOtros;
     private Lectura lectura;
+    private Escritura escritura;
     //---------------------------MÉTODO CONSTRUCTOR-----------------------------
     
     public Biblioteca(){
@@ -41,6 +42,7 @@ public class Biblioteca {
         this.librosFilosofia = new HashMap();
         this.librosOtros = new HashMap();
         this.lectura= new Lectura();
+        this.escritura = new Escritura();
     }
 
    //----------------------------MÉTODOS GET------------------------------------
@@ -233,28 +235,30 @@ public class Biblioteca {
     //-----------------------AGREGAR LIBROS MANUALMENTE-------------------------    
     
     public void agregarLibros(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, 
-                              String isbn, String calificacion, String resumen, String oferta, File nombreArchivo, File caratula, String autor) throws MyException{
+                              String isbn, String calificacion, String resumen, String oferta, File nombreArchivo, File caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             throw new MyException("Ya se ha agregado un libro con ese ISBN");
         }else{       
             Libro libro = new Libro(numPaginas, titulo, precio, categoria, bestSeller, rangoEdades, isbn, calificacion, resumen, oferta, nombreArchivo, caratula, autor);
-            libros.put(isbn, libro);   
+            libros.put(isbn, libro);  
+            escritura.serializarLibro(libro);
         }
     }
     
     //-----------------------------ELIMINAR LIBROS------------------------------
     
-    public void eliminarLibros(String isbn) throws MyException{
+    public void eliminarLibros(String isbn) throws MyException, IOException, ClassNotFoundException{
         if(libros.remove(isbn)==null){
             throw new MyException("No existe un libro con ese ISBN en la biblioteca");
         }else{
+            lectura.eliminarLibroSerializado(isbn);
             throw new MyException("Libro eliminado exitosamente");
         }
     }
     
     //-----------------------------CONSULTAR LIBROS-----------------------------
     
-    public String consultarInfoLibros(String isbn) throws MyException{
+    public String[] consultarInfoLibros(String isbn) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
             return libro.infoLibro();
@@ -268,7 +272,7 @@ public class Biblioteca {
     public String[] cargarInfoLibro(String isbn) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
-            String[] datos = new String[13];
+            String[] datos = new String[11];
             datos[0]= libro.getIsbn();
             datos[1]=libro.getTitulo();
             datos[2]=libro.getAutor();
@@ -283,9 +287,7 @@ public class Biblioteca {
                 datos[8]="NBS";
             }
             datos[9]=libro.getResumen();
-            datos[10]=libro.getNombreArchivo().toString();
-            datos[11]=libro.getCaratula().toString();
-            datos[12]=Integer.toString(libro.getPrecio());
+            datos[10]=Integer.toString(libro.getPrecio());
             return datos;
         }else{
             throw new MyException("El libro no se encuentra en la biblioteca");

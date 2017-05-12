@@ -10,13 +10,13 @@ import Controladora.*;
  *
  * @author invitado
  */
-public class Principal extends javax.swing.JFrame {
+public class Principal extends javax.swing.JFrame {  
     private Controladora miControl;
     /**
      * Creates new form Principal
      */
     public Principal() {
-        miControl= new Controladora();
+        this.miControl= new Controladora();
         initComponents();
         this.setLocationRelativeTo(null);
     }

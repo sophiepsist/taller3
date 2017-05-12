@@ -155,16 +155,19 @@ public class Libro implements Serializable{
     
     
     
-    public String infoLibro(){ 
-        String info;
+    public String[] infoLibro(){ 
+        String[] mensaje= new String[2]; 
+        String info = "";
         info = "\nISBN: " + isbn + "\nTítulo: " + titulo + "\nAutor: " + autor + "\nCategoría: " + categoria + "\nCalificación: " + calificacion
                 + "\nNúmero de páginas: " + numPaginas + "\nRango de edades: " + rangoEdades + "\nPeriodo de oferta asociado: " + oferta +
-                "\nPrecio: " + precio + "%" + caratula;
+                "\nPrecio: " + precio;
          
         if(bestSeller){
              info += "\nLibro BestSeller";
         }        
         info += "\nResumen:\n" + resumen;
-        return info;
+        mensaje[0]= info;
+        mensaje[1]= caratula.toString();
+        return mensaje;
     }    
 }

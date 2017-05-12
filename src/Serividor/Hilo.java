@@ -12,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.*;
+import Modelo.*;
 
 /**
  *
@@ -20,19 +21,19 @@ import java.util.*;
 
         
 public class Hilo extends Thread{
-    ObjectOutputStream salida;
-    ObjectInputStream entrada;
-    Socket cliente;
-    Controladora control;
+    private ObjectOutputStream salida;
+    private ObjectInputStream entrada;
+    private Biblioteca biblioteca;
+    private Socket cliente;
 
-    public Hilo(Socket conexion)
+    public Hilo(Socket conexion, Biblioteca biblio)
     {
         try{
             this.cliente = conexion;
             this.salida = new ObjectOutputStream(cliente.getOutputStream());
             this.salida.flush();
             this.entrada = new ObjectInputStream(cliente.getInputStream());
-            this.control = new Controladora();
+            this.biblioteca = biblio;
             }
         catch(IOException e)
             {
@@ -41,28 +42,59 @@ public class Hilo extends Thread{
 
     }
     public synchronized void procesarConexion(){
-    ArrayList mensaje = null;   
+    String[] mensaje = null;   
         do{
             try{
                 //Lee El objeto que ha sido enviado por el cliente
-                mensaje = (ArrayList) entrada.readObject();
+                mensaje = (String[]) entrada.readObject();
                 System.out.println(mensaje);
-                switch ((String)mensaje.get(0))
+                switch ((String)mensaje[0])
                 {
                     case "agregarLibros": 
-                        control.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (File) mensaje.get(11), (File) mensaje.get(12), (String) mensaje.get(13));
+                        File aux = new File(mensaje[11]);
+                        File aux2 = new File(mensaje[12]);
+                        biblioteca.agregarLibros(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux , aux2, (String) mensaje[13]);
                         break;
                     case "eliminarLibros": 
-                        control.eliminarLibros((String)mensaje.get(1));
+                        biblioteca.eliminarLibros((String)mensaje[1]);
                         break;                    
                     case "consultarInfoLibros": 
-                        enviarDatos(control.consultarInfoLibros((String) mensaje.get(1)));
+                        enviarDatos(biblioteca.consultarInfoLibros((String) mensaje[1]));
                         break;
                     case "cargarInfoLibro": 
-                        enviarDatos(control.cargarInfoLibro((String) mensaje.get(1)));
+                        enviarDatos(biblioteca.cargarInfoLibro((String) mensaje[1]));
                         break;
                     case "modificarLibro": 
-                        control.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (File) mensaje.get(11), (File) mensaje.get(12), (String) mensaje.get(13));
+                        File aux3 = new File(mensaje[11]);
+                        File aux4 = new File(mensaje[12]);
+                        biblioteca.modificarLibro(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux3 , aux4, (String) mensaje[13]);
+                        break;
+                    case "refrescarLibros":
+                        enviarDatos(biblioteca.refrescarLibros());
+                        break;
+                    case "refrescarLibrosAcademicos":
+                        enviarDatos(biblioteca.refrescarLibrosAcademicos());
+                        break;
+                    case "refrescarLibrosClasicos":
+                        enviarDatos(biblioteca.refrescarLibrosClasicos());
+                        break;
+                    case "refrescarLibrosJuveniles":
+                        enviarDatos(biblioteca.refrescarLibrosJuveniles());
+                        break;
+                    case "refrescarLibrosRomance":
+                        enviarDatos(biblioteca.refrescarLibrosRomance());
+                        break;
+                    case "refrescarLibrosSuspenso":
+                        enviarDatos(biblioteca.refrescarLibrosSuspenso());
+                        break;
+                    case "refrescarLibrosFilosofia":
+                        enviarDatos(biblioteca.refrescarLibrosFilosofia());
+                        break;
+                    case "refrescarLibrosOtros":
+                        enviarDatos(biblioteca.refrescarLibrosOtros());
+                        break;
+                    case "refrescarPeriodoDeOferta":
+                        enviarDatos(biblioteca.refrescarPeriodosOferta());
                         break;
                     case "Salir":
                         cerrarConexion();
@@ -73,16 +105,23 @@ public class Hilo extends Thread{
                 System.out.println("\n" + mensaje);
                 mensaje = null;
             }catch(ClassNotFoundException e){
-                System.out.println("\n Se recibio un tipo de objeto desconocido");
+                String[] exception = new String[1];
+                exception[0] = "Error asigando el tipo de variable\n" + e.toString();
+                enviarDatos(exception);
             }catch (IOException e){
-                System.out.println("\n Error en el flujo de datos");
-            }catch (NullPointerException e){
-                //e.printStackTrace();
-                System.out.println("\n No se envio nada al servidor, no se ha podido generar una respuesta");
+                String[] exception = new String[1];
+                exception[0] = "Error con los flujos de datos\n" +e.toString();
+                enviarDatos(exception);
             }catch(ArrayIndexOutOfBoundsException e){
-                System.out.println("\n Error al enviar archivos... archivos de mas... mal ordenados... archivos de menos");
+                String[] exception = new String[1];
+                exception[0] = "Falla en el orden de envio de los datos\n" + e.toString();
+                enviarDatos(exception);
+            }catch (MyException e){
+                String[] exception = new String[1];
+                exception[0] = e.toString();
+                enviarDatos(exception);
             }
-        } while (mensaje.get(0)!="Salir");
+        } while (mensaje[0]!="Salir");
     }
     
     public void enviarDatos(Object mensaje){
