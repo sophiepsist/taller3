@@ -329,7 +329,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
 
     private void refrescarPeriodosOferta(){
         String[] periodosOfertas = this.miControl.refrescarPeriodosOferta();
-        if (periodosOfertas == null){
+        if (periodosOfertas.length == 0){
             this.jComboBox1.addItem("No hay periodos de ofertas disponibles");
         }else{
             for(String periodoOferta : periodosOfertas){
