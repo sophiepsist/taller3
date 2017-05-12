@@ -138,17 +138,12 @@ public class Biblioteca {
     //---------------------REFRESCAR COMPONENTES INTERFAZ-----------------------
     
     public String[] refrescarPeriodosOferta(){
-        /*String[] periodos = new String[periodosOferta.size()];
+        String[] periodos = new String[periodosOferta.size()];
         Iterator it = periodosOferta.values().iterator();
         for(int i=0; i<periodosOferta.size(); i++){
             Oferta oferta = (Oferta)it.next();
             periodos[i] = oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + "-" + oferta.getPorcentajeDescuento();            
         }
-        return periodos;*/
-       
-        String[] periodos = new String[1];
-        periodos[0] = "asdf";
-
         return periodos;
     }
     
