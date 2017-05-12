@@ -25,7 +25,9 @@ public class Adicionar extends javax.swing.JInternalFrame {
         initComponents();
         this.miControl=c;
         this.fileChooser=new JFileChooser();
-        
+        this.caratula = null;
+        this.nombreArchivo= null;
+        this.refrescarPeriodosOferta();
     }
 
     /**
@@ -57,11 +59,13 @@ public class Adicionar extends javax.swing.JInternalFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -94,6 +98,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Adicionar");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -124,6 +129,16 @@ public class Adicionar extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel12.setText("Precio:");
+
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "No hay periodos de ofertas" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,21 +149,20 @@ public class Adicionar extends javax.swing.JInternalFrame {
                     .addComponent(jButton1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel8)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel7)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jTextField7))
-                                .addGroup(layout.createSequentialGroup()
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel6)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jTextField6))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel1)
@@ -162,7 +176,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
                                         .addComponent(jTextField1)
                                         .addComponent(jTextField2)
                                         .addComponent(jTextField3)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(jLabel4)
@@ -172,25 +186,30 @@ public class Adicionar extends javax.swing.JInternalFrame {
                                             .addGap(2, 2, 2)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTextField4)
-                                        .addComponent(jTextField5))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel11))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3)
-                                    .addComponent(jButton2))))
+                                        .addComponent(jTextField5)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabel11))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jButton3)
+                                        .addComponent(jButton2)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel12)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField9)))
+                            .addComponent(jRadioButton1))
                         .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,21 +243,25 @@ public class Adicionar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRadioButton1)
-                        .addGap(18, 18, 18)
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
                             .addComponent(jButton2)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
                         .addComponent(jButton3)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();
@@ -255,6 +278,9 @@ public class Adicionar extends javax.swing.JInternalFrame {
          if(result==JFileChooser.APPROVE_OPTION){
              this.caratula= fileChooser.getCurrentDirectory();
          }
+         if((this.caratula != null)&& (this.nombreArchivo != null)){
+             this.jButton1.setEnabled(true);
+         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -264,39 +290,64 @@ public class Adicionar extends javax.swing.JInternalFrame {
          if(result==JFileChooser.APPROVE_OPTION){
              this.nombreArchivo= fileChooser.getCurrentDirectory();
          }
+         if((this.caratula != null)&& (this.nombreArchivo != null)){
+             this.jButton1.setEnabled(true);
+         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
             String ISBN = this.jTextField1.getText().trim();
-            String titulo = this.jTextField2.getText().trim();
+            String titulo = this.jTextField2.getText();
             String autor = this.jTextField3.getText().trim();
             String categoria = this.jTextField4.getText().trim();
             String calificacion = this.jTextField5.getText().trim();
             int numPaginas = Integer.parseInt(this.jTextField6.getText().trim());
             String rangoEdades = this.jTextField7.getText().trim();
-            String periodoOferta = this.jTextField8.getText().trim();
+            String periodoOferta = (String) this.jComboBox1.getSelectedItem();
             String resumen = this.jTextArea1.getText();
-            
-            //this.miControl.agregarLibros(numPaginas, titulo, precio, categoria, bestSeller,rangoEdades, isbn, calificacion, resumen, oferta, nombreArchivo,caratula, autor);
+            int precio = Integer.parseInt(this.jTextField9.getText().trim());
+            boolean bestSeller= this.jRadioButton1.isSelected();
+                  
+            this.miControl.agregarLibros(numPaginas, titulo, precio, categoria, bestSeller,rangoEdades, ISBN, calificacion, resumen, periodoOferta, nombreArchivo,caratula, autor);
         }
         catch(NumberFormatException e){
-            JOptionPane.showInternalMessageDialog(this,"Error en las casillas de saldo e interes ingrese datos adecuados.");
+            JOptionPane.showInternalMessageDialog(this,"Error en las casillas de precio o número de páginas ingrese datos adecuados.","¡Advertencia!",2);
         }
-        catch(Exception e){
-            JOptionPane.showInternalMessageDialog(this,"Error.");
+        catch(IllegalArgumentException e){
+            JOptionPane.showInternalMessageDialog(this,"Existen casillas vacias.", "Error", 2);
         }
+        catch(Exception e) {
+                JOptionPane.showMessageDialog(this, "Error.");
+        }        
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField9ActionPerformed
 
+    private void refrescarPeriodosOferta(){
+        String[] periodosOfertas = this.miControl.refrescarPeriodosOferta();
+        if (periodosOfertas == null){
+            this.jComboBox1.addItem("No hay periodos de ofertas disponibles");
+        }else{
+            for(String periodoOferta : periodosOfertas){
+                this.jComboBox1.addItem(periodoOferta);
+            }
+        }
+        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -315,6 +366,6 @@ public class Adicionar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

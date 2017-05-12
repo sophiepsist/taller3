@@ -138,12 +138,17 @@ public class Biblioteca {
     //---------------------REFRESCAR COMPONENTES INTERFAZ-----------------------
     
     public String[] refrescarPeriodosOferta(){
-        String[] periodos = new String[periodosOferta.size()];
+        /*String[] periodos = new String[periodosOferta.size()];
         Iterator it = periodosOferta.values().iterator();
         for(int i=0; i<periodosOferta.size(); i++){
             Oferta oferta = (Oferta)it.next();
-            periodos[i] = oferta.getFechaInicial() + " - " + oferta.getFechaFinal();            
+            periodos[i] = oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + "-" + oferta.getPorcentajeDescuento();            
         }
+        return periodos;*/
+       
+        String[] periodos = new String[1];
+        periodos[0] = "asdf";
+
         return periodos;
     }
     
@@ -152,7 +157,7 @@ public class Biblioteca {
         Iterator it = libros.values().iterator();
         for(int i=0; i<libros.size(); i++){
             Libro libro = (Libro)it.next();
-            books[i] = libro.getTitulo();
+            books[i] = libro.getTitulo().concat("-" + libro.getIsbn());
         }
         return books;
     }

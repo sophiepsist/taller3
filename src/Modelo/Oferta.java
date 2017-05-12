@@ -12,7 +12,7 @@ import java.util.HashMap;
  * @author invitado
  */
 public class Oferta {
-     private String fechaInicial;
+    private String fechaInicial;
     private String fechaFinal;
     private int porcentajeDescuento;
     private HashMap librosOferta;
