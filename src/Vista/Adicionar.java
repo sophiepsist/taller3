@@ -325,6 +325,16 @@ public class Adicionar extends javax.swing.JInternalFrame {
             conexion[13]= this.jTextField3.getText().trim();                         
             
             JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion)[0]);
+            
+            this.jTextField1.setText("");
+            this.jTextField2.setText("");
+            this.jTextField3.setText("");
+            this.jTextField4.setText("");
+            this.jTextField5.setText("");
+            this.jTextField6.setText("");
+            this.jTextField7.setText("");
+            this.jTextArea1.setText("");
+            this.jRadioButton1.setSelected(false);
         }
         catch(NumberFormatException e){
             JOptionPane.showInternalMessageDialog(this,"Error en las casillas de precio o número de páginas ingrese datos adecuados.","¡Advertencia!",2);

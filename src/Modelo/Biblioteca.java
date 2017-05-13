@@ -158,9 +158,14 @@ public class Biblioteca {
     public String[] refrescarLibros(){
         String[] books = new String[libros.size()];
         Iterator it = libros.values().iterator();
-        for(int i=0; i<libros.size(); i++){
-            Libro libro = (Libro)it.next();
-            books[i] = libro.getTitulo().concat("; " + libro.getIsbn());
+        if(libros.size()!= 0){
+            for(int i=0; i<libros.size(); i++){
+                Libro libro = (Libro)it.next();
+                books[i] = libro.getTitulo().concat("; " + libro.getIsbn());
+            }
+        }else{
+            books = new String[1];
+            books[0]= "No hay Libros en la biblioteca";
         }
         return books;
     }
@@ -168,9 +173,14 @@ public class Biblioteca {
     public String[] refrescarLibrosAcademicos(){
         String[] booksAcademicos = new String[librosAcademicos.size()];
         Iterator it = librosAcademicos.values().iterator();
-        for(int i=0; i<librosAcademicos.size(); i++){
-            Libro libroAcademico = (Libro)it.next();
-            booksAcademicos[i] = libroAcademico.getTitulo().concat("; " + libroAcademico.getIsbn());
+        if(librosAcademicos.size()!= 0){
+            for(int i=0; i<librosAcademicos.size(); i++){
+                Libro libroAcademico = (Libro)it.next();
+                booksAcademicos[i] = libroAcademico.getTitulo().concat("; " + libroAcademico.getIsbn());
+            }
+        }else{
+            booksAcademicos = new String[1];
+            booksAcademicos[0]= "No hay Libros Academicos en la biblioteca";
         }
         return booksAcademicos;
     }
@@ -178,9 +188,14 @@ public class Biblioteca {
     public String[] refrescarLibrosClasicos(){
         String[] booksClasicos = new String[librosClasicos.size()];
         Iterator it = librosClasicos.values().iterator();
-        for(int i=0; i<librosClasicos.size(); i++){
-            Libro libroClasicos = (Libro)it.next();
-            booksClasicos[i] = libroClasicos.getTitulo().concat("; " + libroClasicos.getIsbn());
+        if(librosClasicos.size() != 0){
+            for(int i=0; i<librosClasicos.size(); i++){
+                Libro libroClasicos = (Libro)it.next();
+                booksClasicos[i] = libroClasicos.getTitulo().concat("; " + libroClasicos.getIsbn());
+            }
+        }else{
+            booksClasicos = new String[1];
+            booksClasicos[0]= "No hay Libros Clasicos en la biblioteca";
         }
         return booksClasicos;
     }
@@ -188,9 +203,14 @@ public class Biblioteca {
     public String[] refrescarLibrosJuveniles(){
         String[] booksJuveniles = new String[librosJuveniles.size()];
         Iterator it = librosJuveniles.values().iterator();
-        for(int i=0; i<librosJuveniles.size(); i++){
-            Libro libroJuveniles = (Libro)it.next();
-            booksJuveniles[i] = libroJuveniles.getTitulo().concat("; " + libroJuveniles.getIsbn());
+        if(librosJuveniles.size() != 0){
+            for(int i=0; i<librosJuveniles.size(); i++){
+                Libro libroJuveniles = (Libro)it.next();
+                booksJuveniles[i] = libroJuveniles.getTitulo().concat("; " + libroJuveniles.getIsbn());
+            }
+        }else{
+            booksJuveniles = new String[1];
+            booksJuveniles[0]= "No hay Libros Juveniles en la biblioteca";
         }
         return booksJuveniles;
     }
@@ -198,9 +218,14 @@ public class Biblioteca {
     public String[] refrescarLibrosSuspenso(){
         String[] booksSuspenso = new String[librosSuspenso.size()];
         Iterator it = librosSuspenso.values().iterator();
-        for(int i=0; i<librosSuspenso.size(); i++){
-            Libro libroSuspenso = (Libro)it.next();
-            booksSuspenso[i] = libroSuspenso.getTitulo().concat("; " + libroSuspenso.getIsbn());
+        if(librosSuspenso.size() != 0){
+            for(int i=0; i<librosSuspenso.size(); i++){
+                Libro libroSuspenso = (Libro)it.next();
+                booksSuspenso[i] = libroSuspenso.getTitulo().concat("; " + libroSuspenso.getIsbn());
+            }
+        }else{
+            booksSuspenso = new String[1];
+            booksSuspenso[0]= "No hay Libros de Suspenso en la biblioteca";
         }
         return booksSuspenso;
     }
@@ -208,9 +233,14 @@ public class Biblioteca {
     public String[] refrescarLibrosRomance(){
         String[] booksRomance = new String[librosRomance.size()];
         Iterator it = librosRomance.values().iterator();
-        for(int i=0; i<librosRomance.size(); i++){
-            Libro libroRomance= (Libro)it.next();
-            booksRomance[i] = libroRomance.getTitulo().concat("; " + libroRomance.getIsbn());
+        if(librosRomance.size() != 0){
+            for(int i=0; i<librosRomance.size(); i++){
+                Libro libroRomance = (Libro)it.next();
+                booksRomance[i] = libroRomance.getTitulo().concat("; " + libroRomance.getIsbn());
+            }
+        }else{
+            booksRomance = new String[1];
+            booksRomance[0]= "No hay Libros de Romance en la biblioteca";
         }
         return booksRomance;
     }
@@ -218,9 +248,14 @@ public class Biblioteca {
     public String[] refrescarLibrosFilosofia(){
         String[] booksFilosofia = new String[librosFilosofia.size()];
         Iterator it = librosFilosofia.values().iterator();
-        for(int i=0; i<librosFilosofia.size(); i++){
-            Libro librFilosofia = (Libro)it.next();
-            booksFilosofia[i] = librFilosofia.getTitulo().concat("; " + librFilosofia.getIsbn());
+        if(librosFilosofia.size() != 0){
+            for(int i=0; i<librosFilosofia.size(); i++){
+                Libro libroFilosofia = (Libro)it.next();
+                booksFilosofia[i] = libroFilosofia.getTitulo().concat("; " + libroFilosofia.getIsbn());
+            }
+        }else{
+            booksFilosofia = new String[1];
+            booksFilosofia[0]= "No hay Libros de Filosofía en la biblioteca";
         }
         return booksFilosofia;
     }
@@ -228,9 +263,14 @@ public class Biblioteca {
     public String[] refrescarLibrosOtros(){
         String[] booksOtros = new String[librosOtros.size()];
         Iterator it = librosOtros.values().iterator();
-        for(int i=0; i<librosOtros.size(); i++){
-            Libro librOtros = (Libro)it.next();
-            booksOtros[i] = librOtros.getTitulo().concat("; " + librOtros.getIsbn());
+        if(librosOtros.size() != 0){
+            for(int i=0; i<librosOtros.size(); i++){
+                Libro libroOtros = (Libro)it.next();
+                booksOtros[i] = libroOtros.getTitulo().concat("; " + libroOtros.getIsbn());
+            }
+        }else{
+            booksOtros = new String[1];
+            booksOtros[0]= "No hay Libros de esta categoría en la biblioteca";
         }
         return booksOtros;
     }

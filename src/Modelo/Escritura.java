@@ -19,7 +19,7 @@ public class Escritura {
      */ 
     public void serializarLibro(Libro libro) throws IOException{        
         File dirProyecto = new File(System.getProperty("user.dir"));
-        File file = new File(dirProyecto + "\\InfoLibros" + "\\" + libro.getIsbn() + ".txt");        
+        File file = new File(dirProyecto + "/InfoLibros" + "/" + libro.getIsbn() + ".txt");        
         ObjectOutputStream escritor= new ObjectOutputStream(new FileOutputStream(file, false));            
         escritor.writeObject(libro);
         escritor.close();

@@ -72,7 +72,6 @@ public class Consultar extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Consultar");
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox8ActionPerformed(evt);
@@ -132,7 +131,6 @@ public class Consultar extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setEnabled(false);
 
         jRadioButton2.setText("Clásicos");
@@ -142,7 +140,6 @@ public class Consultar extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.setEnabled(false);
 
         jRadioButton3.setText("Suspenso");
@@ -152,7 +149,6 @@ public class Consultar extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox3.setEnabled(false);
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +163,6 @@ public class Consultar extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox4.setEnabled(false);
 
         jRadioButton5.setText("Juveniles");
@@ -177,7 +172,6 @@ public class Consultar extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox5.setEnabled(false);
 
         jRadioButton6.setText("Filosofía");
@@ -187,7 +181,6 @@ public class Consultar extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox6.setEnabled(false);
 
         jRadioButton7.setText("Otros");
@@ -197,7 +190,6 @@ public class Consultar extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox7.setEnabled(false);
 
         jButton1.setText("Consultar");
@@ -209,6 +201,7 @@ public class Consultar extends javax.swing.JInternalFrame {
 
         jLabel1.setBackground(new java.awt.Color(51, 0, 153));
         jLabel1.setForeground(new java.awt.Color(51, 0, 153));
+        jLabel1.setText("IMAGENNNNNNNNNNNNN");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jTextArea1.setColumns(20);
@@ -523,51 +516,51 @@ public class Consultar extends javax.swing.JInternalFrame {
         String[] conexion = new String[1];
         conexion[0]= "refrescarLibros";
         String[] libros = this.miControl.conectar(conexion);
-        if (libros.length == 0){
-            this.jComboBox8.addItem("No hay libros disponibles");
-        }else{
+//        if (libros.length == 0){
+//            this.jComboBox8.addItem("No hay libros disponibles");
+//        }else{
             for(String libro : libros){
                 this.jComboBox8.addItem(libro);
             }
-        }
+        //}
     }
     
     private void refrescarLibrosAcademicos(){
         String[] conexion = new String[1];
         conexion[0]= "refrescarLibrosAcademicos";        
         String[] librosAcademicos = this.miControl.conectar(conexion);
-        if (librosAcademicos.length == 0){
-            this.jComboBox1.addItem("No hay libros disponibles");
-        }else{
+        //if (librosAcademicos.length == 0){
+          //  this.jComboBox1.addItem("No hay libros disponibles");
+        //}else{
             for(String libroAcademicos : librosAcademicos){
                 this.jComboBox1.addItem(libroAcademicos);
             }
-        }
+        //}
     }
     
     private void refrescarLibrosClasicos(){
         String[] conexion= new String[1];
         conexion[0] = "refrescarLibrosClasicos";
         String[] librosClasicos = this.miControl.conectar(conexion);
-        if (librosClasicos.length == 0){
-            this.jComboBox2.addItem("No hay libros disponibles");
-        }else{
+//        if (librosClasicos.length == 0){
+//            this.jComboBox2.addItem("No hay libros disponibles");
+//        }else{
             for(String libroClasicos : librosClasicos){
                 this.jComboBox2.addItem(libroClasicos);
             }
-        }
+        //}
     }
     
     private void refrescarLibrosJuveniles(){
         String[] conexion= new String[1];
         conexion[0] = "refrescarLibrosJuveniles";
         String[] librosJuveniles = this.miControl.conectar(conexion);
-        if (librosJuveniles.length == 0){
-            this.jComboBox3.addItem("No hay libros disponibles");
-        }else{
+//        if (librosJuveniles.length == 0){
+//            this.jComboBox3.addItem("No hay libros disponibles");
+//        }else{
             for(String libroJuveniles : librosJuveniles){
                 this.jComboBox3.addItem(libroJuveniles);
-            }
+            //}
         }
     }
         
@@ -575,13 +568,13 @@ public class Consultar extends javax.swing.JInternalFrame {
         String[] conexion= new String[1];
         conexion [0] = "refrescarLibrosRomance";
         String[] librosRomance = this.miControl.conectar(conexion);
-        if (librosRomance.length == 0){
-            this.jComboBox4.addItem("No hay libros disponibles");
-        }else{
+//        if (librosRomance.length == 0){
+//            this.jComboBox4.addItem("No hay libros disponibles");
+//        }else{
             for(String libroRomance : librosRomance){
                 this.jComboBox4.addItem(libroRomance);
             }
-        }
+        //}
     }
     
     
@@ -589,13 +582,13 @@ public class Consultar extends javax.swing.JInternalFrame {
         String[] conexion= new String[1];
         conexion[0]= "refrescarLibrosSuspenso";
         String[] librosSuspenso = this.miControl.conectar(conexion);
-        if (librosSuspenso.length == 0){
-            this.jComboBox5.addItem("No hay libros disponibles");
-        }else{
+//        if (librosSuspenso.length == 0){
+//            this.jComboBox5.addItem("No hay libros disponibles");
+//        }else{
             for(String libroSuspenso : librosSuspenso){
                 this.jComboBox5.addItem(libroSuspenso);
             }
-        }
+        //}
     }
     
     
@@ -603,26 +596,26 @@ public class Consultar extends javax.swing.JInternalFrame {
         String[] conexion= new String[1];
         conexion[0] = "refrescarLibrosFilosofia";
         String[] librosFilosofia = this.miControl.conectar(conexion);
-        if (librosFilosofia.length == 0){
-            this.jComboBox6.addItem("No hay libros disponibles");
-        }else{
+//        if (librosFilosofia.length == 0){
+//            this.jComboBox6.addItem("No hay libros disponibles");
+//        }else{
             for(String libroFilosofia : librosFilosofia){
                 this.jComboBox6.addItem(libroFilosofia);
             }
-        }
+        //}
     }
     
     private void refrescarLibrosOtros(){
         String[] conexion= new String[1];
         conexion [0] = "refrescarLibrosOtros";
         String[] librosOtros = this.miControl.conectar(conexion);
-        if (librosOtros.length == 0){
-            this.jComboBox7.addItem("No hay libros disponibles");
-        }else{
+//        if (librosOtros.length == 0){
+//            this.jComboBox7.addItem("No hay libros disponibles");
+//        }else{
             for(String libroOtros : librosOtros){
                 this.jComboBox7.addItem(libroOtros);
             }
-        }
+        //}
     }
    
     
