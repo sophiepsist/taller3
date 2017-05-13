@@ -14,10 +14,11 @@ public class Controladora {
     private Cliente cliente;
     
     public Controladora(){
+        this.cliente = new Cliente(27650);
         }
     
         public String[] conectar(String[] mensaje){
-            String[] msj = null;            
+            String[] msj;          
             cliente.enviarDatos(mensaje);
             msj = cliente.procesarConexion();
             return msj;

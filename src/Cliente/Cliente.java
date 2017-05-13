@@ -6,8 +6,6 @@
 package Cliente;
 import java.io.*;
 import java.net.*;
-import java.util.*;
-import Modelo.*;
 
 /**
  *
@@ -28,6 +26,7 @@ public class Cliente {
         }catch(UnknownHostException e){
             System.out.println("Servidor no Encontrado\n");
         }catch(IOException e){
+            e.printStackTrace();
             System.out.println("Error en flujos de cliente\n");
         }
     }

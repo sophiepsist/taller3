@@ -19,9 +19,9 @@ import Modelo.*;
  * @author invitado
  */
 public class Servidor {
-   ServerSocket server; 
-   Socket cliente;
-   Biblioteca biblioteca;
+   private ServerSocket server; 
+   private Socket cliente;
+   private Biblioteca biblioteca;
 
 
     public Servidor(int puerto){
@@ -41,6 +41,7 @@ public class Servidor {
             //this.entrada = new ObjectInputStream(cliente.getInputStream());
             //System.out.println("se obtiene elflujo de entrada\n");
         }catch(IOException e){
+            e.printStackTrace();
             System.out.println("Error en el flujo del servidor\n");
         }//catch(ClassNotFoundException e){
            // System.out.println("Class not foudn Exception en Servidor");
@@ -110,7 +111,7 @@ public class Servidor {
            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
        }
         System.out.println(localHost);
-        Servidor servidor = new Servidor(28795);  
+        Servidor servidor = new Servidor(27650);  
     }
 //           this.objBiblioteca= new Biblioteca();
 //    }
