@@ -297,7 +297,8 @@ public class Biblioteca {
         if(libros.remove(isbn)==null){
             throw new MyException("No existe un libro con ese ISBN en la biblioteca");
         }else{
-            lectura.eliminarLibroSerializado(isbn);            
+            //lectura.eliminarLibroSerializado(isbn);  
+            throw new MyException(lectura.eliminarLibroSerializado(isbn));
         }
     }
     
