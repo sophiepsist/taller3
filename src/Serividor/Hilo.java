@@ -139,7 +139,7 @@ public class Hilo extends Thread{
             salida.writeObject(mensaje);
             // Vacia el puerto 
             salida.flush();
-            System.out.println("El cliente envia el mensaje al servidor");
+            System.out.println("El hilo envia el mensaje al cliente");
         }
         catch (IOException e)
         {

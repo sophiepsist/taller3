@@ -148,7 +148,7 @@ public class Biblioteca {
                 periodos[i] = oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + "-" + oferta.getPorcentajeDescuento(); 
                 System.out.println("llena el array con las cadenas de la oferta");
             }
-        }else{
+            }else{
                 periodos = new String[1];
                 periodos[0]= "No hay periodos de Oferta";
             }
