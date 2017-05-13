@@ -8,6 +8,7 @@ import Controladora.*;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -162,6 +163,11 @@ public class Modificar extends javax.swing.JInternalFrame {
         jTextField9.setEnabled(false);
 
         jButton4.setText("Cargar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -356,6 +362,36 @@ public class Modificar extends javax.swing.JInternalFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:                         
+        if(this.jTextField1.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Por favor llene el campo ISBN");
+        }else{
+            String[] conexion = new String[2];
+            String[] respuesta = new String[11];
+            conexion[0] = "cargarInfoLibro";
+            conexion[1] = this.jTextField1.getText();
+            respuesta = this.miControl.conectar(conexion);
+
+            this.jTextField2.setText(respuesta[1]);
+            this.jTextField3.setText(respuesta[2]);
+            this.jTextField4.setText(respuesta[3]);
+            this.jTextField5.setText(respuesta[4]);
+            this.jTextField6.setText(respuesta[5]);
+            this.jTextField7.setText(respuesta[6]);
+            this.jTextField8.setText(respuesta[7]);
+            this.jTextField9.setText(respuesta[10]);
+
+            if(respuesta[8].equals("BS")){
+                this.jRadioButton1.setSelected(true);
+            }else{
+                this.jRadioButton1.setSelected(false);
+            }
+
+            this.jTextArea1.setText(respuesta[9]);           
+        }        
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
