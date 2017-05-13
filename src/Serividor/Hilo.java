@@ -53,10 +53,16 @@ public class Hilo extends Thread{
                     case "agregarLibros": 
                         File aux = new File(mensaje[11]);
                         File aux2 = new File(mensaje[12]);
+                        String[] respuestaAg = new String[1];
                         biblioteca.agregarLibros(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux , aux2, (String) mensaje[13]);
+                        respuestaAg[0] = "Se ha agregado el libro exitosamente";
+                        enviarDatos(respuestaAg);
                         break;
                     case "eliminarLibros": 
+                        String[] respuestaEl = new String[1];
                         biblioteca.eliminarLibros((String)mensaje[1]);
+                        respuestaEl[0] = "Libro eliminado exitosamente";
+                        enviarDatos(respuestaEl);
                         break;                    
                     case "consultarInfoLibros": 
                         enviarDatos(biblioteca.consultarInfoLibros((String) mensaje[1]));
@@ -67,7 +73,10 @@ public class Hilo extends Thread{
                     case "modificarLibro": 
                         File aux3 = new File(mensaje[11]);
                         File aux4 = new File(mensaje[12]);
+                        String[] respuestaMod = new String[1];
                         biblioteca.modificarLibro(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux3 , aux4, (String) mensaje[13]);
+                        respuestaMod[0] = "Libro modificado exitosamente";
+                        enviarDatos(respuestaMod);
                         break;
                     case "refrescarLibros":
                         enviarDatos(biblioteca.refrescarLibros());
@@ -95,7 +104,7 @@ public class Hilo extends Thread{
                         break;
                     case "refrescarPeriodoDeOferta":
                         enviarDatos(biblioteca.refrescarPeriodosOferta());
-                        break;
+                        break;                   
                     case "Salir":
                         cerrarConexion();
                     default: 

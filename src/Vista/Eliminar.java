@@ -5,6 +5,7 @@
  */
 package Vista;
 import Controladora.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +43,11 @@ public class Eliminar extends javax.swing.JInternalFrame {
         jLabel1.setText("ISBN:");
 
         jButton1.setText("Eliminar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,6 +78,19 @@ public class Eliminar extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:        
+        if(this.jTextField1.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Por favor llene el campo ISBN");
+        }else{
+            String[] conexion = new String[2];
+            conexion[0] = "eliminarLibros";
+            conexion[1] = this.jTextField1.getText();
+            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion)[0]);
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

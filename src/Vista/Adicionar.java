@@ -322,10 +322,9 @@ public class Adicionar extends javax.swing.JInternalFrame {
                 conexion[11]="False";
             }
             conexion[12] = nombreArchivo.toString();
-            conexion[13] = caratula.toString();
+            conexion[13] = caratula.toString();                 
             
-                  
-            this.miControl.conectar(conexion);
+            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion)[0]);
         }
         catch(NumberFormatException e){
             JOptionPane.showInternalMessageDialog(this,"Error en las casillas de precio o número de páginas ingrese datos adecuados.","¡Advertencia!",2);
