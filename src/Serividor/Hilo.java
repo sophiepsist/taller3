@@ -43,76 +43,75 @@ public class Hilo extends Thread{
     }
     public synchronized void procesarConexion(){
     String[] mensaje = null;   
+    String mensaje2 = "";
         do{
             try{
                 //Lee El objeto que ha sido enviado por el cliente
                 mensaje = (String[]) entrada.readObject();
-                System.out.println(mensaje);
-                switch ((String)mensaje[0])
+                mensaje2 = mensaje[0];
+                switch (mensaje2)
                 {
                     case "agregarLibros": 
                         File aux = new File(mensaje[11]);
                         File aux2 = new File(mensaje[12]);
                         String[] respuestaAg = new String[1];
-                        biblioteca.agregarLibros(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux , aux2, (String) mensaje[13]);
+                        this.biblioteca.agregarLibros(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux , aux2, (String) mensaje[13]);
                         respuestaAg[0] = "Se ha agregado el libro exitosamente";
                         enviarDatos(respuestaAg);
                         break;
                     case "eliminarLibros": 
                         String[] respuestaEl = new String[1];
-                        biblioteca.eliminarLibros((String)mensaje[1]);
+                        this.biblioteca.eliminarLibros((String)mensaje[1]);
                         respuestaEl[0] = "Libro eliminado exitosamente";
                         enviarDatos(respuestaEl);
                         break;                    
                     case "consultarInfoLibros": 
-                        enviarDatos(biblioteca.consultarInfoLibros((String) mensaje[1]));
+                        enviarDatos(this.biblioteca.consultarInfoLibros((String) mensaje[1]));
                         break;
                     case "cargarInfoLibro": 
-                        enviarDatos(biblioteca.cargarInfoLibro((String) mensaje[1]));
+                        enviarDatos(this.biblioteca.cargarInfoLibro((String) mensaje[1]));
                         break;
                     case "modificarLibro": 
                         File aux3 = new File(mensaje[11]);
                         File aux4 = new File(mensaje[12]);
                         String[] respuestaMod = new String[1];
-                        biblioteca.modificarLibro(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux3 , aux4, (String) mensaje[13]);
+                        this.biblioteca.modificarLibro(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux3 , aux4, (String) mensaje[13]);
                         respuestaMod[0] = "Libro modificado exitosamente";
                         enviarDatos(respuestaMod);
                         break;
                     case "refrescarLibros":
-                        enviarDatos(biblioteca.refrescarLibros());
+                        enviarDatos(this.biblioteca.refrescarLibros());
                         break;
                     case "refrescarLibrosAcademicos":
-                        enviarDatos(biblioteca.refrescarLibrosAcademicos());
+                        enviarDatos(this.biblioteca.refrescarLibrosAcademicos());
                         break;
                     case "refrescarLibrosClasicos":
-                        enviarDatos(biblioteca.refrescarLibrosClasicos());
+                        enviarDatos(this.biblioteca.refrescarLibrosClasicos());
                         break;
                     case "refrescarLibrosJuveniles":
-                        enviarDatos(biblioteca.refrescarLibrosJuveniles());
+                        enviarDatos(this.biblioteca.refrescarLibrosJuveniles());
                         break;
                     case "refrescarLibrosRomance":
-                        enviarDatos(biblioteca.refrescarLibrosRomance());
+                        enviarDatos(this.biblioteca.refrescarLibrosRomance());
                         break;
                     case "refrescarLibrosSuspenso":
-                        enviarDatos(biblioteca.refrescarLibrosSuspenso());
+                        enviarDatos(this.biblioteca.refrescarLibrosSuspenso());
                         break;
                     case "refrescarLibrosFilosofia":
-                        enviarDatos(biblioteca.refrescarLibrosFilosofia());
+                        enviarDatos(this.biblioteca.refrescarLibrosFilosofia());
                         break;
                     case "refrescarLibrosOtros":
-                        enviarDatos(biblioteca.refrescarLibrosOtros());
+                        enviarDatos(this.biblioteca.refrescarLibrosOtros());
                         break;
                     case "refrescarPeriodoDeOferta":
+                        System.out.println("hola estoy en el case");
                         enviarDatos(biblioteca.refrescarPeriodosOferta());
                         break;                   
                     case "Salir":
-                        cerrarConexion();
-                    default: 
-                        procesarConexion();
+                        this.cerrarConexion();
                 }
 
-                System.out.println("\n" + mensaje);
-                mensaje = null;
+                //System.out.println("\n" + mensaje[0]);
             }catch(ClassNotFoundException e){
                 String[] exception = new String[1];
                 exception[0] = "Error asigando el tipo de variable\n" + e.toString();
@@ -125,6 +124,7 @@ public class Hilo extends Thread{
                 String[] exception = new String[1];
                 exception[0] = "Falla en el orden de envio de los datos\n" + e.toString();
                 enviarDatos(exception);
+                e.printStackTrace();
             }catch (MyException e){
                 String[] exception = new String[1];
                 exception[0] = e.toString();
@@ -133,13 +133,13 @@ public class Hilo extends Thread{
         } while (mensaje[0]!="Salir");
     }
     
-    public void enviarDatos(Object mensaje){
+    public void enviarDatos(String[] mensaje){
         try
         {
             salida.writeObject(mensaje);
             // Vacia el puerto 
             salida.flush();
-            System.out.println(mensaje);
+            System.out.println("El cliente envia el mensaje al servidor");
         }
         catch (IOException e)
         {

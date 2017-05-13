@@ -21,6 +21,11 @@ public class Controladora {
             String[] msj;          
             cliente.enviarDatos(mensaje);
             msj = cliente.procesarConexion();
+            try{
+                System.out.println(msj[0]);
+            }catch(ArrayIndexOutOfBoundsException e){
+                e.printStackTrace();
+            }
             return msj;
         }
     }

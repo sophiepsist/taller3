@@ -142,10 +142,16 @@ public class Biblioteca {
     public String[] refrescarPeriodosOferta(){
         String[] periodos = new String[periodosOferta.size()];
         Iterator it = periodosOferta.values().iterator();
-        for(int i=0; i<periodosOferta.size(); i++){
-            Oferta oferta = (Oferta)it.next();
-            periodos[i] = oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + "-" + oferta.getPorcentajeDescuento();            
-        }
+        if(periodosOferta.size()!=0){
+            for(int i=0; i<periodosOferta.size(); i++){
+                Oferta oferta = (Oferta)it.next();
+                periodos[i] = oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + "-" + oferta.getPorcentajeDescuento(); 
+                System.out.println("llena el array con las cadenas de la oferta");
+            }
+        }else{
+                periodos = new String[1];
+                periodos[0]= "No hay periodos de Oferta";
+            }
         return periodos;
     }
     
@@ -354,6 +360,8 @@ public class Biblioteca {
             System.out.println("IOException en Biblioteca, Metodo: AgregarLibrosAutomaticamente");
         }catch(ClassNotFoundException ex){
             System.out.println("ClassNotFoundException en Bibliotedan Metodo: AgregarLibrosAutomaticamente");
+        }catch(NullPointerException ex){
+            ex.printStackTrace();
         }
     }
    

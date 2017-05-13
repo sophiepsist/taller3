@@ -348,6 +348,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
     private void refrescarPeriodosOferta(){
         String[] datos = new String[1];
         datos[0] = "refrescarPeriodoDeOferta";
+        System.out.println(datos[0]);
         String[] periodosOfertas = this.miControl.conectar(datos);
         if (periodosOfertas.length == 0){
             this.jComboBox1.addItem("No hay periodos de ofertas disponibles");

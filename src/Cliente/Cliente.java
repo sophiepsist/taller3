@@ -22,7 +22,7 @@ public class Cliente {
             InetAddress localHost = InetAddress.getLocalHost();
             this.cliente = new Socket (localHost.getHostAddress(), puerto);
             this.salida = new ObjectOutputStream(cliente.getOutputStream());
-            this.entrada = new ObjectInputStream(cliente.getInputStream());;
+            this.entrada = new ObjectInputStream(cliente.getInputStream());
         }catch(UnknownHostException e){
             System.out.println("Servidor no Encontrado\n");
         }catch(IOException e){
@@ -34,15 +34,15 @@ public class Cliente {
     public void enviarDatos(String[] mensaje){
         try{            
             salida.writeObject(mensaje);
-            salida.flush();       
+            salida.flush();   
+            System.out.println("cliente envió el mensaje");
         }catch(IOException e){
             System.out.println("Error en enviar mensaje");
         }
     }
     
     public String[] procesarConexion(){ 
-        String[] mensaje = null;
-        do{
+        String[] mensaje = new String[0];
              try{
                  mensaje= (String[]) entrada.readObject();
              }catch(ClassNotFoundException e){
@@ -50,12 +50,9 @@ public class Cliente {
              }catch(IOException e){
                  System.out.println("Error en los flujos de lectura del cliente\n");
              }catch(NullPointerException e){
-                String[] exception = new String[1];
-                exception[0] = e.toString();
-                enviarDatos(exception);
+                 System.out.println("Null Pointer Exception En cliente Al Procesar Conexion \n");
              }
-                 System.out.println("hola :3");
-         }while(!mensaje.equals("Exit"));
+                 System.out.println("procesar coneccion cliente exitosa");
         return mensaje;
     }
     

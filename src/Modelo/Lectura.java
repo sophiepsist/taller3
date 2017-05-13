@@ -23,15 +23,17 @@ public class Lectura {
      * Hace la carga inicial de los libros que existen en la carpeta "InfoLibros"
      * en el directorio del proyecto y los mete a un HashMap
      */    
-    public HashMap cargarLibrosBiblioteca() throws IOException, ClassNotFoundException{       
+    public HashMap cargarLibrosBiblioteca() throws IOException, ClassNotFoundException, NullPointerException{       
         File dirProyecto = new File(System.getProperty("user.dir"));
         File file = new File(dirProyecto + "\\InfoLibros");                    
         File[] bookFiles = file.listFiles();
-        for(File bookFile : bookFiles){
-            ObjectInputStream lector = new ObjectInputStream(new FileInputStream(bookFile));
-            Libro libro = (Libro)lector.readObject();
-            librosBase.put(libro.getIsbn(), libro);           
-        }       
+        if(bookFiles!=null){
+            for(File bookFile : bookFiles){
+                ObjectInputStream lector = new ObjectInputStream(new FileInputStream(bookFile));
+                Libro libro = (Libro)lector.readObject();
+                librosBase.put(libro.getIsbn(), libro);           
+            }
+        }
         return librosBase;          
     }
     
