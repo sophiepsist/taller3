@@ -304,25 +304,25 @@ public class Adicionar extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
-            String[] conexion = new String[13];
+            String[] conexion = new String[14];
             conexion[0] = "agregarLibros";
-            conexion[1] = this.jTextField1.getText().trim();
+            conexion[1] = this.jTextField6.getText().trim();
             conexion[2]= this.jTextField2.getText();
-            conexion[3]= this.jTextField3.getText().trim();
+            conexion[3]= this.jTextField9.getText();
             conexion[4]= this.jTextField4.getText().trim();
-            conexion[5]= this.jTextField5.getText().trim();
-            conexion[6]= this.jTextField6.getText().trim();
-            conexion[7]= this.jTextField7.getText().trim();
-            conexion[8]= (String) this.jComboBox1.getSelectedItem();
-            conexion[9]= this.jTextArea1.getText();
-            conexion[10]= this.jTextField9.getText().trim();
             if(this.jRadioButton1.isSelected()){
-                conexion[11]="True";
+                conexion[5]="True";
             }else{
-                conexion[11]="False";
-            }
-            conexion[12] = nombreArchivo.toString();
-            conexion[13] = caratula.toString();                 
+                conexion[5]="False";
+            }            
+            conexion[6]= this.jTextField7.getText().trim();
+            conexion[7]= this.jTextField1.getText().trim();
+            conexion[8]= this.jTextField5.getText().trim();
+            conexion[9]= this.jTextArea1.getText();
+            conexion[10]= this.jComboBox1.getSelectedItem().toString();
+            conexion[11] = nombreArchivo.toString();
+            conexion[12] = caratula.toString();   
+            conexion[13]= this.jTextField3.getText().trim();                         
             
             JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion)[0]);
         }
@@ -347,7 +347,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
 
     private void refrescarPeriodosOferta(){
         String[] datos = new String[1];
-        datos[0] = "refrescarLibros";
+        datos[0] = "refrescarPeriodoDeOferta";
         String[] periodosOfertas = this.miControl.conectar(datos);
         if (periodosOfertas.length == 0){
             this.jComboBox1.addItem("No hay periodos de ofertas disponibles");
@@ -355,8 +355,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
             for(String periodoOferta : periodosOfertas){
                 this.jComboBox1.addItem(periodoOferta);
             }
-        }
-        
+        }        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -27,6 +27,20 @@ public class Modificar extends javax.swing.JInternalFrame {
         initComponents();
         this.fileChooser = new JFileChooser();
         this.miControl = c;
+        this.refrescarPeriodosOferta();
+    }
+    
+    private void refrescarPeriodosOferta(){
+        String[] datos = new String[1];
+        datos[0] = "refrescarPeriodoDeOferta";
+        String[] periodosOfertas = this.miControl.conectar(datos);
+        if (periodosOfertas.length == 0){
+            this.jComboBox1.addItem("No hay periodos de ofertas disponibles");
+        }else{
+            for(String periodoOferta : periodosOfertas){
+                this.jComboBox1.addItem(periodoOferta);
+            }
+        }        
     }
 
     /**
@@ -52,7 +66,6 @@ public class Modificar extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -66,6 +79,7 @@ public class Modificar extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
 
         setClosable(true);
         setIconifiable(true);
@@ -107,8 +121,6 @@ public class Modificar extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Categoría:");
         jLabel4.setEnabled(false);
-
-        jTextField8.setEnabled(false);
 
         jButton1.setText("Modificar");
         jButton1.setEnabled(false);
@@ -169,6 +181,8 @@ public class Modificar extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,10 +191,10 @@ public class Modificar extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jRadioButton1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -284,7 +298,7 @@ public class Modificar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
@@ -299,7 +313,7 @@ public class Modificar extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jButton3))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(29, Short.MAX_VALUE))))
         );
 
         pack();
@@ -324,39 +338,38 @@ public class Modificar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:        
-//        try{
-//            String[] conexion = new String[13];
-//            conexion[0] = "agregarLibros";
-//            conexion[1] = this.jTextField1.getText().trim();
-//            conexion[2]= this.jTextField2.getText();
-//            conexion[3]= this.jTextField3.getText().trim();
-//            conexion[4]= this.jTextField4.getText().trim();
-//            conexion[5]= this.jTextField5.getText().trim();
-//            conexion[6]= this.jTextField6.getText().trim();
-//            conexion[7]= this.jTextField7.getText().trim();
-//            conexion[8]= (String) this.jComboBox1.getSelectedItem();
-//            conexion[9]= this.jTextArea1.getText();
-//            conexion[10]= this.jTextField9.getText().trim();
-//            if(this.jRadioButton1.isSelected()){
-//                conexion[11]="True";
-//            }else{
-//                conexion[11]="False";
-//            }
-//            conexion[12] = nombreArchivo.toString();
-//            conexion[13] = caratula.toString();                 
-//            
-//            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion)[0]);
-//        }
-//        catch(NumberFormatException e){
-//            JOptionPane.showInternalMessageDialog(this,"Error en las casillas de precio o número de páginas ingrese datos adecuados.","¡Advertencia!",2);
-//        }
-//        catch(IllegalArgumentException e){
-//            JOptionPane.showInternalMessageDialog(this,"Existen casillas vacias.", "Error", 2);
-//        }
-//        catch(Exception e) {
-//                JOptionPane.showMessageDialog(this, "Error.");
-//        }
+        try{
+            String[] conexion = new String[14];
+            conexion[0] = "agregarLibros";
+            conexion[1] = this.jTextField6.getText().trim();
+            conexion[2]= this.jTextField2.getText();
+            conexion[3]= this.jTextField9.getText();
+            conexion[4]= this.jTextField4.getText().trim();
+            if(this.jRadioButton1.isSelected()){
+                conexion[5]="True";
+            }else{
+                conexion[5]="False";
+            }            
+            conexion[6]= this.jTextField7.getText().trim();
+            conexion[7]= this.jTextField1.getText().trim();
+            conexion[8]= this.jTextField5.getText().trim();
+            conexion[9]= this.jTextArea1.getText();
+            conexion[10]= this.jComboBox1.getSelectedItem().toString();
+            conexion[11] = nombreArchivo.toString();
+            conexion[12] = caratula.toString();   
+            conexion[13]= this.jTextField3.getText().trim();                         
+            
+            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion)[0]);
+        }
+        catch(NumberFormatException e){
+            JOptionPane.showInternalMessageDialog(this,"Error en las casillas de precio o número de páginas ingrese datos adecuados.","¡Advertencia!",2);
+        }
+        catch(IllegalArgumentException e){
+            JOptionPane.showInternalMessageDialog(this,"Existen casillas vacias.", "Error", 2);
+        }
+        catch(Exception e) {
+                JOptionPane.showMessageDialog(this, "Error.");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -368,11 +381,10 @@ public class Modificar extends javax.swing.JInternalFrame {
         if(this.jTextField1.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Por favor llene el campo ISBN");
         }else{
-            String[] conexion = new String[2];
-            String[] respuesta = new String[11];
+            String[] conexion = new String[2];          
             conexion[0] = "cargarInfoLibro";
             conexion[1] = this.jTextField1.getText();
-            respuesta = this.miControl.conectar(conexion);
+            String[] respuesta = this.miControl.conectar(conexion);
 
             this.jTextField2.setText(respuesta[1]);
             this.jTextField3.setText(respuesta[2]);
@@ -380,7 +392,14 @@ public class Modificar extends javax.swing.JInternalFrame {
             this.jTextField5.setText(respuesta[4]);
             this.jTextField6.setText(respuesta[5]);
             this.jTextField7.setText(respuesta[6]);
-            this.jTextField8.setText(respuesta[7]);
+            
+            for(int i=0; i<this.jComboBox1.getItemCount(); i++){
+               if(this.jComboBox1.getItemAt(i).equals(respuesta[7])){
+                   this.jComboBox1.setSelectedItem(this.jComboBox1.getItemAt(i));
+                   break;
+               }                
+            }
+            
             this.jTextField9.setText(respuesta[10]);
 
             if(respuesta[8].equals("BS")){
@@ -399,6 +418,7 @@ public class Modificar extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -421,7 +441,6 @@ public class Modificar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,8 +33,7 @@ public class Cliente {
     }
     
     public void enviarDatos(String[] mensaje){
-        try{
-            //System.out.println((String)mensaje.iterator().next());
+        try{            
             salida.writeObject(mensaje);
             salida.flush();       
         }catch(IOException e){
