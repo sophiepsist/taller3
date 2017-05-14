@@ -41,20 +41,15 @@ public class Lectura {
      * Revisa los archivos del directorio para eliminar el txt del libro que ha 
      * sido eliminado de la biblioteca 
      */     
-    public String eliminarLibroSerializado(String isbn) throws IOException, ClassNotFoundException{          
+    public void eliminarLibroSerializado(String isbn) throws IOException, ClassNotFoundException{          
         File dirProyecto = new File(System.getProperty("user.dir"));
         File file = new File(dirProyecto + "\\InfoLibros");                    
         File[] bookFiles = file.listFiles();
         for(File bookFile : bookFiles){
             if(bookFile.getName().equals(isbn + ".txt")){
-                if(bookFile.delete()){
-                    return "true";
-                }else{
-                    return "false";
-                }
-                //break;
+                bookFile.delete();
             }
-        }   return "mmm";  
+        }   
     }
      
     /**-----------------------------------------------------------------------**
