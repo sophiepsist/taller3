@@ -282,7 +282,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
          fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
          int result = fileChooser.showOpenDialog(this);
          if(result==JFileChooser.APPROVE_OPTION){
-             this.caratula= fileChooser.getCurrentDirectory();
+             this.caratula= fileChooser.getSelectedFile();
          }
          if((this.caratula != null)&& (this.nombreArchivo != null)){
              this.jButton1.setEnabled(true);
@@ -294,7 +294,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
          int result = fileChooser.showOpenDialog(this);
          if(result==JFileChooser.APPROVE_OPTION){
-             this.nombreArchivo= fileChooser.getCurrentDirectory();
+             this.nombreArchivo= fileChooser.getSelectedFile();
          }
          if((this.caratula != null)&& (this.nombreArchivo != null)){
              this.jButton1.setEnabled(true);
@@ -324,7 +324,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
             conexion[12] = caratula.toString();   
             conexion[13]= this.jTextField3.getText().trim();                         
             
-            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion)[0]);
+            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
             
             this.jTextField1.setText("");
             this.jTextField2.setText("");

@@ -31,10 +31,6 @@ public class Servidor {
             this.cliente  = server.accept();
             System.out.println("cliente recibido o conectado o lo que sea lok\n");
             this.biblioteca = new Biblioteca();
-            //biblioteca.
-            //lectura.cargarLibrosBiblioteca();
-            biblioteca.agregarLibrosAutomaticamente();
-            biblioteca.clasificarLibrosCategoria();
             conectar();
             //this.salida  = new ObjectOutputStream(cliente.getOutputStream());
             //System.out.println("se obtiene el flujo de salida\n");

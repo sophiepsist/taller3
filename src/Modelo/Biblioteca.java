@@ -43,6 +43,8 @@ public class Biblioteca {
         this.librosOtros = new HashMap();
         this.lectura= new Lectura();
         this.escritura = new Escritura();
+        this.agregarLibrosAutomaticamente();
+        this.clasificarLibrosCategoria();        
     }
 
    //----------------------------MÉTODOS GET------------------------------------
@@ -142,7 +144,7 @@ public class Biblioteca {
     public String[] refrescarPeriodosOferta(){
         String[] periodos = new String[periodosOferta.size()];
         Iterator it = periodosOferta.values().iterator();
-        if(periodosOferta.size()!=0){
+        if(!periodosOferta.isEmpty()){
             for(int i=0; i<periodosOferta.size(); i++){
                 Oferta oferta = (Oferta)it.next();
                 periodos[i] = oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + "-" + oferta.getPorcentajeDescuento(); 
@@ -158,10 +160,10 @@ public class Biblioteca {
     public String[] refrescarLibros(){
         String[] books = new String[libros.size()];
         Iterator it = libros.values().iterator();
-        if(libros.size()!= 0){
+        if(!libros.isEmpty()){
             for(int i=0; i<libros.size(); i++){
                 Libro libro = (Libro)it.next();
-                books[i] = libro.getTitulo().concat("; " + libro.getIsbn());
+                books[i] = libro.getTitulo().concat(";" + libro.getIsbn());
             }
         }else{
             books = new String[1];
@@ -173,10 +175,10 @@ public class Biblioteca {
     public String[] refrescarLibrosAcademicos(){
         String[] booksAcademicos = new String[librosAcademicos.size()];
         Iterator it = librosAcademicos.values().iterator();
-        if(librosAcademicos.size()!= 0){
+        if(!librosAcademicos.isEmpty()){
             for(int i=0; i<librosAcademicos.size(); i++){
                 Libro libroAcademico = (Libro)it.next();
-                booksAcademicos[i] = libroAcademico.getTitulo().concat("; " + libroAcademico.getIsbn());
+                booksAcademicos[i] = libroAcademico.getTitulo().concat(";" + libroAcademico.getIsbn());
             }
         }else{
             booksAcademicos = new String[1];
@@ -188,10 +190,10 @@ public class Biblioteca {
     public String[] refrescarLibrosClasicos(){
         String[] booksClasicos = new String[librosClasicos.size()];
         Iterator it = librosClasicos.values().iterator();
-        if(librosClasicos.size() != 0){
+        if(!librosClasicos.isEmpty()){
             for(int i=0; i<librosClasicos.size(); i++){
                 Libro libroClasicos = (Libro)it.next();
-                booksClasicos[i] = libroClasicos.getTitulo().concat("; " + libroClasicos.getIsbn());
+                booksClasicos[i] = libroClasicos.getTitulo().concat(";" + libroClasicos.getIsbn());
             }
         }else{
             booksClasicos = new String[1];
@@ -203,10 +205,10 @@ public class Biblioteca {
     public String[] refrescarLibrosJuveniles(){
         String[] booksJuveniles = new String[librosJuveniles.size()];
         Iterator it = librosJuveniles.values().iterator();
-        if(librosJuveniles.size() != 0){
+        if(!librosJuveniles.isEmpty()){
             for(int i=0; i<librosJuveniles.size(); i++){
                 Libro libroJuveniles = (Libro)it.next();
-                booksJuveniles[i] = libroJuveniles.getTitulo().concat("; " + libroJuveniles.getIsbn());
+                booksJuveniles[i] = libroJuveniles.getTitulo().concat(";" + libroJuveniles.getIsbn());
             }
         }else{
             booksJuveniles = new String[1];
@@ -218,10 +220,10 @@ public class Biblioteca {
     public String[] refrescarLibrosSuspenso(){
         String[] booksSuspenso = new String[librosSuspenso.size()];
         Iterator it = librosSuspenso.values().iterator();
-        if(librosSuspenso.size() != 0){
+        if(!librosSuspenso.isEmpty()){
             for(int i=0; i<librosSuspenso.size(); i++){
                 Libro libroSuspenso = (Libro)it.next();
-                booksSuspenso[i] = libroSuspenso.getTitulo().concat("; " + libroSuspenso.getIsbn());
+                booksSuspenso[i] = libroSuspenso.getTitulo().concat(";" + libroSuspenso.getIsbn());
             }
         }else{
             booksSuspenso = new String[1];
@@ -233,10 +235,10 @@ public class Biblioteca {
     public String[] refrescarLibrosRomance(){
         String[] booksRomance = new String[librosRomance.size()];
         Iterator it = librosRomance.values().iterator();
-        if(librosRomance.size() != 0){
+        if(!librosRomance.isEmpty()){
             for(int i=0; i<librosRomance.size(); i++){
                 Libro libroRomance = (Libro)it.next();
-                booksRomance[i] = libroRomance.getTitulo().concat("; " + libroRomance.getIsbn());
+                booksRomance[i] = libroRomance.getTitulo().concat(";" + libroRomance.getIsbn());
             }
         }else{
             booksRomance = new String[1];
@@ -248,10 +250,10 @@ public class Biblioteca {
     public String[] refrescarLibrosFilosofia(){
         String[] booksFilosofia = new String[librosFilosofia.size()];
         Iterator it = librosFilosofia.values().iterator();
-        if(librosFilosofia.size() != 0){
+        if(!librosFilosofia.isEmpty()){
             for(int i=0; i<librosFilosofia.size(); i++){
                 Libro libroFilosofia = (Libro)it.next();
-                booksFilosofia[i] = libroFilosofia.getTitulo().concat("; " + libroFilosofia.getIsbn());
+                booksFilosofia[i] = libroFilosofia.getTitulo().concat(";" + libroFilosofia.getIsbn());
             }
         }else{
             booksFilosofia = new String[1];
@@ -263,10 +265,10 @@ public class Biblioteca {
     public String[] refrescarLibrosOtros(){
         String[] booksOtros = new String[librosOtros.size()];
         Iterator it = librosOtros.values().iterator();
-        if(librosOtros.size() != 0){
+        if(!librosOtros.isEmpty()){
             for(int i=0; i<librosOtros.size(); i++){
                 Libro libroOtros = (Libro)it.next();
-                booksOtros[i] = libroOtros.getTitulo().concat("; " + libroOtros.getIsbn());
+                booksOtros[i] = libroOtros.getTitulo().concat(";" + libroOtros.getIsbn());
             }
         }else{
             booksOtros = new String[1];
@@ -287,6 +289,7 @@ public class Biblioteca {
         }else{       
             Libro libro = new Libro(numPaginas, titulo, precio, categoria, bestSeller, rangoEdades, isbn, calificacion, resumen, oferta, nombreArchivo, caratula, autor);
             libros.put(isbn, libro);  
+            this.clasifcarCadaLibro(libro);
             escritura.serializarLibro(libro);
         }
     }
@@ -294,12 +297,41 @@ public class Biblioteca {
     //-----------------------------ELIMINAR LIBROS------------------------------
     
     public void eliminarLibros(String isbn) throws MyException, IOException, ClassNotFoundException{
-        if(libros.remove(isbn)==null){
+        Libro libro = (Libro)libros.get(isbn);
+        if(libro==null){
             throw new MyException("No existe un libro con ese ISBN en la biblioteca");
         }else{
+            this.eliminarDeCategoria(libro);
+            libros.remove(isbn);
             lectura.eliminarLibroSerializado(isbn);              
         }
     }
+    
+   public void eliminarDeCategoria(Libro libro){
+       String categoria = libro.getCategoria();
+       String isbn = libro.getIsbn();
+        switch(categoria){
+            case "Académico":
+                librosAcademicos.remove(isbn);
+                break;
+            case "Clásico":
+                librosClasicos.remove(isbn);
+                break;
+            case "Suspenso":
+                librosSuspenso.remove(isbn);
+            case "Romance":
+                librosRomance.remove(isbn);
+                break;
+            case "Juveniles":
+                librosJuveniles.remove(isbn);
+                break;
+            case "Filosofía":
+                librosFilosofia.remove(isbn);
+                break;  
+            default:
+                librosOtros.remove(isbn);                
+        }
+   }
     
     //-----------------------------CONSULTAR LIBROS-----------------------------
     
@@ -308,7 +340,9 @@ public class Biblioteca {
             Libro libro = (Libro)libros.get(isbn);
             return libro.infoLibro();
         }else{
-            throw new MyException("El libro no se encuentra en la biblioteca");
+            String[] response = new String[1];
+            response[0] = "El libro no se encuentra en la biblioteca";
+            return response;
         }
     }
     
@@ -340,21 +374,32 @@ public class Biblioteca {
     }
     
     public void modificarLibro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades,
-                              String isbn, String calificacion, String resumen, String oferta, File nombreArchivo, File caratula, String autor) throws MyException{
+                              String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, String caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
             libro.setTitulo(titulo);
-            libro.setAutor(autor);
-            libro.setCategoria(categoria);
+            libro.setAutor(autor);                      
             libro.setCalificacion(calificacion);
             libro.setNumPaginas(numPaginas);
             libro.setRangoEdades(rangoEdades);
             libro.setOferta(oferta);
             libro.setBestSeller(bestSeller);
             libro.setResumen(resumen);
-            libro.setNombreArchivo(nombreArchivo);
-            libro.setCaratula(caratula);
             libro.setPrecio(precio);
+            if(!nombreArchivo.equals("vacío")){
+                File fileNombre = new File(nombreArchivo);                        
+                libro.setNombreArchivo(fileNombre);
+            }
+            if(!caratula.equals("vacío")){
+                File fileCaratula = new File(caratula);                        
+                libro.setCaratula(fileCaratula);
+            }             
+            if(!libro.getCategoria().equals(categoria)){
+                this.eliminarDeCategoria(libro);
+                libro.setCategoria(categoria);
+                this.clasifcarCadaLibro(libro);
+            }  
+            escritura.serializarLibro(libro);
         }else{
             throw new MyException("El libro no se encuentra en la biblioteca");
         }
@@ -362,11 +407,8 @@ public class Biblioteca {
     
     //------------------------CONSULTAR POR CATEGORÍA---------------------------
     
-    public void clasificarLibrosCategoria(){
-        Iterator it = libros.values().iterator();
-        for(int i=0; i<libros.size(); i++){
-            Libro libro = (Libro)it.next();
-            String categoria = libro.getCategoria();
+    public void clasifcarCadaLibro(Libro libro){
+        String categoria = libro.getCategoria();
             switch(categoria){
                 case "Académico":
                     librosAcademicos.put(libro.getIsbn(), libro);
@@ -386,16 +428,30 @@ public class Biblioteca {
                 case "Filosofía":
                     librosFilosofia.put(libro.getIsbn(), libro);
                     break;  
-                case "Otro":
-                    librosOtros.put(libro.getIsbn(), libro);
-                    break;
+                default:
+                    librosOtros.put(libro.getIsbn(), libro);                    
             } 
+        
+    }
+    
+    public void clasificarLibrosCategoria(){
+        Iterator it = libros.values().iterator();
+        for(int i=0; i<libros.size(); i++){
+            Libro libro = (Libro)it.next();
+            this.clasifcarCadaLibro(libro);
         }
     }
     
-    public void agregarLibrosAutomaticamente(){
-        try{
-        libros.putAll(lectura.cargarLibrosBiblioteca());
+    public void agregarLibrosAutomaticamente(){        
+        try{            
+            HashMap librosBase = new HashMap();
+            librosBase = lectura.cargarLibrosBiblioteca();            
+            Iterator it = librosBase.values().iterator();
+            for(int i=0; i<librosBase.size(); i++){
+                Libro libro = (Libro)it.next();
+                libros.put(libro.getIsbn(), libro);                
+            }
+            //libros.putAll(lectura.cargarLibrosBiblioteca());
         }catch(IOException ex){
             System.out.println("IOException en Biblioteca, Metodo: AgregarLibrosAutomaticamente");
         }catch(ClassNotFoundException ex){

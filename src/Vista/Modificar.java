@@ -88,42 +88,24 @@ public class Modificar extends javax.swing.JInternalFrame {
         setTitle("Modificar");
 
         jLabel8.setText("Periodo de oferta asociado:");
-        jLabel8.setEnabled(false);
-
-        jTextField3.setEnabled(false);
 
         jLabel9.setText("Resumen:");
-        jLabel9.setEnabled(false);
-
-        jTextField4.setEnabled(false);
 
         jRadioButton1.setText("BestSeller");
-        jRadioButton1.setEnabled(false);
-
-        jTextField5.setEnabled(false);
 
         jLabel1.setText("ISBN:");
 
-        jTextField6.setEnabled(false);
-
         jLabel2.setText("Título:");
-        jLabel2.setEnabled(false);
-
-        jTextField7.setEnabled(false);
 
         jLabel3.setText("Autor:");
-        jLabel3.setEnabled(false);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel4.setText("Categoría:");
-        jLabel4.setEnabled(false);
 
         jButton1.setText("Modificar");
-        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -131,10 +113,8 @@ public class Modificar extends javax.swing.JInternalFrame {
         });
 
         jLabel10.setText("Carátula .jpg:");
-        jLabel10.setEnabled(false);
 
         jLabel5.setText("Calificación:");
-        jLabel5.setEnabled(false);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,13 +123,10 @@ public class Modificar extends javax.swing.JInternalFrame {
         });
 
         jLabel11.setText("Archivo .txt:");
-        jLabel11.setEnabled(false);
 
         jLabel6.setText("Número de páginas:");
-        jLabel6.setEnabled(false);
 
         jButton2.setText("Seleccionar...");
-        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -157,12 +134,8 @@ public class Modificar extends javax.swing.JInternalFrame {
         });
 
         jLabel7.setText("Rango de edades:");
-        jLabel7.setEnabled(false);
-
-        jTextField2.setEnabled(false);
 
         jButton3.setText("Seleccionar...");
-        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -170,9 +143,6 @@ public class Modificar extends javax.swing.JInternalFrame {
         });
 
         jLabel12.setText("Precio:");
-        jLabel12.setEnabled(false);
-
-        jTextField9.setEnabled(false);
 
         jButton4.setText("Cargar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -180,8 +150,6 @@ public class Modificar extends javax.swing.JInternalFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,7 +292,7 @@ public class Modificar extends javax.swing.JInternalFrame {
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         int result = fileChooser.showOpenDialog(this);
         if(result==JFileChooser.APPROVE_OPTION){
-            this.caratula= fileChooser.getCurrentDirectory();
+            this.caratula= fileChooser.getSelectedFile();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -333,14 +301,14 @@ public class Modificar extends javax.swing.JInternalFrame {
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         int result = fileChooser.showOpenDialog(this);
         if(result==JFileChooser.APPROVE_OPTION){
-            this.nombreArchivo= fileChooser.getCurrentDirectory();
+            this.nombreArchivo= fileChooser.getSelectedFile();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
             String[] conexion = new String[14];
-            conexion[0] = "agregarLibros";
+            conexion[0] = "modificarLibro";
             conexion[1] = this.jTextField6.getText().trim();
             conexion[2]= this.jTextField2.getText();
             conexion[3]= this.jTextField9.getText();
@@ -355,11 +323,19 @@ public class Modificar extends javax.swing.JInternalFrame {
             conexion[8]= this.jTextField5.getText().trim();
             conexion[9]= this.jTextArea1.getText();
             conexion[10]= this.jComboBox1.getSelectedItem().toString();
-            conexion[11] = nombreArchivo.toString();
-            conexion[12] = caratula.toString();   
+            if(nombreArchivo==null){
+                conexion[11]="vacío";
+            }else{
+                conexion[11] = nombreArchivo.toString();
+            }
+            if(caratula==null){
+                conexion[12]="vacío";
+            }else{
+                conexion[12] = caratula.toString();
+            }              
             conexion[13]= this.jTextField3.getText().trim();                         
             
-            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion)[0]);
+            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
         }
         catch(NumberFormatException e){
             JOptionPane.showInternalMessageDialog(this,"Error en las casillas de precio o número de páginas ingrese datos adecuados.","¡Advertencia!",2);
@@ -368,7 +344,7 @@ public class Modificar extends javax.swing.JInternalFrame {
             JOptionPane.showInternalMessageDialog(this,"Existen casillas vacias.", "Error", 2);
         }
         catch(Exception e) {
-                JOptionPane.showMessageDialog(this, "Error.");
+                JOptionPane.showMessageDialog(this, "Error");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -385,31 +361,36 @@ public class Modificar extends javax.swing.JInternalFrame {
             conexion[0] = "cargarInfoLibro";
             conexion[1] = this.jTextField1.getText();
             String[] respuesta = this.miControl.conectar(conexion);
-
-            this.jTextField2.setText(respuesta[1]);
-            this.jTextField3.setText(respuesta[2]);
-            this.jTextField4.setText(respuesta[3]);
-            this.jTextField5.setText(respuesta[4]);
-            this.jTextField6.setText(respuesta[5]);
-            this.jTextField7.setText(respuesta[6]);
             
-            for(int i=0; i<this.jComboBox1.getItemCount(); i++){
-               if(this.jComboBox1.getItemAt(i).equals(respuesta[7])){
-                   this.jComboBox1.setSelectedItem(this.jComboBox1.getItemAt(i));
-                   break;
-               }                
-            }
-            
-            this.jTextField9.setText(respuesta[10]);
+            if(respuesta.length!=1){
+                this.jTextField2.setText(respuesta[1]);
+                this.jTextField3.setText(respuesta[2]);
+                this.jTextField4.setText(respuesta[3]);
+                this.jTextField5.setText(respuesta[4]);
+                this.jTextField6.setText(respuesta[5]);
+                this.jTextField7.setText(respuesta[6]);
 
-            if(respuesta[8].equals("BS")){
-                this.jRadioButton1.setSelected(true);
+                for(int i=0; i<this.jComboBox1.getItemCount(); i++){
+                   if(this.jComboBox1.getItemAt(i).equals(respuesta[7])){
+                       this.jComboBox1.setSelectedItem(this.jComboBox1.getItemAt(i));
+                       break;
+                   }                
+                }
+
+                this.jTextField9.setText(respuesta[10]);
+
+                if(respuesta[8].equals("BS")){
+                    this.jRadioButton1.setSelected(true);
+                }else{
+                    this.jRadioButton1.setSelected(false);
+                }
+
+                this.jTextArea1.setText(respuesta[9]);
+                this.jTextField1.setEnabled(false);
             }else{
-                this.jRadioButton1.setSelected(false);
-            }
-
-            this.jTextArea1.setText(respuesta[9]);           
-        }        
+                JOptionPane.showMessageDialog(this, respuesta[0]);
+            }        
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
 

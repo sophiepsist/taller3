@@ -160,7 +160,7 @@ public class Libro implements Serializable{
         String info = "";
         info = "\nISBN: " + isbn + "\nTítulo: " + titulo + "\nAutor: " + autor + "\nCategoría: " + categoria + "\nCalificación: " + calificacion
                 + "\nNúmero de páginas: " + numPaginas + "\nRango de edades: " + rangoEdades + "\nPeriodo de oferta asociado: " + oferta +
-                "\nPrecio: " + precio;
+                "\nPrecio: $" + precio;
          
         if(bestSeller){
              info += "\nLibro BestSeller";

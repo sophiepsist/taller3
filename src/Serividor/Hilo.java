@@ -66,16 +66,14 @@ public class Hilo extends Thread{
                         enviarDatos(respuestaEl);
                         break;                    
                     case "consultarInfoLibros": 
-                        enviarDatos(this.biblioteca.consultarInfoLibros((String) mensaje[1]));
+                        enviarDatos(this.biblioteca.consultarInfoLibros((String)mensaje[1]));
                         break;
                     case "cargarInfoLibro": 
                         enviarDatos(this.biblioteca.cargarInfoLibro((String) mensaje[1]));
                         break;
                     case "modificarLibro": 
-                        File aux3 = new File(mensaje[11]);
-                        File aux4 = new File(mensaje[12]);
                         String[] respuestaMod = new String[1];
-                        this.biblioteca.modificarLibro(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux3 , aux4, (String) mensaje[13]);
+                        this.biblioteca.modificarLibro(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], (String) mensaje[11], (String) mensaje[12], (String) mensaje[13]);
                         respuestaMod[0] = "Libro modificado exitosamente";
                         enviarDatos(respuestaMod);
                         break;
