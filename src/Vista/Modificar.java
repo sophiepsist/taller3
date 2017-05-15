@@ -100,7 +100,9 @@ public class Modificar extends javax.swing.JInternalFrame {
         jLabel3.setText("Autor:");
 
         jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel4.setText("Categoría:");

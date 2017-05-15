@@ -444,7 +444,7 @@ public class Biblioteca {
     
     public void agregarLibrosAutomaticamente(){        
         try{            
-            HashMap librosBase = new HashMap();
+            HashMap librosBase = new HashMap();            
             librosBase = lectura.cargarLibrosBiblioteca();            
             Iterator it = librosBase.values().iterator();
             for(int i=0; i<librosBase.size(); i++){
