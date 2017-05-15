@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package Modelo;
-import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -141,138 +141,128 @@ public class Biblioteca {
         
     //---------------------REFRESCAR COMPONENTES INTERFAZ-----------------------
     
-    public String[] refrescarPeriodosOferta(){
-        String[] periodos = new String[periodosOferta.size()];
+    public ArrayList refrescarPeriodosOferta(){
+        ArrayList periodos = new ArrayList(periodosOferta.size());
         Iterator it = periodosOferta.values().iterator();
         if(!periodosOferta.isEmpty()){
             for(int i=0; i<periodosOferta.size(); i++){
                 Oferta oferta = (Oferta)it.next();
-                periodos[i] = oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + "-" + oferta.getPorcentajeDescuento(); 
-                System.out.println("llena el array con las cadenas de la oferta");
+                periodos.add(oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + "-" + oferta.getPorcentajeDescuento());               
             }
-            }else{
-                periodos = new String[1];
-                periodos[0]= "No hay periodos de Oferta";
+            }else{                
+                periodos.add("No hay periodos de Oferta");
             }
         return periodos;
     }
     
-    public String[] refrescarLibros(){
-        String[] books = new String[libros.size()];
+    public ArrayList refrescarLibros(){
+        ArrayList books = new ArrayList(libros.size());
         Iterator it = libros.values().iterator();
         if(!libros.isEmpty()){
             for(int i=0; i<libros.size(); i++){
                 Libro libro = (Libro)it.next();
-                books[i] = libro.getTitulo().concat(";" + libro.getIsbn());
+                books.add(libro.getTitulo().concat(";" + libro.getIsbn()));
             }
-        }else{
-            books = new String[1];
-            books[0]= "No hay Libros en la biblioteca";
+        }else{            
+            books.add("No hay Libros en la biblioteca");
         }
         return books;
     }
     
-    public String[] refrescarLibrosAcademicos(){
-        String[] booksAcademicos = new String[librosAcademicos.size()];
+    public ArrayList refrescarLibrosAcademicos(){
+        ArrayList booksAcademicos = new ArrayList(librosAcademicos.size());
         Iterator it = librosAcademicos.values().iterator();
         if(!librosAcademicos.isEmpty()){
             for(int i=0; i<librosAcademicos.size(); i++){
                 Libro libroAcademico = (Libro)it.next();
-                booksAcademicos[i] = libroAcademico.getTitulo().concat(";" + libroAcademico.getIsbn());
+                booksAcademicos.add(libroAcademico.getTitulo().concat(";" + libroAcademico.getIsbn()));
             }
-        }else{
-            booksAcademicos = new String[1];
-            booksAcademicos[0]= "No hay Libros Academicos en la biblioteca";
+        }else{            
+            booksAcademicos.add("No hay Libros Academicos en la biblioteca");
         }
         return booksAcademicos;
     }
     
-    public String[] refrescarLibrosClasicos(){
-        String[] booksClasicos = new String[librosClasicos.size()];
+    public ArrayList refrescarLibrosClasicos(){
+        ArrayList booksClasicos = new ArrayList(librosClasicos.size());
         Iterator it = librosClasicos.values().iterator();
         if(!librosClasicos.isEmpty()){
             for(int i=0; i<librosClasicos.size(); i++){
                 Libro libroClasicos = (Libro)it.next();
-                booksClasicos[i] = libroClasicos.getTitulo().concat(";" + libroClasicos.getIsbn());
+                booksClasicos.add(libroClasicos.getTitulo().concat(";" + libroClasicos.getIsbn()));
             }
-        }else{
-            booksClasicos = new String[1];
-            booksClasicos[0]= "No hay Libros Clasicos en la biblioteca";
+        }else{            
+            booksClasicos.add("No hay Libros Clasicos en la biblioteca");
         }
         return booksClasicos;
     }
     
-    public String[] refrescarLibrosJuveniles(){
-        String[] booksJuveniles = new String[librosJuveniles.size()];
+    public ArrayList refrescarLibrosJuveniles(){
+        ArrayList booksJuveniles = new ArrayList(librosJuveniles.size());
         Iterator it = librosJuveniles.values().iterator();
         if(!librosJuveniles.isEmpty()){
             for(int i=0; i<librosJuveniles.size(); i++){
                 Libro libroJuveniles = (Libro)it.next();
-                booksJuveniles[i] = libroJuveniles.getTitulo().concat(";" + libroJuveniles.getIsbn());
+                booksJuveniles.add(libroJuveniles.getTitulo().concat(";" + libroJuveniles.getIsbn()));
             }
-        }else{
-            booksJuveniles = new String[1];
-            booksJuveniles[0]= "No hay Libros Juveniles en la biblioteca";
+        }else{           
+            booksJuveniles.add("No hay Libros Juveniles en la biblioteca");
         }
         return booksJuveniles;
     }
     
-    public String[] refrescarLibrosSuspenso(){
-        String[] booksSuspenso = new String[librosSuspenso.size()];
+    public ArrayList refrescarLibrosSuspenso(){
+        ArrayList booksSuspenso = new ArrayList(librosSuspenso.size());
         Iterator it = librosSuspenso.values().iterator();
         if(!librosSuspenso.isEmpty()){
             for(int i=0; i<librosSuspenso.size(); i++){
                 Libro libroSuspenso = (Libro)it.next();
-                booksSuspenso[i] = libroSuspenso.getTitulo().concat(";" + libroSuspenso.getIsbn());
+                booksSuspenso.add(libroSuspenso.getTitulo().concat(";" + libroSuspenso.getIsbn()));
             }
-        }else{
-            booksSuspenso = new String[1];
-            booksSuspenso[0]= "No hay Libros de Suspenso en la biblioteca";
+        }else{            
+            booksSuspenso.add("No hay Libros de Suspenso en la biblioteca");
         }
         return booksSuspenso;
     }
     
-    public String[] refrescarLibrosRomance(){
-        String[] booksRomance = new String[librosRomance.size()];
+    public ArrayList refrescarLibrosRomance(){
+        ArrayList booksRomance = new ArrayList(librosRomance.size());
         Iterator it = librosRomance.values().iterator();
         if(!librosRomance.isEmpty()){
             for(int i=0; i<librosRomance.size(); i++){
                 Libro libroRomance = (Libro)it.next();
-                booksRomance[i] = libroRomance.getTitulo().concat(";" + libroRomance.getIsbn());
+                booksRomance.add(libroRomance.getTitulo().concat(";" + libroRomance.getIsbn()));
             }
-        }else{
-            booksRomance = new String[1];
-            booksRomance[0]= "No hay Libros de Romance en la biblioteca";
+        }else{            
+            booksRomance.add("No hay Libros de Romance en la biblioteca");
         }
         return booksRomance;
     }
     
-    public String[] refrescarLibrosFilosofia(){
-        String[] booksFilosofia = new String[librosFilosofia.size()];
+    public ArrayList refrescarLibrosFilosofia(){
+        ArrayList booksFilosofia = new ArrayList(librosFilosofia.size());
         Iterator it = librosFilosofia.values().iterator();
         if(!librosFilosofia.isEmpty()){
             for(int i=0; i<librosFilosofia.size(); i++){
                 Libro libroFilosofia = (Libro)it.next();
-                booksFilosofia[i] = libroFilosofia.getTitulo().concat(";" + libroFilosofia.getIsbn());
+                booksFilosofia.add(libroFilosofia.getTitulo().concat(";" + libroFilosofia.getIsbn()));
             }
-        }else{
-            booksFilosofia = new String[1];
-            booksFilosofia[0]= "No hay Libros de Filosofía en la biblioteca";
+        }else{            
+            booksFilosofia.add("No hay Libros de Filosofía en la biblioteca");
         }
         return booksFilosofia;
     }
     
-    public String[] refrescarLibrosOtros(){
-        String[] booksOtros = new String[librosOtros.size()];
+    public ArrayList refrescarLibrosOtros(){
+        ArrayList booksOtros = new ArrayList(librosOtros.size());
         Iterator it = librosOtros.values().iterator();
         if(!librosOtros.isEmpty()){
             for(int i=0; i<librosOtros.size(); i++){
                 Libro libroOtros = (Libro)it.next();
-                booksOtros[i] = libroOtros.getTitulo().concat(";" + libroOtros.getIsbn());
+                booksOtros.add(libroOtros.getTitulo().concat(";" + libroOtros.getIsbn()));
             }
-        }else{
-            booksOtros = new String[1];
-            booksOtros[0]= "No hay Libros de esta categoría en la biblioteca";
+        }else{            
+            booksOtros.add("No hay Libros de esta categoría en la biblioteca");
         }
         return booksOtros;
     }
@@ -283,7 +273,7 @@ public class Biblioteca {
     //-----------------------AGREGAR LIBROS MANUALMENTE-------------------------    
     
     public void agregarLibros(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, 
-                              String isbn, String calificacion, String resumen, String oferta, File nombreArchivo, File caratula, String autor) throws MyException, IOException{
+                              String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, ImageIcon caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             throw new MyException("Ya se ha agregado un libro con ese ISBN");
         }else{       
@@ -335,38 +325,38 @@ public class Biblioteca {
     
     //-----------------------------CONSULTAR LIBROS-----------------------------
     
-    public String[] consultarInfoLibros(String isbn) throws MyException{
+    public ArrayList consultarInfoLibros(String isbn) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
             return libro.infoLibro();
         }else{
-            String[] response = new String[1];
-            response[0] = "El libro no se encuentra en la biblioteca";
-            return response;
+            ArrayList resp = new ArrayList(1);
+            resp.add("El libro no se encuentra en la biblioteca");
+            return resp;
         }
     }
     
     //-----------------------------MODIFICAR LIBROS-----------------------------
     
-    public String[] cargarInfoLibro(String isbn) throws MyException{
+    public ArrayList cargarInfoLibro(String isbn) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
-            String[] datos = new String[11];
-            datos[0]= libro.getIsbn();
-            datos[1]=libro.getTitulo();
-            datos[2]=libro.getAutor();
-            datos[3]=libro.getCategoria();
-            datos[4]=libro.getCalificacion();
-            datos[5]=Integer.toString(libro.getNumPaginas());
-            datos[6]=libro.getRangoEdades();
-            datos[7]=libro.getOferta();
+            ArrayList datos = new ArrayList(11);            
+            datos.add(libro.getIsbn());
+            datos.add(libro.getTitulo());
+            datos.add(libro.getAutor());
+            datos.add(libro.getCategoria());
+            datos.add(libro.getCalificacion());
+            datos.add(Integer.toString(libro.getNumPaginas()));
+            datos.add(libro.getRangoEdades());
+            datos.add(libro.getOferta());
             if(libro.isBestSeller()){
-                datos[8]="BS";                
+                datos.add("BS");               
             }else{
-                datos[8]="NBS";
+                datos.add("NBS");
             }
-            datos[9]=libro.getResumen();
-            datos[10]=Integer.toString(libro.getPrecio());
+            datos.add(libro.getResumen());
+            datos.add(Integer.toString(libro.getPrecio()));
             return datos;
         }else{
             throw new MyException("El libro no se encuentra en la biblioteca");
@@ -374,7 +364,7 @@ public class Biblioteca {
     }
     
     public void modificarLibro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades,
-                              String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, String caratula, String autor) throws MyException, IOException{
+                              String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, ImageIcon caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
             libro.setTitulo(titulo);
@@ -386,13 +376,11 @@ public class Biblioteca {
             libro.setBestSeller(bestSeller);
             libro.setResumen(resumen);
             libro.setPrecio(precio);
-            if(!nombreArchivo.equals("vacío")){
-                File fileNombre = new File(nombreArchivo);                        
-                libro.setNombreArchivo(fileNombre);
+            if(!nombreArchivo.equals("vacío")){                                        
+                libro.setNombreArchivo(nombreArchivo);
             }
-            if(!caratula.equals("vacío")){
-                File fileCaratula = new File(caratula);                        
-                libro.setCaratula(fileCaratula);
+            if(caratula!=null){                                      
+                libro.setCaratula(caratula);
             }             
             if(!libro.getCategoria().equals(categoria)){
                 this.eliminarDeCategoria(libro);

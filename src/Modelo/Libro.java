@@ -5,6 +5,9 @@
  */
 package Modelo;
 import java.io.*;
+import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 
 /**
@@ -22,13 +25,13 @@ public class Libro implements Serializable{
     private String calificacion;
     private String resumen;
     private String oferta;
-    private File nombreArchivo;
-    private File caratula;
+    private String nombreArchivo;
+    private ImageIcon caratula;
     private String autor;
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
-    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, String calificacion, String resumen, String oferta, File nombreArchivo, File caratula, String autor) {
+    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, ImageIcon caratula, String autor) {
         this.numPaginas = numPaginas;
         this.titulo = titulo;
         this.precio = precio;
@@ -86,11 +89,11 @@ public class Libro implements Serializable{
         return oferta;
     }   
 
-    public File getNombreArchivo() {
+    public String getNombreArchivo() {
         return nombreArchivo;
     }
 
-    public File getCaratula() {
+    public Icon getCaratula() {
         return caratula;
     }   
 
@@ -141,11 +144,11 @@ public class Libro implements Serializable{
         this.oferta = oferta;
     }    
 
-    public void setNombreArchivo(File nombreArchivo) {
+    public void setNombreArchivo(String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
     }
 
-    public void setCaratula(File caratula) {
+    public void setCaratula(ImageIcon caratula) {
         this.caratula = caratula;
     }
 
@@ -155,8 +158,8 @@ public class Libro implements Serializable{
     
     
     
-    public String[] infoLibro(){ 
-        String[] mensaje= new String[2]; 
+    public ArrayList infoLibro(){ 
+        ArrayList mensaje = new ArrayList(2); 
         String info = "";
         info = "\nISBN: " + isbn + "\nTítulo: " + titulo + "\nAutor: " + autor + "\nCategoría: " + categoria + "\nCalificación: " + calificacion
                 + "\nNúmero de páginas: " + numPaginas + "\nRango de edades: " + rangoEdades + "\nPeriodo de oferta asociado: " + oferta +
@@ -166,8 +169,8 @@ public class Libro implements Serializable{
              info += "\nLibro BestSeller";
         }        
         info += "\nResumen:\n" + resumen;
-        mensaje[0]= info;
-        mensaje[1]= caratula.toString();
+        mensaje.add(info);
+        mensaje.add(caratula);
         return mensaje;
     }    
 }
