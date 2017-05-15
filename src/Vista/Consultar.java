@@ -490,8 +490,8 @@ public class Consultar extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String[] conexion = new String[2];
-        String[] respuesta = new String[2];
+        ArrayList conexion = new ArrayList(1);
+        ArrayList respuesta = new ArrayList(1);
         conexion[0] = "consultarInfoLibros";
         conexion[1] = this.jComboBox8.getSelectedItem().toString().split(";")[1];
         respuesta = this.miControl.conectar(conexion);
