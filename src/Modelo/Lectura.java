@@ -25,8 +25,9 @@ public class Lectura {
      */    
     public HashMap cargarLibrosBiblioteca() throws IOException, ClassNotFoundException, NullPointerException{         
         File dirProyecto = new File(System.getProperty("user.dir"));
-        File file = new File(dirProyecto + "\\InfoLibros");                    
+        File file = new File(dirProyecto + "/InfoLibros");             
         File[] bookFiles = file.listFiles();        
+        System.out.println(bookFiles[0]);
         for(File bookFile : bookFiles){
             ObjectInputStream lector = new ObjectInputStream(new FileInputStream(bookFile));
             Libro libro = (Libro)lector.readObject();
@@ -42,7 +43,7 @@ public class Lectura {
      */     
     public void eliminarLibroSerializado(String isbn) throws IOException, ClassNotFoundException{          
         File dirProyecto = new File(System.getProperty("user.dir"));
-        File file = new File(dirProyecto + "\\InfoLibros");                    
+        File file = new File(dirProyecto + "/InfoLibros");                    
         File[] bookFiles = file.listFiles();
         for(File bookFile : bookFiles){
             if(bookFile.getName().equals(isbn + ".txt")){

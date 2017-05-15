@@ -28,8 +28,6 @@ public class Servidor {
         try{
             this.server = new ServerSocket(puerto);
             System.out.println("se inicia el servidor\n");
-            this.cliente  = server.accept();
-            System.out.println("cliente recibido o conectado o lo que sea lok\n");
             this.biblioteca = new Biblioteca();
             conectar();
             //this.salida  = new ObjectOutputStream(cliente.getOutputStream());
@@ -45,8 +43,17 @@ public class Servidor {
     }
     
     public void conectar(){
-        Hilo hilo= new Hilo(cliente, biblioteca);
-        hilo.start();
+        while(true){
+            try {
+                this.cliente  = server.accept();
+                System.out.println("cliente recibido o conectado o lo que sea lok\n");
+                Hilo hilo= new Hilo(cliente, biblioteca);
+                hilo.start();                
+            } catch (IOException ex) {
+                System.out.println("IO Exception en Servidor");
+            }
+
+        }
     }
     
 //        public void procesarConexion(){
