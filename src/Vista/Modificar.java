@@ -7,6 +7,7 @@ package Vista;
 import Controladora.*;
 
 import java.io.File;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -31,16 +32,12 @@ public class Modificar extends javax.swing.JInternalFrame {
     }
     
     private void refrescarPeriodosOferta(){
-        String[] datos = new String[1];
-        datos[0] = "refrescarPeriodoDeOferta";
-        String[] periodosOfertas = this.miControl.conectar(datos);
-        //if (periodosOfertas.length == 0){
-        //    this.jComboBox1.addItem("No hay periodos de ofertas disponibles");
-        //}else{
-            for(String periodoOferta : periodosOfertas){
-                this.jComboBox1.addItem(periodoOferta);
-            }
-        //}        
+        ArrayList datos = new ArrayList(1);
+        datos.add("refrescarPeriodoDeOferta");
+        ArrayList periodosOferta = this.miControl.conectar(datos);        
+        for(Object periodoOferta : periodosOferta){
+            this.jComboBox1.addItem(periodoOferta.toString());
+        }               
     }
 
     /**
@@ -309,33 +306,33 @@ public class Modificar extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-            String[] conexion = new String[14];
-            conexion[0] = "modificarLibro";
-            conexion[1] = this.jTextField6.getText().trim();
-            conexion[2]= this.jTextField2.getText();
-            conexion[3]= this.jTextField9.getText();
-            conexion[4]= this.jTextField4.getText().trim();
+            ArrayList conexion = new ArrayList(14);
+            conexion.add("modificarLibro");
+            conexion.add( this.jTextField6.getText().trim());
+            conexion.add(this.jTextField2.getText());
+            conexion.add(this.jTextField9.getText());
+            conexion.add(this.jTextField4.getText().trim());
             if(this.jRadioButton1.isSelected()){
-                conexion[5]="True";
+                conexion.add(true);
             }else{
-                conexion[5]="False";
+                conexion.add(false);
             }            
-            conexion[6]= this.jTextField7.getText().trim();
-            conexion[7]= this.jTextField1.getText().trim();
-            conexion[8]= this.jTextField5.getText().trim();
-            conexion[9]= this.jTextArea1.getText();
-            conexion[10]= this.jComboBox1.getSelectedItem().toString();
+            conexion.add(this.jTextField7.getText().trim());
+            conexion.add(this.jTextField1.getText().trim());
+            conexion.add(this.jTextField5.getText().trim());
+            conexion.add(this.jTextArea1.getText());
+            conexion.add( this.jComboBox1.getSelectedItem().toString());
             if(nombreArchivo==null){
-                conexion[11]="vacío";
+                conexion.add("vacío");
             }else{
-                conexion[11] = nombreArchivo.toString();
+                conexion.add(nombreArchivo.toString());
             }
             if(caratula==null){
-                conexion[12]="vacío";
+                conexion.add("vacío");
             }else{
-                conexion[12] = caratula.toString();
+                conexion.add(caratula.toString());
             }              
-            conexion[13]= this.jTextField3.getText().trim();                         
+            conexion.add(this.jTextField3.getText().trim());
             
             JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
         }
@@ -359,38 +356,34 @@ public class Modificar extends javax.swing.JInternalFrame {
         if(this.jTextField1.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Por favor llene el campo ISBN");
         }else{
-            String[] conexion = new String[2];          
-            conexion[0] = "cargarInfoLibro";
-            conexion[1] = this.jTextField1.getText();
-            String[] respuesta = this.miControl.conectar(conexion);
+            ArrayList conexion = new ArrayList(2);
+            conexion.add("cargarInfoLibro");
+            conexion.add(this.jTextField1.getText());
             
-            if(respuesta.length!=1){
-                this.jTextField2.setText(respuesta[1]);
-                this.jTextField3.setText(respuesta[2]);
-                this.jTextField4.setText(respuesta[3]);
-                this.jTextField5.setText(respuesta[4]);
-                this.jTextField6.setText(respuesta[5]);
-                this.jTextField7.setText(respuesta[6]);
+            ArrayList respuesta = this.miControl.conectar(conexion);          
+            
+            if(respuesta.size()!=1){
+                this.jTextField2.setText((String)respuesta.get(1));
+                this.jTextField3.setText((String)respuesta.get(2));
+                this.jTextField4.setText((String)respuesta.get(3));
+                this.jTextField5.setText((String)respuesta.get(4));
+                this.jTextField6.setText(Integer.toString((int)respuesta.get(5)));
+                this.jTextField7.setText((String)respuesta.get(6));
 
                 for(int i=0; i<this.jComboBox1.getItemCount(); i++){
-                   if(this.jComboBox1.getItemAt(i).equals(respuesta[7])){
+                   if(this.jComboBox1.getItemAt(i).equals((String)respuesta.get(7))){
                        this.jComboBox1.setSelectedItem(this.jComboBox1.getItemAt(i));
                        break;
                    }                
                 }
 
-                this.jTextField9.setText(respuesta[10]);
-
-                if(respuesta[8].equals("BS")){
-                    this.jRadioButton1.setSelected(true);
-                }else{
-                    this.jRadioButton1.setSelected(false);
-                }
-
-                this.jTextArea1.setText(respuesta[9]);
+                this.jTextField9.setText(Integer.toString((int)respuesta.get(10)));
+                this.jRadioButton1.setSelected((boolean)respuesta.get(8));
+                
+                this.jTextArea1.setText((String)respuesta.get(9));
                 this.jTextField1.setEnabled(false);
             }else{
-                JOptionPane.showMessageDialog(this, respuesta[0]);
+                JOptionPane.showMessageDialog(this, respuesta.get(0));
             }        
         }
     }//GEN-LAST:event_jButton4ActionPerformed

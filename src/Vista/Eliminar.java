@@ -84,7 +84,7 @@ public class Eliminar extends javax.swing.JInternalFrame {
         if(this.jTextField1.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Por favor llene el campo ISBN");
         }else{
-            ArrayList conexion = new ArrayList(1);
+            ArrayList conexion = new ArrayList(2);
             conexion.add("eliminarLibros");
             conexion.add(this.jTextField1.getText());
             JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));

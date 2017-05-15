@@ -5,6 +5,7 @@
  */
 package Vista;
 import Controladora.*;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
         
@@ -490,14 +491,13 @@ public class Consultar extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ArrayList conexion = new ArrayList(1);
-        ArrayList respuesta = new ArrayList(1);
-        conexion[0] = "consultarInfoLibros";
-        conexion[1] = this.jComboBox8.getSelectedItem().toString().split(";")[1];
-        respuesta = this.miControl.conectar(conexion);
-       // JOptionPane.showMessageDialog(this, respuesta[1]);
-       this.jTextArea2.setText(respuesta[0]);
-       this.jLabel2.setIcon(new ImageIcon(respuesta[1]));
+        ArrayList conexion = new ArrayList(2);
+        ArrayList respuesta = new ArrayList(2);
+        conexion.add("consultarInfoLibros");
+        conexion.add(this.jComboBox8.getSelectedItem().toString().split(";")[1]);
+        respuesta = this.miControl.conectar(conexion);      
+       this.jTextArea2.setText((String)respuesta.get(0));
+       this.jLabel2.setIcon((ImageIcon)respuesta.get(1));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -528,119 +528,88 @@ public class Consultar extends javax.swing.JInternalFrame {
         }                
     }//GEN-LAST:event_jButton1ActionPerformed
     private void mostrarConsultarCategoria(String isbn){
-        String[] conexion = new String[2]; 
-        String[] respuesta = new String[2];
-        conexion[0] = "consultarInfoLibros";
-        conexion[1] = isbn;
+        ArrayList conexion = new ArrayList(2);
+        ArrayList respuesta = new ArrayList(2);
+        conexion.add("consultarInfoLibros");
+        conexion.add(isbn);
+        
         respuesta = this.miControl.conectar(conexion);
-        this.jTextArea1.setText(respuesta[0]);
-        this.jLabel1.setIcon(new ImageIcon(respuesta[1]));
+        this.jTextArea1.setText((String)respuesta.get(0));
+        this.jLabel1.setIcon((ImageIcon)respuesta.get(1));
     }
     
     private void refrescarLibros(){
-        String[] conexion = new String[1];
-        conexion[0]= "refrescarLibros";
-        String[] libros = this.miControl.conectar(conexion);
-//        if (libros.length == 0){
-//            this.jComboBox8.addItem("No hay libros disponibles");
-//        }else{
-            for(String libro : libros){
-                this.jComboBox8.addItem(libro);
-            }
-        //}
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("refrescarLibros");
+        ArrayList libros = this.miControl.conectar(conexion);        
+        for(Object libro : libros){
+            this.jComboBox8.addItem((String)libro);
+        }        
     }
     
     private void refrescarLibrosAcademicos(){
-        String[] conexion = new String[1];
-        conexion[0]= "refrescarLibrosAcademicos";        
-        String[] librosAcademicos = this.miControl.conectar(conexion);
-        //if (librosAcademicos.length == 0){
-          //  this.jComboBox1.addItem("No hay libros disponibles");
-        //}else{
-            for(String libroAcademicos : librosAcademicos){
-                this.jComboBox1.addItem(libroAcademicos);
-            }
-        //}
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("refrescarLibrosAcademicos");
+        ArrayList librosAcademicos = this.miControl.conectar(conexion);       
+        for(Object libroAcademicos : librosAcademicos){
+            this.jComboBox1.addItem((String)libroAcademicos);
+        }
     }
     
     private void refrescarLibrosClasicos(){
-        String[] conexion= new String[1];
-        conexion[0] = "refrescarLibrosClasicos";
-        String[] librosClasicos = this.miControl.conectar(conexion);
-//        if (librosClasicos.length == 0){
-//            this.jComboBox2.addItem("No hay libros disponibles");
-//        }else{
-            for(String libroClasicos : librosClasicos){
-                this.jComboBox2.addItem(libroClasicos);
-            }
-        //}
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("refrescarLibrosClasicos");
+        ArrayList librosClasicos = this.miControl.conectar(conexion);
+        for(Object libroClasicos : librosClasicos){
+            this.jComboBox2.addItem((String)libroClasicos);
+        }
     }
     
     private void refrescarLibrosJuveniles(){
-        String[] conexion= new String[1];
-        conexion[0] = "refrescarLibrosJuveniles";
-        String[] librosJuveniles = this.miControl.conectar(conexion);
-//        if (librosJuveniles.length == 0){
-//            this.jComboBox3.addItem("No hay libros disponibles");
-//        }else{
-            for(String libroJuveniles : librosJuveniles){
-                this.jComboBox3.addItem(libroJuveniles);
-            //}
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("refrescarLibrosJuveniles");
+        ArrayList librosJuveniles = this.miControl.conectar(conexion);
+        for(Object libroJuveniles : librosJuveniles){
+            this.jComboBox3.addItem((String)libroJuveniles);            
         }
     }
         
     private void refrescarLibrosRomance(){
-        String[] conexion= new String[1];
-        conexion [0] = "refrescarLibrosRomance";
-        String[] librosRomance = this.miControl.conectar(conexion);
-//        if (librosRomance.length == 0){
-//            this.jComboBox4.addItem("No hay libros disponibles");
-//        }else{
-            for(String libroRomance : librosRomance){
-                this.jComboBox4.addItem(libroRomance);
-            }
-        //}
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("refrescarLibrosRomance");
+        ArrayList librosRomance = this.miControl.conectar(conexion);
+        for(Object libroRomance : librosRomance){
+            this.jComboBox4.addItem((String)libroRomance);
+        }        
     }
     
     
     private void refrescarLibrosSuspenso(){
-        String[] conexion= new String[1];
-        conexion[0]= "refrescarLibrosSuspenso";
-        String[] librosSuspenso = this.miControl.conectar(conexion);
-//        if (librosSuspenso.length == 0){
-//            this.jComboBox5.addItem("No hay libros disponibles");
-//        }else{
-            for(String libroSuspenso : librosSuspenso){
-                this.jComboBox5.addItem(libroSuspenso);
-            }
-        //}
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("refrescarLibrosSuspenso");
+        ArrayList librosSuspenso = this.miControl.conectar(conexion);
+        for(Object libroSuspenso : librosSuspenso){
+            this.jComboBox5.addItem((String)libroSuspenso);
+        }        
     }
     
     
     private void refrescarLibrosFilosofia(){
-        String[] conexion= new String[1];
-        conexion[0] = "refrescarLibrosFilosofia";
-        String[] librosFilosofia = this.miControl.conectar(conexion);
-//        if (librosFilosofia.length == 0){
-//            this.jComboBox6.addItem("No hay libros disponibles");
-//        }else{
-            for(String libroFilosofia : librosFilosofia){
-                this.jComboBox6.addItem(libroFilosofia);
-            }
-        //}
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("refrescarLibrosFilosofia");
+        ArrayList librosFilosofia = this.miControl.conectar(conexion);
+        for(Object libroFilosofia : librosFilosofia){
+            this.jComboBox6.addItem((String)libroFilosofia);
+        }        
     }
     
     private void refrescarLibrosOtros(){
-        String[] conexion= new String[1];
-        conexion [0] = "refrescarLibrosOtros";
-        String[] librosOtros = this.miControl.conectar(conexion);
-//        if (librosOtros.length == 0){
-//            this.jComboBox7.addItem("No hay libros disponibles");
-//        }else{
-            for(String libroOtros : librosOtros){
-                this.jComboBox7.addItem(libroOtros);
-            }
-        //}
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("refrescarLibrosOtros");
+        ArrayList librosOtros = this.miControl.conectar(conexion);
+        for(Object libroOtros : librosOtros){
+            this.jComboBox7.addItem((String)libroOtros);
+        }        
     }
    
     
