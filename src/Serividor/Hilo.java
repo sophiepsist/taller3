@@ -13,6 +13,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.*;
 import Modelo.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -42,39 +44,39 @@ public class Hilo extends Thread{
 
     }
     public synchronized void procesarConexion(){
-    String[] mensaje = null;   
+    ArrayList mensaje = new ArrayList(0);   
     String mensaje2 = "";
         do{
             try{
                 //Lee El objeto que ha sido enviado por el cliente
-                mensaje = (String[]) entrada.readObject();
-                mensaje2 = mensaje[0];
+                mensaje = (ArrayList) entrada.readObject();
+                mensaje2 = (String) mensaje.get(0);
                 switch (mensaje2)
                 {
                     case "agregarLibros": 
-                        File aux = new File(mensaje[11]);
-                        File aux2 = new File(mensaje[12]);
-                        String[] respuestaAg = new String[1];
-                        this.biblioteca.agregarLibros(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], aux , aux2, (String) mensaje[13]);
-                        respuestaAg[0] = "Se ha agregado el libro exitosamente";
+//                        Icon aux = (Icon)(mensaje.get(11));
+//                        File aux2 = String (mensaje[12]);                        
+                        this.biblioteca.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11) , (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
+                        ArrayList respuestaAg = new ArrayList(1);
+                        respuestaAg.add("Se ha agregado el libro exitosamente");
                         enviarDatos(respuestaAg);
                         break;
                     case "eliminarLibros": 
-                        String[] respuestaEl = new String[1];
-                        this.biblioteca.eliminarLibros((String)mensaje[1]);
-                        respuestaEl[0] = "Libro eliminado exitosamente";
+                        this.biblioteca.eliminarLibros((String)mensaje.get(1));      
+                        ArrayList respuestaEl = new ArrayList(1);
+                        respuestaEl.add("Libro eliminado exitosamente");
                         enviarDatos(respuestaEl);
-                        break;                    
+                        break;                                        
                     case "consultarInfoLibros": 
-                        enviarDatos(this.biblioteca.consultarInfoLibros((String)mensaje[1]));
+                        enviarDatos(this.biblioteca.consultarInfoLibros((String)mensaje.get(1)));
                         break;
                     case "cargarInfoLibro": 
-                        enviarDatos(this.biblioteca.cargarInfoLibro((String) mensaje[1]));
+                        enviarDatos(this.biblioteca.cargarInfoLibro((String) mensaje.get(1)));
                         break;
                     case "modificarLibro": 
-                        String[] respuestaMod = new String[1];
-                        this.biblioteca.modificarLibro(Integer.parseInt(mensaje[1]), (String) mensaje[2], Integer.parseInt(mensaje[3]), (String) mensaje[4], Boolean.valueOf(mensaje[5]), (String) mensaje[6], (String) mensaje[7], (String) mensaje[8], (String) mensaje[9], (String) mensaje[10], (String) mensaje[11], (String) mensaje[12], (String) mensaje[13]);
-                        respuestaMod[0] = "Libro modificado exitosamente";
+                        this.biblioteca.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11) , (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
+                        ArrayList respuestaMod = new ArrayList(1);
+                        respuestaMod.add("Libro eliminado exitosamente");
                         enviarDatos(respuestaMod);
                         break;
                     case "refrescarLibros":
@@ -111,27 +113,27 @@ public class Hilo extends Thread{
 
                 //System.out.println("\n" + mensaje[0]);
             }catch(ClassNotFoundException e){
-                String[] exception = new String[1];
-                exception[0] = "Error asigando el tipo de variable\n" + e.toString();
+                ArrayList exception = new ArrayList(1);
+                exception.add("Error asigando el tipo de variable\n" + e.toString());
                 enviarDatos(exception);
             }catch (IOException e){
-                String[] exception = new String[1];
-                exception[0] = "Error con los flujos de datos\n" +e.toString();
+                ArrayList exception = new ArrayList(1);
+                exception.add( "Error con los flujos de datos\n" +e.toString());
                 enviarDatos(exception);
             }catch(ArrayIndexOutOfBoundsException e){
-                String[] exception = new String[1];
-                exception[0] = "Falla en el orden de envio de los datos\n" + e.toString();
+                ArrayList exception = new ArrayList(1);
+                exception.add("Falla en el orden de envio de los datos\n" + e.toString());
                 enviarDatos(exception);
                 e.printStackTrace();
             }catch (MyException e){
-                String[] exception = new String[1];
-                exception[0] = e.toString();
+                ArrayList exception = new ArrayList(1);
+                exception.add(e.toString());
                 enviarDatos(exception);
             }
-        } while (mensaje[0]!="Salir");
+        } while (mensaje.get(0)!="Salir");
     }
     
-    public void enviarDatos(String[] mensaje){
+    public void enviarDatos(ArrayList mensaje){
         try
         {
             salida.writeObject(mensaje);

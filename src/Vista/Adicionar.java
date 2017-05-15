@@ -7,6 +7,7 @@ package Vista;
 import Controladora.*;
 
 import java.io.*;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -306,25 +307,25 @@ public class Adicionar extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
-            String[] conexion = new String[14];
-            conexion[0] = "agregarLibros";
-            conexion[1] = this.jTextField6.getText().trim();
-            conexion[2]= this.jTextField2.getText();
-            conexion[3]= this.jTextField9.getText();
-            conexion[4]= this.jTextField4.getText().trim();
+            ArrayList conexion = new ArrayList(14);       
+            conexion.add("agregarLibros");
+            conexion.add(this.jTextField6.getText().trim());
+            conexion.add(this.jTextField2.getText());
+            conexion.add(this.jTextField9.getText());
+            conexion.add(this.jTextField4.getText().trim());
             if(this.jRadioButton1.isSelected()){
-                conexion[5]="True";
+                conexion.add(true);
             }else{
-                conexion[5]="False";
+                conexion.add(false);
             }            
-            conexion[6]= this.jTextField7.getText().trim();
-            conexion[7]= this.jTextField1.getText().trim();
-            conexion[8]= this.jTextField5.getText().trim();
-            conexion[9]= this.jTextArea1.getText();
-            conexion[10]= this.jComboBox1.getSelectedItem().toString();
-            conexion[11] = nombreArchivo.toString();
-            conexion[12] = caratula.toString();   
-            conexion[13]= this.jTextField3.getText().trim();                         
+            conexion.add(this.jTextField7.getText().trim());
+            conexion.add(this.jTextField1.getText().trim());
+            conexion.add(this.jTextField5.getText().trim());
+            conexion.add(this.jTextArea1.getText());
+            conexion.add( this.jComboBox1.getSelectedItem().toString());
+            conexion.add(nombreArchivo.toString());
+            conexion.add(caratula.toString());  
+            conexion.add(this.jTextField3.getText().trim());                        
             
             JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
             
@@ -358,15 +359,15 @@ public class Adicionar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void refrescarPeriodosOferta(){
-        String[] datos = new String[1];
-        datos[0] = "refrescarPeriodoDeOferta";
-        System.out.println(datos[0]);
-        String[] periodosOfertas = this.miControl.conectar(datos);
+        ArrayList datos = new ArrayList(1);
+        datos.add("refrescarPeriodoDeOferta");
+        System.out.println(datos.get(0));
+        ArrayList periodosOfertas = this.miControl.conectar(datos);
         //if (periodosOfertas.length == 0){
             //this.jComboBox1.addItem("No hay periodos de ofertas disponibles");
         //}else{
-            for(String periodoOferta : periodosOfertas){
-                this.jComboBox1.addItem(periodoOferta);
+            for(Object periodoOferta : periodosOfertas){
+                this.jComboBox1.addItem(periodoOferta.toString());
             //}
         }        
     }

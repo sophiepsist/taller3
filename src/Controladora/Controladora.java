@@ -6,6 +6,7 @@
 package Controladora;
 
 import Cliente.*;
+import java.util.*;
 /**
  *
  * @author invitado
@@ -17,16 +18,17 @@ public class Controladora {
         this.cliente = new Cliente(27650);
         }
     
-        public String[] conectar(String[] mensaje){
-            String[] msj;          
+        public ArrayList conectar(ArrayList mensaje){
+            ArrayList msj = new ArrayList(0);          
             cliente.enviarDatos(mensaje);
             msj = cliente.procesarConexion();
             try{
-                System.out.println(msj[0]);
+                System.out.println(msj.get(0));
             }catch(ArrayIndexOutOfBoundsException e){
                 e.printStackTrace();
             }
             return msj;
-        }
+        }        
+        
     }
 

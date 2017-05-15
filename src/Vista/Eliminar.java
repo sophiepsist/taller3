@@ -5,6 +5,7 @@
  */
 package Vista;
 import Controladora.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -83,9 +84,9 @@ public class Eliminar extends javax.swing.JInternalFrame {
         if(this.jTextField1.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Por favor llene el campo ISBN");
         }else{
-            String[] conexion = new String[2];
-            conexion[0] = "eliminarLibros";
-            conexion[1] = this.jTextField1.getText();
+            ArrayList conexion = new ArrayList(1);
+            conexion.add("eliminarLibros");
+            conexion.add(this.jTextField1.getText());
             JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
         }
         

@@ -6,6 +6,7 @@
 package Cliente;
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 /**
  *
@@ -30,8 +31,8 @@ public class Cliente {
             System.out.println("Error en flujos de cliente\n");
         }
     }
-    
-    public void enviarDatos(String[] mensaje){
+
+    public void enviarDatos(ArrayList mensaje){
         try{            
             salida.writeObject(mensaje);
             salida.flush();   
@@ -40,11 +41,11 @@ public class Cliente {
             System.out.println("Error en enviar mensaje");
         }
     }
-    
-    public String[] procesarConexion(){ 
-        String[] mensaje = new String[0];
+
+    public ArrayList procesarConexion(){ 
+        ArrayList mensaje = new ArrayList(0);
              try{
-                 mensaje= (String[]) entrada.readObject();
+                 mensaje= (ArrayList) entrada.readObject();
              }catch(ClassNotFoundException e){
                  System.out.println("Class not found\n");
              }catch(IOException e){
@@ -56,14 +57,4 @@ public class Cliente {
         return mensaje;
     }
     
-//    public static void main(String[] args) throws UnknownHostException {
-//        Cliente cliente = new Cliente(28795);
-//        ArrayList hola = new ArrayList();
-//        hola.add("consultarLibrosNombre");
-//        hola.add("nombre");
-//        cliente.enviarDatos(hola);
-//        System.out.println(cliente.procesarConexion());
-//        
-//        
-//    }
 }
