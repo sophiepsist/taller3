@@ -6,6 +6,8 @@
 package Modelo;
 import java.io.IOException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 
@@ -341,22 +343,18 @@ public class Biblioteca {
     public ArrayList cargarInfoLibro(String isbn) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
-            ArrayList datos = new ArrayList(11);            
-            datos.add(libro.getIsbn());
+            ArrayList datos = new ArrayList(11); 
+            datos.add(libro.getNumPaginas());
             datos.add(libro.getTitulo());
-            datos.add(libro.getAutor());
+            datos.add(libro.getPrecio());
             datos.add(libro.getCategoria());
+            datos.add(libro.isBestSeller());
+            datos.add(libro.getRangoEdades());  
+            datos.add(libro.getIsbn());
             datos.add(libro.getCalificacion());
-            datos.add(Integer.toString(libro.getNumPaginas()));
-            datos.add(libro.getRangoEdades());
-            datos.add(libro.getOferta());
-            if(libro.isBestSeller()){
-                datos.add("BS");               
-            }else{
-                datos.add("NBS");
-            }
             datos.add(libro.getResumen());
-            datos.add(Integer.toString(libro.getPrecio()));
+            datos.add(libro.getOferta());
+            datos.add(libro.getAutor());
             return datos;
         }else{
             throw new MyException("El libro no se encuentra en la biblioteca");
@@ -430,7 +428,7 @@ public class Biblioteca {
         }
     }
     
-    public void agregarLibrosAutomaticamente(){        
+    public void agregarLibrosAutomaticamente() {        
         try{            
             HashMap librosBase = new HashMap();            
             librosBase = lectura.cargarLibrosBiblioteca();            
@@ -439,13 +437,12 @@ public class Biblioteca {
                 Libro libro = (Libro)it.next();
                 libros.put(libro.getIsbn(), libro);                
             }
-            //libros.putAll(lectura.cargarLibrosBiblioteca());
-        }catch(IOException ex){
-            System.out.println("IOException en Biblioteca, Metodo: AgregarLibrosAutomaticamente");
         }catch(ClassNotFoundException ex){
-            System.out.println("ClassNotFoundException en Bibliotedan Metodo: AgregarLibrosAutomaticamente");
+            System.out.println("ClassNotFoundException en Biblioteca, Metodo: AgregarLibrosAutomaticamente\n" + ex.getMessage());
         }catch(NullPointerException ex){
-            ex.printStackTrace();
+            System.out.println("NullPointerException en Bibliotedan Metodo: AgregarLibrosAutomaticamente\n" + ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("IOException en Biblioteca, Metodo: AgregarLibrosAutomaticamente\n" + ex.getMessage());
         }
     }
    

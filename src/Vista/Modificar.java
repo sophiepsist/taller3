@@ -8,6 +8,7 @@ import Controladora.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -308,7 +309,7 @@ public class Modificar extends javax.swing.JInternalFrame {
         try{
             ArrayList conexion = new ArrayList(14);
             conexion.add("modificarLibro");
-            conexion.add( this.jTextField6.getText().trim());
+            conexion.add(this.jTextField6.getText().trim());
             conexion.add(this.jTextField2.getText());
             conexion.add(this.jTextField9.getText());
             conexion.add(this.jTextField4.getText().trim());
@@ -317,7 +318,7 @@ public class Modificar extends javax.swing.JInternalFrame {
             }else{
                 conexion.add(false);
             }            
-            conexion.add(this.jTextField7.getText().trim());
+            conexion.add(this.jTextField7.getText().trim());            
             conexion.add(this.jTextField1.getText().trim());
             conexion.add(this.jTextField5.getText().trim());
             conexion.add(this.jTextArea1.getText());
@@ -330,7 +331,8 @@ public class Modificar extends javax.swing.JInternalFrame {
             if(caratula==null){
                 conexion.add("vacío");
             }else{
-                conexion.add(caratula.toString());
+                ImageIcon img = new ImageIcon(caratula.toString());            
+                conexion.add(img);                 
             }              
             conexion.add(this.jTextField3.getText().trim());
             
@@ -362,25 +364,25 @@ public class Modificar extends javax.swing.JInternalFrame {
             
             ArrayList respuesta = this.miControl.conectar(conexion);          
             
-            if(respuesta.size()!=1){
+            if(respuesta.size()!=1){                
                 this.jTextField2.setText((String)respuesta.get(1));
-                this.jTextField3.setText((String)respuesta.get(2));
+                this.jTextField3.setText((String)respuesta.get(10));
                 this.jTextField4.setText((String)respuesta.get(3));
-                this.jTextField5.setText((String)respuesta.get(4));
-                this.jTextField6.setText(Integer.toString((int)respuesta.get(5)));
-                this.jTextField7.setText((String)respuesta.get(6));
+                this.jTextField5.setText((String)respuesta.get(7));
+                this.jTextField6.setText(Integer.toString((int)respuesta.get(0)));
+                this.jTextField7.setText((String)respuesta.get(5));
 
                 for(int i=0; i<this.jComboBox1.getItemCount(); i++){
-                   if(this.jComboBox1.getItemAt(i).equals((String)respuesta.get(7))){
+                   if(this.jComboBox1.getItemAt(i).equals((String)respuesta.get(9))){
                        this.jComboBox1.setSelectedItem(this.jComboBox1.getItemAt(i));
                        break;
                    }                
                 }
 
-                this.jTextField9.setText(Integer.toString((int)respuesta.get(10)));
-                this.jRadioButton1.setSelected((boolean)respuesta.get(8));
+                this.jTextField9.setText(Integer.toString((int)respuesta.get(2)));
+                this.jRadioButton1.setSelected((boolean)respuesta.get(4));
                 
-                this.jTextArea1.setText((String)respuesta.get(9));
+                this.jTextArea1.setText((String)respuesta.get(8));
                 this.jTextField1.setEnabled(false);
             }else{
                 JOptionPane.showMessageDialog(this, respuesta.get(0));

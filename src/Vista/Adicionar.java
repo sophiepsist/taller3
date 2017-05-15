@@ -309,22 +309,19 @@ public class Adicionar extends javax.swing.JInternalFrame {
         try{
             ArrayList conexion = new ArrayList(14);       
             conexion.add("agregarLibros");
-            conexion.add(this.jTextField6.getText().trim());
+            conexion.add(Integer.parseInt(this.jTextField6.getText().trim()));
             conexion.add(this.jTextField2.getText());
-            conexion.add(this.jTextField9.getText());
+            conexion.add(Integer.parseInt(this.jTextField9.getText()));
             conexion.add(this.jTextField4.getText().trim());
-            if(this.jRadioButton1.isSelected()){
-                conexion.add(true);
-            }else{
-                conexion.add(false);
-            }            
+            conexion.add(this.jRadioButton1.isSelected());                      
             conexion.add(this.jTextField7.getText().trim());
             conexion.add(this.jTextField1.getText().trim());
             conexion.add(this.jTextField5.getText().trim());
             conexion.add(this.jTextArea1.getText());
             conexion.add( this.jComboBox1.getSelectedItem().toString());
             conexion.add(nombreArchivo.toString());
-            conexion.add(caratula.toString());  
+            ImageIcon img = new ImageIcon(caratula.toString());            
+            conexion.add(img);  
             conexion.add(this.jTextField3.getText().trim());                        
             
             JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
@@ -337,6 +334,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
             this.jTextField6.setText("");
             this.jTextField7.setText("");
             this.jTextArea1.setText("");
+            this.jTextField9.setText("");
             this.jRadioButton1.setSelected(false);
         }
         catch(NumberFormatException e){
