@@ -140,7 +140,7 @@ public class Hilo extends Thread{
         }
         catch (IOException e)
         {
-            System.out.println("\n Error al escribir el Objeto");
+            System.out.println("\n Error al escribir el Objeto, Cliente Desconectado");
         }
     }    
     
