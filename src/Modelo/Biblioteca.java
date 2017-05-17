@@ -343,7 +343,7 @@ public class Biblioteca {
     public ArrayList cargarInfoLibro(String isbn) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
-            ArrayList datos = new ArrayList(11); 
+            ArrayList datos = new ArrayList(12); 
             datos.add(libro.getNumPaginas());
             datos.add(libro.getTitulo());
             datos.add(libro.getPrecio());
@@ -355,6 +355,7 @@ public class Biblioteca {
             datos.add(libro.getResumen());
             datos.add(libro.getOferta());
             datos.add(libro.getAutor());
+            datos.add(libro.getCaratula());
             return datos;
         }else{
             throw new MyException("El libro no se encuentra en la biblioteca");

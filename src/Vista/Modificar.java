@@ -22,6 +22,7 @@ public class Modificar extends javax.swing.JInternalFrame {
     private File caratula;
     private File nombreArchivo;
     private Controladora miControl;
+    private ImageIcon image;
     /**
      * Creates new form Modificar
      */
@@ -92,6 +93,12 @@ public class Modificar extends javax.swing.JInternalFrame {
         jRadioButton1.setText("BestSeller");
 
         jLabel1.setText("ISBN:");
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Título:");
 
@@ -309,9 +316,9 @@ public class Modificar extends javax.swing.JInternalFrame {
         try{
             ArrayList conexion = new ArrayList(14);
             conexion.add("modificarLibro");
-            conexion.add(this.jTextField6.getText().trim());
+            conexion.add(Integer.parseInt(this.jTextField6.getText().trim()));
             conexion.add(this.jTextField2.getText());
-            conexion.add(this.jTextField9.getText());
+            conexion.add(Integer.parseInt(this.jTextField9.getText()));
             conexion.add(this.jTextField4.getText().trim());
             if(this.jRadioButton1.isSelected()){
                 conexion.add(true);
@@ -329,7 +336,7 @@ public class Modificar extends javax.swing.JInternalFrame {
                 conexion.add(nombreArchivo.toString());
             }
             if(caratula==null){
-                conexion.add("vacío");
+                conexion.add(this.image);
             }else{
                 ImageIcon img = new ImageIcon(caratula.toString());            
                 conexion.add(img);                 
@@ -384,11 +391,16 @@ public class Modificar extends javax.swing.JInternalFrame {
                 
                 this.jTextArea1.setText((String)respuesta.get(8));
                 this.jTextField1.setEnabled(false);
+                this.image = (ImageIcon)respuesta.get(11);
             }else{
                 JOptionPane.showMessageDialog(this, respuesta.get(0));
             }        
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

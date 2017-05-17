@@ -72,9 +72,13 @@ public class Hilo extends Thread{
                         enviarDatos(this.biblioteca.cargarInfoLibro((String) mensaje.get(1)));
                         break;
                     case "modificarLibro": 
-                        this.biblioteca.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11) , (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
+                        this.biblioteca.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), 
+                                (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), 
+                                (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), 
+                                (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11) ,
+                                (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
                         ArrayList respuestaMod = new ArrayList(1);
-                        respuestaMod.add("Libro eliminado exitosamente");
+                        respuestaMod.add("Libro modificado exitosamente");
                         enviarDatos(respuestaMod);
                         break;
                     case "refrescarLibros":
