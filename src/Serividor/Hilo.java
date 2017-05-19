@@ -123,9 +123,21 @@ public class Hilo extends Thread{
                         break;
                     case "comprarlibrosUL":
                         ArrayList librosAux = UL.getLibrosul();
-                        Libro aux = (Libro) mensaje.get(1);
-                        librosAux.add(aux);
-                        UL.setLibrosul(librosAux);
+                        ArrayList msj = new ArrayList(1);
+                        HashMap librosauxbiblio = biblioteca.getLibros();
+                        Libro aux = (Libro) librosauxbiblio.get((String) mensaje.get(1));
+                        if(UL.getSaldo() >= aux.getPrecio()){
+                            librosAux.add(aux);
+                            UL.setLibrosul(librosAux);
+                            UL.setSaldo(UL.getSaldo()-aux.getPrecio());
+                            msj.add("Compra exitosa");
+                            enviarDatos(msj);
+                        }else{throw new MyException("saldo insuficiente");}
+                        break;
+                    case "consultarUL":
+                        biblioteca.consultarUL((String) mensaje.get(1));
+                    case "consultarUAL":
+                        biblioteca.consultarUAL((String) mensaje.get(1));
                         
                 }
 

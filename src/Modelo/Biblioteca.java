@@ -480,4 +480,37 @@ public class Biblioteca {
             return aux;
         }else{throw new MyException("Contraseña incorrecta");}      
     }
+    
+    public ArrayList consultarUAL(String isbn) throws MyException{
+        ArrayList infoUsuario = new ArrayList(5);
+        if(administradores.containsKey(isbn)){
+            UsuarioAdministrador aux;
+            aux = (UsuarioAdministrador) administradores.get(isbn);
+            infoUsuario.add(aux.getNombreCompleto());
+            infoUsuario.add(aux.getCargo());
+            infoUsuario.add(aux.getCelular());
+            infoUsuario.add(aux.getEmail());
+            infoUsuario.add(aux.isAutorizado());
+            return infoUsuario;
+        }else{
+            throw new MyException("Usuario No encontrado");
+        }
+    }
+    
+    public ArrayList consultarUL(String isbn) throws MyException{
+        ArrayList infoUsuario = new ArrayList(5);
+        if(clientes.containsKey(isbn)){
+            UsuarioAdministrador aux;
+            aux = (UsuarioAdministrador) clientes.get(isbn);
+            infoUsuario.add(aux.getNombreCompleto());
+            infoUsuario.add(aux.getCargo());
+            infoUsuario.add(aux.getCelular());
+            infoUsuario.add(aux.getEmail());
+            infoUsuario.add(aux.isAutorizado());
+            return infoUsuario;
+        }else{
+            throw new MyException("Usuario No encontrado");
+        }
+    }    
+    
 }

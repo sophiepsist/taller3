@@ -83,6 +83,10 @@ public class UsuarioLector {
         return librosul;
     }
     
+    public int getSaldo(){
+        return saldo;
+    }
+    
     
     
     // ------------------------------------------MÉTODOS SET--------------------------------------------------------------    
@@ -127,10 +131,13 @@ public class UsuarioLector {
     public void setLibrosLeidos(HashMap<String, Libro> librosLeidos) {
         this.librosLeidos = librosLeidos;
     }
+    
      public void setLibrosul(ArrayList libros){
          this.librosul = libros;
      }
     
-    
+    public void setSaldo(int saldo){
+        this.saldo = saldo;
+    }
     
 }
