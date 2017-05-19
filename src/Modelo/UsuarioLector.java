@@ -19,9 +19,11 @@ public class UsuarioLector {
     private String email;
     private String nombreUsuario;
     private String contrasenia;
+    private ArrayList librosul;
+    private int saldo;
     private HashMap <String, Libro> librosLeidos;
 
-    public UsuarioLector(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia) {
+    public UsuarioLector(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia, int saldo) {
         this.nombreCompleto = nombreCompleto;
         this.celular = celular;
         this.diaNacimiento = diaNacimiento;
@@ -31,7 +33,7 @@ public class UsuarioLector {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.librosLeidos = new HashMap();
-        ;
+        this.saldo = saldo;
     }
 
     
@@ -75,6 +77,10 @@ public class UsuarioLector {
 
     public HashMap<String, Libro> getLibrosLeidos() {
         return librosLeidos;
+    }
+    
+    public ArrayList getLibrosul(){
+        return librosul;
     }
     
     
@@ -121,8 +127,9 @@ public class UsuarioLector {
     public void setLibrosLeidos(HashMap<String, Libro> librosLeidos) {
         this.librosLeidos = librosLeidos;
     }
-    
-    
+     public void setLibrosul(ArrayList libros){
+         this.librosul = libros;
+     }
     
     
     

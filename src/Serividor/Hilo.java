@@ -27,6 +27,8 @@ public class Hilo extends Thread{
     private ObjectInputStream entrada;
     private Biblioteca biblioteca;
     private Socket cliente;
+    private UsuarioAdministrador UAL;
+    private UsuarioLector UL;
 
     public Hilo(Socket conexion, Biblioteca biblio)
     {
@@ -45,7 +47,7 @@ public class Hilo extends Thread{
     }
     public synchronized void procesarConexion(){
     ArrayList mensaje = new ArrayList(0);   
-    String mensaje2 = "";
+    String mensaje2;
         do{
             try{
                 //Lee El objeto que ha sido enviado por el cliente
@@ -111,6 +113,20 @@ public class Hilo extends Thread{
                         break;                   
                     case "Salir":
                         this.cerrarConexion();
+                    case "agregarUAL":
+                    case "agegarUL":                                
+                    case "loginUsuarioAdministrador":
+                        this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
+                        break;
+                    case "loginUsuarioLector":
+                        this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));
+                        break;
+                    case "comprarlibrosUL":
+                        ArrayList librosAux = UL.getLibrosul();
+                        Libro aux = (Libro) mensaje.get(1);
+                        librosAux.add(aux);
+                        UL.setLibrosul(librosAux);
+                        
                 }
 
             }catch(ClassNotFoundException e){

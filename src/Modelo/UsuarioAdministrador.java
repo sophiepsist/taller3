@@ -18,6 +18,7 @@ public class UsuarioAdministrador {
     private String nombreUsuario;
     private String contrasenia;
     private boolean autorizado;
+    private HashMap libros;
 
     public UsuarioAdministrador(String nombreCompleto, String cargo, String celular, String email, String nombreUsuario, String contrasenia, boolean autorizado) {
         this.nombreCompleto = nombreCompleto;
@@ -60,8 +61,7 @@ public class UsuarioAdministrador {
         return autorizado;
     }
     
-    
-    //-------------------------------------------- MÉTODOS SET-----------------------------------------------
+//-------------------------------------------- MÉTODOS SET-----------------------------------------------
     
 
     public void setNombreCompleto(String nombreCompleto) {
@@ -91,8 +91,7 @@ public class UsuarioAdministrador {
     public void setAutorizado(boolean autorizado) {
         this.autorizado = autorizado;
     }
-    
-    
+ 
     
 
     
