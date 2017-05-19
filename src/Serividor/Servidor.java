@@ -47,7 +47,7 @@ public class Servidor {
             try {
                 this.cliente  = server.accept();
                 System.out.println("cliente recibido o conectado o lo que sea lok\n");
-                Hilo hilo= new Hilo(cliente, biblioteca);
+                HiloServidor hilo= new HiloServidor(cliente, biblioteca);
                 hilo.start();                
             } catch (IOException ex) {
                 System.out.println("IO Exception en Servidor");

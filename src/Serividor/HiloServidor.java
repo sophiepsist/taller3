@@ -22,7 +22,7 @@ import javax.swing.ImageIcon;
  */
 
         
-public class Hilo extends Thread{
+public class HiloServidor extends Thread{
     private ObjectOutputStream salida;
     private ObjectInputStream entrada;
     private Biblioteca biblioteca;
@@ -30,7 +30,7 @@ public class Hilo extends Thread{
     private UsuarioAdministrador UAL;
     private UsuarioLector UL;
 
-    public Hilo(Socket conexion, Biblioteca biblio)
+    public HiloServidor(Socket conexion, Biblioteca biblio)
     {
         try{
             this.cliente = conexion;

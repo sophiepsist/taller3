@@ -5,6 +5,7 @@
  */
 package Modelo;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,6 +28,8 @@ public class Biblioteca {
     private HashMap librosJuveniles;
     private HashMap librosFilosofia;
     private HashMap librosOtros;    
+    private HashMap librosOferta;
+    private HashMap librosSinOferta;
     private Lectura lectura;
     private Escritura escritura;
     //---------------------------MÉTODO CONSTRUCTOR-----------------------------
@@ -43,9 +46,12 @@ public class Biblioteca {
         this.librosJuveniles = new HashMap();
         this.librosFilosofia = new HashMap();
         this.librosOtros = new HashMap();
+        this.librosOferta = new HashMap();
+        this.librosSinOferta = new HashMap();
         this.lectura= new Lectura();
         this.escritura = new Escritura();
         this.agregarLibrosAutomaticamente();
+        this.inizializarHashMapsOfertas();
         this.clasificarLibrosCategoria();        
     }
 
@@ -94,7 +100,15 @@ public class Biblioteca {
     public HashMap getLibrosOtros() {
         return librosOtros;
     }    
+
+    public HashMap getLibrosOferta() {
+        return librosOferta;
+    }
     
+    public HashMap getLibrosSinOferta() {
+        return librosSinOferta;
+    }
+        
     //--------------------------MÉTODOS SET-------------------------------------    
 
     public void setLibros(HashMap libros) {
@@ -139,6 +153,14 @@ public class Biblioteca {
 
     public void setLibrosOtros(HashMap librosOtros) {
         this.librosOtros = librosOtros;
+    }
+
+    public void setLibrosOferta(HashMap librosOferta) {
+        this.librosOferta = librosOferta;
+    }   
+    
+    public void setLibrosSinOferta(HashMap librosSinOferta) {
+        this.librosSinOferta = librosSinOferta;
     }
         
     //---------------------REFRESCAR COMPONENTES INTERFAZ-----------------------
@@ -269,6 +291,34 @@ public class Biblioteca {
         return booksOtros;
     }
     
+    public ArrayList refrescarLibrosOferta(){
+        ArrayList booksOferta = new ArrayList(librosOferta.size());
+        Iterator it = librosOferta.values().iterator();
+        if(!librosOferta.isEmpty()){
+            for(int i=0; i<librosOferta.size(); i++){
+                Libro libroOferta = (Libro)it.next();
+                booksOferta.add(libroOferta.getTitulo().concat(";" + libroOferta.getIsbn()));
+            }
+        }else{            
+            booksOferta.add("No hay en oferta en la biblioteca");
+        }
+        return booksOferta;
+    }
+    
+    public ArrayList refrescarLibrosSinOferta(){
+        ArrayList booksSinOferta = new ArrayList(librosSinOferta.size());       
+        Iterator it = librosSinOferta.values().iterator();
+        if(!librosSinOferta.isEmpty()){
+            for(int i=0; i<librosSinOferta.size(); i++){
+                Libro libroSinOferta = (Libro)it.next();
+                booksSinOferta.add(libroSinOferta.getTitulo().concat(";" + libroSinOferta.getIsbn()));
+            }
+        }else{            
+            booksSinOferta.add("Todos los libros de la biblioteca ya se encuentran asociados a un periodo de oferta");
+        }
+        return booksSinOferta;
+    }    
+    
     
     //-------------------------GESTIÓN DE LIBROS--------------------------------
     
@@ -278,8 +328,14 @@ public class Biblioteca {
                               String isbn, String calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             throw new MyException("Ya se ha agregado un libro con ese ISBN");
-        }else{       
-            Libro libro = new Libro(numPaginas, titulo, precio, categoria, bestSeller, rangoEdades, isbn, calificacion, resumen, oferta, paginasArray, caratula, autor);
+        }else{
+            Oferta of = (Oferta)periodosOferta.get(oferta);            
+            Libro libro = new Libro(numPaginas, titulo, precio, categoria, bestSeller, rangoEdades, isbn, calificacion, resumen, of, paginasArray, caratula, autor);
+            if(of!=null){
+                librosOferta.put(isbn, libro);
+            }else{
+                librosSinOferta.put(isbn, libro);
+            }
             libros.put(isbn, libro);  
             this.clasifcarCadaLibro(libro);
             escritura.serializarLibro(libro);
@@ -295,7 +351,9 @@ public class Biblioteca {
         }else{
             this.eliminarDeCategoria(libro);
             libros.remove(isbn);
-            lectura.eliminarLibroSerializado(isbn);              
+            librosOferta.remove(isbn);
+            librosSinOferta.remove(isbn);
+            lectura.eliminarLibroSerializado(isbn);             
         }
     }
     
@@ -343,6 +401,11 @@ public class Biblioteca {
     public ArrayList cargarInfoLibro(String isbn) throws MyException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
+            String oferta = "No hay periodos de Oferta";
+            if(libro.getOferta()!=null){
+                Oferta of = (Oferta)libro.getOferta();
+                oferta = of.getFechaInicial() + " - " + of.getFechaFinal() + " - " + " - " + of.getPorcentajeDescuento();                
+            }
             ArrayList datos = new ArrayList(12); 
             datos.add(libro.getNumPaginas());
             datos.add(libro.getTitulo());
@@ -352,8 +415,8 @@ public class Biblioteca {
             datos.add(libro.getRangoEdades());  
             datos.add(libro.getIsbn());
             datos.add(libro.getCalificacion());
-            datos.add(libro.getResumen());
-            datos.add(libro.getOferta());
+            datos.add(libro.getResumen());            
+            datos.add(oferta);
             datos.add(libro.getAutor());
             datos.add(libro.getCaratula());
             return datos;
@@ -366,12 +429,13 @@ public class Biblioteca {
                               String isbn, String calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
+            Oferta of = (Oferta)periodosOferta.get(oferta);
             libro.setTitulo(titulo);
             libro.setAutor(autor);                      
             libro.setCalificacion(calificacion);
             libro.setNumPaginas(numPaginas);
             libro.setRangoEdades(rangoEdades);
-            libro.setOferta(oferta);
+            libro.setOferta(of);
             libro.setBestSeller(bestSeller);
             libro.setResumen(resumen);
             libro.setPrecio(precio);
@@ -429,6 +493,8 @@ public class Biblioteca {
         }
     }
     
+    //---------------------CARGAR LIBROS SERVIDOR-------------------------------
+    
     public void agregarLibrosAutomaticamente() {        
         try{            
             HashMap librosBase = new HashMap();            
@@ -436,7 +502,7 @@ public class Biblioteca {
             Iterator it = librosBase.values().iterator();
             for(int i=0; i<librosBase.size(); i++){
                 Libro libro = (Libro)it.next();
-                libros.put(libro.getIsbn(), libro);                
+                libros.put(libro.getIsbn(), libro);                 
             }
         }catch(ClassNotFoundException ex){
             System.out.println("ClassNotFoundException en Biblioteca, Metodo: AgregarLibrosAutomaticamente\n" + ex.getMessage());
@@ -536,19 +602,67 @@ public class Biblioteca {
         if(periodosOferta.containsKey(key)){
             throw new MyException("Ya existe un periodo de oferta con el mismo porcentaje de descuento en esa fecha");
         }else{                      
-            Oferta oferta = new Oferta(fechaInicial, fechaFinal, porcentajeDescuento, librosOferta);
+            Oferta oferta = new Oferta(fechaInicial, fechaFinal, porcentajeDescuento);
             periodosOferta.put(key, oferta);    
             asociarPeriodosConLibros(librosOferta, oferta);
         }
     }
     
+    //--------------INICIALIZAR HASHMAPS ASOCIADOS A OFERTAS---------------------  
+    
+    public void inizializarHashMapsOfertas(){
+        Iterator it = libros.values().iterator();
+        for(int i=0; i<libros.size(); i++){
+            Libro libro = (Libro)it.next();
+            Oferta oferta = (Oferta)libro.getOferta();
+            if(oferta!=null){                
+                periodosOferta.put(oferta.getKey(), oferta);
+                librosOferta.put(libro.getIsbn(), libro);
+            }else{
+                librosSinOferta.put(libro.getIsbn(), libro);
+            }
+        }
+    }
+    
     //----------------ASOCIAR PERIODOS DE OFERTA CON LOS LIBROS-----------------
     
-    public void asociarPeriodosConLibros(ArrayList libros, Oferta oferta){
-        for(int i=0; i<libros.size(); i++){
-            //Libro libro = (Libro)libros.get(libros.get(i));
-            
+    public void asociarPeriodosConLibros(ArrayList librosEnOferta, Oferta oferta){
+        for(int i=0; i<librosEnOferta.size(); i++){
+            Libro libro = (Libro)libros.get(librosEnOferta.get(i));
+            librosOferta.put(libro.getIsbn(), libro);            
+            libro.setOferta(oferta);
+            librosSinOferta.remove(libro);
         }                        
+    }
+    
+    //----------------------TERMINAR PERIODO DE OFERTA--------------------------
+    
+    public void terminarPeriodoOferta(){
+        LocalDateTime time = LocalDateTime.now();
+        int mesActual = time.getMonthValue();
+        int diaActual = time.getDayOfMonth();
+        int anioActual = time.getYear();  
+        ArrayList periodosPorEliminar = new ArrayList();
+        
+        Iterator it = periodosOferta.values().iterator();
+        for(int i=0; i<periodosOferta.size(); i++){
+            Oferta oferta = (Oferta)it.next();
+            int diaOferta = Integer.parseInt(oferta.getFechaFinal().split("/")[0]);
+            int mesOferta = Integer.parseInt(oferta.getFechaFinal().split("/")[1]);
+            int anioOferta = Integer.parseInt(oferta.getFechaFinal().split("/")[2]);
+            
+            if(diaActual==diaOferta && mesActual==mesOferta && anioActual==anioOferta){
+                periodosPorEliminar.add(oferta);
+            }            
+        }
+        
+//        for(int i=0; i<libros.size(); i++){
+//            
+//        }
+//        
+//        for(int i=0; i<periodosPorEliminar.size(); i++){
+//            periodosOferta
+//        }
     }
     
 }

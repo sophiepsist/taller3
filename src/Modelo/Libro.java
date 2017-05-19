@@ -24,14 +24,14 @@ public class Libro implements Serializable{
     private String isbn;
     private String calificacion;
     private String resumen;
-    private String oferta;
+    private Oferta oferta;
     private ArrayList paginasArray;
     private ImageIcon caratula;
     private String autor;
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
-    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, String calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) {
+    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, String calificacion, String resumen, Oferta oferta, ArrayList paginasArray, ImageIcon caratula, String autor) {
         this.numPaginas = numPaginas;
         this.titulo = titulo;
         this.precio = precio;
@@ -85,7 +85,7 @@ public class Libro implements Serializable{
         return resumen;
     }
 
-    public String getOferta() {
+    public Oferta getOferta() {
         return oferta;
     }   
 
@@ -140,7 +140,7 @@ public class Libro implements Serializable{
         this.resumen = resumen;
     }
 
-    public void setOferta(String oferta) {
+    public void setOferta(Oferta oferta) {
         this.oferta = oferta;
     }    
 
@@ -162,8 +162,8 @@ public class Libro implements Serializable{
         ArrayList mensaje = new ArrayList(2); 
         String info = "";
         info = "\nISBN: " + isbn + "\nTítulo: " + titulo + "\nAutor: " + autor + "\nCategoría: " + categoria + "\nCalificación: " + calificacion
-                + "\nNúmero de páginas: " + numPaginas + "\nRango de edades: " + rangoEdades + "\nPeriodo de oferta asociado: " + oferta +
-                "\nPrecio: $" + precio;
+                + "\nNúmero de páginas: " + numPaginas + "\nRango de edades: " + rangoEdades + "\nPeriodo de oferta asociado: " + oferta.getFechaFinal() +
+                "-" + oferta.getFechaFinal() + " - " + oferta.getPorcentajeDescuento() + "% de descuento\nPrecio: $" + precio;
          
         if(bestSeller){
              info += "\nLibro BestSeller";

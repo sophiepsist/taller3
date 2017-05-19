@@ -14,16 +14,14 @@ import java.util.*;
 public class Oferta {
     private String fechaInicial;
     private String fechaFinal;
-    private int porcentajeDescuento;
-    private ArrayList librosOferta;
+    private int porcentajeDescuento;    
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
-    public Oferta(String fechaInicial, String fechaFinal, int porcentajeDescuento, ArrayList librosOferta) {
+    public Oferta(String fechaInicial, String fechaFinal, int porcentajeDescuento) {
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
-        this.porcentajeDescuento = porcentajeDescuento;
-        this.librosOferta = librosOferta;
+        this.porcentajeDescuento = porcentajeDescuento;       
     }
 
     //-----------------------------MÉTODOS GET----------------------------------
@@ -39,9 +37,9 @@ public class Oferta {
     public int getPorcentajeDescuento() {
         return porcentajeDescuento;
     }
-
-    public ArrayList getLibrosOferta() {
-        return librosOferta;
+    
+    public String getKey(){
+        return fechaInicial + " - " + fechaFinal + " - " + porcentajeDescuento;
     }
     
     //-----------------------------MÉTODOS SET----------------------------------
@@ -56,9 +54,5 @@ public class Oferta {
 
     public void setPorcentajeDescuento(int porcentajeDescuento) {
         this.porcentajeDescuento = porcentajeDescuento;
-    }
-
-    public void setLibrosOferta(ArrayList librosOferta) {
-        this.librosOferta = librosOferta;
     }
 }
