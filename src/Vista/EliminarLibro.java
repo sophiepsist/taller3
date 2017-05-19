@@ -12,12 +12,12 @@ import javax.swing.JOptionPane;
  *
  * @author invitado
  */
-public class Eliminar extends javax.swing.JInternalFrame {
+public class EliminarLibro extends javax.swing.JInternalFrame {
     private Controladora miControl;
     /**
      * Creates new form Eliminar
      */
-    public Eliminar(Controladora c) {
+    public EliminarLibro(Controladora c) {
         initComponents();
         this.miControl = c;
     }
