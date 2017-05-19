@@ -56,7 +56,7 @@ public class Hilo extends Thread{
                 switch (mensaje2)
                 {
                     case "agregarLibros":                        
-                        this.biblioteca.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11) , (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
+                        this.biblioteca.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (ArrayList) mensaje.get(11) , (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
                         ArrayList respuestaAg = new ArrayList(1);
                         respuestaAg.add("Se ha agregado el libro exitosamente");
                         enviarDatos(respuestaAg);
@@ -77,7 +77,7 @@ public class Hilo extends Thread{
                         this.biblioteca.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), 
                                 (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), 
                                 (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), 
-                                (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11) ,
+                                (String) mensaje.get(9), (String) mensaje.get(10), (ArrayList) mensaje.get(11) ,
                                 (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
                         ArrayList respuestaMod = new ArrayList(1);
                         respuestaMod.add("Libro modificado exitosamente");
