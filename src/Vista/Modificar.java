@@ -5,8 +5,11 @@
  */
 package Vista;
 import Controladora.*;
+import java.io.BufferedReader;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -312,6 +315,39 @@ public class Modificar extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    //CONVERTIR DE FILE A UNA ARRAYLIST DE STRINGS CON LAS PÁGINAS DEL LIBRO
+    
+    public ArrayList fileToArray(String fileName){
+        try {   
+            BufferedReader br = new BufferedReader(new FileReader(fileName));  
+            ArrayList paginas = new ArrayList();
+            String line = "";
+            String pag = "";
+            int contPaginas = 0;             
+                       
+            while(true){
+                line = br.readLine();
+                if(line==null){
+                    paginas.add(pag);
+                    br.close();
+                    break;
+                }
+                pag = pag.concat("\n" + line);
+                contPaginas++;
+                if(contPaginas==49){
+                    paginas.add(pag);
+                    contPaginas = 0;
+                    pag = "";
+                }                
+            }                     
+            return paginas;
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Se ha generado un error en la carga del libro");
+        }   
+        return null;
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
             ArrayList conexion = new ArrayList(14);
@@ -331,9 +367,11 @@ public class Modificar extends javax.swing.JInternalFrame {
             conexion.add(this.jTextArea1.getText());
             conexion.add( this.jComboBox1.getSelectedItem().toString());
             if(nombreArchivo==null){
-                conexion.add("vacío");
+                ArrayList fileVacio = new ArrayList(1);
+                fileVacio.add("vacío");
+                conexion.add(fileVacio);
             }else{
-                conexion.add(nombreArchivo.toString());
+                conexion.add(this.fileToArray(nombreArchivo.toString()));
             }
             if(caratula==null){
                 conexion.add(this.image);
