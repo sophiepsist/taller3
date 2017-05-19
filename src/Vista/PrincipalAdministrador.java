@@ -42,7 +42,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,9 +127,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
             }
         });
 
-        jButton11.setText("ELIMINAR PERIODOS DE OFERTA");
-        jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
         jLabel3.setText("PERIODOS DE OFERTA");
 
         jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -144,7 +140,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         jDesktopPane1.setLayer(jButton8, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jButton9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton11, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
@@ -156,7 +151,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -182,8 +177,7 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                         .addGap(116, 116, 116)))
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, Short.MAX_VALUE))
                 .addGap(47, 47, 47))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -204,13 +198,10 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(143, 143, 143))
         );
 
@@ -233,7 +224,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         AdicionarLibro objAdicionar = new AdicionarLibro(miControl);
         this.jDesktopPane1.add(objAdicionar);
         objAdicionar.show(); 
-        this.jDesktopPane1.getMinimumSize();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -241,15 +231,13 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         ConsultarLibro objConsultar =new ConsultarLibro(miControl);
         this.jDesktopPane1.add(objConsultar);
         objConsultar.show();
-        this.jDesktopPane1.getMinimumSize();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         ModificarLibro objModificar =new ModificarLibro(miControl);
         this.jDesktopPane1.add(objModificar);        
-        objModificar.show(); 
-        this.jDesktopPane1.getMinimumSize();
+        objModificar.show();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -257,11 +245,13 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         EliminarLibro objEliminar =new EliminarLibro(miControl);
         this.jDesktopPane1.add(objEliminar);
         objEliminar.show(); 
-        this.jDesktopPane1.getMinimumSize();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        AdicionarOfertas objAdicionarOfertas = new AdicionarOfertas(miControl);
+        this.jDesktopPane1.add(objAdicionarOfertas);
+        objAdicionarOfertas.show();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -269,7 +259,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         AdicionarUL objAdicionarUl = new AdicionarUL(miControl);
         this.jDesktopPane1.add(objAdicionarUl);
         objAdicionarUl.show(); 
-        this.jDesktopPane1.getMinimumSize();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -277,7 +266,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         ConsultarUL objConsultarUl = new ConsultarUL(miControl);
         this.jDesktopPane1.add(objConsultarUl);
         objConsultarUl.show(); 
-        this.jDesktopPane1.getMinimumSize();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -285,7 +273,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         EliminarUL objEliminarUl = new EliminarUL(miControl);
         this.jDesktopPane1.add(objEliminarUl);
         objEliminarUl.show(); 
-        this.jDesktopPane1.getMinimumSize();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -293,7 +280,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         ConsultarUL objConsultarUl = new ConsultarUL(miControl);
         this.jDesktopPane1.add(objConsultarUl);
         objConsultarUl.show(); 
-        this.jDesktopPane1.getMinimumSize();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     
@@ -336,7 +322,6 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

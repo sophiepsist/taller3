@@ -498,15 +498,18 @@ public class Biblioteca {
     }
     
     public ArrayList consultarUL(String isbn) throws MyException{
-        ArrayList infoUsuario = new ArrayList(5);
+        ArrayList infoUsuario = new ArrayList(6);
         if(clientes.containsKey(isbn)){
             UsuarioLector aux;
             aux = (UsuarioLector) clientes.get(isbn);
+            
             infoUsuario.add(aux.getNombreCompleto());            
             infoUsuario.add(aux.getCelular());
             infoUsuario.add(aux.getDiaNacimiento().concat(aux.getMesNacimiento()));           
             infoUsuario.add(aux.getEmail());
-            infoUsuario.add(aux.getEdad());           
+            infoUsuario.add(aux.getEdad());
+            infoUsuario.add(aux.getSaldo());
+            
             return infoUsuario;
         }else{
             throw new MyException("Usuario No encontrado");
