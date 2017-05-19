@@ -14,7 +14,7 @@ import javax.swing.*;
  *
  * @author invitado
  */
-public class Adicionar extends javax.swing.JInternalFrame {
+public class AdicionarLibro extends javax.swing.JInternalFrame {
     private JFileChooser fileChooser;
     private File caratula;
     private File nombreArchivo;
@@ -22,7 +22,7 @@ public class Adicionar extends javax.swing.JInternalFrame {
     /**
      * Creates new form Adicionar
      */
-    public Adicionar(Controladora c) {
+    public AdicionarLibro(Controladora c) {
         initComponents();
         this.miControl=c;
         this.fileChooser=new JFileChooser();

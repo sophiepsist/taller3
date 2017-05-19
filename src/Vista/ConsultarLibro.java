@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author invitado
  */
-public class Consultar extends javax.swing.JInternalFrame {
+public class ConsultarLibro extends javax.swing.JInternalFrame {
     private Controladora miControl;
     /**
      * Creates new form Consultal
      */
-    public Consultar(Controladora c) {
+    public ConsultarLibro(Controladora c) {
         initComponents();
         this.miControl = c;
         this.refrescarLibros();

@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author invitado
  */
-public class Modificar extends javax.swing.JInternalFrame {
+public class ModificarLibro extends javax.swing.JInternalFrame {
     private JFileChooser fileChooser;
     private File caratula;
     private File nombreArchivo;
@@ -26,7 +26,7 @@ public class Modificar extends javax.swing.JInternalFrame {
     /**
      * Creates new form Modificar
      */
-    public Modificar(Controladora c) {
+    public ModificarLibro(Controladora c) {
         initComponents();
         this.fileChooser = new JFileChooser();
         this.miControl = c;
