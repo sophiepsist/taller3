@@ -114,7 +114,15 @@ public class Hilo extends Thread{
                     case "Salir":
                         this.cerrarConexion();
                     case "agregarUAL":
-                    case "agegarUL":                                
+                        ArrayList mensajeAgUAL = new ArrayList(1);
+                        biblioteca.agregarUAL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5), (String)mensaje.get(6), (boolean)mensaje.get(7));
+                        mensajeAgUAL.add("Usuario Administrador Agregado Correctamente");
+                        enviarDatos(mensajeAgUAL);
+                    case "agegarUL":    
+                        ArrayList mensajeAgUL = new ArrayList(1);
+                        biblioteca.agregarUL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (int)mensaje.get(5), (String)mensaje.get(6), (String)mensaje.get(7), (String)mensaje.get(8), (int)mensaje.get(9));
+                        mensajeAgUL.add("Usuario Lector Agregado Correctamente");
+                        enviarDatos(mensajeAgUL);
                     case "loginUsuarioAdministrador":
                         this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
                         break;
@@ -134,6 +142,7 @@ public class Hilo extends Thread{
                             enviarDatos(msj);
                         }else{throw new MyException("saldo insuficiente");}
                         break;
+                    case "recargar":
                     case "consultarUL":
                         biblioteca.consultarUL((String) mensaje.get(1));
                     case "consultarUAL":
