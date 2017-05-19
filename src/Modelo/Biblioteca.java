@@ -26,7 +26,7 @@ public class Biblioteca {
     private HashMap librosRomance;
     private HashMap librosJuveniles;
     private HashMap librosFilosofia;
-    private HashMap librosOtros;
+    private HashMap librosOtros;    
     private Lectura lectura;
     private Escritura escritura;
     //---------------------------MÉTODO CONSTRUCTOR-----------------------------
@@ -105,8 +105,8 @@ public class Biblioteca {
         this.clientes = clientes;
     }
 
-    public void setAdministradores(HashMap librosOferta) {
-        this.administradores = librosOferta;
+    public void setAdministradores(HashMap administradores) {
+        this.administradores = administradores;
     }
 
     public void setPeriodosOferta(HashMap periodosOferta) {
@@ -149,7 +149,7 @@ public class Biblioteca {
         if(!periodosOferta.isEmpty()){
             for(int i=0; i<periodosOferta.size(); i++){
                 Oferta oferta = (Oferta)it.next();
-                periodos.add(oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + "-" + oferta.getPorcentajeDescuento());               
+                periodos.add(oferta.getFechaInicial() + " - " + oferta.getFechaFinal() + " - " + oferta.getPorcentajeDescuento());               
             }
             }else{                
                 periodos.add("No hay periodos de Oferta");
@@ -524,6 +524,28 @@ public class Biblioteca {
             resp.add("El libro no se encuentra en la biblioteca");
             return resp;
         }
+    }
+    
+    //-----------------------CREAR PERIODOS DE OFERTA---------------------------
+    
+    public void crearPeriodosOferta(String fechaInicial, String fechaFinal, int porcentajeDescuento, ArrayList librosOferta) throws MyException{
+        String key = fechaInicial + " - " + fechaFinal + " - " + porcentajeDescuento;
+        if(periodosOferta.containsKey(key)){
+            throw new MyException("Ya existe un periodo de oferta con el mismo porcentaje de descuento en esa fecha");
+        }else{                      
+            Oferta oferta = new Oferta(fechaInicial, fechaFinal, porcentajeDescuento, librosOferta);
+            periodosOferta.put(key, oferta);    
+            asociarPeriodosConLibros(librosOferta, oferta);
+        }
+    }
+    
+    //----------------ASOCIAR PERIODOS DE OFERTA CON LOS LIBROS-----------------
+    
+    public void asociarPeriodosConLibros(ArrayList libros, Oferta oferta){
+        for(int i=0; i<libros.size(); i++){
+            //Libro libro = (Libro)libros.get(libros.get(i));
+            
+        }                        
     }
     
 }

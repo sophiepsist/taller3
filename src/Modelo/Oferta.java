@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  *
@@ -15,11 +15,11 @@ public class Oferta {
     private String fechaInicial;
     private String fechaFinal;
     private int porcentajeDescuento;
-    private HashMap librosOferta;
+    private ArrayList librosOferta;
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
-    public Oferta(String fechaInicial, String fechaFinal, int porcentajeDescuento, HashMap librosOferta) {
+    public Oferta(String fechaInicial, String fechaFinal, int porcentajeDescuento, ArrayList librosOferta) {
         this.fechaInicial = fechaInicial;
         this.fechaFinal = fechaFinal;
         this.porcentajeDescuento = porcentajeDescuento;
@@ -40,7 +40,7 @@ public class Oferta {
         return porcentajeDescuento;
     }
 
-    public HashMap getLibrosOferta() {
+    public ArrayList getLibrosOferta() {
         return librosOferta;
     }
     
@@ -58,7 +58,7 @@ public class Oferta {
         this.porcentajeDescuento = porcentajeDescuento;
     }
 
-    public void setLibrosOferta(HashMap librosOferta) {
+    public void setLibrosOferta(ArrayList librosOferta) {
         this.librosOferta = librosOferta;
     }
 }
