@@ -8,6 +8,8 @@ import Controladora.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 /**
@@ -17,7 +19,7 @@ import javax.swing.*;
 public class Adicionar extends javax.swing.JInternalFrame {
     private JFileChooser fileChooser;
     private File caratula;
-    private File nombreArchivo;
+    private String nombreArchivo;    
     private Controladora miControl;
     /**
      * Creates new form Adicionar
@@ -297,13 +299,48 @@ public class Adicionar extends javax.swing.JInternalFrame {
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
          int result = fileChooser.showOpenDialog(this);
          if(result==JFileChooser.APPROVE_OPTION){
-             this.nombreArchivo= fileChooser.getSelectedFile();
+             this.nombreArchivo = fileChooser.getSelectedFile().toString();
          }
          if((this.caratula != null)&& (this.nombreArchivo != null)){
              this.jButton1.setEnabled(true);
          }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    //CONVERTIR DE FILE A UNA ARRAYLIST DE STRINGS CON LAS PÁGINAS DEL LIBRO
+    
+    public ArrayList fileToArray(String fileName){
+        try {   
+            BufferedReader br = new BufferedReader(new FileReader(fileName));  
+            ArrayList paginas = new ArrayList();
+            String line = "";
+            String pag = "";
+            int contPaginas = 0;             
+                       
+            while(true){
+                line = br.readLine();
+                if(line==null){
+                    paginas.add(pag);
+                    br.close();
+                    break;
+                }
+                pag = pag.concat("\n" + line);
+                contPaginas++;
+                if(contPaginas==49){
+                    paginas.add(pag);
+                    contPaginas = 0;
+                    pag = "";
+                }                
+            }                     
+            return paginas;
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Se ha generado un error en la carga del libro");
+        }   
+        return null;
+    }
+    
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
@@ -318,8 +355,8 @@ public class Adicionar extends javax.swing.JInternalFrame {
             conexion.add(this.jTextField1.getText().trim());
             conexion.add(this.jTextField5.getText().trim());
             conexion.add(this.jTextArea1.getText());
-            conexion.add( this.jComboBox1.getSelectedItem().toString());
-            conexion.add(nombreArchivo.toString());
+            conexion.add( this.jComboBox1.getSelectedItem().toString());            
+            conexion.add(this.fileToArray(nombreArchivo));
             ImageIcon img = new ImageIcon(caratula.toString());            
             conexion.add(img);  
             conexion.add(this.jTextField3.getText().trim());                        
