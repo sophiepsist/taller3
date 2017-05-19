@@ -21,6 +21,7 @@ public class UsuarioLector {
     private String contrasenia;
     private ArrayList librosul;
     private int saldo;
+    private HashMap recargas;
     private HashMap <String, Libro> librosLeidos;
 
     public UsuarioLector(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia, int saldo) {

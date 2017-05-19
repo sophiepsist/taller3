@@ -75,19 +75,4 @@ public class Lectura {
 //            }
 //        }   
     }
-     
-    /**-----------------------------------------------------------------------**
-     * Retorna el libro que el cliente ha pedido leer
-     */     
-   /* public Libro retornarLibro(String isbn) throws MyException{
-        try{
-            ObjectInputStream lector = new ObjectInputStream(new FileInputStream(isbn + ".txt"));
-            }catch(IOException io){
-                throw new MyException("Error de lectura, no se ha encontrado el libro que busca");
-            }
-        }
-    }*/
- 
-    
-
 }

@@ -275,11 +275,11 @@ public class Biblioteca {
     //-----------------------AGREGAR LIBROS MANUALMENTE-------------------------    
     
     public void agregarLibros(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, 
-                              String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, ImageIcon caratula, String autor) throws MyException, IOException{
+                              String isbn, String calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             throw new MyException("Ya se ha agregado un libro con ese ISBN");
         }else{       
-            Libro libro = new Libro(numPaginas, titulo, precio, categoria, bestSeller, rangoEdades, isbn, calificacion, resumen, oferta, nombreArchivo, caratula, autor);
+            Libro libro = new Libro(numPaginas, titulo, precio, categoria, bestSeller, rangoEdades, isbn, calificacion, resumen, oferta, paginasArray, caratula, autor);
             libros.put(isbn, libro);  
             this.clasifcarCadaLibro(libro);
             escritura.serializarLibro(libro);
@@ -363,7 +363,7 @@ public class Biblioteca {
     }
     
     public void modificarLibro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades,
-                              String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, ImageIcon caratula, String autor) throws MyException, IOException{
+                              String isbn, String calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
             libro.setTitulo(titulo);
@@ -375,8 +375,8 @@ public class Biblioteca {
             libro.setBestSeller(bestSeller);
             libro.setResumen(resumen);
             libro.setPrecio(precio);
-            if(!nombreArchivo.equals("vacío")){                                        
-                libro.setNombreArchivo(nombreArchivo);
+            if(!paginasArray.get(0).equals("vacío")){                                        
+                libro.setPaginasArray(paginasArray);
             }
             if(caratula!=null){                                      
                 libro.setCaratula(caratula);
@@ -500,17 +500,30 @@ public class Biblioteca {
     public ArrayList consultarUL(String isbn) throws MyException{
         ArrayList infoUsuario = new ArrayList(5);
         if(clientes.containsKey(isbn)){
-            UsuarioAdministrador aux;
-            aux = (UsuarioAdministrador) clientes.get(isbn);
-            infoUsuario.add(aux.getNombreCompleto());
-            infoUsuario.add(aux.getCargo());
+            UsuarioLector aux;
+            aux = (UsuarioLector) clientes.get(isbn);
+            infoUsuario.add(aux.getNombreCompleto());            
             infoUsuario.add(aux.getCelular());
+            infoUsuario.add(aux.getDiaNacimiento().concat(aux.getMesNacimiento()));           
             infoUsuario.add(aux.getEmail());
-            infoUsuario.add(aux.isAutorizado());
+            infoUsuario.add(aux.getEdad());           
             return infoUsuario;
         }else{
             throw new MyException("Usuario No encontrado");
         }
     }    
+    
+    //-------------------CARGAR LIBROS PARA EL USUARIO LECTOR-------------------
+    
+    public ArrayList getArrayPaginasLibro(String isbn){
+        if(libros.containsKey(isbn)){
+            Libro libro = (Libro)libros.get(isbn);
+            return libro.getPaginasArray();
+        }else{
+            ArrayList resp = new ArrayList(1);
+            resp.add("El libro no se encuentra en la biblioteca");
+            return resp;
+        }
+    }
     
 }

@@ -25,13 +25,13 @@ public class Libro implements Serializable{
     private String calificacion;
     private String resumen;
     private String oferta;
-    private String nombreArchivo;
+    private ArrayList paginasArray;
     private ImageIcon caratula;
     private String autor;
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
-    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, String calificacion, String resumen, String oferta, String nombreArchivo, ImageIcon caratula, String autor) {
+    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, String calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) {
         this.numPaginas = numPaginas;
         this.titulo = titulo;
         this.precio = precio;
@@ -42,7 +42,7 @@ public class Libro implements Serializable{
         this.calificacion = calificacion;
         this.resumen = resumen;
         this.oferta = oferta;
-        this.nombreArchivo = nombreArchivo;
+        this.paginasArray = paginasArray;
         this.caratula = caratula;
         this.autor = autor;
     }   
@@ -89,8 +89,8 @@ public class Libro implements Serializable{
         return oferta;
     }   
 
-    public String getNombreArchivo() {
-        return nombreArchivo;
+    public ArrayList getPaginasArray() {
+        return paginasArray;
     }
 
     public Icon getCaratula() {
@@ -144,8 +144,8 @@ public class Libro implements Serializable{
         this.oferta = oferta;
     }    
 
-    public void setNombreArchivo(String nombreArchivo) {
-        this.nombreArchivo = nombreArchivo;
+    public void setPaginasArray(ArrayList paginasArray) {
+        this.paginasArray = paginasArray;
     }
 
     public void setCaratula(ImageIcon caratula) {

@@ -56,7 +56,7 @@ public class Hilo extends Thread{
                 switch (mensaje2)
                 {
                     case "agregarLibros":                        
-                        this.biblioteca.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11) , (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
+                        this.biblioteca.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (ArrayList) mensaje.get(11) , (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
                         ArrayList respuestaAg = new ArrayList(1);
                         respuestaAg.add("Se ha agregado el libro exitosamente");
                         enviarDatos(respuestaAg);
@@ -77,7 +77,7 @@ public class Hilo extends Thread{
                         this.biblioteca.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), 
                                 (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), 
                                 (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), 
-                                (String) mensaje.get(9), (String) mensaje.get(10), (String) mensaje.get(11) ,
+                                (String) mensaje.get(9), (String) mensaje.get(10), (ArrayList) mensaje.get(11) ,
                                 (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
                         ArrayList respuestaMod = new ArrayList(1);
                         respuestaMod.add("Libro modificado exitosamente");
@@ -114,7 +114,15 @@ public class Hilo extends Thread{
                     case "Salir":
                         this.cerrarConexion();
                     case "agregarUAL":
-                    case "agegarUL":                                
+                        ArrayList mensajeAgUAL = new ArrayList(1);
+                        biblioteca.agregarUAL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5), (String)mensaje.get(6), (boolean)mensaje.get(7));
+                        mensajeAgUAL.add("Usuario Administrador Agregado Correctamente");
+                        enviarDatos(mensajeAgUAL);
+                    case "agegarUL":    
+                        ArrayList mensajeAgUL = new ArrayList(1);
+                        biblioteca.agregarUL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (int)mensaje.get(5), (String)mensaje.get(6), (String)mensaje.get(7), (String)mensaje.get(8), (int)mensaje.get(9));
+                        mensajeAgUL.add("Usuario Lector Agregado Correctamente");
+                        enviarDatos(mensajeAgUL);
                     case "loginUsuarioAdministrador":
                         this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
                         break;
@@ -134,6 +142,7 @@ public class Hilo extends Thread{
                             enviarDatos(msj);
                         }else{throw new MyException("saldo insuficiente");}
                         break;
+                    case "recargar":
                     case "consultarUL":
                         biblioteca.consultarUL((String) mensaje.get(1));
                     case "consultarUAL":
