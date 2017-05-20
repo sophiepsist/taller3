@@ -51,7 +51,7 @@ public class Biblioteca {
         this.lectura= new Lectura();
         this.escritura = new Escritura();
         this.agregarLibrosAutomaticamente();
-        this.inizializarHashMapsOfertas();
+        this.inicializarHashMapsOfertas();
         this.clasificarLibrosCategoria();        
     }
 
@@ -610,7 +610,7 @@ public class Biblioteca {
     
     //--------------INICIALIZAR HASHMAPS ASOCIADOS A OFERTAS---------------------  
     
-    public void inizializarHashMapsOfertas(){
+    public void inicializarHashMapsOfertas(){
         Iterator it = libros.values().iterator();
         for(int i=0; i<libros.size(); i++){
             Libro libro = (Libro)it.next();
@@ -652,17 +652,24 @@ public class Biblioteca {
             int anioOferta = Integer.parseInt(oferta.getFechaFinal().split("/")[2]);
             
             if(diaActual==diaOferta && mesActual==mesOferta && anioActual==anioOferta){
-                periodosPorEliminar.add(oferta);
+                periodosPorEliminar.add(oferta.getKey());               
             }            
         }
-        
-//        for(int i=0; i<libros.size(); i++){
-//            
-//        }
-//        
-//        for(int i=0; i<periodosPorEliminar.size(); i++){
-//            periodosOferta
-//        }
+        if(!periodosPorEliminar.isEmpty()){
+            for(int i=0; i<periodosPorEliminar.size(); i++){
+                periodosOferta.remove(periodosPorEliminar.get(i));   
+
+                Iterator libroIt = librosOferta.values().iterator();
+                for(int j=0; j<librosOferta.size(); j++){
+                    Libro libroEnOferta = (Libro)libroIt.next();
+                    if(libroEnOferta.getOferta().getKey().equals(periodosPorEliminar.get(i))){
+                        libroEnOferta.setOferta(null);
+                        librosOferta.remove(libroEnOferta.getIsbn(), libroEnOferta);
+                        librosSinOferta.put(libroEnOferta.getIsbn(), libroEnOferta);
+                    }
+                }
+            }
+        }
     }
     
 }

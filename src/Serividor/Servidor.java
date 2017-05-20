@@ -29,6 +29,8 @@ public class Servidor {
             this.server = new ServerSocket(puerto);
             System.out.println("se inicia el servidor\n");
             this.biblioteca = new Biblioteca();
+            HiloWatcher watcher = new HiloWatcher(biblioteca);
+            watcher.start();
             conectar();
             //this.salida  = new ObjectOutputStream(cliente.getOutputStream());
             //System.out.println("se obtiene el flujo de salida\n");
