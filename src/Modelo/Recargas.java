@@ -18,4 +18,46 @@ public class Recargas {
     private String fecha;
     private String hora;
     private int valor;
+    
+    public Recargas(String idRecarga, String fecha, int valor){
+        this.idRecarga = idRecarga;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.valor = valor;
+    }
+
+    public String getIdRecarga() {
+        return idRecarga;
+    }
+
+    public void setIdRecarga(String idRecarga) {
+        this.idRecarga = idRecarga;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
+    }
+    
+    
+    
 }

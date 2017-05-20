@@ -143,10 +143,13 @@ public class HiloServidor extends Thread{
                         }else{throw new MyException("saldo insuficiente");}
                         break;
                     case "recargar":
+                        biblioteca.recargar(UL.getEmail(),(int) mensaje.get(1));
                     case "consultarUL":
                         biblioteca.consultarUL((String) mensaje.get(1));
+                        break;
                     case "consultarUAL":
                         biblioteca.consultarUAL((String) mensaje.get(1));
+                        break;
                         
                 }
 

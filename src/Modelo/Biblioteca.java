@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import java.math.*;
 
 
 /**
@@ -670,6 +671,34 @@ public class Biblioteca {
                 }
             }
         }
+    }
+    
+    
+    public String generarIdAleatorio(String email){
+        String[] splitemail;
+        splitemail = email.split("@");
+        String idRecarga ="";
+        
+        int randomNum;        
+        for(int i=0; i<= splitemail[0].length(); i++){
+            randomNum = 0 + (int)(Math.random() * 9); 
+            idRecarga = String.valueOf(splitemail[0].charAt(i)) + String.valueOf(randomNum);
+        }       
+        return idRecarga;
+    }
+    
+    public void recargar(String email, int valor){
+        Iterator it = clientes.values().iterator();
+        String idRecarga = "";
+        if(clientes.containsKey(email)){
+            while(it.hasNext()){
+                UsuarioLector ul = (UsuarioLector)it.next();
+                do{idRecarga = generarIdAleatorio(email);
+                }while(ul.getRecargas().containsKey(idRecarga));
+            }
+        }
+        UsuarioLector aux = (UsuarioLector)clientes.get(email);
+        aux.recargar(valor, idRecarga);
     }
     
 }

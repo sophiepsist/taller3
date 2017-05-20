@@ -5,6 +5,8 @@
  */
 package Modelo;
 import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 /**
  *
  * @author invitado
@@ -21,7 +23,7 @@ public class UsuarioLector {
     private String contrasenia;
     private ArrayList librosul;
     private int saldo;
-    private HashMap recargas;
+    private HashMap <String, Recargas> recargas;
     private HashMap <String, Libro> librosLeidos;
 
     public UsuarioLector(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia, int saldo) {
@@ -87,6 +89,12 @@ public class UsuarioLector {
     public int getSaldo(){
         return saldo;
     }
+
+    public HashMap<String, Recargas> getRecargas() {
+        return recargas;
+    }
+    
+    
     
     
     
@@ -139,6 +147,18 @@ public class UsuarioLector {
     
     public void setSaldo(int saldo){
         this.saldo = saldo;
+    }
+
+    public void setRecargas(HashMap<String, Recargas> recargas) {
+        this.recargas = recargas;
+    }
+    
+    
+    
+    public void recargar(int valor, String idRecarga){
+        SimpleDateFormat hora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");        
+        Recargas aux = new Recargas(idRecarga, hora.toString(), valor);
+        recargas.put(aux.getIdRecarga(), aux);
     }
     
 }
