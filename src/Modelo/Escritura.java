@@ -48,6 +48,10 @@ public class Escritura {
         escritor.writeObject(ul);
         escritor.close();
     }
+    
+    /**-----------------------------------------------------------------------**
+     * Crea el primer usuario administrador del programa
+     */ 
 
     public void serializarPrimerUAL() {        
         ObjectOutputStream escritor = null;
@@ -59,7 +63,8 @@ public class Escritura {
             escritor.writeObject(ual);
             escritor.close();
         } catch (IOException ex) {
-            Logger.getLogger(Escritura.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error en método SerializarPrimerUAL de clase Escritura");
+            ex.getMessage();
         } 
     } 
 }

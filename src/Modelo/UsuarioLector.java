@@ -26,6 +26,7 @@ public class UsuarioLector implements Serializable {
     private int saldo;
     private HashMap <String, Recargas> recargas;
     private HashMap <String, Libro> librosLeidos;
+    private HashMap librosComprados;
 
     public UsuarioLector(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia, int saldo) {
         this.nombreCompleto = nombreCompleto;
@@ -39,6 +40,7 @@ public class UsuarioLector implements Serializable {
         this.librosLeidos = new HashMap();
         this.recargas = new HashMap();
         this.saldo = saldo;
+        this.librosComprados = new HashMap();
     }
 
     
@@ -95,13 +97,12 @@ public class UsuarioLector implements Serializable {
     public HashMap<String, Recargas> getRecargas() {
         return recargas;
     }
+
+    public HashMap getLibrosComprados() {
+        return librosComprados;
+    }   
     
-    
-    
-    
-    
-    // ---------------------------MÉTODOS SET----------------------------------- 
-    
+    // ---------------------------MÉTODOS SET-----------------------------------     
 
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
@@ -154,12 +155,46 @@ public class UsuarioLector implements Serializable {
     public void setRecargas(HashMap<String, Recargas> recargas) {
         this.recargas = recargas;
     }
+
+    public void setLibrosComprados(HashMap librosComprados) {
+        this.librosComprados = librosComprados;
+    }     
     
+    //-----------------------INFORMES DE USUARIO--------------------------------
+    /**-----------------------------------------------------------------------**
+     * Retorna el porcentaje de libros leídos respecto a los libros comprados
+     */ 
     
+    public double porcentajeLectura(){
+        return (librosLeidos.size()/librosComprados.size())*100;
+    }
+    
+    //-----------------------OPERACIONES DE USUARIO-----------------------------    
+       
+    /**-----------------------------------------------------------------------**
+     * Actualiza el saldo del usuario lector y agrega una recarga a su historial
+     * de recargas
+     */ 
     
     public void recargar(int valor, String idRecarga){               
         Recargas aux = new Recargas(idRecarga, valor);
-        recargas.put(aux.getIdRecarga(), aux);
+        recargas.put(idRecarga, aux);
+        saldo += valor;
     }
+    
+    /**-----------------------------------------------------------------------**
+     * Verifica que el usuario pueda realizar la compra (según su edad y saldo)
+     * y de ser posible, agrega el libro al hashmap de librosComprados
+     */     
+    
+//    public void comprarLibro(Libro libro) throws MyException{        
+//        if(edad<Integer.parseInt(libro.getRangoEdades().split("-")[0])){
+//            throw new MyException("Compra no efectuada. El libro está dirigido a una audiencia entre los " + libro.getRangoEdades() + " años");
+//        }else if(saldo<libro.getPrecio()){
+//            
+//        }
+//    }
+    
+
     
 }

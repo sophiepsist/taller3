@@ -30,7 +30,7 @@ public class Biblioteca {
     private HashMap librosFilosofia;
     private HashMap librosOtros;    
     private HashMap librosOferta;
-    private HashMap librosSinOferta;
+    private HashMap librosSinOferta;   
     private Lectura lectura;
     private Escritura escritura;
     //---------------------------MÉTODO CONSTRUCTOR-----------------------------
@@ -51,7 +51,7 @@ public class Biblioteca {
         this.librosSinOferta = new HashMap();
         this.lectura= new Lectura();
         this.escritura = new Escritura();
-        escritura.serializarPrimerUAL();
+        //escritura.serializarPrimerUAL();
         this.agregarLibrosAutomaticamente();
         this.agregarUsuariosAdministradoresAutomaticamente();
         this.agregarUsuariosLectoresAutomaticamente();
@@ -323,6 +323,17 @@ public class Biblioteca {
         return booksSinOferta;
     }    
     
+    public ArrayList refrescarBestSellers(){
+        ArrayList bestSellers = new ArrayList();
+        Iterator it = libros.values().iterator();
+        for(int i=0; i<libros.size(); i++){
+            Libro libro = (Libro)it.next();
+            if(libro.isBestSeller()){
+                bestSellers.add(libro.getTitulo().concat(";" + libro.getIsbn()));
+            }
+        }
+        return bestSellers;
+    }    
     
     //-------------------------GESTIÓN DE LIBROS--------------------------------
     
@@ -722,7 +733,7 @@ public class Biblioteca {
         }
     }
     
-    //--------------------------------------------------------------------------
+    //----------------CONSULTAR LA OFERTA ASOCIADA A UN LIBRO-------------------
     
     public ArrayList consultarPeriodoOferta(String isbn){
         Iterator it = librosOferta.values().iterator();
@@ -743,7 +754,7 @@ public class Biblioteca {
     
     //-------------------------GESTIÓN DE RECARGAS------------------------------
     
-    //---------------------GENERAR ID DE RECAR
+    //---------------------GENERAR ID DE RECARGA--------------------------------
     public String generarIdAleatorio(String email){
         String[] splitemail;
         splitemail = email.split("@");
