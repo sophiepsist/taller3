@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Modelo;
+import java.io.Serializable;
 import java.util.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,7 +12,7 @@ import java.util.Calendar;
  *
  * @author invitado
  */
-public class UsuarioLector {
+public class UsuarioLector implements Serializable {
     private String nombreCompleto;
     private String celular;
     private String diaNacimiento;

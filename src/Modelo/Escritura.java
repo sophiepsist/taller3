@@ -5,6 +5,8 @@
  */
 package Modelo;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,4 +27,39 @@ public class Escritura {
         escritor.close();
     }  
     
+    /**-----------------------------------------------------------------------**
+     * Escribe cada usuario administrador en un archivo txt con el email como nombre
+     */ 
+    public void serializarUAL(UsuarioAdministrador ual) throws IOException{        
+        File dirProyecto = new File(System.getProperty("user.dir"));
+        File file = new File(dirProyecto + "/UAL" + "/" + ual.getEmail() + ".txt");        
+        ObjectOutputStream escritor= new ObjectOutputStream(new FileOutputStream(file, false));            
+        escritor.writeObject(ual);
+        escritor.close();
+    }  
+    
+     /**-----------------------------------------------------------------------**
+     * Escribe cada usuario lector en un archivo txt con el email como nombre
+     */ 
+    public void serializarUL(UsuarioLector ul) throws IOException{        
+        File dirProyecto = new File(System.getProperty("user.dir"));
+        File file = new File(dirProyecto + "/UL" + "/" + ul.getEmail() + ".txt");        
+        ObjectOutputStream escritor= new ObjectOutputStream(new FileOutputStream(file, false));            
+        escritor.writeObject(ul);
+        escritor.close();
+    }
+
+    public void serializarPrimerUAL() {        
+        ObjectOutputStream escritor = null;
+        try {
+            File dirProyecto = new File(System.getProperty("user.dir"));
+            UsuarioAdministrador ual = new UsuarioAdministrador("Usuario automático", "Administrador inicial", "3004569016", "vamianpi@gmail.com", "administrador", "vamianpi123", true);
+            File file = new File(dirProyecto + "/UAL" + "/vamianpi@gmail.com.txt");
+            escritor = new ObjectOutputStream(new FileOutputStream(file, false));
+            escritor.writeObject(ual);
+            escritor.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Escritura.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    } 
 }

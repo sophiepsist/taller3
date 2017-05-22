@@ -51,7 +51,10 @@ public class Biblioteca {
         this.librosSinOferta = new HashMap();
         this.lectura= new Lectura();
         this.escritura = new Escritura();
+        escritura.serializarPrimerUAL();
         this.agregarLibrosAutomaticamente();
+        this.agregarUsuariosAdministradoresAutomaticamente();
+        this.agregarUsuariosLectoresAutomaticamente();
         this.inicializarHashMapsOfertas();
         this.clasificarLibrosCategoria();        
     }
@@ -514,20 +517,64 @@ public class Biblioteca {
         }
     }
     
+    //---------------------CARGAR USUARIOS SERVIDOR-------------------------------
+    
+    public void agregarUsuariosAdministradoresAutomaticamente() {        
+        try{            
+            HashMap usuariosBase = new HashMap();            
+            usuariosBase = lectura.cargarUalBiblioteca();            
+            Iterator it = usuariosBase.values().iterator();
+            for(int i=0; i<usuariosBase.size(); i++){
+                UsuarioAdministrador  ual = (UsuarioAdministrador)it.next();
+                administradores.put(ual.getEmail(), ual);                            
+            }
+        }catch(ClassNotFoundException ex){
+            System.out.println("ClassNotFoundException en Biblioteca, Metodo: AgregarUsuariosAdministradoresAutomaticamente\n" + ex.getMessage());
+        }catch(NullPointerException ex){
+            System.out.println("NullPointerException en Bibliotedan Metodo: AgregarUsuariosAdministradoresAutomaticamente\n" + ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("IOException en Biblioteca, Metodo: AgregarUsuariosAdministradoresAutomaticamente\n" + ex.getMessage());
+        }
+    }   
+    
+    public void agregarUsuariosLectoresAutomaticamente() {        
+        try{            
+            HashMap usuariosBase = new HashMap();            
+            usuariosBase = lectura.cargarUlBiblioteca();            
+            Iterator it = usuariosBase.values().iterator();
+            for(int i=0; i<usuariosBase.size(); i++){
+                UsuarioLector  ul = (UsuarioLector)it.next();
+                clientes.put(ul.getEmail(), ul);                            
+            }
+        }catch(ClassNotFoundException ex){
+            System.out.println("ClassNotFoundException en Biblioteca, Metodo: AgregarUsuariosLectoresAutomaticamente\n" + ex.getMessage());
+        }catch(NullPointerException ex){
+            System.out.println("NullPointerException en Bibliotedan Metodo: AgregarUsuariosLectoresAutomaticamente\n" + ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("IOException en Biblioteca, Metodo: AgregarUsuariosLectoresAutomaticamente\n" + ex.getMessage());
+        }
+    } 
+    
     //-------------------------GESTIÓN DE USUARIOS------------------------------
     
-    public void agregarUAL(String nombreCompleto, String cargo, String celular, String email, String nombreUsuario, String contrasenia, boolean autorizado) throws MyException{
+    public void agregarUAL(String nombreCompleto, String cargo, String celular, String email, String nombreUsuario, String contrasenia, boolean autorizado) throws MyException, IOException{
         UsuarioAdministrador usuario = new UsuarioAdministrador(nombreCompleto, cargo, celular, email, nombreUsuario, contrasenia, autorizado);
         if(administradores.containsKey(email)){
             throw new MyException("EL Usuario con ese E-mail ya existe");
-        }else{administradores.put(email, usuario);}
+        }else{
+            administradores.put(email, usuario);
+            escritura.serializarUAL(usuario);
+        }
     }
     
-    public void agregarUL(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia, int saldo) throws MyException{
+    public void agregarUL(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia, int saldo) throws MyException, IOException{
         UsuarioLector usuario = new UsuarioLector(nombreCompleto, celular, diaNacimiento, mesNacimiento, edad, email, nombreUsuario, contrasenia, saldo);
         if(clientes.containsKey(email)){
             throw new MyException("El Usuario con ese E-mail ya existe");
-        }else{clientes.put(email, usuario);}
+        }else{
+            clientes.put(email, usuario);
+            escritura.serializarUL(usuario);
+        }
     }
    
     public UsuarioAdministrador verificarLoginUAL (String email, String contrasenia) throws MyException{

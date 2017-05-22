@@ -17,9 +17,13 @@ import java.util.HashMap;
  */
 public class Lectura {
     private HashMap librosBase;
+    private HashMap usuariosAdministradores;
+    private HashMap usuariosLectores;
     
     public Lectura(){  
         this.librosBase = new HashMap();
+        this.usuariosAdministradores = new HashMap();
+        this.usuariosLectores = new HashMap();
     }
     
     /**-----------------------------------------------------------------------**
@@ -74,5 +78,41 @@ public class Lectura {
 //                bookFile.delete();
 //            }
 //        }   
+    }
+    
+    /**-----------------------------------------------------------------------**
+     * Hace la carga inicial de los usuarios administradores que existen en la 
+     * carpeta "UAL" en el directorio del proyecto y los mete a un HashMap
+     */    
+    public HashMap cargarUalBiblioteca() throws IOException, ClassNotFoundException{         
+        File dirProyecto = new File(System.getProperty("user.dir"));        
+        File file = new File(dirProyecto + "/UAL");
+                
+        Path path = file.toPath();
+        DirectoryStream<Path> dirStream = Files.newDirectoryStream(path);
+        for(Path entry: dirStream){
+            ObjectInputStream lector = new ObjectInputStream(new FileInputStream(entry.toFile()));
+            UsuarioAdministrador  ual = (UsuarioAdministrador)lector.readObject();
+            usuariosAdministradores.put(ual.getEmail(), ual);            
+        }                
+        return usuariosAdministradores;          
+    }
+    
+     /**-----------------------------------------------------------------------**
+     * Hace la carga inicial de los usuarios lectores que existen en la 
+     * carpeta "UL" en el directorio del proyecto y los mete a un HashMap
+     */    
+    public HashMap cargarUlBiblioteca() throws IOException, ClassNotFoundException{         
+        File dirProyecto = new File(System.getProperty("user.dir"));        
+        File file = new File(dirProyecto + "/UL");
+                
+        Path path = file.toPath();
+        DirectoryStream<Path> dirStream = Files.newDirectoryStream(path);
+        for(Path entry: dirStream){
+            ObjectInputStream lector = new ObjectInputStream(new FileInputStream(entry.toFile()));
+            UsuarioLector  ul = (UsuarioLector)lector.readObject();
+            usuariosLectores.put(ul.getEmail(), ul);            
+        }                
+        return usuariosLectores;          
     }
 }
