@@ -30,7 +30,7 @@ public class UsuarioAdministrador {
         this.autorizado = autorizado;
     }
     
-    //-------------------------------------------- MÉTODOS GET-----------------------------------------------
+    //---------------------------- MÉTODOS GET----------------------------------
     
  
     public String getNombreCompleto() {
@@ -61,7 +61,7 @@ public class UsuarioAdministrador {
         return autorizado;
     }
     
-//-------------------------------------------- MÉTODOS SET-----------------------------------------------
+//-------------------------------- MÉTODOS SET----------------------------------
     
 
     public void setNombreCompleto(String nombreCompleto) {

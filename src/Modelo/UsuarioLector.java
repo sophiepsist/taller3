@@ -36,11 +36,12 @@ public class UsuarioLector {
         this.nombreUsuario = nombreUsuario;
         this.contrasenia = contrasenia;
         this.librosLeidos = new HashMap();
+        this.recargas = new HashMap();
         this.saldo = saldo;
     }
 
     
-    // ------------------------------------------MÉTODOS GET--------------------------------------------------------------
+    // ----------------------------MÉTODOS GET----------------------------------
 
     public String getNombreCompleto() {
         return nombreCompleto;
@@ -98,7 +99,7 @@ public class UsuarioLector {
     
     
     
-    // ------------------------------------------MÉTODOS SET--------------------------------------------------------------    
+    // ---------------------------MÉTODOS SET----------------------------------- 
     
 
     public void setNombreCompleto(String nombreCompleto) {

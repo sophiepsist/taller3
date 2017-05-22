@@ -25,39 +25,41 @@ public class Recargas {
         this.hora = hora;
         this.valor = valor;
     }
-
+    
+    // ----------------------------MÉTODOS GET----------------------------------
+    
     public String getIdRecarga() {
         return idRecarga;
-    }
-
-    public void setIdRecarga(String idRecarga) {
-        this.idRecarga = idRecarga;
-    }
+    }    
 
     public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public String getHora() {
         return hora;
     }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
+    
     public int getValor() {
         return valor;
     }
+    
+    // ----------------------------MÉTODOS SET----------------------------------
+    
+    public void setHora(String hora) {
+        this.hora = hora;
+    }    
 
     public void setValor(int valor) {
         this.valor = valor;
     }
     
+    public void setIdRecarga(String idRecarga) {
+        this.idRecarga = idRecarga;
+    }
     
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
     
 }
