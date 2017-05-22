@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.time.LocalDateTime;
+
 /**
  *Cuando	se	crea	el	usuario,	se	debe	inicializar	un	saldo	dependiendo	del	
 dinero	entregado	por	el	UL.	El	UL	en	el	 futuro	podrá	realizar	 todas	las	
@@ -18,11 +20,12 @@ public class Recargas {
     private String fecha;
     private String hora;
     private int valor;
+    LocalDateTime time = LocalDateTime.now();
     
-    public Recargas(String idRecarga, String fecha, int valor){
+    public Recargas(String idRecarga, int valor){
         this.idRecarga = idRecarga;
-        this.fecha = fecha;
-        this.hora = hora;
+        this.fecha = time.getDayOfMonth() + "/" + time.getMonthValue() + "/" + time.getYear();
+        this.hora = time.getHour() + ":" + time.getMinute();
         this.valor = valor;
     }
     

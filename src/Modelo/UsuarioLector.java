@@ -156,9 +156,8 @@ public class UsuarioLector {
     
     
     
-    public void recargar(int valor, String idRecarga){
-        SimpleDateFormat hora = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");        
-        Recargas aux = new Recargas(idRecarga, hora.toString(), valor);
+    public void recargar(int valor, String idRecarga){               
+        Recargas aux = new Recargas(idRecarga, valor);
         recargas.put(aux.getIdRecarga(), aux);
     }
     
