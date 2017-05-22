@@ -6,6 +6,8 @@
 package Vista;
 import Controladora.*;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Valeria
@@ -18,6 +20,8 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
     public LibrosOferta(Controladora c) {
         initComponents();
         this.miControl = c;
+        this.refrescarLibrosOferta();
+        
     }
 
     /**
@@ -50,6 +54,11 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTextArea1);
 
         jButton1.setText("Consultar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,13 +98,35 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String isbn="";
+        if(this.jComboBox1.getSelectedItem().toString().contains(";")){
+            isbn =this.jComboBox1.getSelectedItem().toString().split(";")[1];
+            consultarPeriodoOferta(isbn);
+        }else{
+            JOptionPane.showMessageDialog(this, "Seleccione uno de los libros disponibles");
+        } 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-        public void refrescarLibrosOferta(){
+    public void consultarPeriodoOferta(String isbn){
+        ArrayList conexion = new ArrayList(2);
+        ArrayList respuesta = new ArrayList(2);
+        conexion.add("consultarPeriodoOferta");
+        conexion.add(isbn);
+
+        respuesta = this.miControl.conectar(conexion);
+        this.jTextArea1.setText((String)respuesta.get(1));
+        this.jLabel1.setIcon((ImageIcon)respuesta.get(0));
+    }
+
+
+    public void refrescarLibrosOferta(){
         ArrayList conexion = new ArrayList(1);
         conexion.add("refrescarLibrosOferta");
         ArrayList librosOferta = this.miControl.conectar(conexion);
         for(Object libroOferta : librosOferta){
-            this.jComboBox1.addItem((String)libroOferta);
+        this.jComboBox1.addItem((String)libroOferta);
         }        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

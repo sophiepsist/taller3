@@ -19,6 +19,13 @@ public class LibrosCategoria extends javax.swing.JInternalFrame {
     public LibrosCategoria(Controladora c) {
         initComponents();
         this.miControl =c;
+        this.refrescarLibrosAcademicos();
+        this.refrescarLibrosRomance();
+        this.refrescarLibrosOtros();
+        this.refrescarLibrosFilosofia();
+        this.refrescarLibrosSuspenso();
+        this.refrescarLibrosJuveniles();
+        this.refrescarLibrosClasicos();
     }
 
     /** This method is called from within the constructor to
