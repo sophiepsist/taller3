@@ -520,7 +520,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Seleccione uno de los libros disponibles");
         }                
     }//GEN-LAST:event_jButton1ActionPerformed
-    private void mostrarConsultarCategoria(String isbn){
+    public void mostrarConsultarCategoria(String isbn){
         ArrayList conexion = new ArrayList(2);
         ArrayList respuesta = new ArrayList(2);
         conexion.add("consultarInfoLibros");
@@ -531,7 +531,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
         this.jLabel1.setIcon((ImageIcon)respuesta.get(1));
     }
     
-    private void refrescarLibros(){
+    public void refrescarLibros(){
         ArrayList conexion = new ArrayList(1);
         conexion.add("refrescarLibros");
         ArrayList libros = this.miControl.conectar(conexion);        
@@ -540,7 +540,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
         }        
     }
     
-    private void refrescarLibrosAcademicos(){
+    public void refrescarLibrosAcademicos(){
         ArrayList conexion = new ArrayList(1);
         conexion.add("refrescarLibrosAcademicos");
         ArrayList librosAcademicos = this.miControl.conectar(conexion);       
@@ -549,7 +549,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
         }
     }
     
-    private void refrescarLibrosClasicos(){
+    public void refrescarLibrosClasicos(){
         ArrayList conexion = new ArrayList(1);
         conexion.add("refrescarLibrosClasicos");
         ArrayList librosClasicos = this.miControl.conectar(conexion);
@@ -558,7 +558,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
         }
     }
     
-    private void refrescarLibrosJuveniles(){
+    public void refrescarLibrosJuveniles(){
         ArrayList conexion = new ArrayList(1);
         conexion.add("refrescarLibrosJuveniles");
         ArrayList librosJuveniles = this.miControl.conectar(conexion);
@@ -567,7 +567,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
         }
     }
         
-    private void refrescarLibrosRomance(){
+    public void refrescarLibrosRomance(){
         ArrayList conexion = new ArrayList(1);
         conexion.add("refrescarLibrosRomance");
         ArrayList librosRomance = this.miControl.conectar(conexion);
@@ -577,7 +577,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
     }
     
     
-    private void refrescarLibrosSuspenso(){
+    public void refrescarLibrosSuspenso(){
         ArrayList conexion = new ArrayList(1);
         conexion.add("refrescarLibrosSuspenso");
         ArrayList librosSuspenso = this.miControl.conectar(conexion);
@@ -587,7 +587,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
     }
     
     
-    private void refrescarLibrosFilosofia(){
+    public void refrescarLibrosFilosofia(){
         ArrayList conexion = new ArrayList(1);
         conexion.add("refrescarLibrosFilosofia");
         ArrayList librosFilosofia = this.miControl.conectar(conexion);
@@ -596,7 +596,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
         }        
     }
     
-    private void refrescarLibrosOtros(){
+    public void refrescarLibrosOtros(){
         ArrayList conexion = new ArrayList(1);
         conexion.add("refrescarLibrosOtros");
         ArrayList librosOtros = this.miControl.conectar(conexion);

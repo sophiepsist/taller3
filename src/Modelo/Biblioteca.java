@@ -675,6 +675,25 @@ public class Biblioteca {
         }
     }
     
+    //--------------------------------------------------------------------------
+    
+    public ArrayList consultarPeriodoOferta(String isbn){
+        Iterator it = librosOferta.values().iterator();
+        ArrayList periodoOferta= new ArrayList();
+        for(int i=0; i<librosOferta.size(); i++){
+            Libro libroEnOferta = (Libro)it.next();
+            if(libroEnOferta.getIsbn().equals(isbn)){
+               periodoOferta.add(libroEnOferta.getCaratula());
+               periodoOferta.add(libroEnOferta.getOferta().getKey());
+            }else{
+            ArrayList resp = new ArrayList(1);
+            resp.add("El libro no se encuentra en la biblioteca");
+            return resp;
+            }
+        }
+        return periodoOferta;                     
+    }
+    
     //-------------------------GESTIÓN DE RECARGAS------------------------------
     
     //---------------------GENERAR ID DE RECAR

@@ -107,10 +107,19 @@ public class HiloServidor extends Thread{
                     case "refrescarLibrosOtros":
                         enviarDatos(this.biblioteca.refrescarLibrosOtros());
                         break;
+                    case "refrescarLibrosOferta":
+                        enviarDatos(this.biblioteca.refrescarLibrosOferta());
+                         break;
+                    case "refrescarLibrosSinOferta":
+                        enviarDatos(this.biblioteca.refrescarLibrosSinOferta());
+                         break;
                     case "refrescarPeriodoDeOferta":
                         System.out.println("hola estoy en el case");
                         enviarDatos(biblioteca.refrescarPeriodosOferta());
-                        break;                   
+                        break;  
+                    case "consultarPeriodoOferta":
+                        enviarDatos(this.biblioteca.consultarPeriodoOferta((String) mensaje.get(1)));
+                         break;
                     case "Salir":
                         this.cerrarConexion();
                     case "agregarUAL":
