@@ -4,17 +4,19 @@
  * and open the template in the editor.
  */
 package Vista;
+import Controladora.*;
 
 /**
  *
  * @author invitado
  */
 public class Ingreso extends javax.swing.JPanel {
-
+    private Controladora miControl;
     /**
      * Creates new form Ingreso
      */
     public Ingreso() {
+        this.miControl = new Controladora();
         initComponents();
     }
 
@@ -35,6 +37,11 @@ public class Ingreso extends javax.swing.JPanel {
         jRadioButton1 = new javax.swing.JRadioButton();
 
         jButton1.setText("Ingresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Username:");
 
@@ -82,6 +89,14 @@ public class Ingreso extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //new PrincipalAdministrador().setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+ 
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
