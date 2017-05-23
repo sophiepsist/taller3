@@ -743,6 +743,7 @@ public class Biblioteca {
             if(libroEnOferta.getIsbn().equals(isbn)){
                periodoOferta.add(libroEnOferta.getCaratula());
                periodoOferta.add(libroEnOferta.getOferta().getKey());
+               periodoOferta.add(libroEnOferta.getCalificacion());
             }else{
             ArrayList resp = new ArrayList(1);
             resp.add("El libro no se encuentra en la biblioteca");
@@ -754,7 +755,6 @@ public class Biblioteca {
     
     //-------------------------GESTIÓN DE RECARGAS------------------------------
     
-    //---------------------GENERAR ID DE RECARGA--------------------------------
     public String generarIdAleatorio(String email){
         String[] splitemail;
         splitemail = email.split("@");
@@ -782,4 +782,15 @@ public class Biblioteca {
         aux.recargar(valor, idRecarga);
     }
     
+    //-----------------------VERIFICAR CUMPLEAÑOS UL----------------------------
+//    
+//    public void checkUserBirthday(UsuarioLector ul){
+//        LocalDateTime time = LocalDateTime.now();
+//        int mesActual = time.getMonthValue();
+//        int diaActual = time.getDayOfMonth();
+//        
+//        int diaLector = Integer.parseInt(ul.getDiaNacimiento());
+//        
+//        if(ul.getDiaNacimiento())
+//    }
 }
