@@ -159,10 +159,10 @@ public class Libro implements Serializable{
     
     
     public ArrayList infoLibro(){ 
-        ArrayList mensaje = new ArrayList(2); 
+        ArrayList mensaje = new ArrayList(3); 
         String info = "";
-        info = "\nISBN: " + isbn + "\nTítulo: " + titulo + "\nAutor: " + autor + "\nCategoría: " + categoria + "\nCalificación: " + calificacion
-                + "\nNúmero de páginas: " + numPaginas + "\nRango de edades: " + rangoEdades + "\nPeriodo de oferta asociado: " + oferta.getFechaFinal() +
+        info = "\nISBN: " + isbn + "\nTítulo: " + titulo + "\nAutor: " + autor + "\nCategoría: " + categoria + "\nNúmero de páginas: " + 
+                numPaginas + "\nRango de edades: " + rangoEdades + "\nPeriodo de oferta asociado: " + oferta.getFechaFinal() +
                 "-" + oferta.getFechaFinal() + " - " + oferta.getPorcentajeDescuento() + "% de descuento\nPrecio: $" + precio;
          
         if(bestSeller){
@@ -171,6 +171,7 @@ public class Libro implements Serializable{
         info += "\nResumen:\n" + resumen;
         mensaje.add(info);
         mensaje.add(caratula);
+        mensaje.add(calificacion);
         return mensaje;
     }    
 }

@@ -20,6 +20,7 @@ public class UsuarioAdministrador implements Serializable {
     private String contrasenia;
     private boolean autorizado;
     private HashMap libros;
+    private ArrayList <Sesion> sesionesIniciadas;
 
     public UsuarioAdministrador(String nombreCompleto, String cargo, String celular, String email, String nombreUsuario, String contrasenia, boolean autorizado) {
         this.nombreCompleto = nombreCompleto;
@@ -93,7 +94,9 @@ public class UsuarioAdministrador implements Serializable {
         this.autorizado = autorizado;
     }
  
-    
+    public void agregarSesion(Sesion sesion){
+        sesionesIniciadas.add(sesion);
+    }
 
     
 }

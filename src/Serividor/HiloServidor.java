@@ -13,6 +13,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.*;
 import Modelo.*;
+import java.time.LocalDateTime;
+import javafx.util.converter.LocalDateTimeStringConverter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -29,7 +31,10 @@ public class HiloServidor extends Thread{
     private Socket cliente;
     private UsuarioAdministrador UAL;
     private UsuarioLector UL;
-
+    private String fecha;
+    private String horaInicial;
+    private String horaFinal;
+    private Sesion sesion;
     public HiloServidor(Socket conexion, Biblioteca biblio)
     {
         try{
@@ -134,22 +139,20 @@ public class HiloServidor extends Thread{
                         enviarDatos(mensajeAgUL);
                     case "loginUsuarioAdministrador":
                         this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
-                        break;
+                        LocalDateTime timeUAL = LocalDateTime.now();
+                        fecha = Integer.toString(timeUAL.getMonthValue()) + Integer.toString(timeUAL.getYear())+ Integer.toString(timeUAL.getDayOfMonth());
+                        this.horaInicial = Integer.toString(timeUAL.getHour()) + ":" + Integer.toString(timeUAL.getMinute()) + ":" + Integer.toString(timeUAL.getSecond());
+                        break; 
                     case "loginUsuarioLector":
                         this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));
+                        LocalDateTime timeUL = LocalDateTime.now();
+                        fecha = Integer.toString(timeUL.getMonthValue()) + Integer.toString(timeUL.getYear())+ Integer.toString(timeUL.getDayOfMonth());
+                        this.horaInicial = Integer.toString(timeUL.getHour()) + ":" + Integer.toString(timeUL.getMinute()) + ":" + Integer.toString(timeUL.getSecond());
                         break;
                     case "comprarlibrosUL":
-                        ArrayList librosAux = UL.getLibrosul();
                         ArrayList msj = new ArrayList(1);
-                        HashMap librosauxbiblio = biblioteca.getLibros();
-                        Libro aux = (Libro) librosauxbiblio.get((String) mensaje.get(1));
-                        if(UL.getSaldo() >= aux.getPrecio()){
-                            librosAux.add(aux);
-                            UL.setLibrosul(librosAux);
-                            UL.setSaldo(UL.getSaldo()-aux.getPrecio());
-                            msj.add("Compra exitosa");
-                            enviarDatos(msj);
-                        }else{throw new MyException("saldo insuficiente");}
+                        msj.add(UL.comprarLibro((Libro)biblioteca.getLibros().get((String) mensaje.get(1)))); 
+                        enviarDatos(msj);
                         break;
                     case "recargar":
                         biblioteca.recargar(UL.getEmail(),(int) mensaje.get(1));
@@ -193,7 +196,21 @@ public class HiloServidor extends Thread{
         }
         catch (IOException e)
         {
+            if(UL != null){
+                LocalDateTime time = LocalDateTime.now();
+                this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
+                this.sesion = new Sesion(horaInicial, horaFinal, fecha);
+                UL.agregarSesion(sesion);
+            }else{
+                if(UAL != null){
+                    LocalDateTime time = LocalDateTime.now();
+                    this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
+                    this.sesion = new Sesion(horaInicial, horaFinal, fecha);
+                    UAL.agregarSesion(sesion);
+                }else{cerrarConexion();}
+            }
             System.out.println("\n Error al escribir el Objeto, Cliente Desconectado");
+            cerrarConexion();
         }
     }    
     

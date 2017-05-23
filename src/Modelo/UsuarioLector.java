@@ -21,12 +21,14 @@ public class UsuarioLector implements Serializable {
     private int edad;
     private String email;
     private String nombreUsuario;
-    private String contrasenia;
-    private ArrayList librosul;
+    private String contrasenia;    
     private int saldo;
     private HashMap <String, Recargas> recargas;
     private HashMap <String, Libro> librosLeidos;
     private HashMap librosComprados;
+    private boolean isMyBirthday;
+    private int contLibroCumpleanios;
+    private ArrayList <Sesion> sesionesIniciadas;
 
     public UsuarioLector(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia, int saldo) {
         this.nombreCompleto = nombreCompleto;
@@ -36,11 +38,11 @@ public class UsuarioLector implements Serializable {
         this.edad = edad;
         this.email = email;
         this.nombreUsuario = nombreUsuario;
-        this.contrasenia = contrasenia;
-        this.librosLeidos = new HashMap();
+        this.contrasenia = contrasenia;        
         this.recargas = new HashMap();
         this.saldo = saldo;
         this.librosComprados = new HashMap();
+        this.contLibroCumpleanios = 0;
     }
 
     
@@ -86,10 +88,6 @@ public class UsuarioLector implements Serializable {
         return librosLeidos;
     }
     
-    public ArrayList getLibrosul(){
-        return librosul;
-    }
-    
     public int getSaldo(){
         return saldo;
     }
@@ -101,6 +99,16 @@ public class UsuarioLector implements Serializable {
     public HashMap getLibrosComprados() {
         return librosComprados;
     }   
+
+    public boolean isMyBirthdayGetter() {
+        return isMyBirthday;
+    }   
+
+    public ArrayList<Sesion> getSesionesIniciadas() {
+        return sesionesIniciadas;
+    }
+    
+    
     
     // ---------------------------MÉTODOS SET-----------------------------------     
 
@@ -144,10 +152,6 @@ public class UsuarioLector implements Serializable {
         this.librosLeidos = librosLeidos;
     }
     
-     public void setLibrosul(ArrayList libros){
-         this.librosul = libros;
-     }
-    
     public void setSaldo(int saldo){
         this.saldo = saldo;
     }
@@ -159,6 +163,16 @@ public class UsuarioLector implements Serializable {
     public void setLibrosComprados(HashMap librosComprados) {
         this.librosComprados = librosComprados;
     }     
+
+    public void setIsMyBirthday(boolean isMyBirthday) {
+        this.isMyBirthday = isMyBirthday;
+    }       
+
+    public void setSesionesIniciadas(ArrayList<Sesion> sesionesIniciadas) {
+        this.sesionesIniciadas = sesionesIniciadas;
+    }
+    
+    
     
     //-----------------------INFORMES DE USUARIO--------------------------------
     /**-----------------------------------------------------------------------**
@@ -185,16 +199,27 @@ public class UsuarioLector implements Serializable {
     /**-----------------------------------------------------------------------**
      * Verifica que el usuario pueda realizar la compra (según su edad y saldo)
      * y de ser posible, agrega el libro al hashmap de librosComprados
+     * Si el usuarios se encuentra de cumpleaños, le regala un libro
      */     
     
-//    public void comprarLibro(Libro libro) throws MyException{        
-//        if(edad<Integer.parseInt(libro.getRangoEdades().split("-")[0])){
-//            throw new MyException("Compra no efectuada. El libro está dirigido a una audiencia entre los " + libro.getRangoEdades() + " años");
-//        }else if(saldo<libro.getPrecio()){
-//            
-//        }
-//    }
+    public String comprarLibro(Libro libro) throws MyException{        
+        if(edad<Integer.parseInt(libro.getRangoEdades().split("-")[0])){
+            throw new MyException("Compra no efectuada. El libro está dirigido a una audiencia entre los " + libro.getRangoEdades() + " años");
+        }else if(isMyBirthday && contLibroCumpleanios==0){
+            contLibroCumpleanios = 1;                 
+            librosComprados.put(libro.getIsbn(), libro);
+            return "La biblioteca le ha regalado el libro por ser su cumpleaños.\nFelicidades :)";
+        }else if(saldo<libro.getPrecio()){
+            throw new MyException("Compra no efectuada. Su saldo es inferior al precio del libro");          
+        }else{
+            librosComprados.put(libro.getIsbn(), libro);
+            saldo -= libro.getPrecio();
+            return "Compra exitosa";                
+        }
+    }
     
-
+    public void agregarSesion(Sesion sesion){
+        sesionesIniciadas.add(sesion);
+    }
     
 }
