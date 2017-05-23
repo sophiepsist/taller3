@@ -6,6 +6,7 @@
 package Vista;
 import Controladora.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -115,9 +116,22 @@ public class Ingresar extends javax.swing.JFrame {
         if(jCheckBox1.isSelected()){
             conexion.add("loginUsuarioAdministrador");
             conexion.add(this.jTextField1.getText());
-            conexion.add(this.jPasswordField1.getPassword().toString());  
+            conexion.add(this.jPasswordField1.getPassword().toString()); 
+            this.miControl.conectar(conexion);
+            if(this.miControl.conectar(conexion) != null){
+                new PrincipalAdministrador().setVisible(true);    
+            }else{
+                JOptionPane.showMessageDialog(this, "El usuario no esta Registrado");
+            }
+        }else{
+            conexion.add("loginUsuarioLector");
+            conexion.add(this.jTextField1.getText());
+            conexion.add(this.jPasswordField1.getPassword().toString());
+            this.miControl.conectar(conexion);
+            if(this.miControl.conectar(conexion) != null){
+                new PrincipalLector().setVisible(true);
+            }
         }
-        new PrincipalLector().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed

@@ -57,7 +57,6 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -67,6 +66,7 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -146,6 +146,8 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -195,7 +197,9 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
                                             .addGap(2, 2, 2)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jTextField4)
-                                        .addComponent(jTextField5)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE))))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel10)
@@ -240,7 +244,7 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
@@ -270,7 +274,7 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
                         .addComponent(jButton3)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -352,7 +356,7 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
             conexion.add(this.jRadioButton1.isSelected());                      
             conexion.add(this.jTextField7.getText().trim());
             conexion.add(this.jTextField1.getText().trim());
-            conexion.add(this.jTextField5.getText().trim());
+            conexion.add(this.jComboBox2.getSelectedItem().toString().trim());
             conexion.add(this.jTextArea1.getText());
             conexion.add( this.jComboBox1.getSelectedItem().toString());            
             conexion.add(this.fileToArray(nombreArchivo));
@@ -366,7 +370,7 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
             this.jTextField2.setText("");
             this.jTextField3.setText("");
             this.jTextField4.setText("");
-            this.jTextField5.setText("");
+            this.jComboBox2.setSelectedIndex(0);
             this.jTextField6.setText("");
             this.jTextField7.setText("");
             this.jTextArea1.setText("");
@@ -411,6 +415,7 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -430,7 +435,6 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField9;
