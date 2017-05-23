@@ -28,6 +28,7 @@ public class UsuarioLector implements Serializable {
     private HashMap librosComprados;
     private boolean isMyBirthday;
     private int contLibroCumpleanios;
+    private ArrayList <Sesion> sesionesIniciadas;
 
     public UsuarioLector(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia, int saldo) {
         this.nombreCompleto = nombreCompleto;
@@ -102,6 +103,12 @@ public class UsuarioLector implements Serializable {
     public boolean isMyBirthdayGetter() {
         return isMyBirthday;
     }   
+
+    public ArrayList<Sesion> getSesionesIniciadas() {
+        return sesionesIniciadas;
+    }
+    
+    
     
     // ---------------------------MÉTODOS SET-----------------------------------     
 
@@ -160,6 +167,12 @@ public class UsuarioLector implements Serializable {
     public void setIsMyBirthday(boolean isMyBirthday) {
         this.isMyBirthday = isMyBirthday;
     }       
+
+    public void setSesionesIniciadas(ArrayList<Sesion> sesionesIniciadas) {
+        this.sesionesIniciadas = sesionesIniciadas;
+    }
+    
+    
     
     //-----------------------INFORMES DE USUARIO--------------------------------
     /**-----------------------------------------------------------------------**
@@ -205,6 +218,8 @@ public class UsuarioLector implements Serializable {
         }
     }
     
-
+    public void agregarSesion(Sesion sesion){
+        sesionesIniciadas.add(sesion);
+    }
     
 }
