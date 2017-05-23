@@ -139,17 +139,9 @@ public class HiloServidor extends Thread{
                         this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));
                         break;
                     case "comprarlibrosUL":
-                        ArrayList librosAux = UL.getLibrosul();
                         ArrayList msj = new ArrayList(1);
-                        HashMap librosauxbiblio = biblioteca.getLibros();
-                        Libro aux = (Libro) librosauxbiblio.get((String) mensaje.get(1));
-                        if(UL.getSaldo() >= aux.getPrecio()){
-                            librosAux.add(aux);
-                            UL.setLibrosul(librosAux);
-                            UL.setSaldo(UL.getSaldo()-aux.getPrecio());
-                            msj.add("Compra exitosa");
-                            enviarDatos(msj);
-                        }else{throw new MyException("saldo insuficiente");}
+                        msj.add(UL.comprarLibro((Libro)biblioteca.getLibros().get((String) mensaje.get(1)))); 
+                        enviarDatos(msj);
                         break;
                     case "recargar":
                         biblioteca.recargar(UL.getEmail(),(int) mensaje.get(1));

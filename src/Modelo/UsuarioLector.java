@@ -21,8 +21,7 @@ public class UsuarioLector implements Serializable {
     private int edad;
     private String email;
     private String nombreUsuario;
-    private String contrasenia;
-    private ArrayList librosul;
+    private String contrasenia;    
     private int saldo;
     private HashMap <String, Recargas> recargas;
     private HashMap <String, Libro> librosLeidos;
@@ -36,8 +35,7 @@ public class UsuarioLector implements Serializable {
         this.edad = edad;
         this.email = email;
         this.nombreUsuario = nombreUsuario;
-        this.contrasenia = contrasenia;
-        this.librosLeidos = new HashMap();
+        this.contrasenia = contrasenia;        
         this.recargas = new HashMap();
         this.saldo = saldo;
         this.librosComprados = new HashMap();
@@ -84,10 +82,6 @@ public class UsuarioLector implements Serializable {
 
     public HashMap<String, Libro> getLibrosLeidos() {
         return librosLeidos;
-    }
-    
-    public ArrayList getLibrosul(){
-        return librosul;
     }
     
     public int getSaldo(){
@@ -144,10 +138,6 @@ public class UsuarioLector implements Serializable {
         this.librosLeidos = librosLeidos;
     }
     
-     public void setLibrosul(ArrayList libros){
-         this.librosul = libros;
-     }
-    
     public void setSaldo(int saldo){
         this.saldo = saldo;
     }
@@ -187,13 +177,17 @@ public class UsuarioLector implements Serializable {
      * y de ser posible, agrega el libro al hashmap de librosComprados
      */     
     
-//    public void comprarLibro(Libro libro) throws MyException{        
-//        if(edad<Integer.parseInt(libro.getRangoEdades().split("-")[0])){
-//            throw new MyException("Compra no efectuada. El libro está dirigido a una audiencia entre los " + libro.getRangoEdades() + " años");
-//        }else if(saldo<libro.getPrecio()){
-//            
-//        }
-//    }
+    public String comprarLibro(Libro libro) throws MyException{        
+        if(edad<Integer.parseInt(libro.getRangoEdades().split("-")[0])){
+            throw new MyException("Compra no efectuada. El libro está dirigido a una audiencia entre los " + libro.getRangoEdades() + " años");
+        }else if(saldo<libro.getPrecio()){
+            throw new MyException("Compra no efectuada. Su saldo es inferior al precio del libro");            
+        }else{
+            librosComprados.put(libro.getIsbn(), libro);
+            saldo -= libro.getPrecio();
+            return "Compra exitosa";                
+        }
+    }
     
 
     
