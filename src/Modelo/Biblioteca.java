@@ -11,7 +11,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import java.math.*;
-
+import com.sun.mail.smtp.SMTPTransport;
+import java.io.*;
+import java.security.Security;
+import java.util.*;
+import javax.activation.*;
+import javax.mail.*;
+import javax.mail.internet.*;
 
 /**
  *
@@ -782,15 +788,80 @@ public class Biblioteca {
         aux.recargar(valor, idRecarga);
     }
     
-    //-----------------------VERIFICAR CUMPLEAÑOS UL----------------------------
-//    
-//    public void checkUserBirthday(UsuarioLector ul){
-//        LocalDateTime time = LocalDateTime.now();
-//        int mesActual = time.getMonthValue();
-//        int diaActual = time.getDayOfMonth();
-//        
-//        int diaLector = Integer.parseInt(ul.getDiaNacimiento());
-//        
-//        if(ul.getDiaNacimiento())
-//    }
-}
+    //-----------------------VERIFICAR CUMPLEAÑOS UL----------------------------   
+    
+    public static void Send(String recipientEmail) throws AddressException, MessagingException {
+            Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+
+            // Obeteniendo propiedades
+            Properties props = System.getProperties();
+            System.out.println(props);
+            props.setProperty("mail.smtps.host", "smtp.gmail.com");
+            props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+            props.setProperty("mail.smtp.socketFactory.fallback", "false");
+            props.setProperty("mail.smtp.port", "465");
+            props.setProperty("mail.smtp.socketFactory.port", "465");
+            props.setProperty("mail.smtps.auth", "true");
+            System.out.println(props);
+            props.put("mail.smtps.quitwait", "false");
+            Session session = Session.getInstance(props, null);
+
+            //Archivo De la imagen
+            File file = new File(System.getProperty("user.dir"));
+            File fileAux = new File(file + "/cumple.jpg");
+            FileDataSource fds = new FileDataSource(fileAux);
+            //PARTES DEL MENSAJE
+
+            String message = "Feliz Cumpleaños " + recipientEmail + "\n Recuerde que hoy por ser un día tan especial, podrá obtener alguno de los libros disponibles en nuestra tienda TOTALMENTE GRATIS";
+
+            MimeBodyPart p1 = new MimeBodyPart();
+            p1.setText(message);
+
+            MimeBodyPart p2 = new MimeBodyPart();
+            p2.setDataHandler(new DataHandler(fds));
+            p2.setFileName(fds.getName());
+    //----------------------------------------------------------//
+
+
+            // -- Create a new message --
+            MimeMessage msg = new MimeMessage(session);
+            final String username = "vamianpi@gmail.com";
+            final String password = "proyectoprogramacion2017";
+
+            // -- Set the FROM and TO fields --
+            msg.setFrom(new InternetAddress(username));
+            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipientEmail));
+
+            Multipart mltprt = new MimeMultipart();
+            String title = "Feliz Cumpleaños";
+
+            mltprt.addBodyPart(p1);
+            mltprt.addBodyPart(p2);
+            //msg.setFileName(p2.toString());
+            msg.setSubject(title);
+            msg.setFrom();
+            msg.setContent(mltprt);
+
+
+            msg.setSentDate(new Date());
+
+            SMTPTransport t = (SMTPTransport)session.getTransport("smtps");
+
+            t.connect("smtp.gmail.com", username, password);
+            t.sendMessage(msg, msg.getAllRecipients());      
+            t.close();
+        }    
+
+    public void verificarCumpleaniosUsuario() throws MessagingException{
+        Iterator it = clientes.values().iterator();
+        UsuarioLector cliente;
+            for(int i=0; i <= clientes.size(); i++){
+                cliente = (UsuarioLector) it.next();
+                cliente.checkBirthday();
+                if(cliente.isMyBirthdayGetter()){                    
+                    Send(cliente.getEmail());                    
+                }
+            }
+        }
+    }

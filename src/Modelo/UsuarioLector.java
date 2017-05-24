@@ -7,6 +7,7 @@ package Modelo;
 import java.io.Serializable;
 import java.util.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 /**
  *
@@ -171,8 +172,10 @@ public class UsuarioLector implements Serializable {
     public void setSesionesIniciadas(ArrayList<Sesion> sesionesIniciadas) {
         this.sesionesIniciadas = sesionesIniciadas;
     }
-    
-    
+
+    public void setContLibroCumpleanios(int contLibroCumpleanios) {
+        this.contLibroCumpleanios = contLibroCumpleanios;
+    }        
     
     //-----------------------INFORMES DE USUARIO--------------------------------
     /**-----------------------------------------------------------------------**
@@ -222,4 +225,19 @@ public class UsuarioLector implements Serializable {
         sesionesIniciadas.add(sesion);
     }
     
+    public void checkBirthday (){
+        LocalDateTime time = LocalDateTime.now();
+        int mesActual = time.getMonthValue();
+        int diaActual = time.getDayOfMonth();
+        int diaLector = Integer.parseInt(diaNacimiento);
+        int mesLector = Integer.parseInt(mesNacimiento);
+        
+        if(diaActual == diaLector && mesActual == mesLector){
+            this.isMyBirthday = true;
+            this.contLibroCumpleanios = 0;
+        }else{
+            this.isMyBirthday = false;
+            this.contLibroCumpleanios = 1;
+        }      
+    }    
 }
