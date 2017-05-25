@@ -40,6 +40,12 @@ public class Lectura extends javax.swing.JInternalFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jProgressBar1 = new javax.swing.JProgressBar();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+        setTitle("LECTURA");
+
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);

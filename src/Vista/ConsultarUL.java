@@ -37,6 +37,10 @@ public class ConsultarUL extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("CONSULTAR USUARIO LECTOR");
 
         jLabel1.setText("Ingrese el e-mail del usuario que desea consultar:");

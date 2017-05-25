@@ -49,6 +49,10 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
         jComboBox7 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
         setTitle("ADICIONAR PERIODOS DE OFERTA");
 
         jLabel6.setText("Año:");
