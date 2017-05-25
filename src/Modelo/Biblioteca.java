@@ -767,7 +767,7 @@ public class Biblioteca {
         String idRecarga ="";
         
         int randomNum;        
-        for(int i=0; i<= splitemail[0].length(); i++){
+        for(int i=0; i< splitemail[0].length(); i++){
             randomNum = 0 + (int)(Math.random() * 9); 
             idRecarga = String.valueOf(splitemail[0].charAt(i)) + String.valueOf(randomNum);
         }       
@@ -856,7 +856,7 @@ public class Biblioteca {
     public void verificarCumpleaniosUsuario() throws MessagingException{
         Iterator it = clientes.values().iterator();
         UsuarioLector cliente;
-            for(int i=0; i <= clientes.size(); i++){
+            for(int i=0; i < clientes.size(); i++){
                 cliente = (UsuarioLector) it.next();
                 cliente.checkBirthday();
                 if(cliente.isMyBirthdayGetter()){                    
@@ -864,4 +864,23 @@ public class Biblioteca {
                 }
             }
         }
+    
+    /**-----------------------------------------------------------------------**
+     * Genera el informe del porcentaje de lectura de todos los usuarios lectores
+     */
+    
+    public ArrayList informePorcentajeLectura(){
+        ArrayList informe = new ArrayList();
+        String info = "PORCENTAJE DE LIBROS LEÍDOS POR USUARIO";
+        Iterator it = clientes.values().iterator();
+        for(int i=0; i<clientes.size(); i++){
+            UsuarioLector ul = (UsuarioLector)it.next();
+            info += "\n-" + ul.getNombreUsuario() + ": " + ul.porcentajeLectura();
+        }
+        informe.add(info);
+        return informe;
+    }
+    
+    
+    
     }
