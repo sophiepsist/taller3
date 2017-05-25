@@ -652,11 +652,14 @@ public class Biblioteca {
     //-------------------CARGAR LIBROS PARA EL USUARIO LECTOR-------------------  
     
     public ArrayList getArrayPaginasLibro(String isbn){
+        ArrayList resp = new ArrayList();
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
-            return libro.getPaginasArray();
+            resp.add(libro.getTitulo());
+            resp.add(libro.getPaginasArray());
+            return resp;
         }else{
-            ArrayList resp = new ArrayList(1);
+           
             resp.add("El libro no se encuentra en la biblioteca");
             return resp;
         }

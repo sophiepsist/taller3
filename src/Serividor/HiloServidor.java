@@ -162,7 +162,15 @@ public class HiloServidor extends Thread{
                     case "consultarUAL":
                         biblioteca.consultarUAL((String) mensaje.get(1));
                         break;
-                        
+                    case "getPaginas":
+                        enviarDatos(biblioteca.getArrayPaginasLibro((String)mensaje.get(1)));
+                        break;   
+                    case "refrescarLibrosComprados":
+                        enviarDatos(this.UL.refrescarLibrosComprados());
+                        break;
+                    case "consultarLibrosComprados":
+                        enviarDatos(this.UL.consultarLibrosComprados((String)mensaje.get(1)));
+                        break;
                 }
 
             }catch(ClassNotFoundException e){

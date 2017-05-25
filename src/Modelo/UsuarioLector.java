@@ -285,4 +285,24 @@ public class UsuarioLector implements Serializable {
         }
         return books;
     }
+    
+    /*--------------------CONSULTAR MIS LIBROS UL-------------------------------
+    ** Para refrescar ventana MisLibros, retorna la carátula, el resumen, porcentaje
+    ** de lectura y calificación
+    */
+    
+    public ArrayList consultarLibrosComprados(String isbn){
+        ArrayList resp = new ArrayList();
+        if(librosComprados.containsKey(isbn)){
+            Libro libro = (Libro)librosComprados.get(isbn);
+            resp.add(libro.getResumen());
+            resp.add(libro.getCaratula());
+            resp.add(libro.getCalificacion());
+            resp.add(libro.getPorcentajeLectura());
+        }else{            
+            resp.add("Error, el usuario no cuenta con ese libro");
+            return resp;
+        }
+        return resp;
+    }
 }
