@@ -28,6 +28,7 @@ public class Libro implements Serializable{
     private ArrayList paginasArray;
     private ImageIcon caratula;
     private String autor;
+    private double porcentajeLectura;
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
@@ -100,8 +101,11 @@ public class Libro implements Serializable{
     public String getAutor() {
         return autor;
     } 
-    
-    
+
+    public double getPorcentajeLectura() {
+        return porcentajeLectura;
+    }   
+        
     //----------------------------MÉTODOS SET-----------------------------------
 
     public void setNumPaginas(int numPaginas) {
@@ -155,8 +159,12 @@ public class Libro implements Serializable{
     public void setAutor(String autor) {
         this.autor = autor;
     }    
+
+    public void setPorcentajeLectura(double porcentajeLectura) {
+        this.porcentajeLectura = porcentajeLectura;
+    }    
     
-    
+    //-----------------------------CONSULTAR------------------------------------
     
     public ArrayList infoLibro(){ 
         ArrayList mensaje = new ArrayList(3); 

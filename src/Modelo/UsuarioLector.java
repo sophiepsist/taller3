@@ -221,9 +221,18 @@ public class UsuarioLector implements Serializable {
         }
     }
     
+     /**-----------------------------------------------------------------------**
+     * Agrega una sesión al array de sesiones del usuario
+     */   
+    
     public void agregarSesion(Sesion sesion){
         sesionesIniciadas.add(sesion);
     }
+    
+    /**-----------------------------------------------------------------------**
+     * Revisa si el usuario está cumpliendo años, si lo está, actualiza su contador
+     * de libros de regalo a 0, indicando que durante el día puede tomar un libro gratis
+     */ 
     
     public void checkBirthday (){
         LocalDateTime time = LocalDateTime.now();
@@ -240,4 +249,40 @@ public class UsuarioLector implements Serializable {
             this.contLibroCumpleanios = 1;
         }      
     }    
+    
+    /**-----------------------------------------------------------------------**
+     * Por cada libro comprado, retorna un ArrayList con el título e isbn para
+     * refrescar vista
+     */ 
+    public ArrayList refrescarLibrosComprados(){
+        ArrayList books = new ArrayList(librosComprados.size());
+        Iterator it = librosComprados.values().iterator();
+        if(!librosComprados.isEmpty()){
+            for(int i=0; i<librosComprados.size(); i++){
+                Libro libro = (Libro)it.next();
+                books.add(libro.getTitulo().concat(";" + libro.getIsbn()));
+            }
+        }else{            
+            books.add("No hay libros comprados");
+        }
+        return books;
+    }
+    
+    /**-----------------------------------------------------------------------**
+     * Por cada libro leido, retorna un ArrayList con el título e isbn para
+     * refrescar vista
+     */ 
+    public ArrayList refrescarLibrosLeidos(){
+        ArrayList books = new ArrayList(librosLeidos.size());
+        Iterator it = librosLeidos.values().iterator();
+        if(!librosLeidos.isEmpty()){
+            for(int i=0; i<librosLeidos.size(); i++){
+                Libro libro = (Libro)it.next();
+                books.add(libro.getTitulo().concat(";" + libro.getIsbn()));
+            }
+        }else{            
+            books.add("No hay libros leidos");
+        }
+        return books;
+    }
 }

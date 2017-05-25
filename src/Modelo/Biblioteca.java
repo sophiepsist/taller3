@@ -649,7 +649,7 @@ public class Biblioteca {
         }
     }    
     
-    //-------------------CARGAR LIBROS PARA EL USUARIO LECTOR-------------------
+    //-------------------CARGAR LIBROS PARA EL USUARIO LECTOR-------------------  
     
     public ArrayList getArrayPaginasLibro(String isbn){
         if(libros.containsKey(isbn)){
