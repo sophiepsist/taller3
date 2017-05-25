@@ -120,6 +120,7 @@ public class Ingresar extends javax.swing.JFrame {
             this.miControl.conectar(conexion);
             if(this.miControl.conectar(conexion) != null){
                 new PrincipalAdministrador().setVisible(true);    
+                this.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(this, "El usuario no esta Registrado");
             }
@@ -130,6 +131,7 @@ public class Ingresar extends javax.swing.JFrame {
             this.miControl.conectar(conexion);
             if(this.miControl.conectar(conexion) != null){
                 new PrincipalLector().setVisible(true);
+                this.setVisible(false);
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
