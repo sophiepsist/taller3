@@ -137,6 +137,12 @@ public class HiloServidor extends Thread{
                         biblioteca.agregarUL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (int)mensaje.get(5), (String)mensaje.get(6), (String)mensaje.get(7), (String)mensaje.get(8), (int)mensaje.get(9));
                         mensajeAgUL.add("Usuario Lector Agregado Correctamente");
                         enviarDatos(mensajeAgUL);
+                    case "modificarUL":    
+                        ArrayList mensajeModUL = new ArrayList(1);
+                        biblioteca.modificarUL((String)mensaje.get(1),(String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5),
+                                                Integer.parseInt((String) mensaje.get(6)), (String)mensaje.get(7), (String)mensaje.get(8), (String)mensaje.get(9));
+                        mensajeModUL.add("Usuario Lector Modificado Correctamente");
+                        enviarDatos(mensajeModUL);
                     case "loginUsuarioAdministrador":
                         this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
                         LocalDateTime timeUAL = LocalDateTime.now();

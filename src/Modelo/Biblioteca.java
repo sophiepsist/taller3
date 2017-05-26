@@ -649,6 +649,26 @@ public class Biblioteca {
         }
     }    
     
+    public void modificarUL(String email, String nombreCompleto, String celular, String diaNacimiento,
+                            String mesNacimiento, int edad, String nombreUsuario, String contraseniaAnterior, String contraseniaNueva)throws MyException{
+        UsuarioLector aux = (UsuarioLector) clientes.get(email);
+        
+        aux.setNombreCompleto(nombreCompleto);
+        aux.setCelular(celular);
+        aux.setDiaNacimiento(diaNacimiento);
+        aux.setMesNacimiento(mesNacimiento);
+        aux.setEdad(edad);
+        aux.setNombreUsuario(nombreUsuario);
+        
+        if(aux.getContrasenia().equals(contraseniaAnterior)){
+            aux.setContrasenia(contraseniaNueva);
+        }else{
+            throw new MyException("La contraseña Anterior no coincide");
+            
+        }
+                
+    }
+    
     //-------------------CARGAR LIBROS PARA EL USUARIO LECTOR-------------------  
     
     public ArrayList getArrayPaginasLibro(String isbn){
