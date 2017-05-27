@@ -8,6 +8,7 @@ import java.io.*;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import java.util.*;
 
 
 /**
@@ -22,17 +23,18 @@ public class Libro implements Serializable{
     private boolean bestSeller;
     private String rangoEdades;
     private String isbn;
-    private String calificacion;
+    private double calificacion;
     private String resumen;
     private Oferta oferta;
     private ArrayList paginasArray;
     private ImageIcon caratula;
     private String autor;
     private double porcentajeLectura;
+    private ArrayList calificaciones;
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
-    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, String calificacion, String resumen, Oferta oferta, ArrayList paginasArray, ImageIcon caratula, String autor) {
+    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, double calificacion, String resumen, Oferta oferta, ArrayList paginasArray, ImageIcon caratula, String autor) {
         this.numPaginas = numPaginas;
         this.titulo = titulo;
         this.precio = precio;
@@ -46,6 +48,7 @@ public class Libro implements Serializable{
         this.paginasArray = paginasArray;
         this.caratula = caratula;
         this.autor = autor;
+        this.calificaciones = new ArrayList();
     }   
     
     //----------------------------MÉTODOS GET-----------------------------------
@@ -78,7 +81,7 @@ public class Libro implements Serializable{
         return isbn;
     }
 
-    public String getCalificacion() {
+    public double getCalificacion() {
         return calificacion;
     }
 
@@ -105,6 +108,10 @@ public class Libro implements Serializable{
     public double getPorcentajeLectura() {
         return porcentajeLectura;
     }   
+    
+    public ArrayList getCalificaciones()  {
+        return calificaciones;
+    }
         
     //----------------------------MÉTODOS SET-----------------------------------
 
@@ -136,7 +143,7 @@ public class Libro implements Serializable{
         this.isbn = isbn;
     }
 
-    public void setCalificacion(String calificacion) {
+    public void setCalificacion(double calificacion) {
         this.calificacion = calificacion;
     }
 
@@ -163,6 +170,10 @@ public class Libro implements Serializable{
     public void setPorcentajeLectura(double porcentajeLectura) {
         this.porcentajeLectura = porcentajeLectura;
     }    
+    
+    public void setCalificaciones(ArrayList calificaciones){
+        this.calificaciones = calificaciones;
+    }
     
     //-----------------------------CONSULTAR------------------------------------
     

@@ -356,7 +356,7 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
             conexion.add(this.jRadioButton1.isSelected());                      
             conexion.add(this.jTextField7.getText().trim());
             conexion.add(this.jTextField1.getText().trim());
-            conexion.add(this.jComboBox2.getSelectedItem().toString().trim());
+            conexion.add(Integer.parseInt(this.jComboBox2.getSelectedItem().toString().trim()));
             conexion.add(this.jTextArea1.getText());
             conexion.add( this.jComboBox1.getSelectedItem().toString());            
             conexion.add(this.fileToArray(nombreArchivo));

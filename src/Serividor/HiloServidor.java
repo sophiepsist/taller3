@@ -61,7 +61,11 @@ public class HiloServidor extends Thread{
                 switch (mensaje2)
                 {
                     case "agregarLibros":                        
-                        this.biblioteca.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2), (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), (String) mensaje.get(9), (String) mensaje.get(10), (ArrayList) mensaje.get(11) , (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
+                        this.biblioteca.agregarLibros((int) mensaje.get(1), (String) mensaje.get(2),
+                                (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5),
+                                (String) mensaje.get(6), (String) mensaje.get(7), (int) mensaje.get(8),
+                                (String) mensaje.get(9), (String) mensaje.get(10), (ArrayList) mensaje.get(11) ,
+                                (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
                         ArrayList respuestaAg = new ArrayList(1);
                         respuestaAg.add("Se ha agregado el libro exitosamente");
                         enviarDatos(respuestaAg);
@@ -81,7 +85,7 @@ public class HiloServidor extends Thread{
                     case "modificarLibro": 
                         this.biblioteca.modificarLibro((int) mensaje.get(1), (String) mensaje.get(2), 
                                 (int) mensaje.get(3), (String) mensaje.get(4), (boolean) mensaje.get(5), 
-                                (String) mensaje.get(6), (String) mensaje.get(7), (String) mensaje.get(8), 
+                                (String) mensaje.get(6), (String) mensaje.get(7), (int) mensaje.get(8), 
                                 (String) mensaje.get(9), (String) mensaje.get(10), (ArrayList) mensaje.get(11) ,
                                 (ImageIcon)  mensaje.get(12), (String) mensaje.get(13));
                         ArrayList respuestaMod = new ArrayList(1);
@@ -144,13 +148,19 @@ public class HiloServidor extends Thread{
                         mensajeModUL.add("Usuario Lector Modificado Correctamente");
                         enviarDatos(mensajeModUL);
                     case "loginUsuarioAdministrador":
+                        ArrayList mensajeLoginUl = new ArrayList(1);
                         this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
+                        mensajeLoginUl.add("todo ok");
+                        enviarDatos(mensajeLoginUl);
                         LocalDateTime timeUAL = LocalDateTime.now();
                         fecha = Integer.toString(timeUAL.getMonthValue()) + Integer.toString(timeUAL.getYear())+ Integer.toString(timeUAL.getDayOfMonth());
                         this.horaInicial = Integer.toString(timeUAL.getHour()) + ":" + Integer.toString(timeUAL.getMinute()) + ":" + Integer.toString(timeUAL.getSecond());
                         break; 
                     case "loginUsuarioLector":
+                        ArrayList mensajeLoginUAL = new ArrayList(1);
                         this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));
+                        mensajeLoginUAL.add("todo ok");
+                        enviarDatos(mensajeLoginUAL);
                         LocalDateTime timeUL = LocalDateTime.now();
                         fecha = Integer.toString(timeUL.getMonthValue()) + Integer.toString(timeUL.getYear())+ Integer.toString(timeUL.getDayOfMonth());
                         this.horaInicial = Integer.toString(timeUL.getHour()) + ":" + Integer.toString(timeUL.getMinute()) + ":" + Integer.toString(timeUL.getSecond());

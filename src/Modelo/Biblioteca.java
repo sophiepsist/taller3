@@ -346,7 +346,7 @@ public class Biblioteca {
     //-----------------------AGREGAR LIBROS MANUALMENTE-------------------------    
     
     public void agregarLibros(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, 
-                              String isbn, String calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
+                              String isbn, int calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             throw new MyException("Ya se ha agregado un libro con ese ISBN");
         }else{
@@ -447,7 +447,7 @@ public class Biblioteca {
     }
     
     public void modificarLibro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades,
-                              String isbn, String calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
+                              String isbn, int calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
             Libro libro = (Libro)libros.get(isbn);
             Oferta of = (Oferta)periodosOferta.get(oferta);
@@ -595,23 +595,31 @@ public class Biblioteca {
     }
    
     public UsuarioAdministrador verificarLoginUAL (String email, String contrasenia) throws MyException{
-        UsuarioAdministrador aux;
-        String contraseniaaux;
-        aux = (UsuarioAdministrador)administradores.get(email);
-        contraseniaaux = aux.getContrasenia();
-        if(contraseniaaux.equals(contrasenia)){
-            return aux;
-        }else{throw new MyException("Contraseña incorrecta");}
+        try{
+            UsuarioAdministrador aux;
+            String contraseniaaux;
+            aux = (UsuarioAdministrador)administradores.get(email);
+            contraseniaaux = aux.getContrasenia();
+                if(contraseniaaux.equals(contrasenia)){
+                    return aux;
+                }else{throw new MyException("Contraseña incorrecta");}
+        }catch(NullPointerException ex){
+            throw new MyException("Usuario Incorrecto");
+        }
     }
     
     public UsuarioLector verificarLoginUL(String email, String contrasenia)throws MyException{
-        UsuarioLector aux;
-        String contraseniaaux;
-        aux = (UsuarioLector) clientes.get(email);
-        contraseniaaux = aux.getContrasenia();
-        if(contraseniaaux.equals(contrasenia)){
-            return aux;
-        }else{throw new MyException("Contraseña incorrecta");}      
+        try{
+            UsuarioLector aux;
+            String contraseniaaux;
+            aux = (UsuarioLector) clientes.get(email);
+            contraseniaaux = aux.getContrasenia();
+            if(contraseniaaux.equals(contrasenia)){
+                return aux;
+            }else{throw new MyException("Contraseña incorrecta");}      
+        }catch(NullPointerException ex){
+            throw new MyException("Usuario Incorrecto");
+        }
     }
     
     public ArrayList consultarUAL(String isbn) throws MyException{
@@ -905,5 +913,40 @@ public class Biblioteca {
     }
     
     
-    
+//    public ArrayList revisarArriba(ArrayList reviso, double calificacion, int i){
+//        if(reviso.isEmpty()){
+//            reviso.add(calificacion);
+//            return reviso;
+//        }else{
+//            if((int)reviso.get(i) <= calificacion){
+//                reviso.add(i, calificacion);
+//            }else{
+//                i++;
+//                revisarArriba(reviso, calificacion, i);
+//            }
+//        }
+//        return reviso;
+//    }   
+//    
+//    public ArrayList topTen(){
+//        Iterator it = libros.values().iterator();
+//        Libro libro;
+//        ArrayList calificacionesLibro;
+//        ArrayList orden = new ArrayList(10);
+//        //RECORRE LIBRO POR LIBRO CALIFICANDOLO MEDIANTE TODAS LAS CALIFICACIONES RECIBIDAS
+//        while(it.hasNext()){
+//            double j = 0;
+//            libro = (Libro) it.next();
+//            calificacionesLibro = libro.getCalificaciones();
+//                for(int i=0; i<=calificacionesLibro.size(); i++){
+//                    j += (double) calificacionesLibro.get(i);
+//                }
+//                j = j/calificacionesLibro.size();
+//                libro.setCalificacion(j);
+//            orden = revisarArriba(orden, j, 0);
+//        //sigo dentro del while   
+//        }
+//        return orden;
+//    }
+//    
     }
