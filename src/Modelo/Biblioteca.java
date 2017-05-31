@@ -36,7 +36,8 @@ public class Biblioteca {
     private HashMap librosFilosofia;
     private HashMap librosOtros;    
     private HashMap librosOferta;
-    private HashMap librosSinOferta;   
+    private HashMap librosSinOferta; 
+    private ArrayList mejoresLibros;
     private Lectura lectura;
     private Escritura escritura;
     //---------------------------MÉTODO CONSTRUCTOR-----------------------------
@@ -57,6 +58,7 @@ public class Biblioteca {
         this.librosSinOferta = new HashMap();
         this.lectura= new Lectura();
         this.escritura = new Escritura();
+        this.mejoresLibros = new ArrayList();
         //escritura.serializarPrimerUAL();
         this.agregarLibrosAutomaticamente();
         this.agregarUsuariosAdministradoresAutomaticamente();
@@ -118,6 +120,10 @@ public class Biblioteca {
     public HashMap getLibrosSinOferta() {
         return librosSinOferta;
     }
+
+    public ArrayList getMejoresLibros() {
+        return mejoresLibros;
+    }        
         
     //--------------------------MÉTODOS SET-------------------------------------    
 
@@ -172,6 +178,10 @@ public class Biblioteca {
     public void setLibrosSinOferta(HashMap librosSinOferta) {
         this.librosSinOferta = librosSinOferta;
     }
+
+    public void setMejoresLibros(ArrayList mejoresLibros) {
+        this.mejoresLibros = mejoresLibros;
+    }   
         
     //---------------------REFRESCAR COMPONENTES INTERFAZ-----------------------
     
@@ -340,6 +350,20 @@ public class Biblioteca {
         }
         return bestSellers;
     }    
+    
+//    public ArrayList refrescarMejoresLibros(){
+//        ArrayList mejores = new ArrayList(mejoresLibros.size());       
+//        Iterator it = mejoresLibros.values().iterator();
+//        if(!mejoresLibros.isEmpty()){
+//            for(int i=0; i<mejoresLibros.size(); i++){
+//                Libro libro = (Libro)it.next();
+//                mejores.add(libro.getTitulo().concat(";" + libro.getIsbn()));
+//            }
+//        }else{            
+//            mejores.add("No se han realizado calificaciones sobre los libros de la biblioteca");
+//        }
+//        return mejores;
+//    } 
     
     //-------------------------GESTIÓN DE LIBROS--------------------------------
     
@@ -949,4 +973,90 @@ public class Biblioteca {
 //        return orden;
 //    }
 //    
+    
+     /*---------------------------CALIFICAR LIBROS -----------------------------
+    ** Agrega la calificacion que da un usuario lector al arrayList de calificaciones
+    ** que tiene cada libro
+    */
+    
+    public void hacerCalificacion(String isbn, double calificacion, UsuarioLector ul) throws MyException{
+        Libro libro = (Libro)libros.get(isbn);
+        if(ul.calificarLibro(libro)){
+            libro.getCalificaciones().add(calificacion);
+            setearCalificacionLibro(libro);             
+           // (librosArray());
+        }else{
+            throw new MyException("El usuario debe haber leido por lo menos el 80% del libro para poder calificarlo");
+        }
+    }
+    
+    /*
+    ** Convierte el hashMap de libros en un arrayList
+    */
+    
+    public ArrayList librosArray(){
+        ArrayList newArray = new ArrayList();
+        Iterator it = libros.values().iterator();
+        for(int i=0; i<libros.size(); i++){
+            Libro lib = (Libro)it.next();
+            newArray.add(lib);
+        }
+        return newArray;
+    }
+    
+    /**-----------------------------------------------------------------------**
+     * Setea la calificación de un libro según la calificación global dada por los
+     * usuarios lectores
+     */ 
+    
+    public void setearCalificacionLibro(Libro libro){
+        double calificacionGlobal = 0;
+        for(int i=0; i<libro.getCalificaciones().size(); i++){
+            calificacionGlobal += (double)libro.getCalificaciones().get(i);
+        }                
+        libro.setCalificacion(calificacionGlobal/libro.getCalificaciones().size());
+    }
+    
+    /**-----------------------------------------------------------------------**
+     * Itera el hashMap de libros de la biblioteca para actualizar los top 10 con 
+     * mejores calificaciones 
+     */ 
+    
+    public ArrayList juanCamiloSort(ArrayList libros, boolean isTop){  
+        ArrayList topBooks = new ArrayList();
+        ArrayList bottomBooks = new ArrayList();    
+        ArrayList resultado = new ArrayList();
+        Iterator<Libro> it = libros.iterator();
+        Libro pivote = it.next();         
+        if(libros.isEmpty()){
+            return new ArrayList();
+        }
+        if(isTop){
+            while(it.hasNext()){
+                Libro lib = it.next();
+                if(pivote.getCalificacion() <= lib.getCalificacion()){
+                    topBooks.add(lib);
+                }else{
+                    bottomBooks.add(lib);
+                }
+            }
+        }else{
+            while(it.hasNext()){
+                Libro lib = it.next();
+                if(pivote.getCalificacion() >= lib.getCalificacion()){
+                    topBooks.add(lib);
+                }else{
+                    bottomBooks.add(lib);
+                }
+            }
+        }        
+        // isTop=true entonces mayor calificacion else menor calificacion :v
+        resultado.addAll(juanCamiloSort(topBooks, isTop));
+        resultado.add(pivote);
+        resultado.addAll(juanCamiloSort(bottomBooks, isTop));     
+        return resultado;
+    }
+    
+    
+    
     }

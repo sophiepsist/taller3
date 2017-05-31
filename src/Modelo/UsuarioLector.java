@@ -25,11 +25,11 @@ public class UsuarioLector implements Serializable {
     private String contrasenia;    
     private int saldo;
     private HashMap <String, Recargas> recargas;
-    private HashMap <String, Libro> librosLeidos;
-    private HashMap librosComprados;
+    private HashMap <String, Libro> librosLeidos;//libros 100% leidos
+    private HashMap librosComprados; //incluye libros sin leer y libros en proceso de lectura
     private boolean isMyBirthday;
     private int contLibroCumpleanios;
-    private ArrayList <Sesion> sesionesIniciadas;
+    private ArrayList <Sesion> sesionesIniciadas;    
 
     public UsuarioLector(String nombreCompleto, String celular, String diaNacimiento, String mesNacimiento, int edad, String email, String nombreUsuario, String contrasenia, int saldo) {
         this.nombreCompleto = nombreCompleto;
@@ -304,5 +304,18 @@ public class UsuarioLector implements Serializable {
             return resp;
         }
         return resp;
+    }
+    
+     /*--------------------CALIFICAR LIBROS COMPRADOS---------------------------
+    ** Busca el libro que quiere calificar y verifica que haya leido el 80% de este.
+    ** Retorna un verdadero para indicar que la calificación que quiere hacer es válida.
+    */
+    public boolean calificarLibro(Libro libro){
+        Libro libroDelLector = (Libro)librosComprados.get(libro.getIsbn());
+        if(libroDelLector.getPorcentajeLectura() >= 80){
+            return true;
+        }else{
+            return false;
+        }
     }
 }

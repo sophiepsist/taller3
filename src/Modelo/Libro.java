@@ -30,7 +30,8 @@ public class Libro implements Serializable{
     private ImageIcon caratula;
     private String autor;
     private double porcentajeLectura;
-    private ArrayList calificaciones;
+    private ArrayList calificaciones;    
+    private int paginasLeidas;
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
@@ -49,6 +50,7 @@ public class Libro implements Serializable{
         this.caratula = caratula;
         this.autor = autor;
         this.calificaciones = new ArrayList();
+        this.paginasLeidas = 0;
     }   
     
     //----------------------------MÉTODOS GET-----------------------------------
@@ -112,6 +114,10 @@ public class Libro implements Serializable{
     public ArrayList getCalificaciones()  {
         return calificaciones;
     }
+
+    public int getPaginasLeidas() {
+        return paginasLeidas;
+    }    
         
     //----------------------------MÉTODOS SET-----------------------------------
 
@@ -174,6 +180,10 @@ public class Libro implements Serializable{
     public void setCalificaciones(ArrayList calificaciones){
         this.calificaciones = calificaciones;
     }
+
+    public void setPaginasLeidas(int paginasLeidas) {
+        this.paginasLeidas = paginasLeidas;
+    }    
     
     //-----------------------------CONSULTAR------------------------------------
     
