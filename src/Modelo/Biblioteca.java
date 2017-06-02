@@ -662,11 +662,11 @@ public class Biblioteca {
         }
     }
     
-    public ArrayList consultarUL(String isbn) throws MyException{
+    public ArrayList consultarUL(String email) throws MyException{
         ArrayList infoUsuario = new ArrayList(6);
-        if(clientes.containsKey(isbn)){
+        if(clientes.containsKey(email)){
             UsuarioLector aux;
-            aux = (UsuarioLector) clientes.get(isbn);
+            aux = (UsuarioLector) clientes.get(email);
             
             infoUsuario.add(aux.getNombreCompleto());            
             infoUsuario.add(aux.getCelular());

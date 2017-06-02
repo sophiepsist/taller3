@@ -6,6 +6,8 @@
 package Vista;
 
 import Controladora.Controladora;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -46,6 +48,11 @@ public class ConsultarUL extends javax.swing.JInternalFrame {
         jLabel1.setText("Ingrese el e-mail del usuario que desea consultar:");
 
         jButton1.setText("Consultar Usuario");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -98,6 +105,25 @@ public class ConsultarUL extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ArrayList conexion = new ArrayList(2);
+        ArrayList respuesta = new ArrayList(6);
+        conexion.add("consultarInfoLibros");
+        conexion.add(this.jTextField1.getText());
+        respuesta = this.miControl.conectar(conexion);      
+       this.jTextArea1.setText((String)respuesta.get(0) + "\n" + (String)respuesta.get(1) +
+                               (String)respuesta.get(2) + "\n" + (String)respuesta.get(3) +
+                               (String)respuesta.get(4) + "\n" + (String)respuesta.get(5) +
+                               (String)respuesta.get(6));
+       
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void limpiarCasillas(){
+        this.jTextArea1.setText("");
+        this.jTextField1.setText("");
+        this.jButton1.setEnabled(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
