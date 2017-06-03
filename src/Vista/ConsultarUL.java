@@ -114,15 +114,14 @@ public class ConsultarUL extends javax.swing.JInternalFrame {
         respuesta = this.miControl.conectar(conexion);      
        this.jTextArea1.setText((String)respuesta.get(0) + "\n" + (String)respuesta.get(1) +
                                (String)respuesta.get(2) + "\n" + (String)respuesta.get(3) +
-                               (String)respuesta.get(4) + "\n" + (String)respuesta.get(5) +
-                               (String)respuesta.get(6));
+                               (String)respuesta.get(4) + "\n" + (int)respuesta.get(5) +
+                               (int)respuesta.get(6));
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void limpiarCasillas(){
         this.jTextArea1.setText("");
         this.jTextField1.setText("");
-        this.jButton1.setEnabled(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -194,6 +194,7 @@ public class MisLibros extends javax.swing.JInternalFrame {
     private void btLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLeerActionPerformed
         // TODO add your handling code here:
         
+        
     }//GEN-LAST:event_btLeerActionPerformed
 
     private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
