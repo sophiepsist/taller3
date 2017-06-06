@@ -135,6 +135,11 @@ public class ModificarUL extends javax.swing.JInternalFrame {
         jLabel10.setText("Old Password:");
 
         jPasswordField1.setEnabled(false);
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Consultar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -335,8 +340,17 @@ public class ModificarUL extends javax.swing.JInternalFrame {
         this.jTextField3.setText((String)respuesta.get(6));
         
         ArrayList respuesta2 = new ArrayList();
-        respuesta2.add(jTextField1);    respuesta2.add(jTextField2);    respuesta2.add((String)jComboBox1.getSelectedItem());
-        respuesta2.add((String) jComboBox2.getSelectedItem());  respuesta2.add(evt);
+        respuesta2.add(this.jTextField1);    respuesta2.add(this.jTextField2);    respuesta2.add((String)this.jComboBox1.getSelectedItem());
+        respuesta2.add((String) this.jComboBox2.getSelectedItem());  respuesta2.add((int) jComboBox3.getSelectedItem());
+        respuesta2.add((String) this.jTextField3.getText());
+        if(!jPasswordField2.getPassword().equals("")){
+            respuesta2.add(this.jPasswordField1.getPassword().toString()); 
+            respuesta2.add(this.jPasswordField2.getPassword().toString());
+        }else{
+            respuesta2.add(jPasswordField1.getPassword().toString());
+            respuesta2.add(jPasswordField1.getPassword().toString());
+        }
+        
         this.miControl.conectar(respuesta2);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -359,6 +373,10 @@ public class ModificarUL extends javax.swing.JInternalFrame {
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
