@@ -670,10 +670,11 @@ public class Biblioteca {
             
             infoUsuario.add(aux.getNombreCompleto());            
             infoUsuario.add(aux.getCelular());
-            infoUsuario.add(aux.getDiaNacimiento().concat(aux.getMesNacimiento()));           
+            infoUsuario.add(aux.getDiaNacimiento()+"-"+(aux.getMesNacimiento()));           
             infoUsuario.add(aux.getEmail());
             infoUsuario.add(aux.getEdad());
             infoUsuario.add(aux.getSaldo());
+            infoUsuario.add(aux.getNombreUsuario());
             
             return infoUsuario;
         }else{

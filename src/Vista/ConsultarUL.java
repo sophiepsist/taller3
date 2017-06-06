@@ -108,7 +108,7 @@ public class ConsultarUL extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ArrayList conexion = new ArrayList(2);
-        ArrayList respuesta = new ArrayList(6);
+        ArrayList respuesta = new ArrayList();
         conexion.add("consultarInfoLibros");
         conexion.add(this.jTextField1.getText());
         respuesta = this.miControl.conectar(conexion);      
