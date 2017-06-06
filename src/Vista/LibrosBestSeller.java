@@ -5,6 +5,8 @@
  */
 package Vista;
 import Controladora.*;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -18,6 +20,7 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
     public LibrosBestSeller(Controladora c) {
         initComponents();
         this.miControl = c;
+        this.refrescarLibrosBestSeller();
     }
 
     /**
@@ -50,8 +53,18 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
         jLabel1.setText("Libro:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Comprar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setBackground(new java.awt.Color(51, 0, 153));
         jLabel2.setForeground(new java.awt.Color(51, 0, 153));
@@ -131,6 +144,58 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        ArrayList conexion = new ArrayList(2);
+        ArrayList respuesta = new ArrayList(3);
+        conexion.add("consultarInfoLibros");
+        conexion.add(this.jComboBox1.getSelectedItem().toString().split(";")[1]);
+        respuesta = this.miControl.conectar(conexion);      
+        this.jTextArea1.setText((String)respuesta.get(0));
+        this.jLabel2.setIcon((ImageIcon)respuesta.get(1));
+        switch((String)respuesta.get(2)){
+            case "1":
+               this.star1.setVisible(true);
+               break;
+            case "2":
+               this.star1.setVisible(true);
+               this.star2.setVisible(true);
+               break;
+            case "3":
+               this.star1.setVisible(true);
+               this.star2.setVisible(true);
+               this.star3.setVisible(true);
+               break;
+            case "4":
+               this.star1.setVisible(true);
+               this.star2.setVisible(true);
+               this.star3.setVisible(true);
+               this.star4.setVisible(true);
+               break;
+            case "5":
+               this.star1.setVisible(true);
+               this.star2.setVisible(true);
+               this.star3.setVisible(true);
+               this.star4.setVisible(true);
+               this.star5.setVisible(true);
+       }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    
+    
+    public void refrescarLibrosBestSeller(){
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("refrescarLibros");
+        ArrayList librosBestSeller = this.miControl.conectar(conexion);        
+        for(Object libroBestSeller : librosBestSeller){
+            this.jComboBox1.addItem((String)libroBestSeller);
+        }        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
