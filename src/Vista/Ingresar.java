@@ -113,39 +113,40 @@ public class Ingresar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:        
-        ArrayList conexion = new ArrayList(3);
-        ArrayList respuesta;
-        if(jCheckBox1.isSelected()){
-            conexion.add("loginUsuarioAdministrador");
-            conexion.add(this.jTextField1.getText());
-            conexion.add(this.jPasswordField1.getPassword().toString()); 
-            respuesta = this.miControl.conectar(conexion);
-            if(respuesta.get(0).equals("todo ok")){
-                new PrincipalAdministrador().setVisible(true);    
-                this.setVisible(false);
-            }else{
-                if(respuesta.get(0).equals("Contraseña incorrecta")){
-                    JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");
-                }else{
-                    JOptionPane.showMessageDialog(this, "Usuario Incorrecto");
-                }
-            }
-        }else{
-            conexion.add("loginUsuarioLector");
-            conexion.add(this.jTextField1.getText());
-            conexion.add(this.jPasswordField1.getPassword().toString());
-            respuesta = this.miControl.conectar(conexion);
-            if(respuesta.get(0).equals("todo ok")){
-                new PrincipalLector().setVisible(true);
-                this.setVisible(false);
-            }else{
-                if(respuesta.get(0).equals("Contraseña incorrecta")){
-                    JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");
-                }else{
-                    JOptionPane.showMessageDialog(this, "Usuario Incorrecto");
-                }
-            }
-        }
+//        ArrayList conexion = new ArrayList(3);
+//        ArrayList respuesta;
+//        if(jCheckBox1.isSelected()){
+//            conexion.add("loginUsuarioAdministrador");
+//            conexion.add(this.jTextField1.getText());
+//            conexion.add(this.jPasswordField1.getPassword().toString()); 
+//            respuesta = this.miControl.conectar(conexion);
+//            if(respuesta.get(0).equals("todo ok")){
+//                new PrincipalAdministrador().setVisible(true);    
+//                this.setVisible(false);
+//            }else{
+//                if(respuesta.get(0).equals("Contraseña incorrecta")){
+//                    JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");
+//                }else{
+//                    JOptionPane.showMessageDialog(this, "Usuario Incorrecto");
+//                }
+//            }
+//        }else{
+//            conexion.add("loginUsuarioLector");
+//            conexion.add(this.jTextField1.getText());
+//            conexion.add(this.jPasswordField1.getPassword().toString());
+//            respuesta = this.miControl.conectar(conexion);
+//            if(respuesta.get(0).equals("todo ok")){
+//                new PrincipalLector().setVisible(true);
+//                this.setVisible(false);
+//            }else{
+//                if(respuesta.get(0).equals("Contraseña incorrecta")){
+//                    JOptionPane.showMessageDialog(this, "Contraseña Incorrecta");
+//                }else{
+//                    JOptionPane.showMessageDialog(this, "Usuario Incorrecto");
+//                }
+//            }
+//        }
+new PrincipalLector().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
