@@ -136,7 +136,7 @@ public class HiloServidor extends Thread{
                         biblioteca.agregarUAL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5), (String)mensaje.get(6), (boolean)mensaje.get(7));
                         mensajeAgUAL.add("Usuario Administrador Agregado Correctamente");
                         enviarDatos(mensajeAgUAL);
-                    case "agegarUL":    
+                    case "agregarUL":    
                         ArrayList mensajeAgUL = new ArrayList(1);
                         biblioteca.agregarUL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (int)mensaje.get(5), (String)mensaje.get(6), (String)mensaje.get(7), (String)mensaje.get(8), (int)mensaje.get(9));
                         mensajeAgUL.add("Usuario Lector Agregado Correctamente");

@@ -23,7 +23,7 @@ public class Libro implements Serializable{
     private boolean bestSeller;
     private String rangoEdades;
     private String isbn;
-    private double calificacion;
+    private int calificacion;
     private String resumen;
     private Oferta oferta;
     private ArrayList paginasArray;
@@ -35,7 +35,7 @@ public class Libro implements Serializable{
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
-    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, double calificacion, String resumen, Oferta oferta, ArrayList paginasArray, ImageIcon caratula, String autor) {
+    public Libro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades, String isbn, int calificacion, String resumen, Oferta oferta, ArrayList paginasArray, ImageIcon caratula, String autor) {
         this.numPaginas = numPaginas;
         this.titulo = titulo;
         this.precio = precio;
@@ -83,7 +83,7 @@ public class Libro implements Serializable{
         return isbn;
     }
 
-    public double getCalificacion() {
+    public int getCalificacion() {
         return calificacion;
     }
 
@@ -149,7 +149,7 @@ public class Libro implements Serializable{
         this.isbn = isbn;
     }
 
-    public void setCalificacion(double calificacion) {
+    public void setCalificacion(int calificacion) {
         this.calificacion = calificacion;
     }
 
@@ -191,9 +191,13 @@ public class Libro implements Serializable{
         ArrayList mensaje = new ArrayList(3); 
         String info = "";
         info = "\nISBN: " + isbn + "\nTítulo: " + titulo + "\nAutor: " + autor + "\nCategoría: " + categoria + "\nNúmero de páginas: " + 
-                numPaginas + "\nRango de edades: " + rangoEdades + "\nPeriodo de oferta asociado: " + oferta.getFechaFinal() +
-                "-" + oferta.getFechaFinal() + " - " + oferta.getPorcentajeDescuento() + "% de descuento\nPrecio: $" + precio;
-         
+                numPaginas + "\nRango de edades: " + rangoEdades +  "\nPrecio: $" + precio;
+        
+        if(oferta!=null){
+            info+= "\nPeriodo de oferta asociado: " + oferta.getFechaFinal() + "-" + oferta.getFechaFinal() +
+                    " - " + oferta.getPorcentajeDescuento() + "% de descuento";
+        }
+        
         if(bestSeller){
              info += "\nLibro BestSeller";
         }        

@@ -529,39 +529,39 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         try{
-        ArrayList conexion = new ArrayList(2);
-        ArrayList respuesta = new ArrayList(3);
-        conexion.add("consultarInfoLibros");        
-        conexion.add(this.jComboBox8.getSelectedItem().toString().split(";")[1]);
-        respuesta = this.miControl.conectar(conexion);      
-       this.jTextArea2.setText((String)respuesta.get(0));
-       this.jLabel2.setIcon((ImageIcon)respuesta.get(1));
-       switch((String)respuesta.get(2)){
-           case "1":
-               this.star1.setVisible(true);
-               break;
-           case "2":
-               this.star1.setVisible(true);
-               this.star2.setVisible(true);
-               break;
-           case "3":
-               this.star1.setVisible(true);
-               this.star2.setVisible(true);
-               this.star3.setVisible(true);
-               break;
-           case "4":
-               this.star1.setVisible(true);
-               this.star2.setVisible(true);
-               this.star3.setVisible(true);
-               this.star4.setVisible(true);
-               break;
-           case "5":
-               this.star1.setVisible(true);
-               this.star2.setVisible(true);
-               this.star3.setVisible(true);
-               this.star4.setVisible(true);
-               this.star5.setVisible(true);
-       }
+            ArrayList conexion = new ArrayList(2);
+            ArrayList respuesta = new ArrayList(3);
+            conexion.add("consultarInfoLibros");        
+            conexion.add(this.jComboBox8.getSelectedItem().toString().split(";")[1]);
+            respuesta = this.miControl.conectar(conexion);      
+           this.jTextArea2.setText((String)respuesta.get(0));
+           this.jLabel2.setIcon((ImageIcon)respuesta.get(1));
+           switch((int)respuesta.get(2)){
+               case 1:
+                   this.star1.setVisible(true);
+                   break;
+               case 2:
+                   this.star1.setVisible(true);
+                   this.star2.setVisible(true);
+                   break;
+               case 3:
+                   this.star1.setVisible(true);
+                   this.star2.setVisible(true);
+                   this.star3.setVisible(true);
+                   break;
+               case 4:
+                   this.star1.setVisible(true);
+                   this.star2.setVisible(true);
+                   this.star3.setVisible(true);
+                   this.star4.setVisible(true);
+                   break;
+               case 5:
+                   this.star1.setVisible(true);
+                   this.star2.setVisible(true);
+                   this.star3.setVisible(true);
+                   this.star4.setVisible(true);
+                   this.star5.setVisible(true);
+           }
         }catch(ArrayIndexOutOfBoundsException ex){
             JOptionPane.showMessageDialog(this, "No hay libros en la biblioteca","Error", 2);
         }

@@ -1013,9 +1013,9 @@ public class Biblioteca {
     public void setearCalificacionLibro(Libro libro){
         double calificacionGlobal = 0;
         for(int i=0; i<libro.getCalificaciones().size(); i++){
-            calificacionGlobal += (double)libro.getCalificaciones().get(i);
+            calificacionGlobal += (int)libro.getCalificaciones().get(i);
         }                
-        libro.setCalificacion(calificacionGlobal/libro.getCalificaciones().size());
+        libro.setCalificacion((int) (calificacionGlobal/libro.getCalificaciones().size()));
     }
     
     /**-----------------------------------------------------------------------**

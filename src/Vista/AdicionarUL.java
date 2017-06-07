@@ -230,7 +230,12 @@ public class AdicionarUL extends javax.swing.JInternalFrame {
             conexion.add(Integer.parseInt(this.jComboBox3.getSelectedItem().toString())); //esta se supone debe ser la edad pero es el año                     
             conexion.add(this.jTextField4.getText().trim());
             conexion.add(this.jTextField3.getText().trim());
-            conexion.add(this.jPasswordField1.getPassword().toString());
+            char[] password = jPasswordField1.getPassword();
+            String contrasenia = "";
+            for(int i=0;i<password.length;i++){
+                contrasenia += Character.toString(password[i]);
+            }
+            conexion.add(contrasenia);          
             conexion.add(Integer.parseInt(this.jTextField5.getText()));
             
             JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
@@ -243,14 +248,11 @@ public class AdicionarUL extends javax.swing.JInternalFrame {
             this.jComboBox2.setSelectedIndex(0);
             this.jComboBox3.setSelectedIndex(0);
             this.jTextField5.setText("");
-        }
-        catch(NumberFormatException e){
+        }catch(NumberFormatException e){
             JOptionPane.showInternalMessageDialog(this,"Error en la casillas de Recarga ingrese datos adecuados.","¡Advertencia!",2);
-        }
-        catch(IllegalArgumentException e){
+        }catch(IllegalArgumentException e){
             JOptionPane.showInternalMessageDialog(this,"Existen casillas vacias.", "Error", 2);
-        }
-        catch(Exception e) {
+        }catch(Exception e) {
                 JOptionPane.showMessageDialog(this, "Error.");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
