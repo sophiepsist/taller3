@@ -322,7 +322,7 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
             return paginas;
             
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Se ha generado un error en la carga del libro");
+            JOptionPane.showMessageDialog(this, "Se ha generado un error en la carga del libro", "ERROR" ,2);
         }   
         return null;
     }

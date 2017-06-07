@@ -528,9 +528,10 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        try{
         ArrayList conexion = new ArrayList(2);
         ArrayList respuesta = new ArrayList(3);
-        conexion.add("consultarInfoLibros");
+        conexion.add("consultarInfoLibros");        
         conexion.add(this.jComboBox8.getSelectedItem().toString().split(";")[1]);
         respuesta = this.miControl.conectar(conexion);      
        this.jTextArea2.setText((String)respuesta.get(0));
@@ -561,6 +562,9 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
                this.star4.setVisible(true);
                this.star5.setVisible(true);
        }
+        }catch(ArrayIndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(this, "No hay libros en la biblioteca","Error", 2);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
