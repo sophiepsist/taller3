@@ -84,7 +84,7 @@ public class ModificarUL extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Día:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jComboBox1.setEnabled(false);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,12 +94,12 @@ public class ModificarUL extends javax.swing.JInternalFrame {
 
         jLabel5.setText("Mes:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         jComboBox2.setEnabled(false);
 
         jLabel6.setText("Edad:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", " " }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5 ", "6 ", "7 ", "8 ", "9 ", "10 ", "11 ", "12 ", "13 ", "14 ", "15 ", "16 ", "17 ", "18 ", "19 ", "20 ", "21 ", "22 ", "23 ", "24 ", "25 ", "26 ", "27 ", "28 ", "29 ", "30 ", "31 ", "32 ", "33 ", "34 ", "35 ", "36 ", "37 ", "38 ", "39 ", "40 ", "41 ", "42 ", "43 ", "44 ", "45 ", "46 ", "47 ", "48 ", "49 ", "50 ", "51 ", "52 ", "53 ", "54 ", "55 ", "56 ", "57 ", "58 ", "59 ", "60 ", "61 ", "62 ", "63 ", "64 ", "65 ", "66 ", "67 ", "68 ", "69 ", "70 ", "71 ", "72 ", "73 ", "74 ", "75 ", "76 ", "77 ", "78 ", "79 ", "80 ", "81 ", "82 ", "83 ", "84 ", "85 ", "86 ", "87 ", "88 ", "89 ", "90 ", "91 ", "92 ", "93 ", "94 ", "95 ", "96 ", "97 ", "98 ", "99 ", "100 " }));
         jComboBox3.setEnabled(false);
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,9 +224,9 @@ public class ModificarUL extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -301,8 +301,27 @@ public class ModificarUL extends javax.swing.JInternalFrame {
             conexion.add(Integer.parseInt(this.jComboBox3.getSelectedItem().toString())); //esta se supone debe ser la edad pero es el año                     
             conexion.add(this.jTextField4.getText().trim());
             conexion.add(this.jTextField3.getText().trim());
-            conexion.add(this.jPasswordField1.getPassword().toString());
             
+            char[] password = jPasswordField1.getPassword();
+            String contrasenia1 = "";
+            for(int i=0;i<password.length;i++){
+                contrasenia1 += Character.toString(password[i]);
+            }
+            char[] password2 = jPasswordField2.getPassword();
+            String contrasenia2 = "";
+            for(int i=0;i<password2.length;i++){
+                contrasenia2 += Character.toString(password[i]);
+            }
+            char[] password3 = jPasswordField3.getPassword();
+            String contrasenia3 = "";
+            for(int i=0;i<password3.length;i++){
+                contrasenia3 += Character.toString(password[i]);
+            }            
+            if(!contrasenia1.isEmpty() && contrasenia2.equals(contrasenia3)){
+                    conexion.add(contrasenia1);
+                    conexion.add(contrasenia2);
+            }
+        
             JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
         }
         catch(NumberFormatException e){
@@ -313,7 +332,7 @@ public class ModificarUL extends javax.swing.JInternalFrame {
         }
         catch(Exception e) {
                 JOptionPane.showMessageDialog(this, "Error");
-        }
+        }   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
@@ -322,36 +341,30 @@ public class ModificarUL extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        String fecha;
-        String [] fechaSplit;
-        ArrayList conexion = new ArrayList(2);
-        ArrayList respuesta = new ArrayList();
-        conexion.add("consultarInfoLibros");
-        conexion.add(this.jTextField1.getText());
-        respuesta = this.miControl.conectar(conexion);      
-        this.jTextField1.setText((String)respuesta.get(0));
-        this.jTextField2.setText((String)respuesta.get(1));
-        fecha = (String)respuesta.get(2);
-        fechaSplit = fecha.split(fecha);
-        this.jComboBox1.setSelectedItem(fechaSplit[0]);
-        this.jComboBox2.setSelectedItem(fechaSplit[1]);
-        this.jTextField4.setText((String) respuesta.get(3));
-        this.jComboBox3.setSelectedItem((String)respuesta.get(4));
-        this.jTextField3.setText((String)respuesta.get(6));
-        
-        ArrayList respuesta2 = new ArrayList();
-        respuesta2.add(this.jTextField1);    respuesta2.add(this.jTextField2);    respuesta2.add((String)this.jComboBox1.getSelectedItem());
-        respuesta2.add((String) this.jComboBox2.getSelectedItem());  respuesta2.add((int) jComboBox3.getSelectedItem());
-        respuesta2.add((String) this.jTextField3.getText());
-        if(!jPasswordField2.getPassword().equals("")){
-            respuesta2.add(this.jPasswordField1.getPassword().toString()); 
-            respuesta2.add(this.jPasswordField2.getPassword().toString());
+        if(this.jTextField4.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Por favor llene el campo de email");
         }else{
-            respuesta2.add(jPasswordField1.getPassword().toString());
-            respuesta2.add(jPasswordField1.getPassword().toString());
+            String fecha;
+            String [] fechaSplit;
+            ArrayList conexion = new ArrayList(2);
+            ArrayList respuesta = new ArrayList();
+            conexion.add("consultarUL");
+            conexion.add(this.jTextField1.getText());
+            respuesta = this.miControl.conectar(conexion);   
+             if(respuesta.size()!=1){
+                this.jTextField1.setText((String)respuesta.get(0));
+                this.jTextField2.setText((String)respuesta.get(1));
+                fecha = (String)respuesta.get(2);
+                fechaSplit = fecha.split("-");
+                this.jComboBox1.setSelectedItem(fechaSplit[0]);
+                this.jComboBox2.setSelectedItem(fechaSplit[1]);
+                this.jTextField4.setText((String) respuesta.get(3));
+                this.jComboBox3.setSelectedItem((String)respuesta.get(4));
+                this.jTextField3.setText((String)respuesta.get(6));
+            }else{
+                JOptionPane.showMessageDialog(this, respuesta.get(0));
+            }
         }
-        
-        this.miControl.conectar(respuesta2);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed

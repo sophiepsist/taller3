@@ -8,6 +8,7 @@ package Vista;
 import Controladora.Controladora;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -107,15 +108,26 @@ public class ConsultarUL extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ArrayList conexion = new ArrayList(2);
-        ArrayList respuesta = new ArrayList();
-        conexion.add("consultarInfoLibros");
-        conexion.add(this.jTextField1.getText());
-        respuesta = this.miControl.conectar(conexion);      
-       this.jTextArea1.setText((String)respuesta.get(0) + "\n" + (String)respuesta.get(1) +
-                               (String)respuesta.get(2) + "\n" + (String)respuesta.get(3) +
-                               (String)respuesta.get(4) + "\n" + (int)respuesta.get(5) +
-                               (int)respuesta.get(6));
+        try{
+            ArrayList conexion = new ArrayList(2);
+            ArrayList respuesta = new ArrayList();
+            conexion.add("consultarInfoLibros");
+            conexion.add(this.jTextField1.getText());
+            respuesta = this.miControl.conectar(conexion);      
+            this.jTextArea1.setText((String)respuesta.get(0) + "\n" + (String)respuesta.get(1) +
+                                   (String)respuesta.get(2) + "\n" + (String)respuesta.get(3) +
+                                   (String)respuesta.get(4) + "\n" + (int)respuesta.get(5) +
+                                   (int)respuesta.get(6));
+            
+        }catch(NumberFormatException e){
+            JOptionPane.showInternalMessageDialog(this,"Error en la casillas de Recarga ingrese datos adecuados.","¡Advertencia!",2);
+        }
+        catch(IllegalArgumentException e){
+            JOptionPane.showInternalMessageDialog(this,"Existen casillas vacias.", "Error", 2);
+        }
+        catch(Exception e) {
+                JOptionPane.showMessageDialog(this, "Error.");
+        }     
        
     }//GEN-LAST:event_jButton1ActionPerformed
 
