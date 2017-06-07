@@ -291,9 +291,9 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        ConsultarUL objConsultarUl = new ConsultarUL(miControl);
-        this.jDesktopPane1.add(objConsultarUl);
-        objConsultarUl.show(); 
+        ModificarUL objModificarUl = new ModificarUL(miControl);
+        this.jDesktopPane1.add(objModificarUl);
+        objModificarUl.show(); 
     }//GEN-LAST:event_jButton7ActionPerformed
 
 

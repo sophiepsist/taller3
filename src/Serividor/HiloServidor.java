@@ -187,6 +187,9 @@ public class HiloServidor extends Thread{
                     case "consultarLibrosComprados":
                         enviarDatos(this.UL.consultarLibrosComprados((String)mensaje.get(1)));
                         break;
+                    case "crearPeriodosOferta":
+                        
+                        
                 }
 
             }catch(ClassNotFoundException e){

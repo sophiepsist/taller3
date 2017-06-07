@@ -6,6 +6,12 @@
 package Vista;
 
 import Controladora.Controladora;
+import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 
 /**
  *
@@ -48,6 +54,9 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jComboBox7 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -94,12 +103,29 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel10.setText("Libros disponibles:");
+
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +147,7 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox7, 0, 106, Short.MAX_VALUE))))
+                                .addComponent(jComboBox7, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel1)
@@ -143,10 +169,6 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel2)
                                 .addGap(27, 27, 27)))))
                 .addGap(32, 32, 32))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,9 +207,16 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addGap(29, 29, 29)
                 .addComponent(jButton1)
-                .addGap(32, 32, 32))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,10 +241,53 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+//        ArrayList conexion = new ArrayList(14);       
+//            conexion.add("agregarLibros");
+//            conexion.add( this.jComboBox1.getSelectedItem().toString());            
+//            conexion.add(this.fileToArray(nombreArchivo));
+//            ImageIcon img = new ImageIcon(caratula.toString());            
+//            conexion.add(img);  
+//            conexion.add(this.jTextField3.getText().trim());                        
+//            
+//            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
+//            
+//            this.jTextField1.setText("");
+//            this.jTextField2.setText("");
+//            this.jTextField3.setText("");
+//            this.jTextField4.setText("");
+//            this.jComboBox2.setSelectedIndex(0);
+//            this.jTextField6.setText("");
+//            this.jTextField7.setText("");
+//            this.jTextArea1.setText("");
+//            this.jTextField9.setText("");
+//            this.jRadioButton1.setSelected(false);
+//        }
+//        catch(NumberFormatException e){
+//            JOptionPane.showInternalMessageDialog(this,"Error en las casillas de precio o número de páginas ingrese datos adecuados.","¡Advertencia!",2);
+//        }
+//        catch(IllegalArgumentException e){
+//            JOptionPane.showInternalMessageDialog(this,"Existen casillas vacias.", "Error", 2);
+//        }
+//        catch(Exception e) {
+//                JOptionPane.showMessageDialog(this, "Error.");
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
+    private void refrescarLibrosSinOferta(){
+        DefaultListModel model = new DefaultListModel();
+        ArrayList datos = new ArrayList(1);
+        int cont = 1;
+        datos.add("refrescarLibrosSinOferta");
+        System.out.println(datos.get(0));
+        ArrayList librosSinOfertas = this.miControl.conectar(datos);
+            for(Object libroSinOferta : librosSinOfertas){
+                model.add(cont,libroSinOferta.toString());
+                cont ++;
+            }
+        this.jList1.setModel(model);
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -226,6 +298,7 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -234,6 +307,8 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
