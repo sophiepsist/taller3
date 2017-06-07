@@ -25,6 +25,7 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
     public AdicionarOfertas(Controladora c) {
         initComponents();
         this.miControl =c;
+        this.refrescarLibrosSinOferta();
     }
 
     /**

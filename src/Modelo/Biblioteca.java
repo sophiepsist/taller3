@@ -417,7 +417,7 @@ public class Biblioteca {
             case "Romance":
                 librosRomance.remove(isbn);
                 break;
-            case "Juveniles":
+            case "Juvenil":
                 librosJuveniles.remove(isbn);
                 break;
             case "Filosofía":
@@ -518,7 +518,7 @@ public class Biblioteca {
                 case "Romance":
                     librosRomance.put(libro.getIsbn(), libro);
                     break;
-                case "Juveniles":
+                case "Juvenil":
                     librosJuveniles.put(libro.getIsbn(), libro);
                     break;
                 case "Filosofía":
