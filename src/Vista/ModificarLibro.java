@@ -91,12 +91,18 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Periodo de oferta asociado:");
 
+        jTextField3.setEnabled(false);
+
         jLabel9.setText("Resumen:");
 
+        jTextField4.setEnabled(false);
+
         jRadioButton1.setText("BestSeller");
+        jRadioButton1.setEnabled(false);
 
         jLabel1.setText("ISBN:");
 
+        jTextField6.setEnabled(false);
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -105,17 +111,21 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Título:");
 
+        jTextField7.setEnabled(false);
+
         jLabel3.setText("Autor:");
 
         jTextArea1.setColumns(20);
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
         jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextArea1.setEnabled(false);
         jScrollPane1.setViewportView(jTextArea1);
 
         jLabel4.setText("Categoría:");
 
         jButton1.setText("Modificar");
+        jButton1.setEnabled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -137,6 +147,7 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
         jLabel6.setText("Número de páginas:");
 
         jButton2.setText("Seleccionar...");
+        jButton2.setEnabled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -145,7 +156,10 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Rango de edades:");
 
+        jTextField2.setEnabled(false);
+
         jButton3.setText("Seleccionar...");
+        jButton3.setEnabled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -154,6 +168,8 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
 
         jLabel12.setText("Precio:");
 
+        jTextField9.setEnabled(false);
+
         jButton4.setText("Cargar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,7 +177,10 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBox1.setEnabled(false);
+
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "1", "2", "3", "4", "5" }));
+        jComboBox2.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -439,6 +458,17 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, respuesta.get(0));
             }        
         }
+         this.jTextField2.setEnabled(true);
+         this.jTextField3.setEnabled(true);
+         this.jTextField4.setEnabled(true);
+         this.jTextField6.setEnabled(true);
+         this.jTextField9.setEnabled(true);
+         this.jTextArea1.setEnabled(true);
+         this.jComboBox1.setEnabled(true);
+         this.jComboBox2.setEnabled(true);
+         this.jButton3.setEnabled(true);
+         this.jButton2.setEnabled(true);
+         this.jButton4.setEnabled(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
