@@ -530,7 +530,7 @@ public class ConsultarLibro extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         ArrayList conexion = new ArrayList(2);
         ArrayList respuesta = new ArrayList(3);
-        conexion.add("consultarInfoLibros");
+        conexion.add("consultarInfoLibros");        
         conexion.add(this.jComboBox8.getSelectedItem().toString().split(";")[1]);
         respuesta = this.miControl.conectar(conexion);      
        this.jTextArea2.setText((String)respuesta.get(0));
