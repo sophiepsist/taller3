@@ -293,7 +293,7 @@ public class ModificarUL extends javax.swing.JInternalFrame {
         try{
             ArrayList conexion = new ArrayList(10);
             conexion.add("modificarUL");
-            conexion.add(this.jTextField4.getText());
+            conexion.add(this.jTextField4.getText().trim());
             conexion.add(this.jTextField1.getText());
             conexion.add(this.jTextField2.getText());            
             conexion.add(this.jComboBox1.getSelectedItem().toString());
@@ -376,7 +376,8 @@ public class ModificarUL extends javax.swing.JInternalFrame {
                 this.jButton1.setEnabled(true);
                 this.jPasswordField1.setEnabled(true);
                 this.jPasswordField2.setEnabled(true);
-                this.jPasswordField3.setEnabled(true);                
+                this.jPasswordField3.setEnabled(true);    
+                this.jTextField4.setEnabled(false);
                 
             }else{
                 JOptionPane.showMessageDialog(this, respuesta.get(0));
