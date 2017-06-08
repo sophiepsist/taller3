@@ -188,8 +188,11 @@ public class HiloServidor extends Thread{
                         enviarDatos(this.UL.consultarLibrosComprados((String)mensaje.get(1)));
                         break;
                     case "crearPeriodosOferta":
-                        
-                        
+                        ArrayList mensajeCrearPeriodoOferta = new ArrayList(1);
+                        biblioteca.crearPeriodosOferta((String)mensaje.get(1),(String)mensaje.get(2),(int)mensaje.get(3),(ArrayList)mensaje.get(4));
+                        mensajeCrearPeriodoOferta.add("Periodo de oferta creado");
+                        enviarDatos(mensajeCrearPeriodoOferta);
+                        break;
                 }
 
             }catch(ClassNotFoundException e){
