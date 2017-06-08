@@ -58,6 +58,7 @@ public class HiloServidor extends Thread{
                 //Lee El objeto que ha sido enviado por el cliente
                 mensaje = (ArrayList) entrada.readObject();
                 mensaje2 = (String) mensaje.get(0);
+                System.out.println(mensaje2);
                 switch (mensaje2)
                 {
                     case "agregarLibros":                        
@@ -131,22 +132,26 @@ public class HiloServidor extends Thread{
                          break;
                     case "Salir":
                         this.cerrarConexion();
+                        break;
                     case "agregarUAL":
                         ArrayList mensajeAgUAL = new ArrayList(1);
                         biblioteca.agregarUAL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5), (String)mensaje.get(6), (boolean)mensaje.get(7));
                         mensajeAgUAL.add("Usuario Administrador Agregado Correctamente");
                         enviarDatos(mensajeAgUAL);
+                        break;
                     case "agregarUL":    
                         ArrayList mensajeAgUL = new ArrayList(1);
                         biblioteca.agregarUL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (int)mensaje.get(5), (String)mensaje.get(6), (String)mensaje.get(7), (String)mensaje.get(8), (int)mensaje.get(9));
                         mensajeAgUL.add("Usuario Lector Agregado Correctamente");
                         enviarDatos(mensajeAgUL);
+                        break;
                     case "modificarUL":    
                         ArrayList mensajeModUL = new ArrayList(1);
                         biblioteca.modificarUL((String)mensaje.get(1),(String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5),
                                                 (int) mensaje.get(6), (String)mensaje.get(7), (String)mensaje.get(8), (String)mensaje.get(9));
                         mensajeModUL.add("Usuario Lector Modificado Correctamente");
                         enviarDatos(mensajeModUL);
+                        break;
                     case "loginUsuarioAdministrador":
                         ArrayList mensajeLoginUl = new ArrayList(1);
                         this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
@@ -172,6 +177,7 @@ public class HiloServidor extends Thread{
                         break;
                     case "recargar":
                         biblioteca.recargar(UL.getEmail(),(int) mensaje.get(1));
+                        break;
                     case "consultarUL":
                         enviarDatos(biblioteca.consultarUL((String) mensaje.get(1)));
                         break;
