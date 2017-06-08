@@ -97,7 +97,12 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Porcentaje de descuento:");
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10 ", "11 ", "12 ", "13 ", "14 ", "15 ", "16 ", "17 ", "18 ", "19 ", "20 ", "21 ", "22 ", "23 ", "24 ", "25 ", "26 ", "27 ", "28 ", "29 ", "30 ", "31 ", "32 ", "33 ", "34 ", "35 ", "36 ", "37 ", "38 ", "39 ", "40 ", "41 ", "42 ", "43 ", "44 ", "45 ", "46 ", "47 ", "48 ", "49 ", "50 ", "51 ", "52 ", "53 ", "54 ", "55 ", "56 ", "57 ", "58 ", "59 ", "60 ", "61 ", "62 ", "63 ", "64 ", "65 ", "66 ", "67 ", "68 ", "69 ", "70 ", "71 ", "72 ", "73 ", "74 ", "75 ", "76 ", "78 ", "79 ", "80 ", "81 ", "82 ", "83 ", "84 ", "85 ", "86 ", "87 ", "88 ", "89 ", "90 ", "91 ", "92 ", "93 ", "94 ", "95 ", "96 ", "97 ", "98 ", "99 ", "100" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
+        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox7ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Adicionar Periodo de Oferta");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,11 +113,6 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Libros disponibles:");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -245,27 +245,38 @@ public class AdicionarOfertas extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ArrayList conexion = new ArrayList(5);       
-        conexion.add("agregarLibros");
+        conexion.add("CrearPeriodosOferta");
         String fechaInicial = this.jComboBox1.getSelectedItem().toString() + "/" + this.jComboBox2.getSelectedItem().toString() + "/" +
                               this.jComboBox3.getSelectedItem().toString();
         String fechaFinal = this.jComboBox6.getSelectedItem().toString() + "/" + this.jComboBox5.getSelectedItem().toString() + "/" +
                             this.jComboBox4.getSelectedItem().toString();
         conexion.add(fechaInicial);            
         conexion.add(fechaFinal);            
-        conexion.add(this.jComboBox7.getSelectedItem().toString());            
-
-        ArrayList libros = new ArrayList();
-        
-        Iterator iter = (this.jList1.getSelectedValuesList()).iterator();
-        while (iter.hasNext()){
-            jList1.add((Component) iter.next());
+        conexion.add(Integer.parseInt(this.jComboBox7.getSelectedItem().toString().trim()));            
+        ArrayList isbns = new ArrayList(this.jList1.getSelectedValuesList().size());
+        Iterator iterator = this.jList1.getSelectedValuesList().iterator();
+        String items;
+        String[] aux = null;
+        for(int i = 0; i <=this.jList1.getSelectedValuesList().size(); i++){
+            if(iterator.hasNext()){
+                items = (String) iterator.next();
+                aux = items.split(";");
+                isbns.add((String) aux[1]);
+            }
+        conexion.add(isbns);    
+        this.miControl.conectar(conexion);
         }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox7ActionPerformed
 
     private void refrescarLibrosSinOferta(){
         DefaultListModel model = new DefaultListModel();
         ArrayList datos = new ArrayList(1);
-        int cont = 1;
+        int cont = 0;
         datos.add("refrescarLibrosSinOferta");
         System.out.println(datos.get(0));
         ArrayList librosSinOfertas = this.miControl.conectar(datos);
