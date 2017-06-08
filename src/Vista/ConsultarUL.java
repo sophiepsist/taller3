@@ -115,7 +115,7 @@ public class ConsultarUL extends javax.swing.JInternalFrame {
                 ArrayList conexion = new ArrayList(2);
                 ArrayList respuesta = new ArrayList();
                 conexion.add("consultarUL");
-                conexion.add(this.jTextField1.getText());
+                conexion.add(this.jTextField1.getText().trim());
                 respuesta = this.miControl.conectar(conexion);   
                 if(respuesta.size()!=1){
                     this.jTextArea1.setText("Nombre: " + (String)respuesta.get(0) + 

@@ -306,18 +306,20 @@ public class ModificarUL extends javax.swing.JInternalFrame {
             for(int i=0;i<password.length;i++){
                 contrasenia1 += Character.toString(password[i]);
             }
+            
             char[] password2 = jPasswordField2.getPassword();
             String contrasenia2 = "";
             for(int i=0;i<password2.length;i++){
-                contrasenia2 += Character.toString(password[i]);
+                contrasenia2 += Character.toString(password2[i]);
             }
+            
             char[] password3 = jPasswordField3.getPassword();
             String contrasenia3 = "";
             for(int i=0;i<password3.length;i++){
-                contrasenia3 += Character.toString(password[i]);
+                contrasenia3 += Character.toString(password3[i]);
             }           
             if(contrasenia1.length() != 0){
-                if(contrasenia2 == contrasenia3 && contrasenia2.length() != 0 && contrasenia3.length() != 0){
+                if(contrasenia2.equals(contrasenia3) && contrasenia2.length() != 0 && contrasenia3.length() != 0){
                         conexion.add(contrasenia1);
                         conexion.add(contrasenia2);                        
                         JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
