@@ -144,7 +144,7 @@ public class HiloServidor extends Thread{
                     case "modificarUL":    
                         ArrayList mensajeModUL = new ArrayList(1);
                         biblioteca.modificarUL((String)mensaje.get(1),(String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5),
-                                                Integer.parseInt((String) mensaje.get(6)), (String)mensaje.get(7), (String)mensaje.get(8), (String)mensaje.get(9));
+                                                (int) mensaje.get(6), (String)mensaje.get(7), (String)mensaje.get(8), (String)mensaje.get(9));
                         mensajeModUL.add("Usuario Lector Modificado Correctamente");
                         enviarDatos(mensajeModUL);
                     case "loginUsuarioAdministrador":
@@ -173,10 +173,10 @@ public class HiloServidor extends Thread{
                     case "recargar":
                         biblioteca.recargar(UL.getEmail(),(int) mensaje.get(1));
                     case "consultarUL":
-                        biblioteca.consultarUL((String) mensaje.get(1));
+                        enviarDatos(biblioteca.consultarUL((String) mensaje.get(1)));
                         break;
                     case "consultarUAL":
-                        biblioteca.consultarUAL((String) mensaje.get(1));
+                        enviarDatos(biblioteca.consultarUAL((String) mensaje.get(1)));
                         break;
                     case "getPaginas":
                         enviarDatos(biblioteca.getArrayPaginasLibro((String)mensaje.get(1)));

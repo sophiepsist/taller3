@@ -663,14 +663,15 @@ public class Biblioteca {
     }
     
     public ArrayList consultarUL(String email) throws MyException{
-        ArrayList infoUsuario = new ArrayList(6);
+        ArrayList infoUsuario = new ArrayList();
         if(clientes.containsKey(email)){
             UsuarioLector aux;
             aux = (UsuarioLector) clientes.get(email);
             
             infoUsuario.add(aux.getNombreCompleto());            
             infoUsuario.add(aux.getCelular());
-            infoUsuario.add(aux.getDiaNacimiento()+"-"+(aux.getMesNacimiento()));           
+            infoUsuario.add(aux.getDiaNacimiento());
+            infoUsuario.add(aux.getMesNacimiento());           
             infoUsuario.add(aux.getEmail());
             infoUsuario.add(aux.getEdad());
             infoUsuario.add(aux.getSaldo());
@@ -696,8 +697,7 @@ public class Biblioteca {
         if(aux.getContrasenia().equals(contraseniaAnterior)){
             aux.setContrasenia(contraseniaNueva);
         }else{
-            throw new MyException("La contraseña Anterior no coincide");
-            
+            throw new MyException("La contraseña anterior no coincide");            
         }
                 
     }

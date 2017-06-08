@@ -19,8 +19,8 @@ public class AdicionarUL extends javax.swing.JInternalFrame {
      * Creates new form AdicionarUL
      */
     public AdicionarUL(Controladora c) {
-        this.miControl = c;
         initComponents();
+        this.miControl = c;        
     }
 
     /**
@@ -78,7 +78,7 @@ public class AdicionarUL extends javax.swing.JInternalFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5 ", "6 ", "7 ", "8 ", "9 ", "10 ", "11 ", "12 ", "13 ", "14 ", "15 ", "16 ", "17 ", "18 ", "19 ", "20 ", "21 ", "22 ", "23 ", "24 ", "25 ", "26 ", "27 ", "28 ", "29 ", "30 ", "31 ", "32 ", "33 ", "34 ", "35 ", "36 ", "37 ", "38 ", "39 ", "40 ", "41 ", "42 ", "43 ", "44 ", "45 ", "46 ", "47 ", "48 ", "49 ", "50 ", "51 ", "52 ", "53 ", "54 ", "55 ", "56 ", "57 ", "58 ", "59 ", "60 ", "61 ", "62 ", "63 ", "64 ", "65 ", "66 ", "67 ", "68 ", "69 ", "70 ", "71 ", "72 ", "73 ", "74 ", "75 ", "76 ", "77 ", "78 ", "79 ", "80 ", "81 ", "82 ", "83 ", "84 ", "85 ", "86 ", "87 ", "88 ", "89 ", "90 ", "91 ", "92 ", "93 ", "94 ", "95 ", "96 ", "97 ", "98 ", "99 ", "100 " }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
 
         jLabel8.setText("Recarga Inicial:");
 
@@ -220,17 +220,17 @@ public class AdicionarUL extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
-            ArrayList conexion = new ArrayList(10);     
+            ArrayList conexion = new ArrayList();     
                        
             conexion.add("agregarUL");
-            conexion.add(this.jTextField1.getText());
-            conexion.add(this.jTextField2.getText());
-            conexion.add(this.jComboBox1.getSelectedItem().toString());
-            conexion.add(this.jComboBox2.getSelectedItem().toString());
-            conexion.add(Integer.parseInt(this.jComboBox3.getSelectedItem().toString())); //esta se supone debe ser la edad pero es el año                     
+            conexion.add(this.jTextField1.getText().trim());
+            conexion.add(this.jTextField2.getText().trim());
+            conexion.add(this.jComboBox1.getSelectedItem().toString().trim());
+            conexion.add(this.jComboBox2.getSelectedItem().toString().trim());
+            conexion.add(Integer.parseInt(this.jComboBox3.getSelectedItem().toString().trim()));                      
             conexion.add(this.jTextField4.getText().trim());
             conexion.add(this.jTextField3.getText().trim());
-            char[] password = jPasswordField1.getPassword();
+            char[] password = this.jPasswordField1.getPassword();
             String contrasenia = "";
             for(int i=0;i<password.length;i++){
                 contrasenia += Character.toString(password[i]);
@@ -248,12 +248,13 @@ public class AdicionarUL extends javax.swing.JInternalFrame {
             this.jComboBox2.setSelectedIndex(0);
             this.jComboBox3.setSelectedIndex(0);
             this.jTextField5.setText("");
+            this.jPasswordField1.setText("");
         }catch(NumberFormatException e){
             JOptionPane.showInternalMessageDialog(this,"Error en la casillas de Recarga ingrese datos adecuados.","¡Advertencia!",2);
         }catch(IllegalArgumentException e){
             JOptionPane.showInternalMessageDialog(this,"Existen casillas vacias.", "Error", 2);
         }catch(Exception e) {
-                JOptionPane.showMessageDialog(this, "Error.");
+            JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

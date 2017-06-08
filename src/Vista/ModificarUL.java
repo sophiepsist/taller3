@@ -99,7 +99,7 @@ public class ModificarUL extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Edad:");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5 ", "6 ", "7 ", "8 ", "9 ", "10 ", "11 ", "12 ", "13 ", "14 ", "15 ", "16 ", "17 ", "18 ", "19 ", "20 ", "21 ", "22 ", "23 ", "24 ", "25 ", "26 ", "27 ", "28 ", "29 ", "30 ", "31 ", "32 ", "33 ", "34 ", "35 ", "36 ", "37 ", "38 ", "39 ", "40 ", "41 ", "42 ", "43 ", "44 ", "45 ", "46 ", "47 ", "48 ", "49 ", "50 ", "51 ", "52 ", "53 ", "54 ", "55 ", "56 ", "57 ", "58 ", "59 ", "60 ", "61 ", "62 ", "63 ", "64 ", "65 ", "66 ", "67 ", "68 ", "69 ", "70 ", "71 ", "72 ", "73 ", "74 ", "75 ", "76 ", "77 ", "78 ", "79 ", "80 ", "81 ", "82 ", "83 ", "84 ", "85 ", "86 ", "87 ", "88 ", "89 ", "90 ", "91 ", "92 ", "93 ", "94 ", "95 ", "96 ", "97 ", "98 ", "99 ", "100 " }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100" }));
         jComboBox3.setEnabled(false);
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,13 +169,6 @@ public class ModificarUL extends javax.swing.JInternalFrame {
                         .addGap(12, 12, 12))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(35, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
@@ -216,15 +209,21 @@ public class ModificarUL extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -264,7 +263,7 @@ public class ModificarUL extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(jPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(21, 21, 21))
         );
@@ -294,14 +293,14 @@ public class ModificarUL extends javax.swing.JInternalFrame {
         try{
             ArrayList conexion = new ArrayList(10);
             conexion.add("modificarUL");
+            conexion.add(this.jTextField4.getText());
             conexion.add(this.jTextField1.getText());
-            conexion.add(this.jTextField2.getText());
+            conexion.add(this.jTextField2.getText());            
             conexion.add(this.jComboBox1.getSelectedItem().toString());
             conexion.add(this.jComboBox2.getSelectedItem().toString());
             conexion.add(Integer.parseInt(this.jComboBox3.getSelectedItem().toString())); //esta se supone debe ser la edad pero es el año                     
-            conexion.add(this.jTextField4.getText().trim());
             conexion.add(this.jTextField3.getText().trim());
-            
+                      
             char[] password = jPasswordField1.getPassword();
             String contrasenia1 = "";
             for(int i=0;i<password.length;i++){
@@ -316,13 +315,28 @@ public class ModificarUL extends javax.swing.JInternalFrame {
             String contrasenia3 = "";
             for(int i=0;i<password3.length;i++){
                 contrasenia3 += Character.toString(password[i]);
-            }            
-            if(!contrasenia1.isEmpty() && contrasenia2.equals(contrasenia3)){
-                    conexion.add(contrasenia1);
-                    conexion.add(contrasenia2);
+            }           
+            if(contrasenia1.length() != 0){
+                if(contrasenia2 == contrasenia3 && contrasenia2.length() != 0 && contrasenia3.length() != 0){
+                        conexion.add(contrasenia1);
+                        conexion.add(contrasenia2);                        
+                        JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
+                }else{
+                    if(contrasenia2.length() == 0 && contrasenia3.length() == 0){
+                        conexion.add(contrasenia1);
+                        conexion.add(contrasenia1);                    
+                        JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
+                    }else{
+                        if(!contrasenia2.equals(contrasenia3)){
+                            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden" , "Advertencia", 3);
+                        }
+                    }
+                }   
             }
-        
-            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion));
+            else{
+                JOptionPane.showMessageDialog(this, "Por favor ingrese su contraseña" , "Advertencia", 2);
+            }
+
         }
         catch(NumberFormatException e){
             JOptionPane.showInternalMessageDialog(this,"Error en las casillas de precio o número de páginas ingrese datos adecuados.","¡Advertencia!",2);
@@ -332,35 +346,36 @@ public class ModificarUL extends javax.swing.JInternalFrame {
         }
         catch(Exception e) {
                 JOptionPane.showMessageDialog(this, "Error");
+                e.printStackTrace();
         }   
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if(this.jTextField4.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Por favor llene el campo de email");
         }else{
-            String fecha;
-            String [] fechaSplit;
             ArrayList conexion = new ArrayList(2);
             ArrayList respuesta = new ArrayList();
             conexion.add("consultarUL");
-            conexion.add(this.jTextField1.getText());
+            conexion.add(this.jTextField4.getText());
             respuesta = this.miControl.conectar(conexion);   
              if(respuesta.size()!=1){
                 this.jTextField1.setText((String)respuesta.get(0));
-                this.jTextField2.setText((String)respuesta.get(1));
-                fecha = (String)respuesta.get(2);
-                fechaSplit = fecha.split("-");
-                this.jComboBox1.setSelectedItem(fechaSplit[0]);
-                this.jComboBox2.setSelectedItem(fechaSplit[1]);
-                this.jTextField4.setText((String) respuesta.get(3));
-                this.jComboBox3.setSelectedItem((String)respuesta.get(4));
-                this.jTextField3.setText((String)respuesta.get(6));
+                this.jTextField2.setText((String)respuesta.get(1));                
+                this.jComboBox1.setSelectedItem((String)respuesta.get(2));
+                this.jComboBox2.setSelectedItem((String)respuesta.get(3));        
+                this.jComboBox3.setSelectedItem(Integer.toString((int)respuesta.get(5)));
+                this.jTextField3.setText((String)respuesta.get(7));
+                
+                this.jTextField1.setEnabled(true);
+                this.jTextField2.setEnabled(true);
+                this.jTextField3.setEnabled(true);
+                this.jButton1.setEnabled(true);
+                this.jPasswordField1.setEnabled(true);
+                this.jPasswordField2.setEnabled(true);
+                this.jPasswordField3.setEnabled(true);                
+                
             }else{
                 JOptionPane.showMessageDialog(this, respuesta.get(0));
             }
@@ -390,6 +405,10 @@ public class ModificarUL extends javax.swing.JInternalFrame {
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

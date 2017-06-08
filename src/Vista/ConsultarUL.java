@@ -109,24 +109,34 @@ public class ConsultarUL extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try{
-            ArrayList conexion = new ArrayList(2);
-            ArrayList respuesta = new ArrayList();
-            conexion.add("consultarInfoLibros");
-            conexion.add(this.jTextField1.getText());
-            respuesta = this.miControl.conectar(conexion);      
-            this.jTextArea1.setText((String)respuesta.get(0) + "\n" + (String)respuesta.get(1) +
-                                   (String)respuesta.get(2) + "\n" + (String)respuesta.get(3) +
-                                   (String)respuesta.get(4) + "\n" + (int)respuesta.get(5) +
-                                   (int)respuesta.get(6));
+            if(this.jTextField1.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Por favor llene el campo E-mail");
+            }else{
+                ArrayList conexion = new ArrayList(2);
+                ArrayList respuesta = new ArrayList();
+                conexion.add("consultarUL");
+                conexion.add(this.jTextField1.getText());
+                respuesta = this.miControl.conectar(conexion);   
+                if(respuesta.size()!=1){
+                    this.jTextArea1.setText("Nombre: " + (String)respuesta.get(0) + 
+                                        "\nUsuario: " + (String)respuesta.get(7) +
+                                        "\nE-mail: " + (String)respuesta.get(4) +
+                                        "\nCelular: " + (String)respuesta.get(1) +        
+                                        "\nFecha de nacimiento:\n   Día: " + (String)respuesta.get(2) +
+                                        "\n   Mes: " + (String)respuesta.get(3) +
+                                        "\nEdad: " + (int)respuesta.get(5) +
+                                        "\nSaldo: " + (int)respuesta.get(6));
+                }else{
+                    JOptionPane.showMessageDialog(this, respuesta.get(0));
+                }                
+            }
             
-        }catch(NumberFormatException e){
-            JOptionPane.showInternalMessageDialog(this,"Error en la casillas de Recarga ingrese datos adecuados.","¡Advertencia!",2);
-        }
-        catch(IllegalArgumentException e){
+        }catch(IllegalArgumentException e){
             JOptionPane.showInternalMessageDialog(this,"Existen casillas vacias.", "Error", 2);
         }
         catch(Exception e) {
-                JOptionPane.showMessageDialog(this, "Error.");
+            e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error", "Error" , 2);
         }     
        
     }//GEN-LAST:event_jButton1ActionPerformed
