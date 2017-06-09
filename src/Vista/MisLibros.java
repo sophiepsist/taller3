@@ -19,8 +19,8 @@ public class MisLibros extends javax.swing.JInternalFrame {
      * Creates new form MisLibros
      */
     public MisLibros(Controladora c) {
-        this.miControl = c;        
         initComponents();
+        this.miControl = c;
         this.refrescarLibrosComprados();
     }
     

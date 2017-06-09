@@ -452,12 +452,39 @@ public class LibrosCategoria extends javax.swing.JInternalFrame {
     
     public void mostrarConsultarCategoria(String isbn){
         ArrayList conexion = new ArrayList(2);
-        ArrayList respuesta = new ArrayList(2);
+        ArrayList respuesta = new ArrayList(3);
         conexion.add("consultarInfoLibros");
         conexion.add(isbn);
         
         respuesta = this.miControl.conectar(conexion);
         this.jLabel1.setIcon((ImageIcon)respuesta.get(1));
+        
+        switch((int)respuesta.get(2)){
+               case 1:
+                   this.star1.setVisible(true);
+                   break;
+               case 2:
+                   this.star1.setVisible(true);
+                   this.star2.setVisible(true);
+                   break;
+               case 3:
+                   this.star1.setVisible(true);
+                   this.star2.setVisible(true);
+                   this.star3.setVisible(true);
+                   break;
+               case 4:
+                   this.star1.setVisible(true);
+                   this.star2.setVisible(true);
+                   this.star3.setVisible(true);
+                   this.star4.setVisible(true);
+                   break;
+               case 5:
+                   this.star1.setVisible(true);
+                   this.star2.setVisible(true);
+                   this.star3.setVisible(true);
+                   this.star4.setVisible(true);
+                   this.star5.setVisible(true);
+           }
     }
     
     

@@ -4,18 +4,19 @@
  * and open the template in the editor.
  */
 package Vista;
-
+import Controladora.Controladora;
 /**
  *
  * @author invitado
  */
-public class MISaldo extends javax.swing.JInternalFrame {
-
+public class MiSaldo extends javax.swing.JInternalFrame {
+    private Controladora miControl;
     /**
      * Creates new form MISaldo
      */
-    public MISaldo() {
+    public MiSaldo(Controladora c) {
         initComponents();
+        this.miControl = c;
     }
 
     /**
