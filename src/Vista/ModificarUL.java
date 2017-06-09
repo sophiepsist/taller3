@@ -374,6 +374,7 @@ public class ModificarUL extends javax.swing.JInternalFrame {
                 this.jTextField2.setEnabled(true);
                 this.jTextField3.setEnabled(true);
                 this.jButton1.setEnabled(true);
+                this.jComboBox3.setEnabled(true);
                 this.jPasswordField1.setEnabled(true);
                 this.jPasswordField2.setEnabled(true);
                 this.jPasswordField3.setEnabled(true);    

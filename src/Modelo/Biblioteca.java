@@ -445,23 +445,16 @@ public class Biblioteca {
     
     public ArrayList cargarInfoLibro(String isbn) throws MyException{
         if(libros.containsKey(isbn)){
-            Libro libro = (Libro)libros.get(isbn);
-            String oferta = "No hay periodos de Oferta";
-            if(libro.getOferta()!=null){
-                Oferta of = (Oferta)libro.getOferta();
-                oferta = of.getFechaInicial() + " - " + of.getFechaFinal() + " - " + " - " + of.getPorcentajeDescuento();                
-            }
-            ArrayList datos = new ArrayList(12); 
+            Libro libro = (Libro)libros.get(isbn);//          
+            ArrayList datos = new ArrayList(); 
             datos.add(libro.getNumPaginas());
             datos.add(libro.getTitulo());
             datos.add(libro.getPrecio());
             datos.add(libro.getCategoria());
             datos.add(libro.isBestSeller());
             datos.add(libro.getRangoEdades());  
-            datos.add(libro.getIsbn());
-            datos.add(libro.getCalificacion());
-            datos.add(libro.getResumen());            
-            datos.add(oferta);
+            datos.add(libro.getIsbn());            
+            datos.add(libro.getResumen());          
             datos.add(libro.getAutor());
             datos.add(libro.getCaratula());
             return datos;
@@ -471,16 +464,13 @@ public class Biblioteca {
     }
     
     public void modificarLibro(int numPaginas, String titulo, int precio, String categoria, boolean bestSeller, String rangoEdades,
-                              String isbn, int calificacion, String resumen, String oferta, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
+                              String isbn, String resumen, ArrayList paginasArray, ImageIcon caratula, String autor) throws MyException, IOException{
         if(libros.containsKey(isbn)){
-            Libro libro = (Libro)libros.get(isbn);
-            Oferta of = (Oferta)periodosOferta.get(oferta);
+            Libro libro = (Libro)libros.get(isbn);            
             libro.setTitulo(titulo);
-            libro.setAutor(autor);                      
-            libro.setCalificacion(calificacion);
+            libro.setAutor(autor);             
             libro.setNumPaginas(numPaginas);
-            libro.setRangoEdades(rangoEdades);
-            libro.setOferta(of);
+            libro.setRangoEdades(rangoEdades);           
             libro.setBestSeller(bestSeller);
             libro.setResumen(resumen);
             libro.setPrecio(precio);
@@ -759,6 +749,11 @@ public class Biblioteca {
             Libro libro = (Libro)libros.get(librosEnOferta.get(i));
             librosOferta.put(libro.getIsbn(), libro);            
             libro.setOferta(oferta);
+            try {
+                escritura.serializarLibro(libro);
+            } catch (IOException ex) {
+                System.out.println("Error al serializar oferta de libro");
+            }
             librosSinOferta.remove(libro.getIsbn());
         }                        
     }
@@ -792,6 +787,11 @@ public class Biblioteca {
                     Libro libroEnOferta = (Libro)libroIt.next();
                     if(libroEnOferta.getOferta().getKey().equals(periodosPorEliminar.get(i))){
                         libroEnOferta.setOferta(null);
+                        try {
+                            escritura.serializarLibro(libroEnOferta);
+                        } catch (IOException ex) {
+                            System.out.println("Hoy termina un periodo de oferta que no puede ser eliminado por el hilo");
+                        }
                         librosOferta.remove(libroEnOferta.getIsbn(), libroEnOferta);
                         librosSinOferta.put(libroEnOferta.getIsbn(), libroEnOferta);
                     }

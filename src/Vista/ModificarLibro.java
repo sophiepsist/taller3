@@ -32,19 +32,9 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
     public ModificarLibro(Controladora c) {
         initComponents();
         this.fileChooser = new JFileChooser();
-        this.miControl = c;
-        this.refrescarPeriodosOferta();
+        this.miControl = c;        
     }
     
-    private void refrescarPeriodosOferta(){
-        ArrayList datos = new ArrayList(1);
-        datos.add("refrescarPeriodoDeOferta");
-        ArrayList periodosOferta = this.miControl.conectar(datos);        
-        for(Object periodoOferta : periodosOferta){
-            this.jComboBox1.addItem(periodoOferta.toString());
-        }               
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,7 +44,6 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel8 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
@@ -79,15 +68,12 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Modificar");
-
-        jLabel8.setText("Periodo de oferta asociado:");
 
         jTextField3.setEnabled(false);
 
@@ -173,8 +159,6 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
             }
         });
 
-        jComboBox1.setEnabled(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,10 +167,6 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jRadioButton1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -253,9 +233,9 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 13, Short.MAX_VALUE)
                         .addComponent(jButton1)
-                        .addContainerGap(37, Short.MAX_VALUE))
+                        .addContainerGap(39, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -279,10 +259,6 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
                             .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -295,7 +271,7 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jButton3))
-                        .addContainerGap(53, Short.MAX_VALUE))))
+                        .addContainerGap(94, Short.MAX_VALUE))))
         );
 
         pack();
@@ -366,10 +342,8 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
                 conexion.add(false);
             }            
             conexion.add(this.jTextField7.getText().trim());            
-            conexion.add(this.jTextField1.getText().trim());
-            conexion.add(0);
+            conexion.add(this.jTextField1.getText().trim());           
             conexion.add(this.jTextArea1.getText());
-            conexion.add( this.jComboBox1.getSelectedItem().toString());
             if(nombreArchivo==null){
                 ArrayList fileVacio = new ArrayList(1);
                 fileVacio.add("vacío");
@@ -415,25 +389,15 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
             
             if(respuesta.size()!=1){                
                 this.jTextField2.setText((String)respuesta.get(1));
-                this.jTextField3.setText((String)respuesta.get(10));
-                this.jTextField4.setText((String)respuesta.get(3));
-               
+                this.jTextField3.setText((String)respuesta.get(8));
+                this.jTextField4.setText((String)respuesta.get(3));               
                 this.jTextField6.setText(Integer.toString((int)respuesta.get(0)));
                 this.jTextField7.setText((String)respuesta.get(5));
-
-                for(int i=0; i<this.jComboBox1.getItemCount(); i++){
-                   if(this.jComboBox1.getItemAt(i).equals((String)respuesta.get(9))){
-                       this.jComboBox1.setSelectedItem(this.jComboBox1.getItemAt(i));
-                       break;
-                   }                
-                }
-
                 this.jTextField9.setText(Integer.toString((int)respuesta.get(2)));
-                this.jRadioButton1.setSelected((boolean)respuesta.get(4));
-                
-                this.jTextArea1.setText((String)respuesta.get(8));
+                this.jRadioButton1.setSelected((boolean)respuesta.get(4));                
+                this.jTextArea1.setText((String)respuesta.get(7));
                 this.jTextField1.setEnabled(false);
-                this.image = (ImageIcon)respuesta.get(11);
+                this.image = (ImageIcon)respuesta.get(9);
             }else{
                 JOptionPane.showMessageDialog(this, respuesta.get(0));
             }        
@@ -444,8 +408,7 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
          this.jTextField6.setEnabled(true);
          this.jTextField9.setEnabled(true);
          this.jTextField7.setEnabled(true);
-         this.jTextArea1.setEnabled(true);
-         this.jComboBox1.setEnabled(true);    
+         this.jTextArea1.setEnabled(true);        
          this.jRadioButton1.setEnabled(true);
          this.jButton3.setEnabled(true);
          this.jButton2.setEnabled(true);
@@ -463,7 +426,6 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -473,7 +435,6 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;

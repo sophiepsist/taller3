@@ -5,13 +5,14 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author invitado
  */
-public class Oferta {
+public class Oferta implements Serializable{
     private String fechaInicial;
     private String fechaFinal;
     private int porcentajeDescuento;    
