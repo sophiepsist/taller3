@@ -14,7 +14,7 @@ import java.net.Socket;
 import java.util.*;
 import Modelo.*;
 import java.time.LocalDateTime;
-//import javafx.util.converter.LocalDateTimeStringConverter;
+import javafx.util.converter.LocalDateTimeStringConverter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -34,7 +34,6 @@ public class HiloServidor extends Thread{
     private String fecha;
     private String horaInicial;
     private String horaFinal;
-    private Sesion sesion;
     public HiloServidor(Socket conexion, Biblioteca biblio)
     {
         try{
@@ -129,9 +128,6 @@ public class HiloServidor extends Thread{
                     case "consultarPeriodoOferta":
                         enviarDatos(this.biblioteca.consultarPeriodoOferta((String) mensaje.get(1)));
                          break;
-                    case "Salir":
-                        this.cerrarConexion();
-                        break;
                     case "agregarUAL":
                         ArrayList mensajeAgUAL = new ArrayList(1);
                         biblioteca.agregarUAL((String)mensaje.get(1), (String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5), (String)mensaje.get(6), (boolean)mensaje.get(7));
@@ -164,7 +160,7 @@ public class HiloServidor extends Thread{
                         mensajeLoginUl.add("todo ok");
                         enviarDatos(mensajeLoginUl);
                         LocalDateTime timeUAL = LocalDateTime.now();
-                        fecha = Integer.toString(timeUAL.getMonthValue()) + Integer.toString(timeUAL.getYear())+ Integer.toString(timeUAL.getDayOfMonth());
+                        fecha = Integer.toString(timeUAL.getDayOfMonth()) + "/" + Integer.toString(timeUAL.getMonthValue()) +"/"+ Integer.toString(timeUAL.getYear());
                         this.horaInicial = Integer.toString(timeUAL.getHour()) + ":" + Integer.toString(timeUAL.getMinute()) + ":" + Integer.toString(timeUAL.getSecond());
                         break; 
                     case "loginUsuarioLector":
@@ -173,7 +169,7 @@ public class HiloServidor extends Thread{
                         mensajeLoginUAL.add("todo ok");
                         enviarDatos(mensajeLoginUAL);
                         LocalDateTime timeUL = LocalDateTime.now();
-                        fecha = Integer.toString(timeUL.getMonthValue()) + Integer.toString(timeUL.getYear())+ Integer.toString(timeUL.getDayOfMonth());
+                        fecha = Integer.toString(timeUL.getDayOfMonth()) + "/" + Integer.toString(timeUL.getMonthValue()) +"/"+ Integer.toString(timeUL.getYear());
                         this.horaInicial = Integer.toString(timeUL.getHour()) + ":" + Integer.toString(timeUL.getMinute()) + ":" + Integer.toString(timeUL.getSecond());
                         break;
                     case "comprarlibrosUL":
@@ -211,21 +207,30 @@ public class HiloServidor extends Thread{
                 ArrayList exception = new ArrayList(1);
                 exception.add("Error asigando el tipo de variable\n" + e.toString());
                 enviarDatos(exception);
+                cerrarConexion();
+                mensaje = new ArrayList();
+                System.out.println("Cerrar Conexion dentro del switch Exception ClassNotFoundExcpetion");
             }catch (IOException e){
                 ArrayList exception = new ArrayList(1);
                 exception.add( "Error con los flujos de datos\n" +e.toString());
                 enviarDatos(exception);
+                cerrarConexion();
+                mensaje = new ArrayList();
+                System.out.println("Cerrar Conexion dentro del switch Exception IOException");
             }catch(ArrayIndexOutOfBoundsException e){
                 ArrayList exception = new ArrayList(1);
                 exception.add("Falla en el orden de envio de los datos\n" + e.toString());
                 enviarDatos(exception);
                 e.printStackTrace();
+                cerrarConexion();
+                mensaje = new ArrayList();
+                System.out.println("Cerrar Conexion dentro del switch Exception ArrayIndexOfBoundException");
             }catch (MyException e){
                 ArrayList exception = new ArrayList(1);
                 exception.add(e.toString());
                 enviarDatos(exception);
             }
-        } while (mensaje.get(0)!="Salir");
+        } while (!mensaje.isEmpty());
     }
     
     public void enviarDatos(ArrayList mensaje){
@@ -239,20 +244,29 @@ public class HiloServidor extends Thread{
         catch (IOException e)
         {
             if(UL != null){
+                System.out.println(UL.getEmail());
                 LocalDateTime time = LocalDateTime.now();
                 this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
-                this.sesion = new Sesion(horaInicial, horaFinal, fecha);
+                Sesion sesion = new Sesion(horaInicial, horaFinal, fecha);
+                System.out.println(sesion.getFecha());
+                System.out.println(sesion.getHoraInicial());
+                System.out.println(sesion.getHoraFinal());
                 UL.agregarSesion(sesion);
             }else{
                 if(UAL != null){
+                    System.out.println(UAL.getEmail());
                     LocalDateTime time = LocalDateTime.now();
                     this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
-                    this.sesion = new Sesion(horaInicial, horaFinal, fecha);
+                    Sesion sesion = new Sesion(horaInicial, horaFinal, fecha);
                     UAL.agregarSesion(sesion);
-                }else{cerrarConexion();}
+                }else{
+                    cerrarConexion();
+                    System.out.println("cerrar conexion dentro de enviar datos(Dentro del if)");
+                    }
             }
             System.out.println("\n Error al escribir el Objeto, Cliente Desconectado");
             cerrarConexion();
+            System.out.println("Cerrar Conexion dentro de enviar datos");
         }
     }    
     
@@ -273,10 +287,8 @@ public class HiloServidor extends Thread{
     @Override
     public void run ()
     {
-        while (true)
-        {
             procesarConexion();
-        }   
+            System.out.println("El estado de conexion del cliente es :"+cliente.isClosed());  
     }    
 
 }

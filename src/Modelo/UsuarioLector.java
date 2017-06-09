@@ -44,6 +44,7 @@ public class UsuarioLector implements Serializable {
         this.saldo = saldo;
         this.librosComprados = new HashMap();
         this.contLibroCumpleanios = 0;
+        this.sesionesIniciadas = new ArrayList();
     }
 
     

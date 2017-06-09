@@ -5,11 +5,13 @@
  */
 package Modelo;
 
+import java.io.Serializable;
+
 /**
  *
  * @author invitado
  */
-public class Sesion {
+public class Sesion implements Serializable{
     private String horaInicial;
     private String horaFinal;
     private String fecha;
