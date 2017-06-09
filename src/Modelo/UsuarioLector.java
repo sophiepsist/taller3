@@ -226,8 +226,8 @@ public class UsuarioLector implements Serializable {
      * Agrega una sesión al array de sesiones del usuario
      */   
     
-    public void agregarSesion(Sesion sesion){
-        sesionesIniciadas.add(sesion);
+    public void agregarSesion(Sesion sesion){       
+        sesionesIniciadas.add(sesion);        
     }
     
     /**-----------------------------------------------------------------------**

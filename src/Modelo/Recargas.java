@@ -5,6 +5,7 @@
  */
 package Modelo;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -15,7 +16,7 @@ importante	conocer:	consecutivo	único	por	recarga,	la	 fecha,	la	hora,	el
 valor
  * @author invitado
  */
-public class Recargas {
+public class Recargas implements Serializable{
     private String idRecarga;
     private String fecha;
     private String hora;
