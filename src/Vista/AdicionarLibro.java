@@ -341,8 +341,8 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
             conexion.add(this.jTextField7.getText().trim());
             conexion.add(this.jTextField1.getText().trim());
             conexion.add(0);
-            conexion.add(this.jTextArea1.getText());
-            conexion.add( this.jComboBox1.getSelectedItem().toString());            
+            conexion.add(this.jTextArea1.getText());            
+            conexion.add( this.jComboBox1.getSelectedItem().toString());                                
             conexion.add(this.fileToArray(nombreArchivo));
             ImageIcon img = new ImageIcon(caratula.toString());            
             conexion.add(img);  
@@ -384,9 +384,10 @@ public class AdicionarLibro extends javax.swing.JInternalFrame {
         datos.add("refrescarPeriodoDeOferta");
         System.out.println(datos.get(0));
         ArrayList periodosOfertas = this.miControl.conectar(datos);
+        this.jComboBox1.addItem("Ninguno");
         for(Object periodoOferta : periodosOfertas){
             this.jComboBox1.addItem(periodoOferta.toString());            
-        }        
+        }                
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
