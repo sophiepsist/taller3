@@ -259,13 +259,11 @@ public class HiloServidor extends Thread{
                     this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
                     Sesion sesion = new Sesion(horaInicial, horaFinal, fecha);
                     UAL.agregarSesion(sesion);
-                }else{
-                    cerrarConexion();
+                }else{                    
                     System.out.println("cerrar conexion dentro de enviar datos(Dentro del if)");
                     }
             }
             System.out.println("\n Error al escribir el Objeto, Cliente Desconectado");
-            cerrarConexion();
             System.out.println("Cerrar Conexion dentro de enviar datos");
         }
     }    
