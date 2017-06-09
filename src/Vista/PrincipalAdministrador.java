@@ -160,6 +160,11 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         });
 
         jButton12.setText("SESIONES");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("USUARIO ADMINISTRADOR");
 
@@ -380,11 +385,10 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         //LEIDOS POR UL
-        JFrame frame = new JFrame("E-mail");
-        String code = JOptionPane.showInputDialog(frame, "Ingrese el e-mail del UL que desea consultar", "E-mail", JOptionPane.WARNING_MESSAGE);
-        String respuesta = "'%s'";
-        code.toString();
-        System.out.printf(code.toString());
+        ArrayList conexion = new ArrayList(1);
+        conexion.add("informePorcentajeLectura");
+        ArrayList respuesta = this.miControl.conectar(conexion);
+        this.jTextArea1.setText((String)respuesta.get(0));
         
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -424,6 +428,22 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         ArrayList respuesta = this.miControl.conectar(conexion);
         this.jTextArea1.setText((String)respuesta.get(0));
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        JFrame frame = new JFrame("Sesiones");
+        String code = JOptionPane.showInputDialog(frame, "Ingrese el e-mail del UL que desea consultar", "E-mail", JOptionPane.WARNING_MESSAGE);
+        String email = code.toString();
+        
+        ArrayList conexion = new ArrayList(2);
+        conexion.add("informeSesionesUL");
+        conexion.add(email);
+        ArrayList respuesta = this.miControl.conectar(conexion);
+        this.jTextArea1.setText((String)respuesta.get(0));
+        
+        
+        
+    }//GEN-LAST:event_jButton12ActionPerformed
 
 
 

@@ -238,10 +238,17 @@ public class HiloServidor extends Thread{
                 System.out.println("Cerrar Conexion dentro del switch Exception ArrayIndexOfBoundException");
             }catch(NoSuchElementException e){
                 ArrayList exception = new ArrayList(1);
-                exception.add("No hay libros en el TOP\n" + e.toString());
+                exception.add("No hay libros en el TOP\n");
                 enviarDatos(exception);
-            }
-            catch (MyException e){
+            }catch(ArithmeticException ex){
+                ArrayList exception = new ArrayList(1);
+                exception.add("No hay libros Leidos\n");
+                enviarDatos(exception);
+            }catch(NullPointerException ex){
+                ArrayList exception = new ArrayList(1);
+                exception.add("No se ingresaron datos\n");
+                enviarDatos(exception);    
+            }catch (MyException e){
                 ArrayList exception = new ArrayList(1);
                 exception.add(e.toString());
                 enviarDatos(exception);
