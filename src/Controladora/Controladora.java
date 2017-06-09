@@ -22,6 +22,7 @@ public class Controladora {
             ArrayList msj = new ArrayList(0);          
             cliente.enviarDatos(mensaje);
             msj = cliente.procesarConexion();
+            System.out.println("llego aqui");
             try{
                 System.out.println(msj.get(0));
             }catch(ArrayIndexOutOfBoundsException e){

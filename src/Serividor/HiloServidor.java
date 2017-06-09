@@ -196,6 +196,7 @@ public class HiloServidor extends Thread{
                     case "crearPeriodosOferta":
                         ArrayList mensajeCrearPeriodoOferta = new ArrayList(1);
                         biblioteca.crearPeriodosOferta((String)mensaje.get(1),(String)mensaje.get(2),(int)mensaje.get(3),(ArrayList)mensaje.get(4));
+                        System.out.println("periodo de oferta creado");
                         mensajeCrearPeriodoOferta.add("Periodo de oferta creado");
                         enviarDatos(mensajeCrearPeriodoOferta);
                         break;

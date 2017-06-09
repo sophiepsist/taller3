@@ -42,10 +42,12 @@ public class Cliente {
         }
     }
 
-    public ArrayList procesarConexion(){ 
+    public ArrayList procesarConexion(){
         ArrayList mensaje = new ArrayList(0);
              try{
+                 System.out.println("cuando igual el array");
                  mensaje= (ArrayList) entrada.readObject();
+                 System.out.println("despues de igualar el array");
              }catch(ClassNotFoundException e){
                  System.out.println("Class not found\n");
              }catch(IOException e){
