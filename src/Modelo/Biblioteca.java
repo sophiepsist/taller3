@@ -759,7 +759,7 @@ public class Biblioteca {
             Libro libro = (Libro)libros.get(librosEnOferta.get(i));
             librosOferta.put(libro.getIsbn(), libro);            
             libro.setOferta(oferta);
-            librosSinOferta.remove(libro);
+            librosSinOferta.remove(libro.getIsbn());
         }                        
     }
     

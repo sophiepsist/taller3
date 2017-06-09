@@ -14,7 +14,7 @@ import java.net.Socket;
 import java.util.*;
 import Modelo.*;
 import java.time.LocalDateTime;
-import javafx.util.converter.LocalDateTimeStringConverter;
+//import javafx.util.converter.LocalDateTimeStringConverter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
