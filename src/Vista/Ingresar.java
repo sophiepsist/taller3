@@ -127,7 +127,7 @@ public class Ingresar extends javax.swing.JFrame {
             System.out.println(contrasenia);
             respuesta = this.miControl.conectar(conexion);
             if(respuesta.get(0).equals("todo ok")){
-                new PrincipalAdministrador().setVisible(true);    
+                new PrincipalAdministrador((boolean)respuesta.get(1)).setVisible(true);    
                 this.setVisible(false);
             }else{
                 if(respuesta.get(0).equals("Contraseña incorrecta")){

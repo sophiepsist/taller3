@@ -150,24 +150,25 @@ public class HiloServidor extends Thread{
                     case "modificarUAL":
                         ArrayList mensajeModUAL = new ArrayList(1);
                         biblioteca.modificarUAL((String)mensaje.get(1),(String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5),
-                                                (String) mensaje.get(6), (String)mensaje.get(7));
+                                                (boolean)mensaje.get(6), (String) mensaje.get(7), (String)mensaje.get(8));
                         mensajeModUAL.add("Usuario Administrador Modificado Correctamente");
                         enviarDatos(mensajeModUAL);
                         break;
                     case "loginUsuarioAdministrador":
-                        ArrayList mensajeLoginUl = new ArrayList(1);
+                        ArrayList mensajeLoginUAL = new ArrayList();
                         this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
-                        mensajeLoginUl.add("todo ok");
-                        enviarDatos(mensajeLoginUl);
+                        mensajeLoginUAL.add("todo ok");
+                        mensajeLoginUAL.add(this.UAL.isAutorizado());
+                        enviarDatos(mensajeLoginUAL);
                         LocalDateTime timeUAL = LocalDateTime.now();
                         fecha = Integer.toString(timeUAL.getDayOfMonth()) + "/" + Integer.toString(timeUAL.getMonthValue()) +"/"+ Integer.toString(timeUAL.getYear());
                         this.horaInicial = Integer.toString(timeUAL.getHour()) + ":" + Integer.toString(timeUAL.getMinute()) + ":" + Integer.toString(timeUAL.getSecond());
                         break; 
                     case "loginUsuarioLector":
-                        ArrayList mensajeLoginUAL = new ArrayList(1);
+                        ArrayList mensajeLoginUL = new ArrayList(1);
                         this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));
-                        mensajeLoginUAL.add("todo ok");
-                        enviarDatos(mensajeLoginUAL);
+                        mensajeLoginUL.add("todo ok");
+                        enviarDatos(mensajeLoginUL);
                         LocalDateTime timeUL = LocalDateTime.now();
                         fecha = Integer.toString(timeUL.getDayOfMonth()) + "/" + Integer.toString(timeUL.getMonthValue()) +"/"+ Integer.toString(timeUL.getYear());
                         this.horaInicial = Integer.toString(timeUL.getHour()) + ":" + Integer.toString(timeUL.getMinute()) + ":" + Integer.toString(timeUL.getSecond());

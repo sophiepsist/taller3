@@ -59,7 +59,7 @@ public class Biblioteca {
         this.lectura= new Lectura();
         this.escritura = new Escritura();
         this.mejoresLibros = new ArrayList();
-        //escritura.serializarPrimerUAL();
+        escritura.serializarPrimerUAL();
         this.agregarLibrosAutomaticamente();
         this.agregarUsuariosAdministradoresAutomaticamente();
         this.agregarUsuariosLectoresAutomaticamente();
@@ -699,7 +699,7 @@ public class Biblioteca {
     }
     
     
-    public void modificarUAL(String email, String nombreCompleto, String celular, String nombreUsuario, String cargo, 
+    public void modificarUAL(String email, String nombreCompleto, String celular, String nombreUsuario, String cargo, boolean autorizado,
                              String contraseniaAnterior, String contraseniaNueva)throws MyException, IOException{
         if(administradores.containsKey(email)){
             UsuarioAdministrador aux = (UsuarioAdministrador) administradores.get(email);
@@ -708,6 +708,7 @@ public class Biblioteca {
             aux.setCelular(celular);
             aux.setNombreUsuario(nombreUsuario);
             aux.setNombreUsuario(cargo);
+            aux.setAutorizado(autorizado);
 
             if(aux.getContrasenia().equals(contraseniaAnterior)){
                 aux.setContrasenia(contraseniaNueva);

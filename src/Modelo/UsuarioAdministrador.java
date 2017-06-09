@@ -19,7 +19,6 @@ public class UsuarioAdministrador implements Serializable {
     private String nombreUsuario;
     private String contrasenia;
     private boolean autorizado;
-    private HashMap libros;
     private ArrayList <Sesion> sesionesIniciadas;
 
     public UsuarioAdministrador(String nombreCompleto, String cargo, String celular, String email, String nombreUsuario, String contrasenia, boolean autorizado) {
