@@ -8,7 +8,6 @@ import java.io.*;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import java.util.*;
 
 
 /**
@@ -23,7 +22,8 @@ public class Libro implements Serializable{
     private boolean bestSeller;
     private String rangoEdades;
     private String isbn;
-    private int calificacion;
+    private double calificacionGlobal;
+    private int calificacionPersonal;
     private String resumen;
     private Oferta oferta;
     private ArrayList paginasArray;
@@ -43,7 +43,7 @@ public class Libro implements Serializable{
         this.bestSeller = bestSeller;
         this.rangoEdades = rangoEdades;
         this.isbn = isbn;
-        this.calificacion = calificacion;
+        this.calificacionPersonal = calificacion;
         this.resumen = resumen;
         this.oferta = oferta;
         this.paginasArray = paginasArray;
@@ -51,6 +51,7 @@ public class Libro implements Serializable{
         this.autor = autor;
         this.calificaciones = new ArrayList();
         this.paginasLeidas = 0;
+        this.calificacionGlobal = 0;
     }   
     
     //----------------------------MÉTODOS GET-----------------------------------
@@ -83,8 +84,12 @@ public class Libro implements Serializable{
         return isbn;
     }
 
-    public int getCalificacion() {
-        return calificacion;
+    public double getCalificacionGlobal() {
+        return calificacionGlobal;
+    }
+
+    public int getCalificacionPersonal() {
+        return calificacionPersonal;
     }
 
     public String getResumen() {
@@ -118,6 +123,10 @@ public class Libro implements Serializable{
     public int getPaginasLeidas() {
         return paginasLeidas;
     }    
+    
+    public double getPrecioConDescuento(int porcentajeDescuento){
+        return precio - precio*porcentajeDescuento/100;
+    }
         
     //----------------------------MÉTODOS SET-----------------------------------
 
@@ -149,10 +158,14 @@ public class Libro implements Serializable{
         this.isbn = isbn;
     }
 
-    public void setCalificacion(int calificacion) {
-        this.calificacion = calificacion;
+    public void setCalificacionGlobal(double calificacionGlobal) {
+        this.calificacionGlobal = calificacionGlobal;
     }
 
+    public void setCalificacionPersonal(int calificacionPersonal) {
+        this.calificacionPersonal = calificacionPersonal;
+    }
+    
     public void setResumen(String resumen) {
         this.resumen = resumen;
     }
@@ -194,8 +207,9 @@ public class Libro implements Serializable{
                 numPaginas + "\nRango de edades: " + rangoEdades +  "\nPrecio: $" + precio;
         
         if(oferta!=null){
-            info+= "\nPeriodo de oferta asociado: " + oferta.getFechaFinal() + "-" + oferta.getFechaFinal() +
-                    " - " + oferta.getPorcentajeDescuento() + "% de descuento";
+            info+= "\nPeriodo de oferta asociado:\n" + oferta.getFechaFinal() + "-" + oferta.getFechaFinal() +
+                    " - " + oferta.getPorcentajeDescuento() + "% de descuento\nPrecio con descuento: " +
+                    getPrecioConDescuento(oferta.getPorcentajeDescuento());
         }
         
         if(bestSeller){
@@ -204,7 +218,7 @@ public class Libro implements Serializable{
         info += "\nResumen:\n" + resumen;
         mensaje.add(info);
         mensaje.add(caratula);
-        mensaje.add(calificacion);
+        mensaje.add(calificacionGlobal);
         return mensaje;
     }    
 }

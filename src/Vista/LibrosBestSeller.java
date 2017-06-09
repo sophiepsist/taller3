@@ -190,7 +190,7 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
     
     public void refrescarLibrosBestSeller(){
         ArrayList conexion = new ArrayList(1);
-        conexion.add("refrescarLibros");
+        conexion.add("refrescarBestSellers");
         ArrayList librosBestSeller = this.miControl.conectar(conexion);        
         for(Object libroBestSeller : librosBestSeller){
             this.jComboBox1.addItem((String)libroBestSeller);

@@ -835,7 +835,7 @@ public class Biblioteca {
             if(libroEnOferta.getIsbn().equals(isbn)){
                periodoOferta.add(libroEnOferta.getCaratula());
                periodoOferta.add(libroEnOferta.getOferta().getKey());
-               periodoOferta.add(libroEnOferta.getCalificacion());
+               periodoOferta.add(libroEnOferta.getCalificacionGlobal());
             }else{
             ArrayList resp = new ArrayList(1);
             resp.add("El libro no se encuentra en la biblioteca");
@@ -1007,18 +1007,34 @@ public class Biblioteca {
     
      /*---------------------------CALIFICAR LIBROS -----------------------------
     ** Agrega la calificacion que da un usuario lector al arrayList de calificaciones
-    ** que tiene cada libro
+    ** que tiene cada libro de la Biblioteca, también agrega la calificación al libro
+    ** que existe en la clase Usuario Administrador
     */
     
     public void hacerCalificacion(String isbn, double calificacion, UsuarioLector ul) throws MyException{
-        Libro libro = (Libro)libros.get(isbn);
-        if(ul.calificarLibro(libro)){
-            libro.getCalificaciones().add(calificacion);
-            setearCalificacionLibro(libro);             
+        Libro libroBiblioteca = (Libro)libros.get(isbn);
+        Libro libroUsuario = (Libro)ul.getLibrosComprados().get(isbn);
+        if(ul.calificarLibro(libroUsuario)){
+            libroBiblioteca.getCalificaciones().add(calificacion);
+            libroUsuario.setCalificacionPersonal((int) calificacion);
+            setearCalificacionLibroBiblioteca(libroBiblioteca);             
            // (librosArray());
         }else{
             throw new MyException("El usuario debe haber leido por lo menos el 80% del libro para poder calificarlo");
         }
+    }
+       
+    /**-----------------------------------------------------------------------**
+     * Setea la calificación de un libro según la calificación global dada por los 
+     * usuarios lectores, (agrega la calificación al libro de la biblioteca)
+     */   
+    
+    public void setearCalificacionLibroBiblioteca(Libro libro){
+        double calificacionGlobal = 0;
+        for(int i=0; i<libro.getCalificaciones().size(); i++){
+            calificacionGlobal += (int)libro.getCalificaciones().get(i);
+        }                
+        libro.setCalificacionGlobal((int) (calificacionGlobal/libro.getCalificaciones().size()));
     }
     
     /*
@@ -1033,19 +1049,6 @@ public class Biblioteca {
             newArray.add(lib);
         }
         return newArray;
-    }
-    
-    /**-----------------------------------------------------------------------**
-     * Setea la calificación de un libro según la calificación global dada por los
-     * usuarios lectores
-     */ 
-    
-    public void setearCalificacionLibro(Libro libro){
-        double calificacionGlobal = 0;
-        for(int i=0; i<libro.getCalificaciones().size(); i++){
-            calificacionGlobal += (int)libro.getCalificaciones().get(i);
-        }                
-        libro.setCalificacion((int) (calificacionGlobal/libro.getCalificaciones().size()));
     }
     
     /**-----------------------------------------------------------------------**
@@ -1065,7 +1068,7 @@ public class Biblioteca {
         if(isTop){
             while(it.hasNext()){
                 Libro lib = it.next();
-                if(pivote.getCalificacion() <= lib.getCalificacion()){
+                if(pivote.getCalificacionGlobal() <= lib.getCalificacionGlobal()){
                     topBooks.add(lib);
                 }else{
                     bottomBooks.add(lib);
@@ -1074,7 +1077,7 @@ public class Biblioteca {
         }else{
             while(it.hasNext()){
                 Libro lib = it.next();
-                if(pivote.getCalificacion() >= lib.getCalificacion()){
+                if(pivote.getCalificacionGlobal() >= lib.getCalificacionGlobal()){
                     topBooks.add(lib);
                 }else{
                     bottomBooks.add(lib);
@@ -1088,6 +1091,64 @@ public class Biblioteca {
         return resultado;
     }
     
+    /**-----------------------------------------------------------------------**
+     * De la lista ordenada de mejores a peores libros se genera un informe con 
+     * los primeros 10 libros (los mejores)
+     */ 
     
+    public ArrayList informeTopBooks(){
+        ArrayList librosBiblioteca = librosArray();
+        ArrayList topBooks = juanCamiloSort(librosBiblioteca, true);
+        ArrayList answer = new ArrayList();
+        String informe = "MEJORES LIBROS";
+        Iterator it = topBooks.iterator();
+        for(int i=0; i<topBooks.size(); i++){
+            Libro lib = (Libro)it.next();
+            informe += "\n" + i + ". " + lib.getTitulo();
+            if(i==10){
+                break;
+            }
+        }
+        answer.add(informe);
+        return answer;
+    }
     
+    /**-----------------------------------------------------------------------**
+     * De la lista ordenada de mejores a peores libros se genera un informe con 
+     * los últimos 10 libros (peores)
+     */ 
+    
+    public ArrayList informeBottomBooks(){
+        ArrayList librosBiblioteca = librosArray();
+        ArrayList bottomBooks = juanCamiloSort(librosBiblioteca, false);
+        ArrayList answer = new ArrayList();
+        String informe = "LIBROS DE MENOR CALIFICACIÓN";
+        Iterator it = bottomBooks.iterator();
+        for(int i=0; i<bottomBooks.size(); i++){
+            Libro lib = (Libro)it.next();
+            informe += "\n" + i + ". " + lib.getTitulo();
+            if(i==10){
+                break;
+            }
+        }
+        answer.add(informe);
+        return answer;
+    }
+    
+    /**-----------------------------------------------------------------------**
+     * Consulta las sesiones de un usuario lector específico
+     */ 
+    
+    public ArrayList informeSesionesUL(String email){
+        if(clientes.containsKey(email)){
+            UsuarioLector ul = (UsuarioLector)clientes.get(email);
+            return ul.getInformeSesiones();
+        }else{
+            ArrayList resp = new ArrayList(1);
+            resp.add("No existe un usuario lector con ese email");
+            return resp;
+        }
+    }
+
+
     }

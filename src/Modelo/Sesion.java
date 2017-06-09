@@ -61,6 +61,11 @@ public class Sesion implements Serializable{
         this.tiempoDeConexion = tiempoDeConexion;
     }
     
+    public String getInforme(){
+        return "Fecha: " + fecha + "\nHora inicial: " + horaInicial + "\nHora final: " 
+                + horaFinal + "Tiempo de conexion: " + tiempoDeConexion;
+    }
+    
     
     
 }

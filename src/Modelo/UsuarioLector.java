@@ -25,7 +25,6 @@ public class UsuarioLector implements Serializable {
     private String contrasenia;    
     private int saldo;
     private HashMap <String, Recargas> recargas;
-    private HashMap <String, Libro> librosLeidos;//libros 100% leidos
     private HashMap librosComprados; //incluye libros sin leer y libros en proceso de lectura
     private boolean isMyBirthday;
     private int contLibroCumpleanios;
@@ -84,10 +83,6 @@ public class UsuarioLector implements Serializable {
 
     public String getContrasenia() {
         return contrasenia;
-    }
-
-    public HashMap<String, Libro> getLibrosLeidos() {
-        return librosLeidos;
     }
     
     public int getSaldo(){
@@ -150,10 +145,6 @@ public class UsuarioLector implements Serializable {
         this.contrasenia = contrasenia;
     }
 
-    public void setLibrosLeidos(HashMap<String, Libro> librosLeidos) {
-        this.librosLeidos = librosLeidos;
-    }
-    
     public void setSaldo(int saldo){
         this.saldo = saldo;
     }
@@ -184,7 +175,15 @@ public class UsuarioLector implements Serializable {
      */ 
     
     public double porcentajeLectura(){
-        return (librosLeidos.size()/librosComprados.size())*100;
+        int cont = 0;        
+        Iterator it = librosComprados.values().iterator();       
+        for(int i=0; i<librosComprados.size(); i++){
+            Libro libro = (Libro)it.next();
+            if(libro.getPorcentajeLectura()==100){
+                cont ++;
+            }
+        }
+        return (cont/librosComprados.size())*100;
     }
     
     //-----------------------OPERACIONES DE USUARIO-----------------------------    
@@ -204,24 +203,35 @@ public class UsuarioLector implements Serializable {
      * Verifica que el usuario pueda realizar la compra (según su edad y saldo)
      * y de ser posible, agrega el libro al hashmap de librosComprados
      * Si el usuarios se encuentra de cumpleaños, le regala un libro
+     * Se revisa que el precio ya contenga el descuento si el libro está asociado
+     * a un periodo de oferta
      */     
     
-    public String comprarLibro(Libro libro) throws MyException{        
+    public String comprarLibro(Libro libro) throws MyException{  
+        double precio = 0;
+        if(libro.getOferta()!=null){
+            precio = libro.getPrecioConDescuento(libro.getOferta().getPorcentajeDescuento());
+        }else{
+            precio = libro.getPrecio();
+        }               
+                
         if(edad<Integer.parseInt(libro.getRangoEdades().split("-")[0])){
             throw new MyException("Compra no efectuada. El libro está dirigido a una audiencia entre los " + libro.getRangoEdades() + " años");
         }else if(isMyBirthday && contLibroCumpleanios==0){
             contLibroCumpleanios = 1;                 
             librosComprados.put(libro.getIsbn(), libro);
-            return "La biblioteca le ha regalado el libro por ser su cumpleaños.\nFelicidades :)";
-        }else if(saldo<libro.getPrecio()){
+            return "La biblioteca le ha regalado el libro por ser su cumpleaños.\nFelicidades :)";        
+        }else if(saldo<precio){
             throw new MyException("Compra no efectuada. Su saldo es inferior al precio del libro");          
         }else{
-            librosComprados.put(libro.getIsbn(), libro);
+            librosComprados.put(libro.getIsbn(), libro);            
             saldo -= libro.getPrecio();
             return "Compra exitosa";                
         }
     }
     
+    
+    /*-----------------------REFERENTE A SESIONES-------------------------------    
      /**-----------------------------------------------------------------------**
      * Agrega una sesión al array de sesiones del usuario
      */   
@@ -229,6 +239,23 @@ public class UsuarioLector implements Serializable {
     public void agregarSesion(Sesion sesion){       
         sesionesIniciadas.add(sesion);        
     }
+    
+    /**-----------------------------------------------------------------------**
+     * Genera un informe de las sesiones del usuario
+     */  
+    
+    public ArrayList getInformeSesiones(){        
+        ArrayList informe = new ArrayList();
+        String info = "INFORME DE SESIONES DEL USUARIO";
+        Iterator it = sesionesIniciadas.iterator();
+        for(int i=0; i<sesionesIniciadas.size(); i++){
+            Sesion sesion =  (Sesion)it.next();
+            info += "\n" + i + ". " + sesion.getInforme();
+        }
+        informe.add(info);
+        return informe;    
+    }
+    
     
     /**-----------------------------------------------------------------------**
      * Revisa si el usuario está cumpliendo años, si lo está, actualiza su contador
@@ -269,24 +296,6 @@ public class UsuarioLector implements Serializable {
         return books;
     }
     
-    /**-----------------------------------------------------------------------**
-     * Por cada libro leido, retorna un ArrayList con el título e isbn para
-     * refrescar vista
-     */ 
-    public ArrayList refrescarLibrosLeidos(){
-        ArrayList books = new ArrayList(librosLeidos.size());
-        Iterator it = librosLeidos.values().iterator();
-        if(!librosLeidos.isEmpty()){
-            for(int i=0; i<librosLeidos.size(); i++){
-                Libro libro = (Libro)it.next();
-                books.add(libro.getTitulo().concat(";" + libro.getIsbn()));
-            }
-        }else{            
-            books.add("No hay libros leidos");
-        }
-        return books;
-    }
-    
     /*--------------------CONSULTAR MIS LIBROS UL-------------------------------
     ** Para refrescar ventana MisLibros, retorna la carátula, el resumen, porcentaje
     ** de lectura y calificación
@@ -298,7 +307,7 @@ public class UsuarioLector implements Serializable {
             Libro libro = (Libro)librosComprados.get(isbn);
             resp.add(libro.getResumen());
             resp.add(libro.getCaratula());
-            resp.add(libro.getCalificacion());
+            resp.add(libro.getCalificacionPersonal());
             resp.add(libro.getPorcentajeLectura());
         }else{            
             resp.add("Error, el usuario no cuenta con ese libro");

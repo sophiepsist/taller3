@@ -121,6 +121,9 @@ public class HiloServidor extends Thread{
                     case "refrescarLibrosSinOferta":
                         enviarDatos(this.biblioteca.refrescarLibrosSinOferta());
                          break;
+                    case "refrescarBestSellers":
+                        enviarDatos(this.biblioteca.refrescarBestSellers());
+                        break;
                     case "refrescarPeriodoDeOferta":
                         System.out.println("hola estoy en el case");
                         enviarDatos(biblioteca.refrescarPeriodosOferta());
@@ -202,6 +205,17 @@ public class HiloServidor extends Thread{
                         mensajeCrearPeriodoOferta.add("Periodo de oferta creado");
                         enviarDatos(mensajeCrearPeriodoOferta);
                         break;
+                    case "informeMejoresLibros":
+                        enviarDatos(biblioteca.informeTopBooks());
+                        break;
+                    case "informePorcentajeLectura":
+                        enviarDatos(biblioteca.informePorcentajeLectura());
+                        break;
+                    case "informePeoresLibros":
+                        enviarDatos(biblioteca.informeBottomBooks());
+                        break;
+                    case "informeSesionesUL":
+                        enviarDatos(biblioteca.informeSesionesUL((String)mensaje.get(1)));
                 }
 
             }catch(ClassNotFoundException e){

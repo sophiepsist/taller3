@@ -28,7 +28,7 @@ public class HiloWatcher extends Thread{
             } catch (InterruptedException ex) {
                 System.out.println("Error en la ejecución del HiloWatcher encargado de revisar la duración de los periodos de oferta y cumpleaños");
             } catch (MessagingException ex){
-                System.out.println("Messaging Exception en HiloWatcher... Direccion de E-mail no valdia");
+                System.out.println("Messaging Exception en HiloWatcher... Direccion de E-mail no válida");
             }
         }while(isAlive()); 
     }

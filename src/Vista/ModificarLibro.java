@@ -86,6 +86,7 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
 
         jLabel1.setText("ISBN:");
 
+        jTextField6.setEditable(false);
         jTextField6.setEnabled(false);
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -330,9 +331,18 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
+            ArrayList libroPaginas = new ArrayList();
+            int paginas = 0;
+            if(nombreArchivo==null){
+                libroPaginas.add("vacio");
+                paginas = Integer.parseInt(this.jTextField6.getText().trim());
+            }else{
+                libroPaginas = this.fileToArray(nombreArchivo.toString());
+                paginas = libroPaginas.size();
+            }
             ArrayList conexion = new ArrayList(14);
             conexion.add("modificarLibro");
-            conexion.add(Integer.parseInt(this.jTextField6.getText().trim()));
+            conexion.add(paginas);
             conexion.add(this.jTextField2.getText());
             conexion.add(Integer.parseInt(this.jTextField9.getText()));
             conexion.add(this.jTextField4.getText().trim());
@@ -344,13 +354,7 @@ public class ModificarLibro extends javax.swing.JInternalFrame {
             conexion.add(this.jTextField7.getText().trim());            
             conexion.add(this.jTextField1.getText().trim());           
             conexion.add(this.jTextArea1.getText());
-            if(nombreArchivo==null){
-                ArrayList fileVacio = new ArrayList(1);
-                fileVacio.add("vacío");
-                conexion.add(fileVacio);
-            }else{
-                conexion.add(this.fileToArray(nombreArchivo.toString()));
-            }
+            conexion.add(libroPaginas);
             if(caratula==null){
                 conexion.add(this.image);
             }else{
