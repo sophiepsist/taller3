@@ -636,15 +636,16 @@ public class Biblioteca {
         }
     }
     
-    public ArrayList consultarUAL(String isbn) throws MyException{
-        ArrayList infoUsuario = new ArrayList(5);
-        if(administradores.containsKey(isbn)){
+    public ArrayList consultarUAL(String email) throws MyException{
+        ArrayList infoUsuario = new ArrayList(6);
+        if(administradores.containsKey(email)){
             UsuarioAdministrador aux;
-            aux = (UsuarioAdministrador) administradores.get(isbn);
+            aux = (UsuarioAdministrador) administradores.get(email);
             infoUsuario.add(aux.getNombreCompleto());
             infoUsuario.add(aux.getCargo());
             infoUsuario.add(aux.getCelular());
             infoUsuario.add(aux.getEmail());
+            infoUsuario.add(aux.getNombreUsuario());
             infoUsuario.add(aux.isAutorizado());
             return infoUsuario;
         }else{
@@ -693,6 +694,29 @@ public class Biblioteca {
             }
         }else{
             throw new MyException("El usuario lector no se encuentra registrado");
+        }
+                
+    }
+    
+    
+    public void modificarUAL(String email, String nombreCompleto, String celular, String nombreUsuario, String cargo, 
+                             String contraseniaAnterior, String contraseniaNueva)throws MyException, IOException{
+        if(administradores.containsKey(email)){
+            UsuarioAdministrador aux = (UsuarioAdministrador) administradores.get(email);
+        
+            aux.setNombreCompleto(nombreCompleto);
+            aux.setCelular(celular);
+            aux.setNombreUsuario(nombreUsuario);
+            aux.setNombreUsuario(cargo);
+
+            if(aux.getContrasenia().equals(contraseniaAnterior)){
+                aux.setContrasenia(contraseniaNueva);
+                escritura.serializarUAL(aux);
+            }else{
+                throw new MyException("La contraseña anterior no coincide");  
+            }
+        }else{
+            throw new MyException("El usuario Administrador no se encuentra registrado");
         }
                 
     }

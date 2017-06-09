@@ -151,6 +151,13 @@ public class HiloServidor extends Thread{
                         mensajeModUL.add("Usuario Lector Modificado Correctamente");
                         enviarDatos(mensajeModUL);
                         break;
+                    case "modificarUAL":
+                        ArrayList mensajeModUAL = new ArrayList(1);
+                        biblioteca.modificarUAL((String)mensaje.get(1),(String)mensaje.get(2), (String)mensaje.get(3), (String)mensaje.get(4), (String)mensaje.get(5),
+                                                (String) mensaje.get(6), (String)mensaje.get(7));
+                        mensajeModUAL.add("Usuario Administrador Modificado Correctamente");
+                        enviarDatos(mensajeModUAL);
+                        break;
                     case "loginUsuarioAdministrador":
                         ArrayList mensajeLoginUl = new ArrayList(1);
                         this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
@@ -195,7 +202,6 @@ public class HiloServidor extends Thread{
                     case "crearPeriodosOferta":
                         ArrayList mensajeCrearPeriodoOferta = new ArrayList(1);
                         biblioteca.crearPeriodosOferta((String)mensaje.get(1),(String)mensaje.get(2),(int)mensaje.get(3),(ArrayList)mensaje.get(4));
-                        System.out.println("periodo de oferta creado");
                         mensajeCrearPeriodoOferta.add("Periodo de oferta creado");
                         enviarDatos(mensajeCrearPeriodoOferta);
                         break;
