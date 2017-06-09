@@ -1056,7 +1056,7 @@ public class Biblioteca {
      * mejores calificaciones 
      */ 
     
-    public ArrayList juanCamiloSort(ArrayList libros, boolean isTop){  
+    public ArrayList juanCamiloSort (ArrayList libros, boolean isTop) throws NoSuchElementException{  
         ArrayList topBooks = new ArrayList();
         ArrayList bottomBooks = new ArrayList();    
         ArrayList resultado = new ArrayList();
@@ -1105,7 +1105,7 @@ public class Biblioteca {
         for(int i=0; i<topBooks.size(); i++){
             Libro lib = (Libro)it.next();
             informe += "\n" + i + ". " + lib.getTitulo();
-            if(i==10){
+            if(i==9){
                 break;
             }
         }

@@ -222,8 +222,6 @@ public class HiloServidor extends Thread{
                 ArrayList exception = new ArrayList(1);
                 exception.add("Error asigando el tipo de variable\n" + e.toString());
                 enviarDatos(exception);
-                cerrarConexion();
-                mensaje = new ArrayList();
                 System.out.println("Cerrar Conexion dentro del switch Exception ClassNotFoundExcpetion");
             }catch (IOException e){
                 ArrayList exception = new ArrayList(1);
@@ -237,10 +235,13 @@ public class HiloServidor extends Thread{
                 exception.add("Falla en el orden de envio de los datos\n" + e.toString());
                 enviarDatos(exception);
                 e.printStackTrace();
-                cerrarConexion();
-                mensaje = new ArrayList();
                 System.out.println("Cerrar Conexion dentro del switch Exception ArrayIndexOfBoundException");
-            }catch (MyException e){
+            }catch(NoSuchElementException e){
+                ArrayList exception = new ArrayList(1);
+                exception.add("No hay libros en el TOP\n" + e.toString());
+                enviarDatos(exception);
+            }
+            catch (MyException e){
                 ArrayList exception = new ArrayList(1);
                 exception.add(e.toString());
                 enviarDatos(exception);
