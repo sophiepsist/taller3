@@ -118,6 +118,11 @@ public class Lectura extends javax.swing.JInternalFrame {
         jLabel4.setText("Fuente:");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", " " }));
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tahoma", "Times New Roman", "Vivaldi", "Symbol", "Tempus Sans ITC", "Verdana", "Arial", "Arial Black", "Calibri", "Century Gothic", "Century", "Calibri", "Comic Sans MS", "Georgia", "Monospaced" }));
         jComboBox2.addItemListener(new java.awt.event.ItemListener() {
@@ -292,6 +297,15 @@ public class Lectura extends javax.swing.JInternalFrame {
         this.jTextArea1.setFont(fuente);
         
     }//GEN-LAST:event_jComboBox2ItemStateChanged
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
+        String tipoLetra = this.jComboBox2.getSelectedItem().toString();
+        int tamanioLetra = Integer.parseInt(this.jComboBox1.getSelectedItem().toString());
+        Font fuente=new Font(tipoLetra, Font.PLAIN, tamanioLetra);
+        this.jTextArea1.setFont(fuente);
+        
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
