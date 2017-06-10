@@ -29,12 +29,16 @@ public class Lectura extends javax.swing.JInternalFrame {
         this.miControl = c;
         this.libro = new ArrayList();
         this.cont = 0;
+        this.mostrarLibro(isbn);
     }
     
     public void mostrarLibro(String isbn){
         ArrayList conexion = new ArrayList();
         conexion.add("leer");        
-        this.libro = this.miControl.conectar(conexion);
+        conexion.add(isbn);
+        ArrayList respuesta = this.miControl.conectar(conexion);
+        this.jLabel1.setText((String)respuesta.get(0));
+        this.libro = (ArrayList)respuesta.get(1);
         this.jTextArea1.setText((String)libro.get(cont));
     }
     

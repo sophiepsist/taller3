@@ -44,7 +44,7 @@ public class MisLibros extends javax.swing.JInternalFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox1 = new javax.swing.JComboBox<String>();
         labelImagen = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         textAreaResumen = new javax.swing.JTextArea();
@@ -195,26 +195,26 @@ public class MisLibros extends javax.swing.JInternalFrame {
         respuesta = this.miControl.conectar(conexion);      
         this.textAreaResumen.setText((String)respuesta.get(0));
         this.labelImagen.setIcon((ImageIcon)respuesta.get(1));
-        switch((String)respuesta.get(2)){
-            case "1":
+        switch((int)respuesta.get(2)){
+            case 1:
                 this.star1.setVisible(true);
                 break;
-            case "2":
+            case 2:
                 this.star1.setVisible(true);
                 this.star2.setVisible(true);
                 break;
-            case "3":
+            case 3:
                 this.star1.setVisible(true);
                 this.star2.setVisible(true);
                 this.star3.setVisible(true);
                 break;
-            case "4":
+            case 4:
                 this.star1.setVisible(true);
                 this.star2.setVisible(true);
                 this.star3.setVisible(true);
                 this.star4.setVisible(true);
                 break;
-            case "5":
+            case 5:
                 this.star1.setVisible(true);
                 this.star2.setVisible(true);
                 this.star3.setVisible(true);

@@ -339,7 +339,8 @@ public class UsuarioLector implements Serializable {
     public ArrayList getLibroLectura(String isbn){
         ArrayList libroArray = new ArrayList();
         Libro libro = (Libro)librosComprados.get(isbn);
-        
-        return libro.getPaginasArray();
+        libroArray.add(libro.getTitulo());
+        libroArray.add(libro.getPaginasArray());
+        return libroArray;
     }
 }
