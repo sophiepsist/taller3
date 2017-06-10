@@ -296,6 +296,7 @@ public class HiloServidor extends Thread{
                 System.out.println(sesion.getHoraInicial());
                 System.out.println(sesion.getHoraFinal());
                 actualUL6.agregarSesion(sesion);
+                biblioteca.serializarUL(actualUL6);
             }else{
                 if(actualUAL6 != null){
                     System.out.println(actualUAL6.getEmail());
@@ -303,6 +304,7 @@ public class HiloServidor extends Thread{
                     this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
                     Sesion sesion = new Sesion(horaInicial, horaFinal, fecha);
                     actualUAL6.agregarSesion(sesion);
+                    biblioteca.serializarUAL(actualUAL6);
                 }else{                    
                     System.out.println("cerrar conexion dentro de enviar datos(Dentro del if)");
                     }

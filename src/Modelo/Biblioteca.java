@@ -1016,14 +1016,14 @@ public class Biblioteca {
     ** que existe en la clase Usuario Administrador
     */
     
-    public void hacerCalificacion(String isbn, double calificacion, UsuarioLector ul) throws MyException{
+    public void hacerCalificacion(String isbn, double calificacion, UsuarioLector ul) throws MyException, IOException{
         Libro libroBiblioteca = (Libro)libros.get(isbn);
         Libro libroUsuario = (Libro)ul.getLibrosComprados().get(isbn);
         if(ul.calificarLibro(libroUsuario)){
             libroBiblioteca.getCalificaciones().add(calificacion);
             libroUsuario.setCalificacionPersonal((int) calificacion);
             setearCalificacionLibroBiblioteca(libroBiblioteca);             
-           // (librosArray());
+           escritura.serializarLibro(libroBiblioteca);
         }else{
             throw new MyException("El usuario debe haber leido por lo menos el 80% del libro para poder calificarlo");
         }
@@ -1177,6 +1177,29 @@ public class Biblioteca {
     
     public void setActualUAL(UsuarioAdministrador ual){
         this.actualUAL = ual;
+    }
+    
+     //------------------------SERIALIZAR USUARIOS------------------------------
+    /**-----------------------------------------------------------------------**
+     * Serializa usuarios una vez se desconectan
+     */ 
+    
+    public void serializarUL(UsuarioLector ul) {
+        try {
+            escritura.serializarUL(ul);
+        } catch (IOException ex) {
+            System.out.println("Error al serializar Usuario Lector");
+            Logger.getLogger(Biblioteca.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void serializarUAL(UsuarioAdministrador ual) {
+        try {
+            escritura.serializarUAL(ual);
+        } catch (IOException ex) {
+            System.out.println("Error al serializar Usuario Administrador");
+            Logger.getLogger(Biblioteca.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 

@@ -209,8 +209,7 @@ public class UsuarioLector implements Serializable {
      * a un periodo de oferta
      */     
     
-    public String comprarLibro(Libro libro) throws MyException{  
-        System.out.println("ENTRO AL MÉTODO");
+    public String comprarLibro(Libro libro) throws MyException{          
         double precio = 0;
         if(libro.getOferta()!=null){
             precio = libro.getPrecioConDescuento(libro.getOferta().getPorcentajeDescuento());
