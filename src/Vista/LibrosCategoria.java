@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class LibrosCategoria extends javax.swing.JInternalFrame {
     private Controladora miControl;
+    private String isbn;
     /** Creates new form LibrosCategoria */
     public LibrosCategoria(Controladora c) {
         initComponents();
@@ -456,10 +457,16 @@ public class LibrosCategoria extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        ArrayList conexion = new ArrayList();
+        conexion.add("comprarlibrosUL");
+        conexion.add(isbn);
+        
+        JOptionPane.showMessageDialog(this, miControl.conectar(conexion).get(0));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     
     public void mostrarConsultarCategoria(String isbn){
+        this.isbn = isbn;
         ArrayList conexion = new ArrayList(2);
         ArrayList respuesta = new ArrayList(3);
         conexion.add("consultarInfoLibros");

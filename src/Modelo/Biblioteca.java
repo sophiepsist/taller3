@@ -41,9 +41,12 @@ public class Biblioteca {
     private Lectura lectura;
     private Escritura escritura;
     private UsuarioLector actualUL;
+    private UsuarioAdministrador actualUAL;
     //---------------------------MÉTODO CONSTRUCTOR-----------------------------
     
     public Biblioteca(){
+        this.actualUAL = null;
+        this.actualUL = null;
         this.clientes = new HashMap();
         this.libros = new HashMap();
         this.administradores = new HashMap();
@@ -1152,6 +1155,7 @@ public class Biblioteca {
         }
     }
     
+    //---------------------USUARIOS CONECTADOS ACTUALMENTE---------------------- 
     /**-----------------------------------------------------------------------**
      * Permite guardar y retornar el actual usuario lector
      */ 
@@ -1161,6 +1165,18 @@ public class Biblioteca {
     
     public void setActualUL(UsuarioLector ul){
         this.actualUL = ul;
+    }
+    
+    /**-----------------------------------------------------------------------**
+     * Permite guardar y retornar el actual usuario administrador
+     */ 
+    
+    public UsuarioAdministrador getActualUAL(){
+        return actualUAL;
+    }
+    
+    public void setActualUAL(UsuarioAdministrador ual){
+        this.actualUAL = ual;
     }
 
 

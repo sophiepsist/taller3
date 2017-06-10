@@ -160,6 +160,7 @@ public class HiloServidor extends Thread{
                     case "loginUsuarioAdministrador":
                         ArrayList mensajeLoginUAL = new ArrayList();
                         this.UAL = biblioteca.verificarLoginUAL((String)mensaje.get(1), (String)mensaje.get(2));
+                        biblioteca.setActualUAL(UAL);
                         mensajeLoginUAL.add("todo ok");
                         mensajeLoginUAL.add(this.UAL.isAutorizado());
                         enviarDatos(mensajeLoginUAL);
@@ -186,7 +187,8 @@ public class HiloServidor extends Thread{
                         enviarDatos(msj);
                         break;
                     case "recargar":
-                        biblioteca.recargar(UL.getEmail(),(int) mensaje.get(1));
+                        UsuarioLector actualUL5 = biblioteca.getActualUL();
+                        biblioteca.recargar(actualUL5.getEmail(),(int) mensaje.get(1));
                         break;
                     case "consultarUL":
                         enviarDatos(biblioteca.consultarUL((String) mensaje.get(1)));
@@ -198,10 +200,12 @@ public class HiloServidor extends Thread{
                         enviarDatos(biblioteca.getArrayPaginasLibro((String)mensaje.get(1)));
                         break;   
                     case "refrescarLibrosComprados":
-                        enviarDatos(this.UL.refrescarLibrosComprados());
+                        UsuarioLector actualUL2 = biblioteca.getActualUL();
+                        enviarDatos(actualUL2.refrescarLibrosComprados());
                         break;
                     case "consultarLibrosComprados":
-                        enviarDatos(this.UL.consultarLibrosComprados((String)mensaje.get(1)));
+                        UsuarioLector actualUL3 = biblioteca.getActualUL();
+                        enviarDatos(actualUL3.consultarLibrosComprados((String)mensaje.get(1)));
                         break;
                     case "crearPeriodosOferta":
                         ArrayList mensajeCrearPeriodoOferta = new ArrayList(1);
@@ -222,7 +226,8 @@ public class HiloServidor extends Thread{
                         enviarDatos(biblioteca.informeSesionesUL((String)mensaje.get(1)));
                         break;
                     case "leer":
-                        enviarDatos(this.UL.getLibroLectura((String)mensaje.get(1)));
+                        UsuarioLector actualUL4 = biblioteca.getActualUL();
+                        enviarDatos(actualUL4.getLibroLectura((String)mensaje.get(1)));
                         break;                        
                 }
 
@@ -278,22 +283,24 @@ public class HiloServidor extends Thread{
         }
         catch (IOException e)
         {
-            if(UL != null){
-                System.out.println(UL.getEmail());
+            UsuarioLector actualUL6 = biblioteca.getActualUL();
+            UsuarioAdministrador actualUAL6 = biblioteca.getActualUAL();
+            if(actualUL6 != null){
+                System.out.println(actualUL6.getEmail());
                 LocalDateTime time = LocalDateTime.now();
                 this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
                 Sesion sesion = new Sesion(horaInicial, horaFinal, fecha);
                 System.out.println(sesion.getFecha());
                 System.out.println(sesion.getHoraInicial());
                 System.out.println(sesion.getHoraFinal());
-                UL.agregarSesion(sesion);
+                actualUL6.agregarSesion(sesion);
             }else{
-                if(UAL != null){
-                    System.out.println(UAL.getEmail());
+                if(actualUAL6 != null){
+                    System.out.println(actualUAL6.getEmail());
                     LocalDateTime time = LocalDateTime.now();
                     this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
                     Sesion sesion = new Sesion(horaInicial, horaFinal, fecha);
-                    UAL.agregarSesion(sesion);
+                    actualUAL6.agregarSesion(sesion);
                 }else{                    
                     System.out.println("cerrar conexion dentro de enviar datos(Dentro del if)");
                     }

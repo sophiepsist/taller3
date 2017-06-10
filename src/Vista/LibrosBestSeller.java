@@ -153,7 +153,7 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
         if(this.jComboBox1.getSelectedItem().toString().contains(";")){
             isbn = this.jComboBox1.getSelectedItem().toString().split(";")[1];
             conexion.add(isbn);
-            miControl.conectar(conexion);
+            JOptionPane.showMessageDialog(this, miControl.conectar(conexion).get(0));
         }else{
             JOptionPane.showMessageDialog(this, "Por favor seleccione un libro");
         }
