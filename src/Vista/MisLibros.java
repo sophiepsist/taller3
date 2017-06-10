@@ -181,8 +181,9 @@ public class MisLibros extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String isbn = this.jComboBox1.getSelectedItem().toString().split(";")[1];
         Lectura objLectura = new Lectura(miControl, isbn);
-        this.jTabbedPane1.add(objLectura);
-        objLectura.show();
+        PrincipalLector.escritorio.add(objLectura);
+        objLectura.toFront();
+        objLectura.setVisible(true);
         
     }//GEN-LAST:event_btLeerActionPerformed
 
