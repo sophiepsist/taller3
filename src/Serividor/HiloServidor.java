@@ -41,7 +41,7 @@ public class HiloServidor extends Thread{
             this.salida = new ObjectOutputStream(cliente.getOutputStream());
             this.salida.flush();
             this.entrada = new ObjectInputStream(cliente.getInputStream());
-            this.biblioteca = biblio;
+            this.biblioteca = biblio;            
             }
         catch(IOException e)
             {
@@ -168,8 +168,8 @@ public class HiloServidor extends Thread{
                         this.horaInicial = Integer.toString(timeUAL.getHour()) + ":" + Integer.toString(timeUAL.getMinute()) + ":" + Integer.toString(timeUAL.getSecond());
                         break; 
                     case "loginUsuarioLector":
-                        ArrayList mensajeLoginUL = new ArrayList(1);
-                        this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));
+                        ArrayList mensajeLoginUL = new ArrayList(1);                        
+                        this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));                        
                         mensajeLoginUL.add("todo ok");
                         enviarDatos(mensajeLoginUL);
                         LocalDateTime timeUL = LocalDateTime.now();
@@ -177,8 +177,11 @@ public class HiloServidor extends Thread{
                         this.horaInicial = Integer.toString(timeUL.getHour()) + ":" + Integer.toString(timeUL.getMinute()) + ":" + Integer.toString(timeUL.getSecond());
                         break;
                     case "comprarlibrosUL":
-                        ArrayList msj = new ArrayList(1);
-                        msj.add(UL.comprarLibro((Libro)biblioteca.getLibros().get((String) mensaje.get(1)))); 
+                        ArrayList msj = new ArrayList();                        
+                        String isbn = (String)mensaje.get(1);                      
+                        Libro libroComprar = (Libro)biblioteca.getLibros().get(isbn);                         
+                        msj.add(this.UL.comprarLibro(libroComprar)); 
+                        System.out.println("despues de llamar metodo");
                         enviarDatos(msj);
                         break;
                     case "recargar":

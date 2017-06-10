@@ -179,7 +179,8 @@ public class MisLibros extends javax.swing.JInternalFrame {
 
     private void btLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLeerActionPerformed
         // TODO add your handling code here:
-        Lectura objLectura = new Lectura(miControl);
+        String isbn = this.jComboBox1.getSelectedItem().toString().split(";")[1];
+        Lectura objLectura = new Lectura(miControl, isbn);
         this.jTabbedPane1.add(objLectura);
         objLectura.show();
         
