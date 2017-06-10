@@ -78,17 +78,19 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel2" min="-2" pref="221" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="star1" alignment="0" max="32767" attributes="0"/>
-                          <Component id="star2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="star3" alignment="0" max="32767" attributes="0"/>
-                          <Component id="star4" alignment="0" max="32767" attributes="0"/>
-                          <Component id="star5" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="star1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="star2" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="star3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="star4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="star5" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

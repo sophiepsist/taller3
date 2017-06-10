@@ -201,7 +201,7 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
         respuesta = this.miControl.conectar(conexion);
         
         this.jTextArea1.setText((String)respuesta.get(1));
-        this.jLabel1.setIcon((ImageIcon)respuesta.get(0));
+        this.jLabel2.setIcon((ImageIcon)respuesta.get(0));
         switch((int)respuesta.get(2)){
            case 1:
                this.star1.setVisible(true);
