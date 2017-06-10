@@ -222,4 +222,21 @@ public class Libro implements Serializable{
         mensaje.add(integer);
         return mensaje;
     }    
+    
+        
+   @Override
+    public boolean equals(Object cosa){
+        boolean result;
+        if(cosa == null) return false;
+        if(cosa == this) return true;
+        if(!(cosa instanceof Libro)) return false;
+        Libro cosaLibro = (Libro) cosa;
+        if (this.getCalificacionPersonal() > cosaLibro.getCalificacionPersonal()){
+            result = true;
+        }else{
+            result = false;
+        }
+        return result;
+    }    
+    
 }
