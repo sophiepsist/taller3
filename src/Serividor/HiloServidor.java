@@ -216,6 +216,10 @@ public class HiloServidor extends Thread{
                         break;
                     case "informeSesionesUL":
                         enviarDatos(biblioteca.informeSesionesUL((String)mensaje.get(1)));
+                        break;
+                    case "leer":
+                        enviarDatos(this.UL.getLibroLectura((String)mensaje.get(1)));
+                        break;                        
                 }
 
             }catch(ClassNotFoundException e){
