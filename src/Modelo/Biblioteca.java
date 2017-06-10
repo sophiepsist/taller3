@@ -835,7 +835,8 @@ public class Biblioteca {
             if(libroEnOferta.getIsbn().equals(isbn)){
                periodoOferta.add(libroEnOferta.getCaratula());
                periodoOferta.add(libroEnOferta.getOferta().getKey());
-               periodoOferta.add(libroEnOferta.getCalificacionGlobal());
+               Integer integer = (int) Math.round(libroEnOferta.getCalificacionGlobal());
+               periodoOferta.add(integer);
             }else{
             ArrayList resp = new ArrayList(1);
             resp.add("El libro no se encuentra en la biblioteca");

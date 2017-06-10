@@ -250,6 +250,7 @@ public class HiloServidor extends Thread{
             }catch(NullPointerException ex){
                 ArrayList exception = new ArrayList(1);
                 exception.add("No se ingresaron datos\n");
+                ex.printStackTrace();
                 enviarDatos(exception);    
             }catch(IndexOutOfBoundsException e){
                 ArrayList exception = new ArrayList(1);

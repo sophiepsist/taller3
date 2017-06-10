@@ -52,9 +52,6 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("LIBROS EN OFERTA\n");
 
         jLabel1.setText("Libros en Oferta:");
@@ -185,6 +182,7 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
         String isbn;
         if(this.jComboBox1.getSelectedItem().toString().contains(";")){
             isbn = this.jComboBox1.getSelectedItem().toString().split(";")[1];
+            System.out.println(isbn);
             conexion.add(isbn);
         }else{
             JOptionPane.showMessageDialog(this, "Por favor selccione un libro");
@@ -196,34 +194,34 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public void consultarPeriodoOferta(String isbn){
-        ArrayList conexion = new ArrayList(2);
-        ArrayList respuesta = new ArrayList(3);
+        ArrayList conexion = new ArrayList();
+        ArrayList respuesta = new ArrayList();
         conexion.add("consultarPeriodoOferta");
         conexion.add(isbn);
         respuesta = this.miControl.conectar(conexion);
         
         this.jTextArea1.setText((String)respuesta.get(1));
         this.jLabel1.setIcon((ImageIcon)respuesta.get(0));
-        switch((String)respuesta.get(2)){
-           case "1":
+        switch((int)respuesta.get(2)){
+           case 1:
                this.star1.setVisible(true);
                break;
-           case "2":
+           case 2:
                this.star1.setVisible(true);
                this.star2.setVisible(true);
                break;
-           case "3":
+           case 3:
                this.star1.setVisible(true);
                this.star2.setVisible(true);
                this.star3.setVisible(true);
                break;
-           case "4":
+           case 4:
                this.star1.setVisible(true);
                this.star2.setVisible(true);
                this.star3.setVisible(true);
                this.star4.setVisible(true);
                break;
-           case "5":
+           case 5:
                this.star1.setVisible(true);
                this.star2.setVisible(true);
                this.star3.setVisible(true);

@@ -218,7 +218,8 @@ public class Libro implements Serializable{
         info += "\nResumen:\n" + resumen;
         mensaje.add(info);
         mensaje.add(caratula);
-        mensaje.add(calificacionGlobal);
+        Integer integer = (int) Math.round(this.getCalificacionGlobal());
+        mensaje.add(integer);
         return mensaje;
     }    
 }
