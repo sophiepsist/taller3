@@ -328,4 +328,13 @@ public class UsuarioLector implements Serializable {
             return false;
         }
     }
+    
+     /*--------------------ACCEDER A LIBROS COMPRADOS---------------------------
+    ** Retorna el libro que se quiere leer como un array de strings
+    */
+    
+    public ArrayList getLibroLectura(String isbn){
+        Libro libro = (Libro)librosComprados.get(isbn);
+        return libro.getPaginasArray();
+    }
 }
