@@ -188,7 +188,9 @@ public class HiloServidor extends Thread{
                         break;
                     case "recargar":
                         UsuarioLector actualUL5 = biblioteca.getActualUL();
-                        biblioteca.recargar(actualUL5.getEmail(),(int) mensaje.get(1));
+                        ArrayList respuestaRecarga = new ArrayList();
+                        respuestaRecarga.add(biblioteca.recargar(actualUL5.getEmail(),(int) mensaje.get(1)));
+                        enviarDatos(respuestaRecarga);
                         break;
                     case "consultarUL":
                         enviarDatos(biblioteca.consultarUL((String) mensaje.get(1)));

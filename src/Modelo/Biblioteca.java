@@ -63,7 +63,7 @@ public class Biblioteca {
         this.lectura= new Lectura();
         this.escritura = new Escritura();
         this.mejoresLibros = new ArrayList();
-        escritura.serializarPrimerUAL();
+        //escritura.serializarPrimerUAL();
         this.agregarLibrosAutomaticamente();
         this.agregarUsuariosAdministradoresAutomaticamente();
         this.agregarUsuariosLectoresAutomaticamente();
@@ -865,7 +865,7 @@ public class Biblioteca {
         return idRecarga;
     }
     
-    public void recargar(String email, int valor){
+    public String recargar(String email, int valor){
         Iterator it = clientes.values().iterator();
         String idRecarga = "";
         if(clientes.containsKey(email)){
@@ -876,7 +876,7 @@ public class Biblioteca {
             }
         }
         UsuarioLector aux = (UsuarioLector)clientes.get(email);
-        aux.recargar(valor, idRecarga);
+        return aux.recargar(valor, idRecarga);
     }
     
     //-----------------------VERIFICAR CUMPLEAÑOS UL----------------------------   

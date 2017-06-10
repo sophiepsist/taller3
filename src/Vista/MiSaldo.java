@@ -34,6 +34,8 @@ public class MiSaldo extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel3.setText("Monto a Recargar:");
 
         jButton1.setText("Recargar");

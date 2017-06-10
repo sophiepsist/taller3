@@ -194,10 +194,11 @@ public class UsuarioLector implements Serializable {
      * de recargas
      */ 
     
-    public void recargar(int valor, String idRecarga){               
+    public String recargar(int valor, String idRecarga){               
         Recargas aux = new Recargas(idRecarga, valor);
         recargas.put(idRecarga, aux);
         saldo += valor;
+        return "Recarga efectuada\nNuevo saldo: " + saldo;
     }
     
     /**-----------------------------------------------------------------------**
