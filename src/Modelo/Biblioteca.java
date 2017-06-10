@@ -1201,6 +1201,36 @@ public class Biblioteca {
             Logger.getLogger(Biblioteca.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
+    public ArrayList algortimoDeRecomendacion(){
+        ArrayList respuesta = new ArrayList();
+        HashMap categorias = actualUL.algoritmoDeRecomendacionCategorias();
+        Map mapOrdenado = new TreeMap(categorias);
+        Set ref = mapOrdenado.keySet();
+        Iterator it = ref.iterator();
+        while (it.hasNext()) {
+        System.out.println((String)it.next());
+        }
 
+        //Ordenar Map por Valor
+        HashMap mapResultado = new LinkedHashMap();
+        List misMapKeys = new ArrayList(categorias.keySet());
+        List misMapValues = new ArrayList(categorias.values());
+        TreeSet conjuntoOrdenado = new TreeSet(misMapValues);
+        Object[] arrayOrdenado = conjuntoOrdenado.toArray();
 
+        for (int i=0; i<arrayOrdenado.length; i++) {
+            mapResultado.put
+            (misMapKeys.get(misMapValues.indexOf(arrayOrdenado[i])),arrayOrdenado[i]);
+        }
+
+        Iterator it1 = mapResultado.keySet().iterator();
+        while (it1.hasNext()) {
+        respuesta.add(it1.next());
+        }
+        return respuesta;
     }
+
+
+  }

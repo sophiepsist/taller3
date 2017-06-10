@@ -344,6 +344,10 @@ public class UsuarioLector implements Serializable {
         return libroArray;
     }
     
+     /*--------------------ALGORITMO DE REFCOMENDACION---------------------------
+    ** Asigna un punto a cada categoria del libro al que pertenece una mayor calififacion
+    cada vez que un libro le gane a otro en calificacion personal se anadira un punto a la categoria del libro ganador 
+    */    
     public ArrayList HashMapToArrayList () throws NoSuchElementException{  
         Iterator it = librosComprados.values().iterator();
         ArrayList LibrosAAnalizar = new ArrayList();
@@ -354,50 +358,100 @@ public class UsuarioLector implements Serializable {
         return LibrosAAnalizar;
     }
     
-//    public ArrayList algoritmoDeRecomendacion(ArrayList libros){
-//        int academico = 0;
-//        int clasico = 0;
-//        int suspenso = 0;
-//        int romance = 0;
-//        int filosofia = 0;
-//        int juvenil = 0;
-//        int otros = 0;
-//        ArrayList aux = HashMapToArrayList();
-//        for(int i=0; i<=aux.size(); i++){
-//            Libro libro = (Libro) aux.get(i);
-//            for(int j=i+1; j <=aux.size(); i++){
-//                Libro libro2 = (Libro) aux.get(j);
-//                if(libro.equals(libro2)){
-//                    switch (libro.getCategoria())
-//                    {
-//                        case "Academico":
-//                            academico++;
-//                            break;
-//                        case "Clasico":
-//                            clasico++;
-//                            break;
-//                        case "Suspenso":
-//                            suspenso++;
-//                            break;
-//                        case "Romance":
-//                            romance++;
-//                            break;
-//                        case "Filosofia":
-//                            filosofia++;
-//                            break;
-//                        case "Juvenil":
-//                            juvenil++;
-//                            break;
-//                        case "Otros":
-//                            otros++;
-//                            break;
-//                    }
-//                    
-//                }
-//            }
-//        }
-//    }
+    public static String eliminarAcentos(String str) {
+        String ORIGINAL = "ÁáÉéÍíÓóÚúÑñÜü";
+        String REPLACEMENT = "AaEeIiOoUuNnUu";
+        if (str == null) {
+            return null;
+        }
+        char[] array = str.toCharArray();
+        for (int index = 0; index < array.length; index++) {
+            int pos = ORIGINAL.indexOf(array[index]);
+            if (pos > -1) {
+                array[index] = REPLACEMENT.charAt(pos);
+            }
+        }
+        return new String(array);
+}
     
+    
+    public HashMap algoritmoDeRecomendacionCategorias(){
+        int academico = 0;
+        int clasico = 0;
+        int suspenso = 0;
+        int romance = 0;
+        int filosofia = 0;
+        int juvenil = 0;
+        int otros = 0;
+        HashMap categorias = new HashMap();
+        ArrayList aux = HashMapToArrayList();
+        for(int i=0; i<=aux.size(); i++){
+            Libro libro = (Libro) aux.get(i);
+            for(int j=i+1; j <=aux.size(); i++){
+                Libro libro2 = (Libro) aux.get(j);
+                if(libro.equals(libro2)){                    
+                    switch (eliminarAcentos(libro.getCategoria()))
+                    {
+                        case "Academico":
+                            academico++;
+                            break;
+                        case "Clasico":
+                            clasico++;
+                            break;
+                        case "Suspenso":
+                            suspenso++;
+                            break;
+                        case "Romance":
+                            romance++;
+                            break;
+                        case "Filosofia":
+                            filosofia++;
+                            break;
+                        case "Juvenil":
+                            juvenil++;
+                            break;
+                        case "Otros":
+                            otros++;
+                            break;
+                    }
+                }else{
+                    switch (eliminarAcentos(libro2.getCategoria()))
+                    {
+                        case "Academico":
+                            academico++;
+                            break;
+                        case "Clasico":
+                            clasico++;
+                            break;
+                        case "Suspenso":
+                            suspenso++;
+                            break;
+                        case "Romance":
+                            romance++;
+                            break;
+                        case "Filosofia":
+                            filosofia++;
+                            break;
+                        case "Juvenil":
+                            juvenil++;
+                            break;
+                        case "Otros":
+                            otros++;
+                            break;
+                    }
+                }
+            }
+        }
+        categorias.put("Academico", academico);
+        categorias.put("Clasico", clasico);
+        categorias.put("Suspenso",suspenso);
+        categorias.put("Romance", romance);
+        categorias.put("Filosofia", filosofia);
+        categorias.put("Juvenil", juvenil);
+        categorias.put("Otros", otros);
+        
+    return categorias;
+    }
     
     
 }
