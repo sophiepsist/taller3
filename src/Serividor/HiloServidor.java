@@ -14,7 +14,7 @@ import java.net.Socket;
 import java.util.*;
 import Modelo.*;
 import java.time.LocalDateTime;
-import javafx.util.converter.LocalDateTimeStringConverter;
+//import javafx.util.converter.LocalDateTimeStringConverter;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -41,9 +41,7 @@ public class HiloServidor extends Thread{
             this.salida = new ObjectOutputStream(cliente.getOutputStream());
             this.salida.flush();
             this.entrada = new ObjectInputStream(cliente.getInputStream());
-            this.biblioteca = biblio; 
-            this.UL = new UsuarioLector();
-            this.UAL = new UsuarioAdministrador();
+            this.biblioteca = biblio;             
             }
         catch(IOException e)
             {
@@ -171,7 +169,8 @@ public class HiloServidor extends Thread{
                         break; 
                     case "loginUsuarioLector":
                         ArrayList mensajeLoginUL = new ArrayList(1);                        
-                        this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));                        
+                        this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));  
+                        biblioteca.setActualUL(UL);
                         mensajeLoginUL.add("todo ok");
                         enviarDatos(mensajeLoginUL);
                         LocalDateTime timeUL = LocalDateTime.now();
@@ -181,9 +180,9 @@ public class HiloServidor extends Thread{
                     case "comprarlibrosUL":
                         ArrayList msj = new ArrayList();                        
                         String isbn = (String)mensaje.get(1);                      
-                        Libro libroComprar = (Libro)biblioteca.getLibros().get(isbn);                         
-                        msj.add(this.UL.comprarLibro(libroComprar)); 
-                        System.out.println("despues de llamar metodo");
+                        Libro libroComprar = (Libro)biblioteca.getLibros().get(isbn);   
+                        UsuarioLector actualUL = biblioteca.getActualUL();
+                        msj.add(actualUL.comprarLibro(libroComprar));                         
                         enviarDatos(msj);
                         break;
                     case "recargar":

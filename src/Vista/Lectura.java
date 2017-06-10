@@ -6,7 +6,7 @@
 package Vista;
 
 import Controladora.Controladora;
-import highlight.MyHighlighter;
+import Modelo.MyHighlighter;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.logging.Level;

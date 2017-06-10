@@ -218,21 +218,17 @@ public class UsuarioLector implements Serializable {
         }               
                 
         if(edad<Integer.parseInt(libro.getRangoEdades().split("-")[0])){
-            System.out.println("EXCEPCION EDAD");
+            System.out.println(edad);            
             throw new MyException("Compra no efectuada. El libro está dirigido a una audiencia entre los " + libro.getRangoEdades() + " años");
-        }else if(isMyBirthday && contLibroCumpleanios==0){
-            System.out.println("CUMPLEAÑOS");
+        }else if(isMyBirthday && contLibroCumpleanios==0){            
             contLibroCumpleanios = 1;                 
             librosComprados.put(libro.getIsbn(), libro);
             return "La biblioteca le ha regalado el libro por ser su cumpleaños.\nFelicidades :)";        
-        }else if(saldo<precio){
-            System.out.println("PRECIO");
+        }else if(saldo<precio){           
             throw new MyException("Compra no efectuada. Su saldo es inferior al precio del libro");          
-        }else{
-            System.out.println("ANTES DE COMPRA");
+        }else{           
             librosComprados.put(libro.getIsbn(), libro);            
-            saldo -= libro.getPrecio();
-            System.out.println("COMPRA EFECTUADA");
+            saldo -= libro.getPrecio();           
             return "Compra exitosa";                
         }
     }

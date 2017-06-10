@@ -40,6 +40,7 @@ public class Biblioteca {
     private ArrayList mejoresLibros;
     private Lectura lectura;
     private Escritura escritura;
+    private UsuarioLector actualUL;
     //---------------------------MÉTODO CONSTRUCTOR-----------------------------
     
     public Biblioteca(){
@@ -1149,6 +1150,17 @@ public class Biblioteca {
             resp.add("No existe un usuario lector con ese email");
             return resp;
         }
+    }
+    
+    /**-----------------------------------------------------------------------**
+     * Permite guardar y retornar el actual usuario lector
+     */ 
+    public UsuarioLector getActualUL(){
+        return actualUL;
+    }
+    
+    public void setActualUL(UsuarioLector ul){
+        this.actualUL = ul;
     }
 
 
