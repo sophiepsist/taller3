@@ -43,7 +43,6 @@ public class MisLibros extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         labelImagen = new javax.swing.JLabel();
@@ -64,19 +63,6 @@ public class MisLibros extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("MIS LIBROS");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 604, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
-        );
-
-        jTabbedPane1.addTab("Libros leídos", jPanel2);
 
         labelImagen.setText("jLabel2");
 
@@ -193,7 +179,9 @@ public class MisLibros extends javax.swing.JInternalFrame {
 
     private void btLeerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLeerActionPerformed
         // TODO add your handling code here:
-        
+        Lectura objLectura = new Lectura(miControl);
+        this.jTabbedPane1.add(objLectura);
+        objLectura.show();
         
     }//GEN-LAST:event_btLeerActionPerformed
 
@@ -241,7 +229,6 @@ public class MisLibros extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;

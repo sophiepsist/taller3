@@ -5,6 +5,7 @@
  */
 package Vista;
 
+import Controladora.Controladora;
 import java.awt.Color;
 
 /**
@@ -12,12 +13,13 @@ import java.awt.Color;
  * @author invitado
  */
 public class Lectura extends javax.swing.JInternalFrame {
-
+    private Controladora miControl;
     /**
      * Creates new form Lectura
      */
-    public Lectura() {
+    public Lectura(Controladora c) {
         initComponents();
+        this.miControl = c;
     }
 
     /**
