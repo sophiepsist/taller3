@@ -343,4 +343,61 @@ public class UsuarioLector implements Serializable {
         libroArray.add(libro.getPaginasArray());
         return libroArray;
     }
+    
+    public ArrayList HashMapToArrayList () throws NoSuchElementException{  
+        Iterator it = librosComprados.values().iterator();
+        ArrayList LibrosAAnalizar = new ArrayList();
+        while (it.hasNext()){
+            Libro libro = (Libro) it.next();
+            LibrosAAnalizar.add(libro);
+        }
+        return LibrosAAnalizar;
+    }
+    
+//    public ArrayList algoritmoDeRecomendacion(ArrayList libros){
+//        int academico = 0;
+//        int clasico = 0;
+//        int suspenso = 0;
+//        int romance = 0;
+//        int filosofia = 0;
+//        int juvenil = 0;
+//        int otros = 0;
+//        ArrayList aux = HashMapToArrayList();
+//        for(int i=0; i<=aux.size(); i++){
+//            Libro libro = (Libro) aux.get(i);
+//            for(int j=i+1; j <=aux.size(); i++){
+//                Libro libro2 = (Libro) aux.get(j);
+//                if(libro.equals(libro2)){
+//                    switch (libro.getCategoria())
+//                    {
+//                        case "Academico":
+//                            academico++;
+//                            break;
+//                        case "Clasico":
+//                            clasico++;
+//                            break;
+//                        case "Suspenso":
+//                            suspenso++;
+//                            break;
+//                        case "Romance":
+//                            romance++;
+//                            break;
+//                        case "Filosofia":
+//                            filosofia++;
+//                            break;
+//                        case "Juvenil":
+//                            juvenil++;
+//                            break;
+//                        case "Otros":
+//                            otros++;
+//                            break;
+//                    }
+//                    
+//                }
+//            }
+//        }
+//    }
+    
+    
+    
 }
