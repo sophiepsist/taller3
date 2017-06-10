@@ -41,7 +41,9 @@ public class HiloServidor extends Thread{
             this.salida = new ObjectOutputStream(cliente.getOutputStream());
             this.salida.flush();
             this.entrada = new ObjectInputStream(cliente.getInputStream());
-            this.biblioteca = biblio;            
+            this.biblioteca = biblio; 
+            this.UL = new UsuarioLector();
+            this.UAL = new UsuarioAdministrador();
             }
         catch(IOException e)
             {

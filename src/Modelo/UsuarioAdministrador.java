@@ -30,7 +30,10 @@ public class UsuarioAdministrador implements Serializable {
         this.contrasenia = contrasenia;
         this.autorizado = autorizado;
         this.sesionesIniciadas = new ArrayList();
+        
     }
+    
+    public UsuarioAdministrador(){}
     
     //---------------------------- MÉTODOS GET----------------------------------
     

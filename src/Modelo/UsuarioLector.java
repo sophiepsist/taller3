@@ -45,7 +45,8 @@ public class UsuarioLector implements Serializable {
         this.contLibroCumpleanios = 0;
         this.sesionesIniciadas = new ArrayList();
     }
-
+    
+    public UsuarioLector(){}
     
     // ----------------------------MÉTODOS GET----------------------------------
 
