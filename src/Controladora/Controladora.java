@@ -26,7 +26,9 @@ public class Controladora {
             try{
                 System.out.println(msj.get(0));
             }catch(ArrayIndexOutOfBoundsException e){
-                e.printStackTrace();
+                
+            }catch(IndexOutOfBoundsException e){
+                
             }
             return msj;
         }        

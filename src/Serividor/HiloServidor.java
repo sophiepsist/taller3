@@ -220,21 +220,20 @@ public class HiloServidor extends Thread{
 
             }catch(ClassNotFoundException e){
                 ArrayList exception = new ArrayList(1);
-                exception.add("Error asigando el tipo de variable\n" + e.toString());
+                exception.add("Error asigando el tipo de variable\n" + e.getMessage());
                 enviarDatos(exception);
                 System.out.println("Cerrar Conexion dentro del switch Exception ClassNotFoundExcpetion");
             }catch (IOException e){
                 ArrayList exception = new ArrayList(1);
-                exception.add( "Error con los flujos de datos\n" +e.toString());
+                exception.add( "Error con los flujos de datos\n" +e.getMessage());
                 enviarDatos(exception);
                 cerrarConexion();
                 mensaje = new ArrayList();
                 System.out.println("Cerrar Conexion dentro del switch Exception IOException");
             }catch(ArrayIndexOutOfBoundsException e){
                 ArrayList exception = new ArrayList(1);
-                exception.add("Falla en el orden de envio de los datos\n" + e.toString());
+                exception.add("Falla en el orden de envio de los datos\n" + e.getMessage());
                 enviarDatos(exception);
-                e.printStackTrace();
                 System.out.println("Cerrar Conexion dentro del switch Exception ArrayIndexOfBoundException");
             }catch(NoSuchElementException e){
                 ArrayList exception = new ArrayList(1);
@@ -248,6 +247,10 @@ public class HiloServidor extends Thread{
                 ArrayList exception = new ArrayList(1);
                 exception.add("No se ingresaron datos\n");
                 enviarDatos(exception);    
+            }catch(IndexOutOfBoundsException e){
+                ArrayList exception = new ArrayList(1);
+                exception.add("No hay nada abranse\n");
+                enviarDatos(exception);
             }catch (MyException e){
                 ArrayList exception = new ArrayList(1);
                 exception.add(e.toString());

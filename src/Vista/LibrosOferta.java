@@ -59,6 +59,12 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Libros en Oferta:");
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         jLabel2.setBackground(new java.awt.Color(51, 0, 153));
         jLabel2.setForeground(new java.awt.Color(51, 0, 153));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -88,6 +94,11 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
         star5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/star.gif"))); // NOI18N
 
         jButton2.setText("Comprar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,6 +177,23 @@ public class LibrosOferta extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Seleccione uno de los libros disponibles");
         } 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ArrayList conexion = new ArrayList();
+        conexion.add("comprarlibrosUL");
+        String isbn;
+        if(this.jComboBox1.getSelectedItem().toString().contains(";")){
+            isbn = this.jComboBox1.getSelectedItem().toString().split(";")[1];
+            conexion.add(isbn);
+        }else{
+            JOptionPane.showMessageDialog(this, "Por favor selccione un libro");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public void consultarPeriodoOferta(String isbn){
         ArrayList conexion = new ArrayList(2);

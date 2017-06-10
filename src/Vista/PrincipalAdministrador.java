@@ -431,16 +431,21 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        JFrame frame = new JFrame("Sesiones");
-        String code = JOptionPane.showInputDialog(frame, "Ingrese el e-mail del UL que desea consultar", "E-mail", JOptionPane.WARNING_MESSAGE);
-        String email = code.toString();
         
-        ArrayList conexion = new ArrayList(2);
-        conexion.add("informeSesionesUL");
-        conexion.add(email);
-        ArrayList respuesta = this.miControl.conectar(conexion);
-        this.jTextArea1.setText((String)respuesta.get(0));
-        
+        try{
+            JFrame frame = new JFrame("Sesiones");
+            String code = JOptionPane.showInputDialog(frame, "Ingrese el e-mail del UL que desea consultar", "E-mail", JOptionPane.WARNING_MESSAGE);
+            String email = code.toString();
+
+            ArrayList conexion = new ArrayList(2);
+            conexion.add("informeSesionesUL");
+            conexion.add(email);
+            ArrayList respuesta = this.miControl.conectar(conexion);
+            this.jTextArea1.setText((String)respuesta.get(0));
+        }catch(NullPointerException e){
+            System.out.println(e.getMessage());
+        }
+
         
         
     }//GEN-LAST:event_jButton12ActionPerformed

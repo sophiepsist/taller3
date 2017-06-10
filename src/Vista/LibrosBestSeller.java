@@ -7,6 +7,7 @@ package Vista;
 import Controladora.*;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -189,12 +190,20 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
     
     
     public void refrescarLibrosBestSeller(){
-        ArrayList conexion = new ArrayList(1);
-        conexion.add("refrescarBestSellers");
-        ArrayList librosBestSeller = this.miControl.conectar(conexion);        
-        for(Object libroBestSeller : librosBestSeller){
-            this.jComboBox1.addItem((String)libroBestSeller);
-        }        
+        try{
+            ArrayList conexion = new ArrayList(1);
+            conexion.add("refrescarBestSellers");
+            ArrayList librosBestSeller = this.miControl.conectar(conexion);   
+            if(librosBestSeller == null){
+                JOptionPane.showMessageDialog(this, "No hay libros best seller");
+            }else{
+                for(Object libroBestSeller : librosBestSeller){
+                    this.jComboBox1.addItem((String)libroBestSeller);
+                    }
+            }
+        }catch(ArrayIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(this, "No hay libros best seller");
+        }      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
