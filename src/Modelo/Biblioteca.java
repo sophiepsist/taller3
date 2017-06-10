@@ -1231,6 +1231,28 @@ public class Biblioteca {
         }
         return respuesta;
     }
+    
+    public ArrayList recomendarLibros(){
+        ArrayList categoriasARecomendar = algortimoDeRecomendacion();
+        for(int i=0; i<=categoriasARecomendar.size(); i++){
+            if(categoriasARecomendar.get(i).equals("Academico")){
+                categoriasARecomendar.addAll(librosAcademicos.values());
+            }if(categoriasARecomendar.get(i).equals("Clasico")){
+                categoriasARecomendar.addAll(librosClasicos.values());
+            }if(categoriasARecomendar.get(i).equals("Suspenso")){
+                categoriasARecomendar.addAll(librosSuspenso.values());
+            }if(categoriasARecomendar.get(i).equals("Romance")){
+                categoriasARecomendar.addAll(librosRomance.values());
+            }if(categoriasARecomendar.get(i).equals("Filosofia")){
+                categoriasARecomendar.addAll(librosFilosofia.values());
+            }if(categoriasARecomendar.get(i).equals("Juvenil")){
+                categoriasARecomendar.addAll(librosJuveniles.values());
+            }if(categoriasARecomendar.get(i).equals("Otros")){
+                categoriasARecomendar.addAll(librosOtros.values());
+            }
+        }
+        return categoriasARecomendar;
+    }
 
 
   }
