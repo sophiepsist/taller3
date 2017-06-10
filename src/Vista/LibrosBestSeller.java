@@ -53,6 +53,11 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Libro:");
 
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -164,6 +169,43 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
+//        ArrayList conexion = new ArrayList(2);
+//        ArrayList respuesta = new ArrayList(3);
+//        conexion.add("consultarInfoLibros");
+//        conexion.add(this.jComboBox1.getSelectedItem().toString().split(";")[1]);
+//        respuesta = this.miControl.conectar(conexion);      
+//        this.jTextArea1.setText((String)respuesta.get(0));
+//        this.jLabel2.setIcon((ImageIcon)respuesta.get(1));
+//        switch((int)respuesta.get(2)){
+//            case 1:
+//               this.star1.setVisible(true);
+//               break;
+//            case 2:
+//               this.star1.setVisible(true);
+//               this.star2.setVisible(true);
+//               break;
+//            case 3:
+//               this.star1.setVisible(true);
+//               this.star2.setVisible(true);
+//               this.star3.setVisible(true);
+//               break;
+//            case 4:
+//               this.star1.setVisible(true);
+//               this.star2.setVisible(true);
+//               this.star3.setVisible(true);
+//               this.star4.setVisible(true);
+//               break;
+//            case 5:
+//               this.star1.setVisible(true);
+//               this.star2.setVisible(true);
+//               this.star3.setVisible(true);
+//               this.star4.setVisible(true);
+//               this.star5.setVisible(true);
+//       }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        // TODO add your handling code here:
         ArrayList conexion = new ArrayList(2);
         ArrayList respuesta = new ArrayList(3);
         conexion.add("consultarInfoLibros");
@@ -197,7 +239,7 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
                this.star4.setVisible(true);
                this.star5.setVisible(true);
        }
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
     
     
