@@ -456,11 +456,16 @@ public class UsuarioLector implements Serializable {
     }
     
      /*-----------------GUARDAR CAMBIOS EN EL LIBRO LEÍDO-----------------------
-    ** Retorna el libro que se quiere leer como un array de strings
+    ** Realiza los cambios del ul sobre el objeto libro en su hashmap de libros
     */
-    public void setPorcentajeLecturaLibro(String isbn, int contador){
+    public void setCambiosLectura(String isbn, int contador, ArrayList paginasArray, ArrayList notas){
         Libro libro = (Libro)librosComprados.get(isbn);
         libro.setPaginasLeidas(contador);
         libro.setPorcentajeLectura(contador/libro.getNumPaginas()*100);
+        libro.setPaginasArray(paginasArray);
+        libro.setNumPaginas(paginasArray.size());
+        libro.setNotas(notas);
     }
+    
+    
 }

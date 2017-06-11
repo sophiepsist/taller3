@@ -245,7 +245,15 @@ public class HiloServidor extends Thread{
                         }else{
                             respuesta.add("No existe el usuario en la biblioteca");
                             enviarDatos(respuesta);
-                        }                        
+                        }   
+                        break;
+                    case "setCambiosLectura":
+                        ArrayList respuestaCambios = new ArrayList();
+                        UsuarioLector actualUL8 = biblioteca.getActualUL();
+                        actualUL8.setCambiosLectura((String)mensaje.get(1),(int)mensaje.get(2), (ArrayList)mensaje.get(3), (ArrayList)mensaje.get(4));
+                        respuestaCambios.add("Libro guardado");
+                        enviarDatos(respuestaCambios);
+                        break;   
                 }
 
             }catch(ClassNotFoundException e){

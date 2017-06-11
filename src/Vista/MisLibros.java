@@ -31,7 +31,7 @@ public class MisLibros extends javax.swing.JInternalFrame {
         for(Object libro : libros){
             this.jComboBox1.addItem((String)libro);
         }        
-    }
+    }  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -190,7 +190,7 @@ public class MisLibros extends javax.swing.JInternalFrame {
     private void btConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btConsultarActionPerformed
         // TODO add your handling code here:
         ArrayList conexion = new ArrayList(2);
-        ArrayList respuesta = new ArrayList(3);
+        ArrayList respuesta = new ArrayList();
         conexion.add("consultarLibrosComprados");
         conexion.add(this.jComboBox1.getSelectedItem().toString().split(";")[1]);
         respuesta = this.miControl.conectar(conexion);      
