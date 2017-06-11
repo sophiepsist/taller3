@@ -54,6 +54,7 @@ public class Libro implements Serializable{
         this.paginasLeidas = 0;
         this.calificacionGlobal = 0;
         this.notas = new ArrayList();
+        this.porcentajeLectura = 0;
     }   
     
     //----------------------------MÉTODOS GET-----------------------------------

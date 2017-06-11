@@ -222,6 +222,7 @@ public class MisLibros extends javax.swing.JInternalFrame {
                 this.star4.setVisible(true);
                 this.star5.setVisible(true);
         }
+        System.out.println("porcentaje lectura:"+ (int)respuesta.get(3));
         this.jProgressBar1.setValue((int)respuesta.get(3));
     }//GEN-LAST:event_btConsultarActionPerformed
 

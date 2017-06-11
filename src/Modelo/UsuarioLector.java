@@ -312,6 +312,7 @@ public class UsuarioLector implements Serializable {
             resp.add(libro.getResumen());
             resp.add(libro.getCaratula());
             resp.add(libro.getCalificacionPersonal());
+            System.out.println("PORCENTAJE NO ROUND:" + libro.getPorcentajeLectura());
             roundedNumber = (int) Math.round(libro.getPorcentajeLectura());
             resp.add(roundedNumber);
         }else{            
@@ -460,8 +461,9 @@ public class UsuarioLector implements Serializable {
     */
     public void setCambiosLectura(String isbn, int contador, ArrayList paginasArray, ArrayList notas){
         Libro libro = (Libro)librosComprados.get(isbn);
-        libro.setPaginasLeidas(contador);
-        libro.setPorcentajeLectura(contador/libro.getNumPaginas()*100);
+        System.out.println("CONTADOR. " + contador);
+        libro.setPaginasLeidas(contador);        
+        libro.setPorcentajeLectura(100*contador/libro.getNumPaginas());
         libro.setPaginasArray(paginasArray);
         libro.setNumPaginas(paginasArray.size());
         libro.setNotas(notas);
