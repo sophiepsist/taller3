@@ -254,6 +254,14 @@ public class HiloServidor extends Thread{
                         respuestaCambios.add("Libro guardado");
                         enviarDatos(respuestaCambios);
                         break;   
+                    case "calificarLibro":
+                        ArrayList respuestaCalificar = new ArrayList();
+                        UsuarioLector actualUL9 = biblioteca.getActualUL();
+                        biblioteca.hacerCalificacion((String)mensaje.get(1),(int)mensaje.get(2), actualUL9);
+                        respuestaCalificar.add("Calificación hecha");
+                        enviarDatos(respuestaCalificar);
+                        break;
+                        
                 }
 
             }catch(ClassNotFoundException e){

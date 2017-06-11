@@ -322,19 +322,6 @@ public class UsuarioLector implements Serializable {
         return resp;
     }
     
-     /*--------------------CALIFICAR LIBROS COMPRADOS---------------------------
-    ** Busca el libro que quiere calificar y verifica que haya leido el 80% de este.
-    ** Retorna un verdadero para indicar que la calificación que quiere hacer es válida.
-    */
-    public boolean calificarLibro(Libro libro){
-        Libro libroDelLector = (Libro)librosComprados.get(libro.getIsbn());
-        if(libroDelLector.getPorcentajeLectura() >= 80){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    
      /*--------------------ACCEDER A LIBROS COMPRADOS---------------------------
     ** Retorna el libro que se quiere leer como un array de strings
     */
@@ -342,8 +329,9 @@ public class UsuarioLector implements Serializable {
     public ArrayList getLibroLectura(String isbn){
         ArrayList libroArray = new ArrayList();
         Libro libro = (Libro)librosComprados.get(isbn);
-        libroArray.add(libro.getTitulo());
+        libroArray.add(libro.getTitulo());        
         libroArray.add(libro.getPaginasArray());
+        libroArray.add(libro.getPaginasLeidas());
         return libroArray;
     }
     
@@ -466,7 +454,7 @@ public class UsuarioLector implements Serializable {
         libro.setPorcentajeLectura(100*contador/libro.getNumPaginas());
         libro.setPaginasArray(paginasArray);
         libro.setNumPaginas(paginasArray.size());
-        libro.setNotas(notas);
+        libro.setNotas(notas);        
     }
     
     

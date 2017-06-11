@@ -47,7 +47,9 @@ public class Lectura extends javax.swing.JInternalFrame {
         ArrayList respuesta = this.miControl.conectar(conexion);
         this.jLabel1.setText((String)respuesta.get(0));
         this.libro = (ArrayList)respuesta.get(1);
+        this.cont = (int)respuesta.get(2);
         this.jTextArea1.setText((String)libro.get(cont));
+        this.actualizarProgressBar();
     }
     
     public void refrescarNotas(){
@@ -67,6 +69,10 @@ public class Lectura extends javax.swing.JInternalFrame {
         int pos = 0;
         pos = text.indexOf(selected);
         hilite.addHighlight(pos, pos + selected.length(), myHighlighter);            
+    }
+    
+    public void actualizarProgressBar(){
+        this.jProgressBar1.setValue((int)cont*100/libro.size());
     }
 
     /**
@@ -105,6 +111,8 @@ public class Lectura extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
+        jButton12 = new javax.swing.JButton();
 
         setIconifiable(true);
         setMaximizable(true);
@@ -239,6 +247,13 @@ public class Lectura extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton12.setText("Calificar libro");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -250,7 +265,9 @@ public class Lectura extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(23, 23, 23)
                                 .addComponent(jButton2)
-                                .addGap(323, 323, 323)
+                                .addGap(88, 88, 88)
+                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(89, 89, 89)
                                 .addComponent(jButton1))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
@@ -293,10 +310,11 @@ public class Lectura extends javax.swing.JInternalFrame {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10)
+                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButton12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(238, 238, 238)
                         .addComponent(jLabel1)
@@ -307,7 +325,7 @@ public class Lectura extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jCheckBox1)
@@ -345,19 +363,23 @@ public class Lectura extends javax.swing.JInternalFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton8)
-                        .addGap(21, 21, 21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton9)
+                        .addGap(29, 29, 29)
+                        .addComponent(jButton12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton7))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton2)
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13))
         );
 
@@ -380,6 +402,7 @@ public class Lectura extends javax.swing.JInternalFrame {
         try{
             cont++;
             this.jTextArea1.setText((String)libro.get(cont));
+            this.actualizarProgressBar();
         }catch(IndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(this, "Ha llegado al final del libro");
             cont--;
@@ -391,6 +414,7 @@ public class Lectura extends javax.swing.JInternalFrame {
         try{
             cont--;
             this.jTextArea1.setText((String)libro.get(cont));
+            this.actualizarProgressBar();
         }catch(IndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(this, "Se encuentra en la primera página del libro");
             cont++;
@@ -504,11 +528,26 @@ public class Lectura extends javax.swing.JInternalFrame {
         this.jButton2.setEnabled(true);
     }//GEN-LAST:event_jButton11ActionPerformed
 
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        if(this.jProgressBar1.getValue()<80){
+            JOptionPane.showMessageDialog(this, "Debe haber leído por lo menos un 80% del libro para poder calificarlo");
+        }else{
+//            JOptionPane.showMessageDialog(this, ""
+//            ArrayList conexion = new ArrayList();
+//            conexion.add("calificarLibro");
+//            conexion.add(isbn);
+//            conexion.add(evt)
+            
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -531,6 +570,7 @@ public class Lectura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables

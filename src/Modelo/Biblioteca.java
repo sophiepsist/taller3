@@ -1016,17 +1016,14 @@ public class Biblioteca {
     ** que existe en la clase Usuario Administrador
     */
     
-    public void hacerCalificacion(String isbn, double calificacion, UsuarioLector ul) throws MyException, IOException{
+    public void hacerCalificacion(String isbn, int calificacion, UsuarioLector ul) throws MyException, IOException{
         Libro libroBiblioteca = (Libro)libros.get(isbn);
         Libro libroUsuario = (Libro)ul.getLibrosComprados().get(isbn);
-        if(ul.calificarLibro(libroUsuario)){
-            libroBiblioteca.getCalificaciones().add(calificacion);
-            libroUsuario.setCalificacionPersonal((int) calificacion);
-            setearCalificacionLibroBiblioteca(libroBiblioteca);             
-           escritura.serializarLibro(libroBiblioteca);
-        }else{
-            throw new MyException("El usuario debe haber leido por lo menos el 80% del libro para poder calificarlo");
-        }
+        
+        libroBiblioteca.getCalificaciones().add(calificacion);
+        libroUsuario.setCalificacionPersonal((int) calificacion);
+        setearCalificacionLibroBiblioteca(libroBiblioteca);             
+        escritura.serializarLibro(libroBiblioteca);  
     }
        
     /**-----------------------------------------------------------------------**
