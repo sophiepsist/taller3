@@ -20,6 +20,7 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
         initComponents();
         this.miControl =c;
         this.cont = 0;
+        recomendarLibros();
     }
     public void recomendarLibros(){
         
@@ -28,12 +29,21 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
         ArrayList mensaje2 = new ArrayList();
         ArrayList mensaje3 = new ArrayList();
         ArrayList mensaje4 = new ArrayList();
+        ArrayList mensaje5 = new ArrayList();
+        ArrayList mensaje6 = new ArrayList();
+        ArrayList mensaje7 = new ArrayList();
         ArrayList respuesta2 = new ArrayList();
         ArrayList respuesta3 = new ArrayList();
         ArrayList respuesta4 = new ArrayList();
+        ArrayList respuesta5 = new ArrayList();
+        ArrayList respuesta6 = new ArrayList();
+        ArrayList respuesta7 = new ArrayList();
         String libro1 = "";
         String libro2 = "";
         String libro3 = "";
+        String libro4 = "";
+        String libro5 = "";
+        String libro6 = "";
         mensaje.add("recomendarLibros");
         respuesta = miControl.conectar(mensaje);
         try{
@@ -42,7 +52,7 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
         mensaje2.add(libro1.split(";")[1]);
         respuesta2 = miControl.conectar(mensaje2);
         jLabel1.setIcon((Icon) respuesta2.get(1));
-        jLabel4.setText((String) respuesta2.get(0));
+        jLabel7.setText((String) respuesta2.get(0));
         }catch(IndexOutOfBoundsException e){
             jLabel1.setText("No hay mas libros a recomendar");
         }
@@ -50,9 +60,9 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
         libro2 = (String) respuesta.get(cont + 1);
         mensaje3.add("consultarInfoLibros");
         mensaje3.add(libro2.split(";")[1]);
-        respuesta3 = miControl.conectar(mensaje2);
+        respuesta3 = miControl.conectar(mensaje3);
         jLabel2.setIcon((Icon) respuesta3.get(1));
-        jLabel5.setText((String) respuesta3.get(0));
+        jLabel8.setText((String) respuesta3.get(0));
         }catch(IndexOutOfBoundsException e){
             jLabel2.setText("No hay mas libros a recomendar");
         }
@@ -60,11 +70,41 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
         libro3 = (String) respuesta.get(cont + 2);
         mensaje4.add("consultarInfoLibros");
         mensaje4.add(libro3.split(";")[1]);
-        respuesta4 = miControl.conectar(mensaje2);
-        jLabel1.setIcon((Icon) respuesta4.get(1));
-        jLabel6.setText((String) respuesta4.get(0));
+        respuesta4 = miControl.conectar(mensaje4);
+        jLabel3.setIcon((Icon) respuesta4.get(1));
+        jLabel9.setText((String) respuesta4.get(0));
         }catch(IndexOutOfBoundsException e){
             jLabel3.setText("No hay mas libros a recomendar");
+        }
+        try{
+        libro4 = (String) respuesta.get(cont + 3);
+        mensaje5.add("consultarInfoLibros");
+        mensaje5.add(libro2.split(";")[1]);
+        respuesta5 = miControl.conectar(mensaje5);
+        jLabel4.setIcon((Icon) respuesta5.get(1));
+        jLabel10.setText((String) respuesta5.get(0));
+        }catch(IndexOutOfBoundsException e){
+            jLabel2.setText("No hay mas libros a recomendar");
+        }
+        try{
+        libro5 = (String) respuesta.get(cont + 4);
+        mensaje6.add("consultarInfoLibros");
+        mensaje6.add(libro2.split(";")[1]);
+        respuesta3 = miControl.conectar(mensaje6);
+        jLabel5.setIcon((Icon) respuesta3.get(1));
+        jLabel11.setText((String) respuesta3.get(0));
+        }catch(IndexOutOfBoundsException e){
+            jLabel2.setText("No hay mas libros a recomendar");
+        }
+        try{
+        libro6 = (String) respuesta.get(cont + 5);
+        mensaje7.add("consultarInfoLibros");
+        mensaje7.add(libro2.split(";")[1]);
+        respuesta3 = miControl.conectar(mensaje7);
+        jLabel6.setIcon((Icon) respuesta3.get(1));
+        jLabel12.setText((String) respuesta3.get(0));
+        }catch(IndexOutOfBoundsException e){
+            jLabel2.setText("No hay mas libros a recomendar");
         }
     }
     /** This method is called from within the constructor to
@@ -82,6 +122,12 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -101,6 +147,18 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
 
         jLabel6.setText("jLabel6");
 
+        jLabel7.setText("jLabel7");
+
+        jLabel8.setText("jLabel8");
+
+        jLabel9.setText("jLabel9");
+
+        jLabel10.setText("jLabel10");
+
+        jLabel11.setText("jLabel11");
+
+        jLabel12.setText("jLabel12");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,32 +166,56 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4))
-                .addGap(109, 109, 109)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
-                .addGap(90, 90, 90)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel3))
-                .addContainerGap(124, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel10))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(136, 136, 136)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addContainerGap(165, Short.MAX_VALUE))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,11 +224,17 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
 }
