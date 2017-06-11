@@ -6,18 +6,67 @@
 
 package Vista;
 import Controladora.*;
+import java.util.*;
+import javax.swing.*;
 /**
  *
  * @author Valeria
  */
 public class LibrosRecomendados extends javax.swing.JInternalFrame {
     private Controladora miControl;
+    private int cont;
     /** Creates new form LibrosRecomendados */
     public LibrosRecomendados(Controladora c) {
         initComponents();
         this.miControl =c;
+        this.cont = 0;
     }
-
+    public void recomendarLibros(){
+        
+        ArrayList mensaje = new ArrayList();
+        ArrayList respuesta = new ArrayList();
+        ArrayList mensaje2 = new ArrayList();
+        ArrayList mensaje3 = new ArrayList();
+        ArrayList mensaje4 = new ArrayList();
+        ArrayList respuesta2 = new ArrayList();
+        ArrayList respuesta3 = new ArrayList();
+        ArrayList respuesta4 = new ArrayList();
+        String libro1 = "";
+        String libro2 = "";
+        String libro3 = "";
+        mensaje.add("recomendarLibros");
+        respuesta = miControl.conectar(mensaje);
+        try{
+        libro1 = (String) respuesta.get(cont);
+        mensaje2.add("consultarInfoLibros");
+        mensaje2.add(libro1.split(";")[1]);
+        respuesta2 = miControl.conectar(mensaje2);
+        jLabel1.setIcon((Icon) respuesta2.get(1));
+        jLabel4.setText((String) respuesta2.get(0));
+        }catch(IndexOutOfBoundsException e){
+            jLabel1.setText("No hay mas libros a recomendar");
+        }
+        try{
+        libro2 = (String) respuesta.get(cont + 1);
+        mensaje3.add("consultarInfoLibros");
+        mensaje3.add(libro2.split(";")[1]);
+        respuesta3 = miControl.conectar(mensaje2);
+        jLabel2.setIcon((Icon) respuesta3.get(1));
+        jLabel5.setText((String) respuesta3.get(0));
+        }catch(IndexOutOfBoundsException e){
+            jLabel2.setText("No hay mas libros a recomendar");
+        }
+        try{
+        libro3 = (String) respuesta.get(cont + 2);
+        mensaje4.add("consultarInfoLibros");
+        mensaje4.add(libro3.split(";")[1]);
+        respuesta4 = miControl.conectar(mensaje2);
+        jLabel1.setIcon((Icon) respuesta4.get(1));
+        jLabel6.setText((String) respuesta4.get(0));
+        }catch(IndexOutOfBoundsException e){
+            jLabel3.setText("No hay mas libros a recomendar");
+        }
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -27,21 +76,64 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("LIBROS RECOMENDADOS");
 
+        jLabel1.setText("jLabel1");
+
+        jLabel2.setText("jLabel2");
+
+        jLabel3.setText("jLabel3");
+
+        jLabel4.setText("jLabel4");
+
+        jLabel5.setText("jLabel5");
+
+        jLabel6.setText("jLabel6");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 435, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
+                .addGap(109, 109, 109)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addGap(90, 90, 90)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel3))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 336, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addGap(136, 136, 136)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
+                .addContainerGap(165, Short.MAX_VALUE))
         );
 
         pack();
@@ -49,6 +141,12 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 
 }
