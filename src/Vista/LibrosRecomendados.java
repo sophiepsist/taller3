@@ -135,29 +135,17 @@ public class LibrosRecomendados extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("LIBROS RECOMENDADOS");
 
-        jLabel1.setText("jLabel1");
+        jLabel7.setText("No hay libros a recomendar");
 
-        jLabel2.setText("jLabel2");
+        jLabel8.setText("No hay libros a recomendar");
 
-        jLabel3.setText("jLabel3");
+        jLabel9.setText("No hay libros a recomendar");
 
-        jLabel4.setText("jLabel4");
+        jLabel10.setText("No hay libros a recomendar");
 
-        jLabel5.setText("jLabel5");
+        jLabel11.setText("No hay libros a recomendar");
 
-        jLabel6.setText("jLabel6");
-
-        jLabel7.setText("jLabel7");
-
-        jLabel8.setText("jLabel8");
-
-        jLabel9.setText("jLabel9");
-
-        jLabel10.setText("jLabel10");
-
-        jLabel11.setText("jLabel11");
-
-        jLabel12.setText("jLabel12");
+        jLabel12.setText("No hay libros a recomendar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
