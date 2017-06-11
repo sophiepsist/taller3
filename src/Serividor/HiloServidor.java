@@ -236,6 +236,16 @@ public class HiloServidor extends Thread{
                         Libro libroLectura = (Libro)actualUL7.getLibrosComprados().get((String)mensaje.get(1));
                         enviarDatos(libroLectura.getNotas());
                         break;   
+                    case "recomendarLibros":
+                        ArrayList librosRecomendados = new ArrayList();
+                        ArrayList respuesta = new ArrayList(1);
+                        if(biblioteca.getActualUL()!= null){
+                            librosRecomendados = biblioteca.recomendarLibros();
+                            enviarDatos(librosRecomendados);
+                        }else{
+                            respuesta.add("No existe el usuario en la biblioteca");
+                            enviarDatos(respuesta);
+                        }                        
                 }
 
             }catch(ClassNotFoundException e){
