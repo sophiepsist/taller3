@@ -454,7 +454,7 @@ public class UsuarioLector implements Serializable {
         
     return categorias;
     }
-    
+        
      /*-----------------GUARDAR CAMBIOS EN EL LIBRO LEÍDO-----------------------
     ** Realiza los cambios del ul sobre el objeto libro en su hashmap de libros
     */

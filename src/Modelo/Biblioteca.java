@@ -1253,6 +1253,19 @@ public class Biblioteca {
         }
         return categoriasARecomendar;
     }
-
+    public ArrayList refrescarLibrosRecomendados(){
+        HashMap librosRecomendados = actualUL.algoritmoDeRecomendacionCategorias();
+        ArrayList books = new ArrayList(librosRecomendados.size());
+        Iterator it = librosRecomendados.values().iterator();
+        if(!librosRecomendados.isEmpty()){
+            for(int i=0; i<librosRecomendados.size(); i++){
+                Libro libro = (Libro)it.next();
+                books.add(libro.getTitulo().concat(";" + libro.getIsbn()));
+            }
+        }else{            
+            books.add("No hay libros a recomendar");
+        }
+        return books;
+    }
 
   }

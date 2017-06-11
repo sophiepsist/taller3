@@ -240,7 +240,7 @@ public class HiloServidor extends Thread{
                         ArrayList librosRecomendados = new ArrayList();
                         ArrayList respuesta = new ArrayList(1);
                         if(biblioteca.getActualUL()!= null){
-                            librosRecomendados = biblioteca.recomendarLibros();
+                            librosRecomendados = biblioteca.refrescarLibrosRecomendados();
                             enviarDatos(librosRecomendados);
                         }else{
                             respuesta.add("No existe el usuario en la biblioteca");
