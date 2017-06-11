@@ -306,12 +306,14 @@ public class UsuarioLector implements Serializable {
     
     public ArrayList consultarLibrosComprados(String isbn){
         ArrayList resp = new ArrayList();
+        int roundedNumber;
         if(librosComprados.containsKey(isbn)){
             Libro libro = (Libro)librosComprados.get(isbn);
             resp.add(libro.getResumen());
             resp.add(libro.getCaratula());
             resp.add(libro.getCalificacionPersonal());
-            resp.add(libro.getPorcentajeLectura());
+            roundedNumber = (int) Math.round(libro.getPorcentajeLectura());
+            resp.add(roundedNumber);
         }else{            
             resp.add("Error, el usuario no cuenta con ese libro");
             return resp;
