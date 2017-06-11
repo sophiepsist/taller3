@@ -101,15 +101,6 @@ public class PrincipalLector extends javax.swing.JFrame {
             }
         });
 
-        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
@@ -156,8 +147,16 @@ public class PrincipalLector extends javax.swing.JFrame {
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
+        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jButton6, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,7 +169,7 @@ public class PrincipalLector extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 

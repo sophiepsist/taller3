@@ -453,5 +453,12 @@ public class UsuarioLector implements Serializable {
     return categorias;
     }
     
-    
+     /*-----------------GUARDAR CAMBIOS EN EL LIBRO LEÍDO-----------------------
+    ** Retorna el libro que se quiere leer como un array de strings
+    */
+    public void setPorcentajeLecturaLibro(String isbn, int contador){
+        Libro libro = (Libro)librosComprados.get(isbn);
+        libro.setPaginasLeidas(contador);
+        libro.setPorcentajeLectura(contador/libro.getNumPaginas()*100);
+    }
 }
