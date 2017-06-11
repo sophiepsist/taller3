@@ -230,7 +230,12 @@ public class HiloServidor extends Thread{
                     case "leer":
                         UsuarioLector actualUL4 = biblioteca.getActualUL();
                         enviarDatos(actualUL4.getLibroLectura((String)mensaje.get(1)));
-                        break;                        
+                        break;           
+                    case "refrescarNotas":
+                        UsuarioLector actualUL7 = biblioteca.getActualUL();
+                        Libro libroLectura = (Libro)actualUL7.getLibrosComprados().get((String)mensaje.get(1));
+                        enviarDatos(libroLectura.getNotas());
+                        break;   
                 }
 
             }catch(ClassNotFoundException e){
