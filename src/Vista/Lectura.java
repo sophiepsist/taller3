@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JColorChooser;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.text.Highlighter;
 
@@ -533,12 +534,15 @@ public class Lectura extends javax.swing.JInternalFrame {
         if(this.jProgressBar1.getValue()<80){
             JOptionPane.showMessageDialog(this, "Debe haber leído por lo menos un 80% del libro para poder calificarlo");
         }else{
-//            JOptionPane.showMessageDialog(this, ""
-//            ArrayList conexion = new ArrayList();
-//            conexion.add("calificarLibro");
-//            conexion.add(isbn);
-//            conexion.add(evt)
-            
+            String[] list = {"1", "2", "3", "4", "5"};
+            JComboBox jcb = new JComboBox(list);            
+            JOptionPane.showMessageDialog( null, jcb, "Seleccione una calificación", JOptionPane.QUESTION_MESSAGE);
+            int calificacion = Integer.parseInt(jcb.getSelectedItem().toString());
+            ArrayList conexion = new ArrayList();
+            conexion.add("calificarLibro");
+            conexion.add(isbn);
+            conexion.add(calificacion);
+            JOptionPane.showMessageDialog(this, this.miControl.conectar(conexion).get(0));         
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 

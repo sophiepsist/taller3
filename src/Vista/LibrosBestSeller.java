@@ -22,6 +22,11 @@ public class LibrosBestSeller extends javax.swing.JInternalFrame {
         initComponents();
         this.miControl = c;
         this.refrescarLibrosBestSeller();
+        this.star1.setVisible(false);
+        this.star2.setVisible(false);
+        this.star3.setVisible(false);
+        this.star4.setVisible(false);
+        this.star5.setVisible(false);
     }
 
     /**

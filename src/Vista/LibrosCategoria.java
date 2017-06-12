@@ -27,6 +27,11 @@ public class LibrosCategoria extends javax.swing.JInternalFrame {
         this.refrescarLibrosSuspenso();
         this.refrescarLibrosJuveniles();
         this.refrescarLibrosClasicos();
+        this.star1.setVisible(false);
+        this.star2.setVisible(false);
+        this.star3.setVisible(false);
+        this.star4.setVisible(false);
+        this.star5.setVisible(false);
     }
 
     /** This method is called from within the constructor to

@@ -22,6 +22,11 @@ public class MisLibros extends javax.swing.JInternalFrame {
         initComponents();
         this.miControl = c;
         this.refrescarLibrosComprados();
+        this.star1.setVisible(false);
+        this.star2.setVisible(false);
+        this.star3.setVisible(false);
+        this.star4.setVisible(false);
+        this.star5.setVisible(false);
     }
     
     public void refrescarLibrosComprados(){

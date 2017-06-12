@@ -261,7 +261,12 @@ public class HiloServidor extends Thread{
                         respuestaCalificar.add("Calificación hecha");
                         enviarDatos(respuestaCalificar);
                         break;
-                        
+                    case "getSaldoActual":
+                        ArrayList respuestaSaldo = new ArrayList();
+                        UsuarioLector actualUL10 = biblioteca.getActualUL();
+                        respuestaSaldo.add(actualUL10.getSaldo());
+                        enviarDatos(respuestaSaldo);
+                        break;
                 }
 
             }catch(ClassNotFoundException e){
