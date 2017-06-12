@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JColorChooser;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Highlighter;
 
 /**
@@ -264,8 +265,18 @@ public class Lectura extends javax.swing.JInternalFrame {
         jLabel11.setText("Mis resaltados:");
 
         jButton13.setText("Ir al resaltado");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setText("Volver a la lectura");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -560,6 +571,7 @@ public class Lectura extends javax.swing.JInternalFrame {
         String itemNota = (String)this.jComboBoxNotas.getSelectedItem();
         int paginaNota = Integer.parseInt(itemNota.split(" ")[1]);        
         this.jTextArea1.setText((String)libro.get(paginaNota));
+        
         this.jButton1.setEnabled(false);
         this.jButton2.setEnabled(false);
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -588,6 +600,53 @@ public class Lectura extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        String itemRes = (String)this.jComboBoxResaltado.getSelectedItem();
+        String paginaNota = itemRes.split(" ")[1];               
+        
+        for(int i=0; i<resaltado.size(); i++){
+            String resaltadoKey = (String)resaltado.get(i);                 
+            if(resaltadoKey.split("@")[0].equals(paginaNota)){
+                String selection = resaltadoKey.split("@")[1];
+                this.jTextArea1.setText((String) libro.get(Integer.parseInt(paginaNota)));
+                resaltarPorPagina(selection);
+            }
+        }               
+        this.jButton1.setEnabled(false);
+        this.jButton2.setEnabled(false);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        this.jTextArea1.setText((String)libro.get(cont));
+      //  this.verificarResaltado();
+        this.jButton1.setEnabled(true);
+        this.jButton2.setEnabled(true);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    public void verificarResaltado(int paginaActual){
+        for(int i=0; i<resaltado.size(); i++){
+            String resaltadoKey = (String)resaltado.get(i);                 
+            if(resaltadoKey.split("@")[0].equals(paginaActual)){
+                String selection = resaltadoKey.split("@")[1];                
+                resaltarPorPagina(selection);
+            }
+        }  
+    }
+    
+    public void resaltarPorPagina(String selected){
+        MyHighlighter myHighlighter = new MyHighlighter(colorResaltado);
+        Highlighter hilite = jTextArea1.getHighlighter();
+        String text = this.jTextArea1.getText();   
+        int pos = 0;
+        pos = text.indexOf(selected);
+        try { 
+            hilite.addHighlight(pos, pos + selected.length(), myHighlighter);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(Lectura.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
