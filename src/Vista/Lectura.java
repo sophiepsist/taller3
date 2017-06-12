@@ -446,6 +446,7 @@ public class Lectura extends javax.swing.JInternalFrame {
             cont++;
             this.jTextArea1.setText((String)libro.get(cont));
             this.actualizarProgressBar();
+            this.actualizarResaltado(cont);
         }catch(IndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(this, "Ha llegado al final del libro");
             cont--;
@@ -458,6 +459,7 @@ public class Lectura extends javax.swing.JInternalFrame {
             cont--;
             this.jTextArea1.setText((String)libro.get(cont));
             this.actualizarProgressBar();
+            this.actualizarResaltado(cont);
         }catch(IndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(this, "Se encuentra en la primera página del libro");
             cont++;
@@ -570,15 +572,16 @@ public class Lectura extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String itemNota = (String)this.jComboBoxNotas.getSelectedItem();
         int paginaNota = Integer.parseInt(itemNota.split(" ")[1]);        
-        this.jTextArea1.setText((String)libro.get(paginaNota));
-        
+       // this.jTextArea1.setText((String)libro.get(paginaNota));
+        this.actualizarResaltado(paginaNota);
         this.jButton1.setEnabled(false);
         this.jButton2.setEnabled(false);
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        this.jTextArea1.setText((String)libro.get(cont));
+        //this.jTextArea1.setText((String)libro.get(cont));
+        this.actualizarResaltado(cont);
         this.jButton1.setEnabled(true);
         this.jButton2.setEnabled(true);
     }//GEN-LAST:event_jButton11ActionPerformed
@@ -609,8 +612,25 @@ public class Lectura extends javax.swing.JInternalFrame {
             String resaltadoKey = (String)resaltado.get(i);                 
             if(resaltadoKey.split("@")[0].equals(paginaNota)){
                 String selection = resaltadoKey.split("@")[1];
-                this.jTextArea1.setText((String) libro.get(Integer.parseInt(paginaNota)));
-                resaltarPorPagina(selection);
+                
+                int j = i;
+                while(true){
+                    if(j<resaltado.size()-1){
+                        String resaltadoKey2 = (String)resaltado.get(j+1);
+                        if(resaltadoKey2.split("@")[0].equals(paginaNota)){
+                            this.jTextArea1.setText((String) libro.get(Integer.parseInt(paginaNota)));
+                            resaltarPorPagina(selection);
+                            resaltarPorPagina(resaltadoKey2.split("@")[1]);   
+                            j++;                            
+                        }else{
+                            this.jTextArea1.setText((String) libro.get(Integer.parseInt(paginaNota)));
+                            resaltarPorPagina(selection);
+                            break;
+                        }                        
+                    }else{
+                        break;
+                    }                
+                }              
             }
         }               
         this.jButton1.setEnabled(false);
@@ -619,12 +639,63 @@ public class Lectura extends javax.swing.JInternalFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        this.jTextArea1.setText((String)libro.get(cont));
-      //  this.verificarResaltado();
+        for(int i=0; i<resaltado.size(); i++){
+            String resaltadoKey = (String)resaltado.get(i);                 
+            if(resaltadoKey.split("@")[0].equals(cont)){
+                String selection = resaltadoKey.split("@")[1];
+                
+                int j = i;
+                while(true){
+                    if(j<resaltado.size()-1){
+                        String resaltadoKey2 = (String)resaltado.get(j+1);
+                        if(resaltadoKey2.split("@")[0].equals(cont)){
+                            this.jTextArea1.setText((String) libro.get(cont));
+                            resaltarPorPagina(selection);
+                            resaltarPorPagina(resaltadoKey2.split("@")[1]);   
+                            j++;                            
+                        }else{
+                            this.jTextArea1.setText((String) libro.get(cont));
+                            resaltarPorPagina(selection);
+                            break;
+                        }                        
+                    }else{
+                        break;
+                    }                
+                }              
+            }
+        }
         this.jButton1.setEnabled(true);
         this.jButton2.setEnabled(true);
     }//GEN-LAST:event_jButton14ActionPerformed
 
+    public void actualizarResaltado(int paginaNota){
+        for(int i=0; i<resaltado.size(); i++){
+            String resaltadoKey = (String)resaltado.get(i);                 
+            if(resaltadoKey.split("@")[0].equals(paginaNota)){
+                String selection = resaltadoKey.split("@")[1];
+                
+                int j = i;
+                while(true){
+                    if(j<resaltado.size()-1){
+                        String resaltadoKey2 = (String)resaltado.get(j+1);
+                        if(resaltadoKey2.split("@")[0].equals(paginaNota)){
+                            this.jTextArea1.setText((String) libro.get(paginaNota));
+                            resaltarPorPagina(selection);
+                            resaltarPorPagina(resaltadoKey2.split("@")[1]);   
+                            j++;                            
+                        }else{
+                            this.jTextArea1.setText((String) libro.get(paginaNota));
+                            resaltarPorPagina(selection);
+                            break;
+                        }                        
+                    }else{
+                        break;
+                    }                
+                }              
+            }
+        }
+    }
+    
     public void verificarResaltado(int paginaActual){
         for(int i=0; i<resaltado.size(); i++){
             String resaltadoKey = (String)resaltado.get(i);                 
