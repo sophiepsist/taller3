@@ -5,8 +5,6 @@
  */
 package Serividor;
 
-import Controladora.*;
-import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -14,8 +12,6 @@ import java.net.Socket;
 import java.util.*;
 import Modelo.*;
 import java.time.LocalDateTime;
-//import javafx.util.converter.LocalDateTimeStringConverter;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
