@@ -447,7 +447,7 @@ public class UsuarioLector implements Serializable {
      /*-----------------GUARDAR CAMBIOS EN EL LIBRO LEÍDO-----------------------
     ** Realiza los cambios del ul sobre el objeto libro en su hashmap de libros
     */
-    public void setCambiosLectura(String isbn, int contador, ArrayList paginasArray, ArrayList notas){
+    public void setCambiosLectura(String isbn, int contador, ArrayList paginasArray, ArrayList notas, ArrayList resaltado){
         Libro libro = (Libro)librosComprados.get(isbn);
         System.out.println("CONTADOR. " + contador);
         libro.setPaginasLeidas(contador);        
@@ -455,6 +455,7 @@ public class UsuarioLector implements Serializable {
         libro.setPaginasArray(paginasArray);
         libro.setNumPaginas(paginasArray.size());
         libro.setNotas(notas);        
+        libro.setResaltado(resaltado);
     }
     
     

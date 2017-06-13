@@ -33,6 +33,7 @@ public class Libro implements Serializable{
     private ArrayList calificaciones;    
     private int paginasLeidas;
     private ArrayList notas;
+    private ArrayList resaltado;
     
     //-------------------------MÉTODO CONSTRUCTOR-------------------------------
 
@@ -55,6 +56,7 @@ public class Libro implements Serializable{
         this.calificacionGlobal = 0;
         this.notas = new ArrayList();
         this.porcentajeLectura = 0;
+        this.resaltado =  new ArrayList();
     }   
     
     //----------------------------MÉTODOS GET-----------------------------------
@@ -134,6 +136,10 @@ public class Libro implements Serializable{
     public ArrayList getNotas() {
         return notas;
     }
+
+    public ArrayList getResaltado() {
+        return resaltado;
+    }       
         
     //----------------------------MÉTODOS SET-----------------------------------
 
@@ -208,7 +214,11 @@ public class Libro implements Serializable{
     public void setNotas(ArrayList notas) {
         this.notas = notas;
     }
-        
+
+    public void setResaltado(ArrayList resaltado) {
+        this.resaltado = resaltado;
+    }        
+    
     //-----------------------------CONSULTAR------------------------------------
     
     public ArrayList infoLibro(){ 
