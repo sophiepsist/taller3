@@ -41,7 +41,7 @@ public class Lectura extends javax.swing.JInternalFrame {
         this.isbn = isbn;          
         this.mostrarLibro();  
         this.refrescarNotas();
-        this.refrescarResaltado();
+       // this.refrescarResaltado();
     }
     
     public void mostrarLibro(){
@@ -54,7 +54,7 @@ public class Lectura extends javax.swing.JInternalFrame {
         this.cont = (int)respuesta.get(2);
         this.jTextArea1.setText((String)libro.get(cont));
         this.actualizarProgressBar();
-        this.actualizarResaltado(Integer.toString(cont));
+//        this.actualizarResaltado(Integer.toString(cont));
     }
     
     public void refrescarNotas(){
