@@ -434,9 +434,8 @@ public class PrincipalAdministrador extends javax.swing.JFrame {
         
         try{
             JFrame frame = new JFrame("Sesiones");
-            String code = JOptionPane.showInputDialog(frame, "Ingrese el e-mail del UL que desea consultar", "E-mail", JOptionPane.WARNING_MESSAGE);
-            String email = code.toString();
-
+            String email = JOptionPane.showInputDialog(frame, "Ingrese el e-mail del UL que desea consultar", "E-mail", JOptionPane.WARNING_MESSAGE);
+            
             ArrayList conexion = new ArrayList(2);
             conexion.add("informeSesionesUL");
             conexion.add(email);

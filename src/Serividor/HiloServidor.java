@@ -27,9 +27,6 @@ public class HiloServidor extends Thread{
     private Socket cliente;
     private UsuarioAdministrador UAL;
     private UsuarioLector UL;
-    private String fecha;
-    private String horaInicial;
-    private String horaFinal;
     public HiloServidor(Socket conexion, Biblioteca biblio)
     {
         try{
@@ -161,18 +158,19 @@ public class HiloServidor extends Thread{
                         mensajeLoginUAL.add(this.UAL.isAutorizado());
                         enviarDatos(mensajeLoginUAL);
                         LocalDateTime timeUAL = LocalDateTime.now();
-                        fecha = Integer.toString(timeUAL.getDayOfMonth()) + "/" + Integer.toString(timeUAL.getMonthValue()) +"/"+ Integer.toString(timeUAL.getYear());
-                        this.horaInicial = Integer.toString(timeUAL.getHour()) + ":" + Integer.toString(timeUAL.getMinute()) + ":" + Integer.toString(timeUAL.getSecond());
+                        String fechaUAL = Integer.toString(timeUAL.getDayOfMonth()) + "/" + Integer.toString(timeUAL.getMonthValue()) +"/"+ Integer.toString(timeUAL.getYear());
+                        String horaInicialUAL = Integer.toString(timeUAL.getHour()) + ":" + Integer.toString(timeUAL.getMinute()) + ":" + Integer.toString(timeUAL.getSecond());
                         break; 
                     case "loginUsuarioLector":
                         ArrayList mensajeLoginUL = new ArrayList(1);                        
                         this.UL = biblioteca.verificarLoginUL((String)mensaje.get(1), (String)mensaje.get(2));  
-                        biblioteca.setActualUL(UL);
+                        biblioteca.setActualUL(UL);                        
                         mensajeLoginUL.add("todo ok");
                         enviarDatos(mensajeLoginUL);
                         LocalDateTime timeUL = LocalDateTime.now();
-                        fecha = Integer.toString(timeUL.getDayOfMonth()) + "/" + Integer.toString(timeUL.getMonthValue()) +"/"+ Integer.toString(timeUL.getYear());
-                        this.horaInicial = Integer.toString(timeUL.getHour()) + ":" + Integer.toString(timeUL.getMinute()) + ":" + Integer.toString(timeUL.getSecond());
+                        String fechaUL = Integer.toString(timeUL.getDayOfMonth()) + "/" + Integer.toString(timeUL.getMonthValue()) +"/"+ Integer.toString(timeUL.getYear());
+                        String horaInicialUL = Integer.toString(timeUL.getHour()) + ":" + Integer.toString(timeUL.getMinute()) + ":" + Integer.toString(timeUL.getSecond());
+                        Sesion sesion = new Sesion(horaInicialUL, "", fechaUL);
                         break;
                     case "comprarlibrosUL":
                         ArrayList msj = new ArrayList();                        
@@ -246,7 +244,7 @@ public class HiloServidor extends Thread{
                     case "setCambiosLectura":
                         ArrayList respuestaCambios = new ArrayList();
                         UsuarioLector actualUL8 = biblioteca.getActualUL();
-                        actualUL8.setCambiosLectura((String)mensaje.get(1),(int)mensaje.get(2), (ArrayList)mensaje.get(3), (ArrayList)mensaje.get(4));
+                        actualUL8.setCambiosLectura((String)mensaje.get(1),(int)mensaje.get(2), (ArrayList)mensaje.get(3), (ArrayList)mensaje.get(4), (ArrayList)mensaje.get(5));
                         respuestaCambios.add("Libro guardado");
                         enviarDatos(respuestaCambios);
                         break;   
@@ -322,8 +320,14 @@ public class HiloServidor extends Thread{
             if(actualUL6 != null){
                 System.out.println(actualUL6.getEmail());
                 LocalDateTime time = LocalDateTime.now();
-                this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
-                Sesion sesion = new Sesion(horaInicial, horaFinal, fecha);
+                String horaFinalUL = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
+                
+                ArrayList sesiones = UL.getSesionesIniciadas();
+                Sesion sesion = (Sesion)sesiones.get(sesiones.size()-1);
+                
+                sesion.setHoraFinal(horaFinalUL);
+                
+                sesion.tiempoDeConexion();
                 System.out.println(sesion.getFecha());
                 System.out.println(sesion.getHoraInicial());
                 System.out.println(sesion.getHoraFinal());
@@ -331,11 +335,6 @@ public class HiloServidor extends Thread{
                 biblioteca.serializarUL(actualUL6);
             }else{
                 if(actualUAL6 != null){
-                    System.out.println(actualUAL6.getEmail());
-                    LocalDateTime time = LocalDateTime.now();
-                    this.horaFinal = Integer.toString(time.getHour()) + ":" + Integer.toString(time.getMinute()) + ":" + Integer.toString(time.getSecond());
-                    Sesion sesion = new Sesion(horaInicial, horaFinal, fecha);
-                    actualUAL6.agregarSesion(sesion);
                     biblioteca.serializarUAL(actualUAL6);
                 }else{                    
                     System.out.println("cerrar conexion dentro de enviar datos(Dentro del if)");
@@ -357,7 +356,7 @@ public class HiloServidor extends Thread{
         catch(IOException e)
         {
             System.out.println("IOException en cerrar conexion en Hilo.java");
-        }
+        } 
     }    
     
     @Override

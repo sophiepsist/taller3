@@ -21,6 +21,7 @@ public class Sesion implements Serializable{
         this.horaInicial = horaInicial;
         this.horaFinal = horaFinal;
         this.fecha = fecha;
+        tiempoDeConexion();
     }
 
     public String getHoraInicial() {
@@ -54,6 +55,7 @@ public class Sesion implements Serializable{
         String minutos = Integer.toString(Integer.parseInt(aux2[1].toString()) - Integer.parseInt(aux1[1].toString()));
         String segundos = Integer.toString(Integer.parseInt(aux2[2].toString()) - Integer.parseInt(aux1[2].toString()));
         String tiempoDeConexion = horas + ":" + minutos + ":" + segundos;
+        System.out.println(tiempoDeConexion);
         this.tiempoDeConexion = tiempoDeConexion;
     }
 
@@ -62,6 +64,7 @@ public class Sesion implements Serializable{
     }
     
     public String getInforme(){
+        
         return "Fecha: " + fecha + "\nHora inicial: " + horaInicial + "\nHora final: " 
                 + horaFinal + "\nTiempo de conexion: " + tiempoDeConexion;
     }
